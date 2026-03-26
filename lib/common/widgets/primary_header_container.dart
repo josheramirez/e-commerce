@@ -4,56 +4,57 @@ import 'package:e_commerce/utils/helpers/device_helpers.dart';
 import 'package:flutter/material.dart';
 
 class UPrimaryHeaderContainer extends StatelessWidget {
-  const UPrimaryHeaderContainer({
-    super.key, required this.child,
-  });
+  const UPrimaryHeaderContainer({super.key, required this.child});
 
   final Widget child;
-  
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: UDeviceHelper.getScreenHeight(context)*0.4,
+    return ClipPath(
+      clipper: UCustomRounderEdges(),
+      child: Container(
+        height: UDeviceHelper.getScreenHeight(context) * 0.4,
         color: UColors.primary,
         child: Stack(
           children: [
             Container(
-              height: UDeviceHelper.getScreenHeight(context)*0.4,
+              height: UDeviceHelper.getScreenHeight(context) * 0.4,
               color: UColors.primary,
               child: Stack(
                 children: [
-      
                   // Circular Container
                   Positioned(
                     top: -150,
                     right: -160,
                     child: UCircularContainer(
-                      height: UDeviceHelper.getScreenHeight(context)*0.4,
-                      width: UDeviceHelper.getScreenHeight(context)*0.4,
+                      height: UDeviceHelper.getScreenHeight(context) * 0.4,
+                      width: UDeviceHelper.getScreenHeight(context) * 0.4,
                       backgroundColor: UColors.white.withValues(alpha: 0.1),
-                    )
+                    ),
                   ),
-      
+
                   // Circular Container
                   Positioned(
                     top: 50,
                     right: -250,
                     child: UCircularContainer(
-                      height: UDeviceHelper.getScreenHeight(context)*0.4,
-                      width: UDeviceHelper.getScreenHeight(context)*0.4,
+                      height: UDeviceHelper.getScreenHeight(context) * 0.4,
+                      width: UDeviceHelper.getScreenHeight(context) * 0.4,
                       backgroundColor: UColors.white.withValues(alpha: 0.1),
-                    )
+                    ),
                   ),
+                  child,
                 ],
               ),
-            )
+            ),
           ],
         ),
-      );
+      ),
+    );
   }
 }
 
-class UCustomRounderEdges extends CustomClipper<Path>{
+class UCustomRounderEdges extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path = Path();
@@ -65,16 +66,26 @@ class UCustomRounderEdges extends CustomClipper<Path>{
     Offset firstPointCurve = Offset(40, size.height);
     Offset secondPointCurve = Offset(size.width / 2, size.height);
 
-    path.quadraticBezierTo(firstPointCurve.dx, firstPointCurve.dy, secondPointCurve.dx, secondPointCurve.dy);
+    path.quadraticBezierTo(
+      firstPointCurve.dx,
+      firstPointCurve.dy,
+      secondPointCurve.dx,
+      secondPointCurve.dy,
+    );
 
     // Second Curve
-    Offset firstPointCurve2 = Offset(size.width -40, size.height);
-    Offset secondPointCurve2 = Offset(size.width , size.height - 40);
+    Offset firstPointCurve2 = Offset(size.width - 40, size.height);
+    Offset secondPointCurve2 = Offset(size.width, size.height - 40);
 
-    path.quadraticBezierTo(firstPointCurve2.dx, firstPointCurve2.dy, secondPointCurve2.dx, secondPointCurve2.dy);
+    path.quadraticBezierTo(
+      firstPointCurve2.dx,
+      firstPointCurve2.dy,
+      secondPointCurve2.dx,
+      secondPointCurve2.dy,
+    );
 
     // Bottom To Top Line
-    path.lineTo(size.height , 0);
+    path.lineTo(size.width, 0);
 
     return path;
   }
@@ -83,5 +94,4 @@ class UCustomRounderEdges extends CustomClipper<Path>{
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
     return true;
   }
-  
 }
