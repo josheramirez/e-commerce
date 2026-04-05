@@ -23,7 +23,7 @@ class UAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: USizes.md),
+      padding: const EdgeInsets.symmetric(horizontal: USizes.md, vertical: 20.0),
       child: AppBar(
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
