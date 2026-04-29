@@ -4,7 +4,7 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class CardCounterIcon extends StatelessWidget {
   const CardCounterIcon({
-    super.key, required this.onPressed, required this.iconColor,
+    super.key, required this.onPressed, this.iconColor = UColors.light,
   });
 
   final VoidCallback onPressed;
@@ -14,7 +14,7 @@ class CardCounterIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        IconButton(onPressed: (){}, icon: const Icon(Iconsax.shopping_bag_copy), color: UColors.light),
+        IconButton(onPressed: (){}, icon: const Icon(Iconsax.shopping_bag_copy), color: iconColor),
         Positioned(
           right: 0,
           child: Container(

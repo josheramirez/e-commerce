@@ -11,27 +11,28 @@ class SeachContainer extends StatelessWidget {
     this.icon = Iconsax.search_normal_1_copy, 
     this.showBackground=true, 
     this.showBorder=true,
-    this.onTap
+    this.onTap, this.padding = const EdgeInsets.symmetric(horizontal: USizes.defaultSpace),
   });
 
   final String text;
   final IconData? icon;
   final bool showBackground, showBorder;
   final VoidCallback? onTap;
+  final EdgeInsetsGeometry padding;
   
   @override
   Widget build(BuildContext context) {
-    return GestureDetector
-    ( onTap: onTap,
+    return GestureDetector( 
+      onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: USizes.defaultSpace),
+        padding: padding,
         child: Container(
           width: UDeviceHelper.getScreenWidth(context),
           padding: const EdgeInsets.all(USizes.md),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(USizes.cardRadiusLg),
-            border: Border.all(color: UColors.grey)
+            border: showBorder? Border.all(color: UColors.grey) : null
           ),
           child: Row(
             children: [

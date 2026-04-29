@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:e_commerce/common/layout/grid_layout.dart';
 import 'package:e_commerce/common/widgets/appBar/appbar.dart';
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/circular_container.dart';
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/primary_header_container.dart';
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/search_container.dart';
+import 'package:e_commerce/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:e_commerce/features/shop/controllers/home_controller.dart';
 import 'package:e_commerce/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
@@ -19,65 +21,82 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      body: Column(
-        children: [
-          // Header
-          UPrimaryHeaderContainer(
-            child: Column(
-              children: [
-                // App Bar
-                CustomAppBar(),
-                SizedBox(height: USizes.spaceBtwSections),
-          
-                // Search Bar
-                SeachContainer(text: "Search in Store"),
-                SizedBox(height: USizes.spaceBtwSections),
-          
-                Padding(
-                  padding: const EdgeInsets.only(left: USizes.defaultSpace),
-                  child: Column(
-                    children: [
-                      
-                      // Heading
-                      SectionHeading(title: 'Popular Categories', showActionButton: false, textColor: UColors.white,),
-                      SizedBox(height: USizes.spaceBtwSections/2),
-                      
-                      // Categories
-                      SizedBox(
-                        height: 80,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: 6,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (_, index){
-                            return VerticalImageText(image: Images.shoesIcon, title: 'Shoes', onTap: (){});
-                          },
-                        ),
-                      )
-                    ],
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Header
+            UPrimaryHeaderContainer(
+              child: Column(
+                children: [
+                  // App Bar
+                  HomeAppbar(),
+                  SizedBox(height: USizes.spaceBtwSections/2),
+            
+                  // Search Bar
+                  SeachContainer(text: "Search in Store"),
+                  SizedBox(height: USizes.spaceBtwSections),
+            
+                  Padding(
+                    padding: const EdgeInsets.only(left: USizes.defaultSpace),
+                    child: Column(
+                      children: [
+                        
+                        // Heading
+                        SectionHeading(title: 'Popular Categories', showActionButton: false, textColor: UColors.white,),
+                        SizedBox(height: USizes.spaceBtwSections/2),
+                        
+                        // Categories
+                        SizedBox(
+                          height: 80,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: 6,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (_, index){
+                              return VerticalImageText(image: Images.shoesIcon, title: 'Shoes', onTap: (){});
+                            },
+                          ),
+                        )
+                      ],
+                    ),
                   ),
+                  SizedBox(height: USizes.spaceBtwSections)
+                ],
+              ),
+            ),
+        
+            // Body
+            Padding(
+              
+              padding: const EdgeInsets.all(USizes.defaultSpace),
+              child: Column(
+                children: [
+                  
+                  PromoSlder(banners: [
+                    Images.homeBanner1,
+                    Images.homeBanner2,
+                    Images.homeBanner3,
+                    Images.homeBanner4,
+                    Images.homeBanner5]
+                  ),
+                  
+                  SizedBox(height: USizes.spaceBtwSections),
+                  GridLayout(itemCount: 10, itemBuilder: (_, index){
+                    return ProductCardVertical();}
                 )
-              ],
+        
+                ],
+              ),
             ),
-          ),
-
-          // Body
-          Padding(
-            padding: const EdgeInsets.all(USizes.defaultSpace),
-            child: PromoSlder(banners: [
-              Images.homeBanner1,
-              Images.homeBanner2,
-              Images.homeBanner3,
-              Images.homeBanner4,
-              Images.homeBanner5]
-            ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
 }
+
+
 
 class PromoSlder extends StatelessWidget {
   const PromoSlder({
@@ -226,6 +245,7 @@ class SectionHeading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(title, style: Theme.of(context).textTheme.titleMedium!.apply(color: textColor), maxLines: 1, overflow: TextOverflow.ellipsis),
         if(showActionButton) TextButton(onPressed: onPressed, child: Text(buttonTitle))

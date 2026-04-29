@@ -4,8 +4,8 @@ import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/features/shop/screens/home/home.dart';
 import 'package:flutter/material.dart';
 
-class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({
+class HomeAppbar extends StatelessWidget {
+  const HomeAppbar({
     super.key,
   });
 

@@ -234,4 +234,11 @@ class Images{
   static const String successfulPaymentIcon = "assets/icons/payment_methods/successful_payment_icon.png";
   static const String codIcon = "assets/icons/payment_methods/cod.png";
 
+
+// Brands
+  static const String pokemonIcon = "assets/brands/pokemon_icon.png";
+
+// Profile
+  static const String user = "assets/images/user.png";
+
 }

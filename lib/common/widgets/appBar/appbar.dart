@@ -24,7 +24,9 @@ class UAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: USizes.md, vertical: 20.0),
-      child: AppBar(
+      child: 
+      AppBar(
+        surfaceTintColor: Colors.transparent,
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
 
@@ -32,11 +34,12 @@ class UAppBar extends StatelessWidget implements PreferredSizeWidget {
         leading: showBackArrow
             ? IconButton(
                 onPressed: () => Get.back(),
-                icon: Icon(Iconsax.arrow_left),
+                icon: Icon(Iconsax.arrow_left_copy),
               )
             : leadingIcon != null
             ? IconButton(onPressed: leadingOnPressed, icon: Icon(leadingIcon))
             : null,
+            
         title: title,
         actions: actions,
       ),
@@ -45,5 +48,5 @@ class UAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   // Size get preferredSize => throw UnimplementedError();
-  Size get preferredSize => Size.fromHeight(UDeviceHelper.getAppBarHeight()); // Default height
+  Size get preferredSize => Size.fromHeight(80); // Default height
 }
