@@ -1,6 +1,7 @@
 import 'package:e_commerce/common/style/shadow.dart';
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/primary_header_container.dart';
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_container.dart';
+import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_image.dart';
 import 'package:e_commerce/common/widgets/icons/circular_icons.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/brand_title_text.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/product_tiitle_text.dart';
@@ -130,7 +131,7 @@ class BrandTitleWithVerifiedIcon extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
 
-        BrandTitleText(title: "pokemon"),
+        BrandTitleText(title: title),
         Icon(Iconsax.verify, color: UColors.primary, size: USizes.iconXs)
       ],
     );

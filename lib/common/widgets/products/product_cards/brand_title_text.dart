@@ -19,18 +19,21 @@ const BrandTitleText({
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      textAlign: textAlign,
-      style: brandTextSize == TextSizes.small
-          ? Theme.of(context).textTheme.labelMedium!.apply(color: color)
-          : brandTextSize == TextSizes.medium
-          ? Theme.of(context).textTheme.bodyLarge!.apply(color: color)
-          : brandTextSize == TextSizes.large
-          ? Theme.of(context).textTheme.titleLarge!.apply(color: color)
-          : Theme.of(context).textTheme.bodyMedium!.apply(color: color),
-      overflow: TextOverflow.ellipsis,
-      maxLines: maxLines,
+    return Padding(
+      padding: const EdgeInsets.only(left: 0, right: 5),
+      child: Text(
+        title,
+        textAlign: textAlign,
+        style: brandTextSize == TextSizes.small
+            ? Theme.of(context).textTheme.labelMedium!.apply(color: color)
+            : brandTextSize == TextSizes.medium
+            ? Theme.of(context).textTheme.bodyLarge!.apply(color: color)
+            : brandTextSize == TextSizes.large
+            ? Theme.of(context).textTheme.titleLarge!.apply(color: color)
+            : Theme.of(context).textTheme.bodyMedium!.apply(color: color),
+        overflow: TextOverflow.ellipsis,
+        maxLines: maxLines,
+      ),
     );
   }
 }
