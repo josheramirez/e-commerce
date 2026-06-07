@@ -18,7 +18,7 @@ class ProductImageSlider extends StatelessWidget {
     return UCurvedEdgeWidget(
       child:  
         Container(
-          color: Colors.yellow,
+          color: Colors.white,
           child: Stack(
             children: [
               // Main Large Image

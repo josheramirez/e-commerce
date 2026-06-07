@@ -13,7 +13,7 @@ class UCircularIcon extends StatelessWidget {
     this.onPressed,
     this.height,
     this.width,
-    this.color,
+    this.color = Colors.white,
   });
 
   final double? width, height, size;
@@ -27,10 +27,17 @@ class UCircularIcon extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-          color: UColors.white,
+          color: backgroundColor != null
+          ? backgroundColor!
+          : UColors.white,
+          // color: color,
           borderRadius: BorderRadius.circular(100)
       ),
-      child: IconButton(onPressed: onPressed, icon: Icon(icon, color: color, size: size)),
+      child: IconButton(
+        onPressed: onPressed, 
+        icon: Icon(icon, color: color, size: size),
+      ),
+        
     );
   }
 }

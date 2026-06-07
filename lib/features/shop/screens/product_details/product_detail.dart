@@ -7,17 +7,22 @@ import 'package:e_commerce/common/widgets/icons/circular_icons.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/product_tiitle_text.dart';
 import 'package:e_commerce/features/shop/screens/home/home.dart';
+import 'package:e_commerce/features/shop/screens/product_details/widgets/bottom_add_to_card_widget.dart';
 import 'package:e_commerce/features/shop/screens/product_details/widgets/curved_edge_widget.dart';
+import 'package:e_commerce/features/shop/screens/product_details/widgets/product_attributes.dart';
 import 'package:e_commerce/features/shop/screens/product_details/widgets/product_detail_image_slider.dart';
 import 'package:e_commerce/features/shop/screens/product_details/widgets/product_price_text.dart';
 import 'package:e_commerce/features/shop/screens/product_details/widgets/product_title_text.dart';
 import 'package:e_commerce/features/shop/screens/product_details/widgets/rating_and_share.dart';
+import 'package:e_commerce/features/shop/screens/product_reviews/widgets/product_reviews.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/constants/enums.dart';
 import 'package:e_commerce/utils/constants/images.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
+import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:readmore/readmore.dart';
 
 
 class ProductDetailScreen extends StatelessWidget {
@@ -27,6 +32,7 @@ class ProductDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Colors.red ,
+      bottomNavigationBar: BottomAddToCard(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -96,78 +102,51 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                   
                   // Attributes
-                  Column(
-                    children: [
-                      URoundedContainer(
-                        padding: const EdgeInsets.all(USizes.md),
-                        backgroundColor: UColors.grey,
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                SectionHeading(title: 'Variation', showActionButton: false),
-                                SizedBox(width: USizes.spaceBtwItems),
+                  ProductsAttributes(),
+                  SizedBox(height: USizes.spaceBtwSections),
 
-                                Flexible(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      
-                                      // Price
-                                      Row(
-                                        children: [
-                                          ProductTiitleText(title: 'Price : ', smallSize: true),
-                                          SizedBox(width: USizes.spaceBtwItems /2 ),
-                                          
-                                          // Actual Price
-                                          Text('\$25', style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough)),
-                                          SizedBox(width: USizes.spaceBtwItems),
-                                  
-                                          // Sale Price
-                                          Text('\$20'),
-                                          
-                                        ],
-                                      ),
-                                  
-                                      // Stock
-                                      Row(
-                                        children: [
-                                          const ProductTitleText(title: 'Stock : ', smallSize: true),
-                                          Text('In Stock', style: Theme.of(context).textTheme.titleMedium),
-                                        ],
-                                      ),
-                                  
-                                      // Variation Description
-                                      ProductTitleText(
-                                        title: 'This is a descrription of the product and it can go up 4 lines. this is just a test Lorem, This is a descrription of the product and it can go up 4 lines. this is just a test Lorem Ipsum',
-                                        smallSize: true,
-                                        maxLines: 3,
-                                      ),
-                                  
-                                    ],
-                                  ),
-                                )
-                               
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: USizes.spaceBtwItems),
-
-                      // Attributes
-                      Column(
-                        children: [
-                          SectionHeading(title: 'Colors'),
-                          SizedBox(height: USizes.spaceBtwItems/2),
-                          UChoiceChip(text: 'Green', selected: true)
-                        ],
-                      )
-                    ],
-                  )
                   // Checkout Button
+                  SizedBox(width: double.infinity, child: 
+                    ElevatedButton(
+                      onPressed: (){}, 
+                      child: Text('Checkout'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,     // Button background color
+                        foregroundColor: Colors.white,    // Text and icon color
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0), // Adjust radius here
+                        ),
+                        fixedSize: const Size.fromHeight(50),
+                      ),
+                    )
+                  ),
+                  SizedBox(height: USizes.spaceBtwItems),
+
                   // Description
+                  SectionHeading(title: 'Description'),
+                  SizedBox(height: USizes.spaceBtwItems),
+                  ReadMoreText(
+                    'Your long text goes here that needs to be truncated with a read more linkYour long text goes here Your long text goes here that needs to be truncated with a read more linkYour long text goes here that needs to be truncated with a read more link...', // <-- Add this string!
+                    trimLines: 2,
+                    trimMode: TrimMode.Line,
+                    trimCollapsedText: 'Show more',
+                    trimExpandedText: 'Less',
+                    moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                  ),
+                  // SizedBox(height: USizes.spaceBtwSections),
+
                   // Reviews
+                  Divider(),
+                  SizedBox(height: USizes.spaceBtwItems),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SectionHeading(title: 'Reviews (199)', showActionButton: false),
+                      IconButton(onPressed: () => Get.to(() => const ProductReviewsScreen()), icon: Icon(Iconsax.arrow_right_3_copy, size: 18)),
+                    ],
+                  ),
+                  SizedBox(height: USizes.spaceBtwItems)
                 ],
               ),
             ),
