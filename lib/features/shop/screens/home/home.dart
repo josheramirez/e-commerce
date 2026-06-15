@@ -7,7 +7,9 @@ import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_image
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/search_container.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:e_commerce/features/shop/controllers/home_controller.dart';
+import 'package:e_commerce/features/shop/screens/all_products/all_products.dart';
 import 'package:e_commerce/features/shop/screens/home/widgets/home_appbar.dart';
+import 'package:e_commerce/features/shop/screens/sub_category/sub_categories.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/constants/images.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
@@ -55,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                             itemCount: 6,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (_, index){
-                              return VerticalImageText(image: Images.shoesIcon, title: 'Shoes', onTap: (){});
+                              return VerticalImageText(image: Images.shoesIcon, title: 'Shoes', onTap: () => Get.to(() => SubCategoriesScreen()));
                             },
                           ),
                         )
@@ -69,20 +71,21 @@ class HomeScreen extends StatelessWidget {
         
             // Body
             Padding(
-              
               padding: const EdgeInsets.all(USizes.defaultSpace),
               child: Column(
                 children: [
-                  
-                  PromoSlder(banners: [
+                  PromoSlider(banners: [
                     Images.homeBanner1,
                     Images.homeBanner2,
                     Images.homeBanner3,
                     Images.homeBanner4,
                     Images.homeBanner5]
                   ),
-                  
                   SizedBox(height: USizes.spaceBtwSections),
+
+                  // Heading
+                  SectionHeading(title: 'Popular Products', onPressed: () => Get.to(()=> AllProducts())),
+                  SizedBox(height: USizes.spaceBtwItems),
                   GridLayout(itemCount: 10, itemBuilder: (_, index){
                     return ProductCardVertical();}
                 )
@@ -99,8 +102,8 @@ class HomeScreen extends StatelessWidget {
 
 
 
-class PromoSlder extends StatelessWidget {
-  const PromoSlder({
+class PromoSlider extends StatelessWidget {
+  const PromoSlider({
     super.key, required this.banners,
   });
 

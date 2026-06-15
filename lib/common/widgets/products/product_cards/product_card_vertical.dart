@@ -67,12 +67,14 @@ class ProductCardVertical extends StatelessWidget {
             ),
             SizedBox(height: USizes.spaceBtwItems/2),
             
+            // Spacer(),
             // Details
             Padding(
               padding: const EdgeInsets.only(left:USizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+
                   ProductTiitleText(title: "Blue Shoe Nike", smallSize: false),
                   SizedBox(height: USizes.spaceBtwItems/2,),
                   BrandTitleWithVerifiedIcon(title: "pokemon",),

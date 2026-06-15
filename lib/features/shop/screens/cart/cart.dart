@@ -3,14 +3,11 @@ import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_image
 import 'package:e_commerce/common/widgets/icons/circular_icons.dart';
 import 'package:e_commerce/common/widgets/products/cart/add_remove_button.dart';
 import 'package:e_commerce/common/widgets/products/cart/cart_item.dart';
-import 'package:e_commerce/common/widgets/products/product_cards/brand_title_with_verifed_icon.dart';
-import 'package:e_commerce/features/shop/screens/product_details/widgets/product_price_text.dart';
-import 'package:e_commerce/features/shop/screens/product_details/widgets/product_title_text.dart';
-import 'package:e_commerce/utils/constants/colors.dart';
-import 'package:e_commerce/utils/constants/images.dart';
+import 'package:e_commerce/features/shop/screens/cart/widgets/cart_items..dart';
+import 'package:e_commerce/features/shop/screens/checkout/checkout.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:get/get.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -23,31 +20,7 @@ class CartScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(USizes.defaultSpace),
-          child: ListView.separated(
-            shrinkWrap: true, // Forces the list to only take up necessary space
-            separatorBuilder: (_, __) => const SizedBox(height: USizes.spaceBtwSections),
-            itemCount:29,
-            itemBuilder: (_, index) => Column(
-              children: [
-                CartItem(),
-                SizedBox(height: USizes.spaceBtwItems),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                     Row(
-                        children: [
-                          SizedBox(width: 70),
-                          ProductQuantityWithAddRemoveButton(),
-                        ], 
-                      ),
-                       ProductPriceText(price: '40')
-                  ],
-                ),
-               
-              ],
-            ), 
-           
-          ),
+          child: CartItems(),
           
 
         
@@ -58,7 +31,7 @@ class CartScreen extends StatelessWidget {
         child:
         //  ElevatedButton(onPressed: (){}, child: Text('Checkout \$ 235')),
           ElevatedButton(
-            onPressed: (){},
+            onPressed: () => Get.to(() => CheckoutScreen()),
             style: ElevatedButton.styleFrom(
             backgroundColor: Colors.blue, // Button background color
             foregroundColor: Colors.white,      // Text and icon color

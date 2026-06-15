@@ -5,6 +5,8 @@ import 'package:e_commerce/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:e_commerce/features/personalization/screens/address/address.dart';
 import 'package:e_commerce/features/personalization/screens/profile/profile.dart';
 import 'package:e_commerce/features/shop/screens/home/home.dart';
+import 'package:e_commerce/features/shop/screens/order/order.dart';
+import 'package:e_commerce/features/shop/screens/order/widgets/orders_list.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/constants/images.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
@@ -51,9 +53,19 @@ class SettingsScreen extends StatelessWidget {
                   // Account Settings 
                   SectionHeading(title: 'Account Settings', showActionButton: false),
                   SizedBox(height: USizes.spaceBtwItems),
-                  SettingsMenuTile(icon: Iconsax.safe_home_copy, title: 'My Address', subtitle: 'Set Shopping delivery address', onTap: () => Get.to(() => UserAddressScreen())),
+                  SettingsMenuTile(
+                    icon: Iconsax.safe_home_copy, 
+                    title: 'My Address', 
+                    subtitle: 'Set Shopping delivery address', 
+                    onTap: () => Get.to(() => UserAddressScreen())
+                  ),
                   SettingsMenuTile(icon: Iconsax.shopping_cart_copy, title: 'My Cart', subtitle: 'Add, remove products and move to checkout'),
-                  SettingsMenuTile(icon: Iconsax.bag_tick_copy, title: 'My Orders', subtitle: 'In progress and Completed Orders'),
+                  SettingsMenuTile(
+                    icon: Iconsax.bag_tick_copy, 
+                    title: 'My Orders', 
+                    subtitle: 'In progress and Completed Orders', 
+                    onTap: () => Get.to(() => OrderScreen())
+                    ),
                   SettingsMenuTile(icon: Iconsax.bank_copy, title: 'Bank Account', subtitle: 'Withdraw balance to registered bank account'),
                   SettingsMenuTile(icon: Iconsax.discount_shape_copy, title: 'My Coupons', subtitle: 'List of all the discounted coupons'),
                   SettingsMenuTile(icon: Iconsax.notification_copy, title: 'Notifications', subtitle: 'Set any kind of notification message'),

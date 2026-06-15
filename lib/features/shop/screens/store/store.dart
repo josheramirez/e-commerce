@@ -7,6 +7,7 @@ import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_conta
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/search_container.dart';
 import 'package:e_commerce/common/widgets/products/cart/cart_counter_icon.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/brand_title_with_verifed_icon.dart';
+import 'package:e_commerce/features/shop/screens/brand/all_brands.dart';
 import 'package:e_commerce/features/shop/screens/home/home.dart';
 import 'package:e_commerce/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
@@ -15,6 +16,7 @@ import 'package:e_commerce/utils/constants/images.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:e_commerce/utils/helpers/device_helpers.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
@@ -51,7 +53,7 @@ class StoreScreen extends StatelessWidget {
                     SizedBox(height: USizes.spaceBtwSections,),
       
                     // Featured Brands
-                    SectionHeading(title: 'Featured Brands', onPressed: (){}),
+                    SectionHeading(title: 'Featured Brands', onPressed: () => Get.to(() => AllBrandsScreen())),
                     SizedBox(height: USizes.spaceBtwItems/1.5),
       
                     // Brand Grid
@@ -103,12 +105,12 @@ class BrandCard extends StatelessWidget {
   });
 
   final bool showBorder;
-  final void Function()? onTap;
+  final void Function()? onTap ;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+      onTap: onTap,
       child: URoundedContainer(
         padding: const EdgeInsets.all(USizes.sm),
         showBorder: showBorder,
