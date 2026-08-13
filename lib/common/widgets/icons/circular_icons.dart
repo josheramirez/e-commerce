@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
-import '../../../utils/helpers/helper_functions.dart';
 
 class UCircularIcon extends StatelessWidget {
   const UCircularIcon({
@@ -27,17 +26,14 @@ class UCircularIcon extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-          color: backgroundColor != null
-          ? backgroundColor!
-          : UColors.white,
-          // color: color,
-          borderRadius: BorderRadius.circular(100)
+        color: backgroundColor != null ? backgroundColor! : UColors.white,
+        // color: color,
+        borderRadius: BorderRadius.circular(100),
       ),
       child: IconButton(
-        onPressed: onPressed, 
+        onPressed: onPressed,
         icon: Icon(icon, color: color, size: size),
       ),
-        
     );
   }
 }

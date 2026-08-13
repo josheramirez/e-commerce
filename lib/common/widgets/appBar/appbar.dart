@@ -1,5 +1,4 @@
 import 'package:e_commerce/utils/constants/sizes.dart';
-import 'package:e_commerce/utils/helpers/device_helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
@@ -23,9 +22,11 @@ class UAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: USizes.md, vertical: 20.0),
-      child: 
-      AppBar(
+      padding: const EdgeInsets.symmetric(
+        horizontal: USizes.md,
+        vertical: 20.0,
+      ),
+      child: AppBar(
         surfaceTintColor: Colors.transparent,
         backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
@@ -39,7 +40,7 @@ class UAppBar extends StatelessWidget implements PreferredSizeWidget {
             : leadingIcon != null
             ? IconButton(onPressed: leadingOnPressed, icon: Icon(leadingIcon))
             : null,
-            
+
         title: title,
         actions: actions,
       ),

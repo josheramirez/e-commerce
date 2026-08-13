@@ -1,5 +1,4 @@
 import 'package:e_commerce/common/widgets/appBar/appbar.dart';
-import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_container.dart';
 import 'package:e_commerce/features/personalization/screens/address/add_new_address.dart';
 import 'package:e_commerce/features/personalization/screens/address/widgets/single_address.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
@@ -26,7 +25,10 @@ class _UserAddressScreenState extends State<UserAddressScreen> {
       ),
       appBar: UAppBar(
         showBackArrow: true,
-        title: Text('Addresses', style: Theme.of(context).textTheme.headlineSmall),
+        title: Text(
+          'Addresses',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -34,10 +36,10 @@ class _UserAddressScreenState extends State<UserAddressScreen> {
           child: Column(
             children: [
               SingleAddress(selectedAddress: true),
-              SingleAddress(selectedAddress: false)
+              SingleAddress(selectedAddress: false),
             ],
           ),
-          ),
+        ),
       ),
     );
   }

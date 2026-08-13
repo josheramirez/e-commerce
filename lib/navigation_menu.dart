@@ -3,6 +3,7 @@ import 'package:e_commerce/features/shop/screens/store/store.dart';
 import 'package:e_commerce/features/shop/screens/wishlist/wishlist.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/features/shop/screens/home/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
@@ -14,6 +15,10 @@ class NavigationMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());
+    final _auth = FirebaseAuth.instance;
+
+print("NavigationMenu , currentUser: ");
+print(_auth.currentUser);
 
     return Scaffold(
       body:  Obx(() => controller.screens[controller.selectedIndex.value]),

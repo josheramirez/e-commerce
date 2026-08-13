@@ -40,7 +40,7 @@ class HelperFunctions {
     }
   }
 
-  static customToast({required message}){
+  static customToast({required message}) {
     ScaffoldMessenger.of(Get.context!).showSnackBar(
       SnackBar(
         elevation: 0,
@@ -51,18 +51,25 @@ class HelperFunctions {
           margin: const EdgeInsets.symmetric(horizontal: 30.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            color: HelperFunctions.isDarkMode(Get.context!) ? UColors.darkerGrey.withOpacity(0.9) : UColors.grey.withOpacity(0.9)
+            color: HelperFunctions.isDarkMode(Get.context!)
+                ? UColors.darkerGrey.withValues(alpha: 0.9)
+                : UColors.grey.withValues(alpha: 0.9),
           ),
-          child: Center(child: Text(message,style: Theme.of(Get.context!).textTheme.labelLarge,),),
+          child: Center(
+            child: Text(
+              message,
+              style: Theme.of(Get.context!).textTheme.labelLarge,
+            ),
+          ),
         ),
-      )
+      ),
     );
   }
 
   static void showSnackBar(String message) {
-    ScaffoldMessenger.of(Get.context!).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
+    ScaffoldMessenger.of(
+      Get.context!,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   static void showAlert(String title, String message) {
@@ -83,25 +90,25 @@ class HelperFunctions {
     );
   }
 
-  static warningSnackBar({required title, message = ''}){
+  static warningSnackBar({required title, message = ''}) {
     Get.snackbar(
-        title,
-        message,
-        isDismissible: true,
-        shouldIconPulse: true,
-        colorText: UColors.white,
-        backgroundColor: Colors.orange,
-        snackPosition: SnackPosition.BOTTOM,
-        duration: const Duration(seconds: 3),
-        margin: const EdgeInsets.all(20),
-        icon: const Icon(Iconsax.warning_2,color: UColors.white,)
+      title,
+      message,
+      isDismissible: true,
+      shouldIconPulse: true,
+      colorText: UColors.white,
+      backgroundColor: Colors.orange,
+      snackPosition: SnackPosition.BOTTOM,
+      duration: const Duration(seconds: 3),
+      margin: const EdgeInsets.all(20),
+      icon: const Icon(Iconsax.warning_2, color: UColors.white),
     );
   }
 
-  static successSnackBar({required title, message = '', duration = 3}){
+  static successSnackBar({required title, message = '', duration = 3}) {
     Get.snackbar(
-        title,
-        message,
+      title,
+      message,
       isDismissible: true,
       shouldIconPulse: true,
       colorText: UColors.white,
@@ -109,14 +116,14 @@ class HelperFunctions {
       snackPosition: SnackPosition.BOTTOM,
       duration: Duration(seconds: duration),
       margin: const EdgeInsets.all(10),
-      icon: const Icon(Iconsax.check,color: UColors.white,)
+      icon: const Icon(Iconsax.check, color: UColors.white),
     );
   }
 
-  static errorSnackBar({required title, message = ''}){
+  static errorSnackBar({required title, message = ''}) {
     Get.snackbar(
-        title,
-        message,
+      title,
+      message,
       isDismissible: true,
       shouldIconPulse: true,
       colorText: UColors.white,
@@ -124,15 +131,12 @@ class HelperFunctions {
       snackPosition: SnackPosition.BOTTOM,
       duration: const Duration(seconds: 3),
       margin: const EdgeInsets.all(20),
-      icon: const Icon(Iconsax.warning_2, color: UColors.white,)
+      icon: const Icon(Iconsax.warning_2, color: UColors.white),
     );
   }
 
   static void navigateToScreen(BuildContext context, Widget screen) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => screen),
-    );
+    Navigator.push(context, MaterialPageRoute(builder: (_) => screen));
   }
 
   static String truncateText(String text, int maxLength) {
@@ -170,7 +174,10 @@ class HelperFunctions {
   static List<Widget> wrapWidgets(List<Widget> widgets, int rowSize) {
     final wrappedList = <Widget>[];
     for (var i = 0; i < widgets.length; i += rowSize) {
-      final rowChildren = widgets.sublist(i, i + rowSize > widgets.length ? widgets.length : i + rowSize);
+      final rowChildren = widgets.sublist(
+        i,
+        i + rowSize > widgets.length ? widgets.length : i + rowSize,
+      );
       wrappedList.add(Row(children: rowChildren));
     }
     return wrappedList;

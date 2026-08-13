@@ -1,6 +1,5 @@
 import 'package:e_commerce/common/layout/grid_layout.dart';
 import 'package:e_commerce/common/widgets/appBar/appbar.dart';
-import 'package:e_commerce/common/widgets/products/sortable_products/sortable_products.dart';
 import 'package:e_commerce/features/shop/screens/brand/brand_products.dart';
 import 'package:e_commerce/features/shop/screens/home/home.dart';
 import 'package:e_commerce/features/shop/screens/store/store.dart';
@@ -25,13 +24,13 @@ class AllBrandsScreen extends StatelessWidget {
 
               // Brands
               GridLayout(
-                itemCount: 10, 
+                itemCount: 10,
                 itemBuilder: (context, index) => BrandCard(
-                  showBorder: true, 
-                  onTap: () => Get.to(()=>BrandProducts())
-                  ),
+                  showBorder: true,
+                  onTap: () => Get.to(() => BrandProducts()),
+                ),
                 mainAxisExtent: 80,
-              )
+              ),
             ],
           ),
         ),

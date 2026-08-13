@@ -24,7 +24,6 @@ import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:readmore/readmore.dart';
 
-
 class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({super.key});
 
@@ -36,13 +35,16 @@ class ProductDetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-
             // Product Image Slider
             ProductImageSlider(),
-            
+
             // Product Details
             Padding(
-              padding: const EdgeInsets.only(right: USizes.defaultSpace, left:  USizes.defaultSpace, bottom: USizes.defaultSpace),
+              padding: const EdgeInsets.only(
+                right: USizes.defaultSpace,
+                left: USizes.defaultSpace,
+                bottom: USizes.defaultSpace,
+              ),
               child: Column(
                 children: [
                   // Ratting and Share Button
@@ -52,73 +54,94 @@ class ProductDetailScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
                       Row(
                         children: [
                           // Sale Tag
                           URoundedContainer(
                             radius: USizes.sm,
-                            backgroundColor: UColors.textSecondary.withAlpha(100),
-                            padding: EdgeInsets.symmetric(horizontal: USizes.sm, vertical: USizes.xs),
-                            child: Text('25%', style: Theme.of(context).textTheme.labelLarge!.apply(color: UColors.black)),
+                            backgroundColor: UColors.textSecondary.withAlpha(
+                              100,
+                            ),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: USizes.sm,
+                              vertical: USizes.xs,
+                            ),
+                            child: Text(
+                              '25%',
+                              style: Theme.of(context).textTheme.labelLarge!
+                                  .apply(color: UColors.black),
+                            ),
                           ),
                           const SizedBox(width: USizes.spaceBtwItems),
-                          
+
                           // Price
-                          Text('\$250',style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough)),
+                          Text(
+                            '\$250',
+                            style: Theme.of(context).textTheme.titleSmall!
+                                .apply(decoration: TextDecoration.lineThrough),
+                          ),
                           const SizedBox(width: USizes.spaceBtwItems),
-                          ProductPriceText(price: '175' , isLarge: true,),
+                          ProductPriceText(price: '175', isLarge: true),
                         ],
                       ),
-                     
-                    //  Title
-                     const SizedBox(height: USizes.spaceBtwItems / 1.5),
-                     const ProductTiitleText(title: "Green Nike Basketball"),
 
-                    // Stock Status
-                    Row(
-                      children: [
+                      //  Title
+                      const SizedBox(height: USizes.spaceBtwItems / 1.5),
+                      const ProductTiitleText(title: "Green Nike Basketball"),
+
+                      // Stock Status
+                      Row(
+                        children: [
                           const ProductTiitleText(title: "Status"),
                           const SizedBox(width: USizes.spaceBtwItems),
-                          Text('In Stock', style: Theme.of(context).textTheme.titleMedium),
-                      ],
-                    ),
-                    const SizedBox(height: USizes.spaceBtwItems / 1.5),
-                    
-                    // Brand
-                    Row(
-                      children: [
+                          Text(
+                            'In Stock',
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: USizes.spaceBtwItems / 1.5),
+
+                      // Brand
+                      Row(
+                        children: [
                           CircularImage(
                             // backgroundColor: Colors.red,
                             image: Images.shoesIcon,
                             width: 32,
                             height: 32,
-                            overlayColor:  UColors.white,  
+                            overlayColor: UColors.white,
                           ),
-                          const BrandTitleWithVerifiedIcon(title: 'Nike', brandTextSize: TextSizes.medium),
-                      ],
-                    ),
+                          const BrandTitleWithVerifiedIcon(
+                            title: 'Nike',
+                            brandTextSize: TextSizes.medium,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                  
+
                   // Attributes
                   ProductsAttributes(),
                   SizedBox(height: USizes.spaceBtwSections),
 
                   // Checkout Button
-                  SizedBox(width: double.infinity, child: 
-                    ElevatedButton(
-                      onPressed: (){}, 
-                      child: Text('Checkout'),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,     // Button background color
-                        foregroundColor: Colors.white,    // Text and icon color
+                        backgroundColor: Colors.blue, // Button background color
+                        foregroundColor: Colors.white, // Text and icon color
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0), // Adjust radius here
+                          borderRadius: BorderRadius.circular(
+                            12.0,
+                          ), // Adjust radius here
                         ),
                         fixedSize: const Size.fromHeight(50),
                       ),
-                    )
+                      child: Text('Checkout'),
+                    ),
                   ),
                   SizedBox(height: USizes.spaceBtwItems),
 
@@ -131,8 +154,14 @@ class ProductDetailScreen extends StatelessWidget {
                     trimMode: TrimMode.Line,
                     trimCollapsedText: 'Show more',
                     trimExpandedText: 'Less',
-                    moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                    lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    moreStyle: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
+                    ),
+                    lessStyle: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                   // SizedBox(height: USizes.spaceBtwSections),
 
@@ -142,20 +171,24 @@ class ProductDetailScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SectionHeading(title: 'Reviews (199)', showActionButton: false),
-                      IconButton(onPressed: () => Get.to(() => const ProductReviewsScreen()), icon: Icon(Iconsax.arrow_right_3_copy, size: 18)),
+                      SectionHeading(
+                        title: 'Reviews (199)',
+                        showActionButton: false,
+                      ),
+                      IconButton(
+                        onPressed: () =>
+                            Get.to(() => const ProductReviewsScreen()),
+                        icon: Icon(Iconsax.arrow_right_3_copy, size: 18),
+                      ),
                     ],
                   ),
-                  SizedBox(height: USizes.spaceBtwItems)
+                  SizedBox(height: USizes.spaceBtwItems),
                 ],
               ),
             ),
-
-
           ],
         ),
       ),
     );
   }
 }
-

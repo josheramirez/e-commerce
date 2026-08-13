@@ -1,11 +1,9 @@
 import 'package:e_commerce/common/style/shadow.dart';
-import 'package:e_commerce/common/widgets/commmo_shapes/containers/primary_header_container.dart';
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_container.dart';
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_image.dart';
 import 'package:e_commerce/common/widgets/icons/circular_icons.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/brand_title_text.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/product_tiitle_text.dart';
-import 'package:e_commerce/features/shop/screens/home/home.dart';
 import 'package:e_commerce/features/shop/screens/product_details/product_detail.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/constants/enums.dart';
@@ -25,83 +23,100 @@ class ProductCardVertical extends StatelessWidget {
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(0),
-        decoration: 
-          BoxDecoration(
-            boxShadow: UShadow.verticalProductShadow,
-            borderRadius: BorderRadius.circular(USizes.productImageRadius),
-            color: UColors.white
-          ),
+        decoration: BoxDecoration(
+          boxShadow: UShadow.verticalProductShadow,
+          borderRadius: BorderRadius.circular(USizes.productImageRadius),
+          color: UColors.white,
+        ),
 
         child: Column(
           children: [
-      
             // Image Box
             URoundedContainer(
               height: 180,
               padding: const EdgeInsets.all(USizes.sm),
               backgroundColor: UColors.light,
               child: Stack(
-                children:[
+                children: [
                   // Thumbnail Image
-                  RoundedImage(imageUrl: Images.productImage5, applyImageRadius: true),
-      
+                  RoundedImage(
+                    imageUrl: Images.productImage5,
+                    applyImageRadius: true,
+                  ),
+
                   // Sale Tag
                   Positioned(
                     top: 12,
                     child: URoundedContainer(
                       radius: USizes.sm,
                       backgroundColor: UColors.yellow.withValues(alpha: 0.9),
-                      padding: const EdgeInsets.symmetric(horizontal: USizes.sm, vertical: USizes.xs),
-                      child: Text('25%', style: Theme.of(context).textTheme.labelLarge!.apply(color: UColors.black)),
-                    )
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: USizes.sm,
+                        vertical: USizes.xs,
+                      ),
+                      child: Text(
+                        '25%',
+                        style: Theme.of(
+                          context,
+                        ).textTheme.labelLarge!.apply(color: UColors.black),
+                      ),
+                    ),
                   ),
-      
+
                   // Favorite Icon
                   Positioned(
                     top: 0,
                     right: 0,
-                    child: UCircularIcon(icon: Iconsax.heart, color: Colors.red,),
-                  )
+                    child: UCircularIcon(
+                      icon: Iconsax.heart,
+                      color: Colors.red,
+                    ),
+                  ),
                 ],
               ),
             ),
-            SizedBox(height: USizes.spaceBtwItems/2),
-            
+            SizedBox(height: USizes.spaceBtwItems / 2),
+
             // Spacer(),
             // Details
             Padding(
-              padding: const EdgeInsets.only(left:USizes.sm),
+              padding: const EdgeInsets.only(left: USizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   ProductTiitleText(title: "Blue Shoe Nike", smallSize: false),
-                  SizedBox(height: USizes.spaceBtwItems/2,),
-                  BrandTitleWithVerifiedIcon(title: "pokemon",),
-      
+                  SizedBox(height: USizes.spaceBtwItems / 2),
+                  BrandTitleWithVerifiedIcon(title: "pokemon"),
+
                   // Price
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('\$80', style: Theme.of(context).textTheme.headlineMedium, maxLines: 1, overflow: TextOverflow.ellipsis),
+                      Text(
+                        '\$80',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                       Container(
-                        width: USizes.iconLg*1.2,
-                        height: USizes.iconLg*1.2,
+                        width: USizes.iconLg * 1.2,
+                        height: USizes.iconLg * 1.2,
                         decoration: BoxDecoration(
                           color: UColors.primary,
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(USizes.cardRadiusMd),
-                            bottomRight: Radius.circular(USizes.productImageRadius)
-                          )
+                            bottomRight: Radius.circular(
+                              USizes.productImageRadius,
+                            ),
+                          ),
                         ),
-                        child: Icon(Iconsax.add_copy, color:  UColors.white),
-                      )
+                        child: Icon(Iconsax.add_copy, color: UColors.white),
+                      ),
                     ],
-                  )
-                  
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -125,18 +140,15 @@ class BrandTitleWithVerifiedIcon extends StatelessWidget {
   final Color? textColor, iconColor;
   final TextAlign? textAlign;
   final TextSizes brandTextSize;
-  
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-
         BrandTitleText(title: title),
-        Icon(Iconsax.verify, color: UColors.primary, size: USizes.iconXs)
+        Icon(Iconsax.verify, color: UColors.primary, size: USizes.iconXs),
       ],
     );
   }
 }
-

@@ -5,8 +5,6 @@ import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:e_commerce/utils/helpers/device_helpers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class ProductReviewsScreen extends StatelessWidget {
   const ProductReviewsScreen({super.key});
@@ -24,13 +22,21 @@ class ProductReviewsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Rating and reviews are verified and are from people who use the same type of device that you use.'),
+              Text(
+                'Rating and reviews are verified and are from people who use the same type of device that you use.',
+              ),
               SizedBox(height: USizes.spaceBtwItems),
-              
+
               // Overall Product Ratings
               Row(
                 children: [
-                  Expanded(flex: 3,child: Text('4.9', style: Theme.of(context).textTheme.displayLarge)),
+                  Expanded(
+                    flex: 3,
+                    child: Text(
+                      '4.9',
+                      style: Theme.of(context).textTheme.displayLarge,
+                    ),
+                  ),
                   Expanded(
                     flex: 7,
                     child: Column(
@@ -42,7 +48,7 @@ class ProductReviewsScreen extends StatelessWidget {
                         RatingProgressIndicator(text: '1', value: 0.03),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
               URatingBarIndicator(rating: 2.5),
@@ -62,11 +68,11 @@ class ProductReviewsScreen extends StatelessWidget {
   }
 }
 
-
-
 class RatingProgressIndicator extends StatelessWidget {
   const RatingProgressIndicator({
-    super.key, required this.text, required this.value,
+    super.key,
+    required this.text,
+    required this.value,
   });
 
   final String text;
@@ -76,7 +82,10 @@ class RatingProgressIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(flex:1, child:  Text(text, style: Theme.of(context).textTheme.bodyMedium)),
+        Expanded(
+          flex: 1,
+          child: Text(text, style: Theme.of(context).textTheme.bodyMedium),
+        ),
         Expanded(
           flex: 11,
           child: SizedBox(
@@ -89,7 +98,7 @@ class RatingProgressIndicator extends StatelessWidget {
               valueColor: AlwaysStoppedAnimation(UColors.primary),
             ),
           ),
-        )
+        ),
       ],
     );
   }
