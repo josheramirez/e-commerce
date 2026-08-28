@@ -17,8 +17,6 @@ class NavigationMenu extends StatelessWidget {
     final controller = Get.put(NavigationController());
     final _auth = FirebaseAuth.instance;
 
-print("NavigationMenu , currentUser: ");
-print(_auth.currentUser);
 
     return Scaffold(
       body:  Obx(() => controller.screens[controller.selectedIndex.value]),
@@ -46,5 +44,5 @@ print(_auth.currentUser);
 class NavigationController extends GetxController{
   RxInt selectedIndex = 0.obs;
 
-  List<Widget> screens = [HomeScreen(),StoreScreen(),FavoriteScreen(),SettingsScreen()];
+  List<Widget> screens = [HomeScreen(),StoreScreen(),WishlistScreen(),SettingsScreen()];
 }

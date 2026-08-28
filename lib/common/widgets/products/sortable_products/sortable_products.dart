@@ -1,5 +1,6 @@
 import 'package:e_commerce/common/layout/grid_layout.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:e_commerce/features/shop/controllers/product/product_controller.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
@@ -12,6 +13,7 @@ class SortableProducts extends StatelessWidget {
   // final 
   @override
   Widget build(BuildContext context) {
+    final controller = ProductController.intance;
     return Column(
       children: [
         // Dropdown
@@ -29,7 +31,7 @@ class SortableProducts extends StatelessWidget {
         ),
         SizedBox(height: USizes.spaceBtwSections),
         // Products
-        GridLayout(itemCount: 4,  itemBuilder: (_, index) => ProductCardVertical())
+        GridLayout(itemCount: 4,  itemBuilder: (_, index) => ProductCardVertical(product: controller.featuredProducts[index]))
       ],
     );
   }

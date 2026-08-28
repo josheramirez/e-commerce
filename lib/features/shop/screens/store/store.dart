@@ -6,6 +6,7 @@ import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_conta
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/search_container.dart';
 import 'package:e_commerce/common/widgets/products/cart/cart_counter_icon.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/brand_title_with_verifed_icon.dart';
+import 'package:e_commerce/features/shop/controllers/category_controller.dart';
 import 'package:e_commerce/features/shop/screens/brand/all_brands.dart';
 import 'package:e_commerce/features/shop/screens/home/home.dart';
 import 'package:e_commerce/features/shop/screens/store/widgets/category_tab.dart';
@@ -21,8 +22,10 @@ class StoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final categories = CategoryController.instance.featuredCategories;
+
     return DefaultTabController(
-      length: 6,
+      length: categories.length,
       child: Scaffold(
         appBar: UAppBar(
           title: Text(
@@ -76,29 +79,13 @@ class StoreScreen extends StatelessWidget {
                   ),
                 ),
 
-                bottom: UTabBar(
-                  tabs: [
-                    Tab(child: Text("Hotwheels")),
-                    Tab(child: Text("TCG")),
-                    Tab(child: Text("Lego")),
-                    Tab(child: Text("Model Kits")),
-                    Tab(child: Text("Warhammer")),
-                    Tab(child: Text("Tools")),
-                  ],
-                ),
+                bottom: UTabBar(tabs: categories.map((category) => Tab(child: Text(category.name))).toList()),
               ),
             ];
           },
 
           body: TabBarView(
-            children: [
-              CategoryTab(),
-              CategoryTab(),
-              CategoryTab(),
-              CategoryTab(),
-              CategoryTab(),
-              CategoryTab(),
-            ],
+            children: categories.map((category) => CategoryTab(category: category)).toList(),
           ),
         ),
       ),

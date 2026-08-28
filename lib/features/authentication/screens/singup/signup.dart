@@ -11,8 +11,8 @@ import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/string_extensions.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
-class SingupScreen extends StatelessWidget {
-  const SingupScreen({super.key});
+class SignupScreen extends StatelessWidget {
+  const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

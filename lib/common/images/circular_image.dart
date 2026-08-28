@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class CircularImage extends StatelessWidget {
   const CircularImage({
     super.key,
-    this.fit = BoxFit.cover,
+    this.fit = BoxFit.contain,
     required this.image,
     this.isNetworkImage = false,
     this.overlayColor,

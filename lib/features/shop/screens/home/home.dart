@@ -5,10 +5,13 @@ import 'package:e_commerce/common/widgets/commmo_shapes/containers/primary_heade
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_image.dart';
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/search_container.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/product_card_vertical.dart';
-import 'package:e_commerce/features/shop/controllers/home_controller.dart';
+import 'package:e_commerce/common/widgets/shimmer/shimmer_effect.dart';
+import 'package:e_commerce/common/widgets/shimmer/vertical_product_shimmer.dart';
+import 'package:e_commerce/features/shop/controllers/banner_controller.dart';
+import 'package:e_commerce/features/shop/controllers/product/product_controller.dart';
 import 'package:e_commerce/features/shop/screens/all_products/all_products.dart';
 import 'package:e_commerce/features/shop/screens/home/widgets/home_appbar.dart';
-import 'package:e_commerce/features/shop/screens/sub_category/sub_categories.dart';
+import 'package:e_commerce/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/constants/images.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
@@ -20,6 +23,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ProductController());
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -29,6 +34,7 @@ class HomeScreen extends StatelessWidget {
             UPrimaryHeaderContainer(
               child: Column(
                 children: [
+
                   // App Bar
                   HomeAppbar(),
                   SizedBox(height: USizes.spaceBtwSections / 2),
@@ -37,6 +43,7 @@ class HomeScreen extends StatelessWidget {
                   SeachContainer(text: "Search in Store"),
                   SizedBox(height: USizes.spaceBtwSections),
 
+                  // Categories
                   Padding(
                     padding: const EdgeInsets.only(left: USizes.defaultSpace),
                     child: Column(
@@ -50,22 +57,7 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(height: USizes.spaceBtwSections / 2),
 
                         // Categories
-                        SizedBox(
-                          height: 80,
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: 6,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (_, index) {
-                              return VerticalImageText(
-                                image: Images.shoesIcon,
-                                title: 'Shoes',
-                                onTap: () =>
-                                    Get.to(() => SubCategoriesScreen()),
-                              );
-                            },
-                          ),
-                        ),
+                        HomeCategories(),
                       ],
                     ),
                   ),
@@ -79,29 +71,30 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(USizes.defaultSpace),
               child: Column(
                 children: [
-                  PromoSlider(
-                    banners: [
-                      Images.homeBanner1,
-                      Images.homeBanner2,
-                      Images.homeBanner3,
-                      Images.homeBanner4,
-                      Images.homeBanner5,
-                    ],
-                  ),
+                  
+                  // Slider
+                  PromoSlider(),
                   SizedBox(height: USizes.spaceBtwSections),
 
                   // Heading
-                  SectionHeading(
-                    title: 'Popular Products',
-                    onPressed: () => Get.to(() => AllProducts()),
-                  ),
+                  SectionHeading(title: 'Popular Products', onPressed: () => Get.to(() => AllProducts())),
                   SizedBox(height: USizes.spaceBtwItems),
-                  GridLayout(
-                    itemCount: 10,
-                    itemBuilder: (_, index) {
-                      return ProductCardVertical();
-                    },
-                  ),
+
+                  //Products
+                  Obx((){
+                    if (controller.isLoading.value) return VerticalProductShimmer();
+                  
+                    if (controller.featuredProducts.isEmpty) {
+                      return Center(child: Text('No Data Found', style: Theme.of(context).textTheme.bodyMedium));
+                    }
+                    
+                    return  GridLayout(
+                      itemCount: controller.featuredProducts.length, 
+                      itemBuilder: (_, index) => ProductCardVertical(product: controller.featuredProducts[index]),
+                    );
+
+                  })
+
                 ],
               ),
             ),
@@ -113,40 +106,57 @@ class HomeScreen extends StatelessWidget {
 }
 
 class PromoSlider extends StatelessWidget {
-  const PromoSlider({super.key, required this.banners});
-
-  final List<String> banners;
+  const PromoSlider({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeController());
-    return Column(
-      children: [
-        CarouselSlider(
-          options: CarouselOptions(
-            viewportFraction: 1,
-            onPageChanged: (index, _) => controller.updatePageIndicator(index),
-          ),
-          items: banners.map((url) => RoundedImage(imageUrl: url)).toList(),
-        ),
-        SizedBox(height: USizes.defaultSpace),
-        Obx(
-          () => Row(
+    final controller = Get.put(BannerController());
+    return Obx(
+      () {
+        if (controller.isLoading.value) return ShimmerEffect(width: double.infinity, height: 190);
+        
+        if (controller.banners.isEmpty) {
+          return Center(child: Text('No Data Found'));
+        }else{
+          return Column(
             children: [
-              for (int i = 0; i < banners.length; i++)
-                UCircularContainer(
-                  width: 20,
-                  height: 5,
-                  margin: EdgeInsets.only(right: 10),
-                  backgroundColor: controller.carouselCurrentIndex.value == i
-                      ? UColors.primary
-                      : Colors.grey,
+              CarouselSlider(
+                options: CarouselOptions(  padEnds: false,viewportFraction: 1 ,onPageChanged: (index, _) => controller.updatePageIndicator(index)),
+                items: controller.banners
+                    .map(
+                      (banner) => RoundedImage(
+                        fit: BoxFit.fill,
+                        width: double.infinity,
+                        imageUrl: banner.imageUrl,
+                        isNetworkImage: true,
+                        onPressed: () => Get.toNamed(banner.targetScreen),
+                      ),
+                    )
+                    .toList(),
+              ),
+              SizedBox(height: USizes.spaceBtwItems),
+
+              Obx(
+                () => Row(
+                  children: [
+                    for (int i = 0; i < controller.banners.length; i++)
+                      UCircularContainer(
+                        width: 20,
+                        height: 5,
+                        margin: EdgeInsets.only(right: 10),
+                        backgroundColor: controller.carouselCurrentIndex.value == i
+                            ? UColors.primary
+                            : Colors.grey,
+                      ),
+                  ],
                 ),
+              ),
             ],
-          ),
-        ),
-      ],
-    );
+          );
+        }
+    
+      }
+     );
   }
 }
 
@@ -173,6 +183,8 @@ class VerticalImageText extends StatelessWidget {
         padding: const EdgeInsets.only(right: USizes.spaceBtwItems),
         child: Column(
           children: [
+
+            // Icon
             Container(
               width: 56,
               height: 56,
@@ -182,24 +194,25 @@ class VerticalImageText extends StatelessWidget {
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
-                child: Image(
-                  image: AssetImage(Images.shoesIcon),
-                  fit: BoxFit.cover,
-                  color: UColors.dark,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 3.0),
+                  child: Image(
+                    image: AssetImage(image.isEmpty ? Images.nullIcon : image),
+                    fit: BoxFit.cover,
+                    color: UColors.dark,
+                  ),
                 ),
               ),
             ),
-
             const SizedBox(height: USizes.spaceBtwItems / 2),
+            
+            // Text
             SizedBox(
               width: 55,
-              child: Text(
-                'Shoes category',
-                style: Theme.of(
-                  context,
-                ).textTheme.labelMedium!.apply(color: UColors.white),
+              child: Text(title,style: Theme.of(context).textTheme.labelMedium!.apply(color: UColors.white),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center, 
               ),
             ),
           ],

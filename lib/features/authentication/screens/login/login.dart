@@ -133,7 +133,7 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () => Get.to(() => SingupScreen()),
+                        onPressed: () => Get.to(() => SignupScreen()),
                         child: Text(UTexts.createAccount),
                       ),
                     ),

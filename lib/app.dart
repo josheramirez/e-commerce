@@ -1,4 +1,5 @@
 import 'package:e_commerce/bindings/general_bindings.dart';
+import 'package:e_commerce/routes/app_routes.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,7 @@ class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     // return GetMaterialApp(
     //   debugShowCheckedModeBanner: false,
     //   theme: ThemeData(
@@ -44,6 +46,7 @@ class App extends StatelessWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       initialBinding: GeneralBindings(),
+      getPages: AppRoutes.pages,
       home: Scaffold(
         backgroundColor: UColors.primary,
         body: Center(child: CircularProgressIndicator(color: Colors.white)),

@@ -28,27 +28,20 @@ class Images {
   static const String mailSentImage = 'assets/animations/mail_illustration.png';
   static const String mailVerifcation = 'assets/animations/success_mail.png';
 
-  // categories icons
-  static const String bagsIcon =
-      'assets/icons/categories/bag.png'; //------------
-  static const String bedIcon =
-      'assets/icons/categories/bed.png'; //------------
-  static const String clothesIcon =
-      'assets/icons/categories/clothes.png'; //------------
-  static const String cosmeticsIcon =
-      'assets/icons/categories/cosmetics.png'; //------------
-  static const String cricketIcon =
-      'assets/icons/categories/cricket.png'; //------------
-  static const String electronicsIcon =
-      'assets/icons/categories/electronics.png'; //------------
-  static const String faceIcon =
-      'assets/icons/categories/face.png'; //------------
-  static const String formalShoesIcon =
-      'assets/icons/categories/formal_shoes.png'; //------------
-  static const String furnitureIcon =
-      'assets/icons/categories/furniture.png'; //------------
-  static const String gadgetsIcon =
-      'assets/icons/categories/gadgets.png'; //------------
+  // categories icons [FINAL]
+  static const String warhammer = 'assets/icons/categories/warhammer.png';
+  static const String dubuBubu = 'assets/icons/categories/dudu_bubu.png';
+  static const String hotwheels = 'assets/icons/categories/hotwheels.png';
+  static const String lego = 'assets/icons/categories/lego.png';
+  static const String memoryRam = 'assets/icons/categories/memory_ram.png';
+  static const String onePiececTcg = 'assets/icons/categories/one_piece_tcg.png';
+  static const String pokemonTcg = 'assets/icons/categories/pokemon_tcg.png';
+  static const String pokemon = 'assets/icons/categories/pokemon.png';
+  static const String videoCard = 'assets/icons/categories/video_card.png';
+  static const String gamming = 'assets/icons/categories/gamming.png';
+  static const String nullIcon = 'assets/icons/categories/null_icon.png';
+
+  
   static const String hairOilIcon =
       'assets/icons/categories/hair.png'; //------------
   static const String jacketsIcon =
@@ -76,11 +69,16 @@ class Images {
   static const String watchIcon =
       'assets/icons/categories/watch.png'; //------------
 
-  // Banners
-  static const String homeBanner1 = 'assets/banners/banner_1.jpg';
-  static const String homeBanner2 = 'assets/banners/banner_2.jpg';
-  static const String homeBanner3 = 'assets/banners/banner_3.jpg';
-  static const String homeBanner4 = 'assets/banners/banner_4.jpg';
+
+  // Banners [FINAL]
+  static const String homeBanner0 = "assets/banners/banner_1.jpg";
+  static const String homeBanner1 = 'assets/banners/banner_warhammer.png';
+  static const String homeBanner2 = 'assets/banners/banner_hotwheels.png';
+  static const String homeBanner3 = 'assets/banners/banner_onePiece.png';
+  static const String homeBanner4 = 'assets/banners/banner_pokemon.png';
+
+
+
   static const String homeBanner5 = 'assets/banners/banner_5.jpg';
 
   //Banners
@@ -99,34 +97,37 @@ class Images {
   static const String banner7 = "assets/images/banners/banner_7.jpg";
   static const String banner8 = "assets/images/banners/banner_8.jpg";
 
-  // -----[Products]-----
+  // Products
+
   // 1
-  static const String productImage1 = 'assets/products/product 1.png';
+  static const String productImage1 = 'assets/products/product_1a.jpg';
+  static const String productImage1b = 'assets/products/product_1b.jpg';
+  static const String productImage1c = 'assets/products/product_1c.jpg';
+  static const String productImage1d = 'assets/products/product_1d.jpg';
+  static const String productImage1e = 'assets/products/product_1e.jpg';
   // 2
-  static const String productImage2 = 'assets/products/product 2.png';
+  static const String productImage2 = 'assets/products/product_2.jpg';
   // 3
-  static const String productImage3 = 'assets/products/product 3.png';
+  static const String productImage3 = 'assets/products/product_3.jpg';
   // 4
-  static const String productImage4a = 'assets/products/product 4.png';
-  static const String productImage4b = 'assets/products/product 4 1.png';
-  static const String productImage4c = 'assets/products/product 4 2.png';
-  static const String productImage4d = 'assets/products/product 4 3.png';
-  static const String productImage4e = 'assets/products/product 4 4.png';
+  static const String productImage4 = 'assets/products/product_4.jpg';
   // 5
-  static const String productImage5 = 'assets/products/product 5.png';
+  static const String productImage5 = 'assets/products/product_5.jpg';
   // 6
-  static const String productImage6 = 'assets/products/product 6.png';
+  static const String productImage6 = 'assets/products/product_6.jpg';
   // 7
-  static const String productImage7 = 'assets/products/product 7.png';
+  static const String productImage7 = 'assets/products/product_7.jpg';
   // 8
-  static const String productImage8 = 'assets/products/product 8.png';
+  static const String productImage8 = 'assets/products/product_8.jpg';
   // 9
-  static const String productImage9 = 'assets/products/product 9.png';
+  static const String productImage9 = 'assets/products/product_9.jpg';
   // 10
-  static const String productImage10 = 'assets/products/product 10.png';
+  static const String productImage10 = 'assets/products/product_10.jpg';
   // 11
-  static const String productImage11 =
-      'assets/products/product 11 bata socks.png';
+  static const String productImage11a = 'assets/products/product_11a.jpg';
+  static const String productImage11b = 'assets/products/product_11b.jpg';
+  static const String productImage11c = 'assets/products/product_11c.jpg';
+  static const String productImage11d = 'assets/products/product_11d.jpg';
   // 12
   static const String productImage12 =
       'assets/products/product 12 bata socks.png';
@@ -260,6 +261,12 @@ class Images {
   static const String productImage67c = 'assets/products/product 67 3.png';
   // 68
   static const String productImage68 = 'assets/products/product 68.png';
+
+
+
+  // Brands [FINAL]
+  static const String warhammerBrandLogo = 'assets/brands/warhammer-logo.png';
+  static const String legoBrandLogo = 'assets/brnads/lego-logo.png';
 
   // Brands
   static const String adidasLogo = 'assets/brands/adidas.jpg';

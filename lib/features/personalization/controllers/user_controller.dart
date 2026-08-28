@@ -45,8 +45,6 @@ class UserController extends GetxController{
       profileLoading.value = true;
       final user = await userRepository.fetchUserDetails();
       this.user(user);
-      print('fetchUserRecord : ');
-      print(user.toJson());
     
     } catch (e) {
       user(UserModel.empty());

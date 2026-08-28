@@ -31,16 +31,17 @@ class AuthenticationRepository extends GetxController {
   void onReady() {
     // Remove the native splah screen
     FlutterNativeSplash.remove();
+
     // Redirect to the appropiate screen 
-    screenRedirect();
+    // screenRedirect();
+
+    // delete this for real login
+    Get.off(() => NavigationMenu());
   }
 
   screenRedirect() async {
     final user = _auth.currentUser;
-    
-    print("AuthenticationRepository -> screenRedirect() , currentUser:");
-    print(user);
-
+  
     if(user != null){
       if(user.emailVerified){
         Get.off(() => NavigationMenu());
