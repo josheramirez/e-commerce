@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce/data/services/firebase_storage_service.dart';
+import 'package:e_commerce/dummy_data.dart';
 import 'package:e_commerce/features/shop/models/product_model.dart';
 import 'package:e_commerce/utils/constants/enums.dart';
 import 'package:e_commerce/utils/exceptions/firebase_exceptions.dart';
@@ -15,12 +16,13 @@ import 'package:get/state_manager.dart';
 class ProductRepository extends GetxController {
   static ProductRepository get instance => Get.find();
 
+  final localData = true;
   final _db = FirebaseFirestore.instance;
 
   // Get limited featured products
   Future<List<ProductModel>> getFeaturedProducts() async {
     try {
-      final snapshot = await _db.collection('Products').get();
+      final snapshot = await _db.collection('Products').where('isFeatured', isEqualTo: true).limit(4).get();
 
       if (snapshot.docs.isNotEmpty) {
         for (var doc in snapshot.docs) {
@@ -33,10 +35,7 @@ class ProductRepository extends GetxController {
       }
 
       return [];
-
       // return snapshot.docs.map((e) => ProductModel.fromSnapshot(e)).toList();
-
-      
 
     } on FirebaseException catch (e) {
       throw UFirebaseException(e.code).message;
@@ -46,6 +45,68 @@ class ProductRepository extends GetxController {
       throw UPlatformException(e.code).message;
     } catch (e) {
         debugPrint('ERROR in ProductRepository. $e');
+        throw 'Something went wrong. Please try again';
+    }
+  }
+
+  // Get limited All featured products
+  Future<List<ProductModel>> getAllFeaturedProducts() async {
+    try {
+        final snapshot = await _db.collection('Products').where('isFeatured', isEqualTo: true).get();
+        return snapshot.docs.map((document) => ProductModel.fromSnapshot(document)).toList();
+    } on FirebaseException catch (e) {
+      throw UFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw UFormatException();
+    } on PlatformException catch (e) {
+      throw UPlatformException(e.code).message;
+    } catch (e) {
+        debugPrint('ERROR in ProductRepository. $e');
+        throw 'Something went wrong. Please try again';
+    }
+  }
+
+  //  Get Products based on the brand 
+  Future<List<ProductModel>> fetchProductsByQuery(Query query) async {
+    try {
+      final querySnapshot = await query.get();
+      final List<ProductModel> productList = querySnapshot.docs.map((doc) => ProductModel.fromQuerySnapshot(doc)).toList();
+      return productList;
+    } on FirebaseException catch (e) {
+      throw UFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw UFormatException();
+    } on PlatformException catch (e) {
+      throw UPlatformException(e.code).message;
+    } catch (e) {
+        debugPrint('ERROR in ProductRepository. $e');
+        throw 'Something went wrong. Please try again';
+    }
+  }
+
+  // Get Products For Brand
+  Future<List<ProductModel>> getProductsForBrand({required String brandId, int limit = -1}) async {
+    try {
+
+      final querySnapshot = limit == -1
+          ? await _db
+                .collection('Products')
+                .where('Brand.id', isEqualTo: brandId)
+                .get()
+          : await _db
+                .collection('Products')
+                .where('Brand.id', isEqualTo: brandId)
+                .limit(limit)
+                .get();
+
+      final products = querySnapshot.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
+      return products;
+
+    } on FirebaseException catch (e) {
+      throw UFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw UPlatformException(e.code).message;
+    } catch (e) {
         throw 'Something went wrong. Please try again';
     }
   }
@@ -117,4 +178,66 @@ class ProductRepository extends GetxController {
     }
   }
 
+  // Get Products From Category
+  Future<List<ProductModel>> getProductsForCategory({required String categoryId, int limit = 4}) async {
+    try {
+
+      // Query to get all documents where productId matches the provided categoryId & Fecth limited or unlimited based on limit
+      QuerySnapshot productCategoryQuery = limit == -1
+          ? await _db
+                .collection('ProductCategory')
+                .where('categoryId', isEqualTo: categoryId)
+                .get()
+          : await _db
+                .collection('ProductCategory')
+                .where('categoryId', isEqualTo: categoryId)
+                .limit(limit)
+                .get();
+
+      // Extract productIds from the documents
+      List<String> productIds = productCategoryQuery.docs.map((doc) => doc['productId'] as String).toList();
+      
+      // Query to get all documents where the brandId is in the list od brandIds, FilePath.documentId to query documentss in collection
+      final productsQuery =  await _db.collection('Products').where(FieldPath.documentId, whereIn: productIds).get();
+      
+      // Extract brand names or other relevant data from the documents
+      List<ProductModel> products = productsQuery.docs.map((doc) => ProductModel.fromSnapshot(doc)).toList();
+      return products;
+
+    } on FirebaseException catch (e) {
+      throw UFirebaseException(e.code).message;
+    } on PlatformException catch (e) {
+      throw UPlatformException(e.code).message;
+    } catch (e) {
+        throw 'Something went wrong. Please try again';
+    }
+  }
+
+  // Get limited featured products
+  Future<List<ProductModel>> getFavoriteProducts(List<String> productIds) async {
+    if (localData) {
+      
+      final products = DummyData.products.where((product) => productIds.contains(product.id)).toList();
+      await Future.delayed(const Duration(seconds: 2));
+      return products;
+
+    }else{
+      try {
+
+          final snapshot = await _db.collection('Products').where(FieldPath.documentId, whereIn: productIds).get();
+          return snapshot.docs.map((document) => ProductModel.fromSnapshot(document)).toList();
+
+      } on FirebaseException catch (e) {
+        throw UFirebaseException(e.code).message;
+      } on FormatException catch (_) {
+        throw UFormatException();
+      } on PlatformException catch (e) {
+        throw UPlatformException(e.code).message;
+      } catch (e) {
+          debugPrint('ERROR in ProductRepository getFavoriteProducts. $e');
+          throw 'Something went wrong. Please try again';
+      }
+    }
+    
+  }
 }

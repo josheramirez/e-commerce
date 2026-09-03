@@ -29,8 +29,8 @@ class BrandTitleWithVerifedIcon extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
 
-        BrandTitleText(title: "pokemon"),
-        SizedBox(width: USizes.spaceBtwItems / 2,),
+        Flexible(child: BrandTitleText(title: title)),
+        // SizedBox(width: 10),
         Icon(Iconsax.verify, color: UColors.primary, size: USizes.iconXs),
 
       ],

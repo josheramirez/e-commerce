@@ -1,7 +1,9 @@
 import 'package:e_commerce/features/shop/models/banner_model.dart';
+import 'package:e_commerce/features/shop/models/brand_category_model.dart';
 import 'package:e_commerce/features/shop/models/brand_model.dart';
 import 'package:e_commerce/features/shop/models/category_model.dart';
 import 'package:e_commerce/features/shop/models/product_attribute_model.dart';
+import 'package:e_commerce/features/shop/models/product_category_model.dart';
 import 'package:e_commerce/features/shop/models/product_model.dart';
 import 'package:e_commerce/features/shop/models/product_variation_model.dart';
 import 'package:e_commerce/routes/routes.dart';
@@ -13,22 +15,62 @@ class DummyData {
   /// List of all Categories
   static final List<CategoryModel> categories = [
     /// Parent Categories
-    CategoryModel(id: '1', name: 'Warhammer', image: Images.warhammer, isFeatured: true),
+    CategoryModel(id: '1', name: 'Rol Game', image: Images.rolGame, isFeatured: true),
     CategoryModel(id: '2', name: 'Pokemon', image: Images.pokemon, isFeatured: true),
-    CategoryModel(id: '3', name: 'One Piece', image: Images.onePiececTcg, isFeatured: true),
+    CategoryModel(id: '3', name: 'One Piece', image: Images.onePiece, isFeatured: true),
     CategoryModel(id: '4', name: 'Lego', image: Images.lego, isFeatured: true),
     CategoryModel(id: '5', name: 'Hotwheels', image: Images.hotwheels, isFeatured: true),
-    CategoryModel(id: '6', name: 'Dudu Bubu', image: Images.dubuBubu, isFeatured: true),
+    CategoryModel(id: '6', name: 'Dudu & Bubu', image: Images.dubuBubu, isFeatured: true),
     CategoryModel(id: '7', name: 'Gamer', image: Images.gamming, isFeatured: true),
-    
+    CategoryModel(id: '9', name: 'Toys', image: Images.toys, isFeatured: true),
+    CategoryModel(id: '10', name: 'Model Tool', image: Images.modelTools, isFeatured: true),
+    CategoryModel(id: '11', name: 'Books', image: Images.books, isFeatured: true),
+    CategoryModel(id: '12', name: 'Tcg', image: Images.tcg, isFeatured: true),
     /// Gamer
-    CategoryModel(id: '8', name: 'Video Card', image: Images.videoCard, parentId: '7', isFeatured: false),
-    CategoryModel(id: '9', name: 'Ram', image: Images.memoryRam, parentId: '7', isFeatured: false),
+    CategoryModel(id: '13', name: 'Video Card', image: Images.videoCard, parentId: '7', isFeatured: false),
+    CategoryModel(id: '14', name: 'Ram', image: Images.memoryRam, parentId: '7', isFeatured: false),
 
     /// Pokemon
-    CategoryModel(id: '10', name: 'Pokemon TCG', image: Images.pokemonTcg, parentId: '2', isFeatured: false),
+    CategoryModel(id: '15', name: 'Pokemon TCG', image: Images.pokemonTcgBrand, parentId: '12', isFeatured: false),
+    CategoryModel(id: '16', name: 'One Piece TCG', image: Images.onePieceTcgBrand, parentId: '12', isFeatured: false),
   ];
 
+  // BrandCategory
+  static final List<BrandCategoryModel> brandCategory = [
+    BrandCategoryModel(categoryId: '1', brandId: '1'), // Rol - Warhammer
+    BrandCategoryModel(categoryId: '1', brandId: '8'), // Rol - D&D
+
+
+    BrandCategoryModel(categoryId: '2', brandId: '6'), // Pokemon - Pokemon TCG
+
+    BrandCategoryModel(categoryId: '3', brandId: '5'), // One Piece - OnePieceToy
+    BrandCategoryModel(categoryId: '3', brandId: '11'), // One Piece - OnePieceToy
+
+    BrandCategoryModel(categoryId: '4', brandId: '2'), // Lego - Lego
+
+    BrandCategoryModel(categoryId: '5', brandId: '4'), // Hotwheel - Hotwheel
+
+    BrandCategoryModel(categoryId: '12', brandId: '11'), // Tcg - One Piece Tcg
+    BrandCategoryModel(categoryId: '12', brandId: '12'), // Tcg - Pokemon Tcg
+  ];
+
+  // ProductCategory
+  static final List<ProductCategoryModel> productCategory = [
+    // Category 1
+    ProductCategoryModel(categoryId: '1', productId: '11'),
+    ProductCategoryModel(categoryId: '1', productId: '3'),
+    ProductCategoryModel(categoryId: '1', productId: '5'),
+    ProductCategoryModel(categoryId: '1', productId: '6'),
+    
+    // Category 4
+    ProductCategoryModel(categoryId: '4', productId: '8'),
+    ProductCategoryModel(categoryId: '4', productId: '9'),
+    ProductCategoryModel(categoryId: '4', productId: '10'),
+
+    // Category 10
+    ProductCategoryModel(categoryId: '10', productId: '14'),
+    ProductCategoryModel(categoryId: '10', productId: '15'),
+  ];
 
   /// List of all Banners
   static final List<BannerModel> banners = [
@@ -56,6 +98,66 @@ class DummyData {
         image: Images.legoBrandLogo,
         name: 'Lego',
         productsCount: 100,
+        isFeatured: true),
+    BrandModel(
+        id: '3',
+        image: Images.duduBubuBrand,
+        name: 'Dudu & Bubu',
+        productsCount: 2,
+        isFeatured: true),
+    BrandModel(
+        id: '4',
+        image: Images.hotwheelsBrandLogo,
+        name: 'Hotwheels',
+        productsCount: 30,
+        isFeatured: true),
+    BrandModel(
+        id: '5',
+        image: Images.onePieceBrandLogo,
+        name: 'One Piece',
+        productsCount: 10,
+        isFeatured: true),
+    BrandModel(
+        id: '6',
+        image: Images.pokemonBrandLogo,
+        name: 'Pokemon',
+        productsCount: 30,
+        isFeatured: true),
+    BrandModel(
+        id: '7',
+        image: Images.starWarsBrandLogo,
+        name: 'Star Wars',
+        productsCount: 100,
+        isFeatured: true),
+    BrandModel(
+        id: '8',
+        image: Images.dungeonsAndDragonsBrand,
+        name: 'Dungeons & Dragons',
+        productsCount: 100,
+        isFeatured: true),
+    BrandModel(
+        id: '9',
+        image: Images.nvidiaBrandLogo,
+        name: 'Nvidia',
+        productsCount: 1,
+        isFeatured: true),
+    BrandModel(
+        id: '10',
+        image: Images.radeonBrandLogo,
+        name: 'Radeon',
+        productsCount: 1,
+        isFeatured: true),
+    BrandModel(
+        id: '11',
+        image: Images.onePieceTcgBrand,
+        name: 'One Piece TCG',
+        productsCount: 10,
+        isFeatured: true),
+    BrandModel(
+        id: '12',
+        image: Images.pokemonTcgBrand,
+        name: 'Pokemon TCG',
+        productsCount: 20,
         isFeatured: true),
   ];
 
@@ -260,6 +362,90 @@ class DummyData {
               sku: 'WAR02c'),
         ],
         productType: 'ProductType.variable'),
+
+    // 012
+    ProductModel(
+        id: '12',
+        title: 'Manual Jugador, Dungeons & Dragons',
+        brand: brands[7],
+        thumbnail: Images.productImage12,
+        description:
+            "Esta versión revisada y ampliada del Player’s Handbook contiene reglas de creación y desarrollo de personajes, exploración, combate, equipo, conjuros y mucho más. Crea héroes de fantasía de D&D a partir de una gran selección de orígenes, clases y subclases para personajes. Explora ruinas antiguas y mazmorras letales, enfréntate a monstruos en tu búsqueda de tesoros legendarios y adquiere experiencia y poder mientras recorres territorios ignotos junto a tus compañeros.",
+        price: 20000,
+        stock: 2,
+        categoryId: '11',
+        sku: 'ROL001',
+        productType: 'ProductType.single'),
+
+    // 013
+    ProductModel(
+        id: '13',
+        title: 'Ranger Black/Blue - Adventure Dice',
+        brand: brands[7],
+        thumbnail: Images.productImage13,
+        description:
+            "Sigue el rastro de tu presa con este set oficial para Ranger, donde precisión, instinto y dominio de la naturaleza se reflejan en cada tirada. Sus tonos negro y azul acompañan a quienes avanzan con sigilo hacia lo desconocido.\n🎨 Características: Set de 14 dados en tonos negro y azul, diseñado para personajes Ranger de Dungeons & Dragons.\n🧾 Especificaciones: 2 d4, 4 d6, 2 d8, 2 d10, 1 d%, 1 d12 y 2 d20; 14 dados en total.\n💡 Consejo PiedraBruja: Guarda el set en un estuche o bandeja para proteger sus colores y mantenerlo listo para cada aventura.\n🎯 Ideal para: Jugadores de Dungeons & Dragons, personajes Ranger y coleccionistas de accesorios oficiales.",
+        price: 10000,
+        stock: 1,
+        categoryId: '11',
+        sku: 'ROL002',
+        productType: 'ProductType.single'),
+
+    // 014
+    ProductModel(
+        id: '14',
+        title: 'Shinto Saw Rasp, Esccofina Japonesa',
+        brand: brands[7],
+        images: [Images.productImage14b, Images.productImage14c],
+        thumbnail: Images.productImage14a,
+        description:
+            "Esta escofina para madera de doble cara de Shinto cuenta con dientes gruesos en un lado y dientes finos en el otro, lo que la hace perfecta para dar forma a sus proyectos de carpintería. La herramienta dispone de un mango duradero de elastómero unido a la escofina mediante una estructura cónica, lo que permite sujetarla cómodamente por ambos extremos para lograr una gran precisión y control durante su uso. Los dientes presentan un diseño de patrón de diamante y están unidos mediante remaches, lo que evita que el serrín obstruya la herramienta y facilita su limpieza cuando es necesario.\nEl lado de dientes gruesos permite eliminar grandes cantidades de madera de forma rápida y eficaz —ideal para el desbastado y el modelado—, mientras que el lado de dientes finos se utiliza para refinar y alisar la superficie antes del lijado.",
+        price: 25000,
+        stock: 2,
+        categoryId: '10',
+        sku: 'TOOL002',
+        productType: 'ProductType.single'),
+
+    // 015
+    ProductModel(
+        id: '15',
+        title: 'Ranger Black/Blue - Adventure Dice',
+        brand: brands[7],
+        thumbnail: Images.productImage15a,
+        description:
+            "Utensilios de cocina Cascanueces, marco de metal resistente, base de madera diseñada y mango resistente, resistente y duradero.\nEl clip mecánico de nogal puede ajustar el tamaño del espacio (diámetro máximo de 4,5 CM), utilizando el principio de palanca, fácil de operar. Después de que se agrieta la piel de la nuez, la nuez puede parecer intacta, evitando desperdicios innecesarios.\nFácil de instalar y ampliamente utilizado: Instalado en una hermosa base de madera, fácil de colocar en el escritorio para garantizar un funcionamiento estable. Ideal para partir nueces duras y blandas como nueces, avellanas, nueces de Brasil, etc.\nAlta calidad La galleta está hecha de metal resistente con una atractiva base de madera y empuñadura, sólida y duradera, que brinda un rendimiento confiable y una larga vida útil.\nBase de madera El montaje en una hermosa base de madera dura es fácil de colocar en el escritorio y garantiza un funcionamiento estable",
+        price: 30000,
+        stock: 2,
+        categoryId: '10',
+        sku: 'TOOL001',
+        productType: 'ProductType.single'),
+    
+    // // 013
+    // ProductModel(
+    //     id: '13',
+    //     title: 'Ranger Black/Blue - Adventure Dice',
+    //     brand: brands[7],
+    //     thumbnail: Images.productImage13,
+    //     description:
+    //         "Sigue el rastro de tu presa con este set oficial para Ranger, donde precisión, instinto y dominio de la naturaleza se reflejan en cada tirada. Sus tonos negro y azul acompañan a quienes avanzan con sigilo hacia lo desconocido.\n🎨 Características: Set de 14 dados en tonos negro y azul, diseñado para personajes Ranger de Dungeons & Dragons.\n🧾 Especificaciones: 2 d4, 4 d6, 2 d8, 2 d10, 1 d%, 1 d12 y 2 d20; 14 dados en total.\n💡 Consejo PiedraBruja: Guarda el set en un estuche o bandeja para proteger sus colores y mantenerlo listo para cada aventura.\n🎯 Ideal para: Jugadores de Dungeons & Dragons, personajes Ranger y coleccionistas de accesorios oficiales.",
+    //     price: 10000,
+    //     stock: 1,
+    //     categoryId: '11',
+    //     sku: 'ROL002',
+    //     productType: 'ProductType.single'),
+    // // 013
+    // ProductModel(
+    //     id: '13',
+    //     title: 'Ranger Black/Blue - Adventure Dice',
+    //     brand: brands[7],
+    //     thumbnail: Images.productImage13,
+    //     description:
+    //         "Sigue el rastro de tu presa con este set oficial para Ranger, donde precisión, instinto y dominio de la naturaleza se reflejan en cada tirada. Sus tonos negro y azul acompañan a quienes avanzan con sigilo hacia lo desconocido.\n🎨 Características: Set de 14 dados en tonos negro y azul, diseñado para personajes Ranger de Dungeons & Dragons.\n🧾 Especificaciones: 2 d4, 4 d6, 2 d8, 2 d10, 1 d%, 1 d12 y 2 d20; 14 dados en total.\n💡 Consejo PiedraBruja: Guarda el set en un estuche o bandeja para proteger sus colores y mantenerlo listo para cada aventura.\n🎯 Ideal para: Jugadores de Dungeons & Dragons, personajes Ranger y coleccionistas de accesorios oficiales.",
+    //     price: 10000,
+    //     stock: 1,
+    //     categoryId: '11',
+    //     sku: 'ROL002',
+    //     productType: 'ProductType.single'),
   ];
 
 }

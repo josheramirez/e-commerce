@@ -1,11 +1,11 @@
 import 'package:e_commerce/common/widgets/chips/choice_chip.dart';
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_container.dart';
-import 'package:e_commerce/common/widgets/products/product_cards/product_tiitle_text.dart';
+import 'package:e_commerce/common/widgets/products/product_cards/product_title_text.dart';
 import 'package:e_commerce/features/shop/controllers/product/variation_controller.dart';
 import 'package:e_commerce/features/shop/models/product_model.dart';
 import 'package:e_commerce/features/shop/screens/home/home.dart';
 import 'package:e_commerce/features/shop/screens/product_details/widgets/product_price_text.dart';
-import 'package:e_commerce/features/shop/screens/product_details/widgets/product_title_text.dart';
+import 'package:e_commerce/features/shop/screens/product_details/widgets/product_title_text.dart' hide ProductTitleText;
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:e_commerce/utils/helpers/helper_functions.dart';
@@ -46,7 +46,7 @@ class ProductsAttributes extends StatelessWidget {
                           // Price
                           Row(
                             children: [
-                              ProductTiitleText(title: 'Price : ', smallSize: true),
+                              ProductTitleText(title: 'Price : ', smallSize: true),
                               SizedBox(width: USizes.spaceBtwItems /2 ),
                               
                               // Actual Price

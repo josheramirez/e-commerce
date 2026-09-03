@@ -60,6 +60,29 @@ class ProductController extends GetxController{
     }
   }
 
+  Future<List<ProductModel>> fetchAllFeaturedProducts() async{
+    // Fetch Local data or From Firebase
+    if (localData) {
+        try {
+          final products = DummyData.products;
+          await Future.delayed(const Duration(seconds: 3));
+          return products;
+        } catch (e) {
+          Loaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
+          return [];
+        }
+    }else{
+      try {
+        // Fetch All Products
+        final products = await productRepository.getAllFeaturedProducts();
+        return products;
+      } catch (e) {
+         Loaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
+         return [];
+      }
+    }
+  }
+
 
   Future<String> getUrlFromGs(String gsUrl) async {
   try {

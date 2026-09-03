@@ -36,11 +36,11 @@ class BrandModel{
     final data = document;
     if(data.isEmpty) return BrandModel.empty();
     return BrandModel(
-        id: data['id'],
-        image: data['image'],
-        name: data['name'],
-        isFeatured: data['isFeatured'],
-        productsCount: data['productCount']
+        id: data['Id'],
+        image: data['Image'],
+        name: data['Name'],
+        isFeatured: data['IsFeatured'],
+        productsCount: data['ProductCount']
     );
   }
 
@@ -48,11 +48,11 @@ class BrandModel{
     if(document.data() != null){
       Map<String, dynamic> data = document.data()!;
       return BrandModel(
-          id: data['id'],
-          image: data['image'],
-          name: data['name'],
-          isFeatured: data['isFeatured'],
-          productsCount: data['productCount']
+          id: data['Id'],
+          image: data['Image'],
+          name: data['Name'],
+          isFeatured: data['IsFeatured'],
+          productsCount: data['ProductCount']
       );
     }else{
       return BrandModel.empty();

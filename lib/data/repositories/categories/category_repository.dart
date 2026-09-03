@@ -57,4 +57,21 @@ class CategoryRepository extends GetxController {
       throw 'Something went wrong, Please try again';
     }
   }
+
+  // Get SubCategories
+  Future<List<CategoryModel>> getSubCategories(String categoryId) async{
+    try {
+      
+      final snapshot = await _db.collection('Categories').where('ParentId', isEqualTo: categoryId).get();
+      final list = snapshot.docs.map((document) => CategoryModel.fromSnapshot(document)).toList();
+      return list;
+
+    } on FirebaseException catch(e){
+      throw UFirebaseException(e.code).message;
+    } on PlatformException catch(e){
+      throw UPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong, Please try again';
+    }
+  }
 }

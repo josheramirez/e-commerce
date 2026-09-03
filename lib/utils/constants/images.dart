@@ -29,16 +29,21 @@ class Images {
   static const String mailVerifcation = 'assets/animations/success_mail.png';
 
   // categories icons [FINAL]
-  static const String warhammer = 'assets/icons/categories/warhammer.png';
-  static const String dubuBubu = 'assets/icons/categories/dudu_bubu.png';
-  static const String hotwheels = 'assets/icons/categories/hotwheels.png';
-  static const String lego = 'assets/icons/categories/lego.png';
+  static const String rolGame = 'assets/icons/categories/rol_game_category.png';
+  static const String dubuBubu = 'assets/icons/categories/dubu_bubu_category.png';
+  static const String modelTools = 'assets/icons/categories/model_tools_category.png';
+  static const String hotwheels = 'assets/icons/categories/hotwheels_category.png';  
+  static const String lego = 'assets/icons/categories/lego_category.png';
   static const String memoryRam = 'assets/icons/categories/memory_ram.png';
-  static const String onePiececTcg = 'assets/icons/categories/one_piece_tcg.png';
-  static const String pokemonTcg = 'assets/icons/categories/pokemon_tcg.png';
-  static const String pokemon = 'assets/icons/categories/pokemon.png';
+  static const String onePiece = 'assets/icons/categories/one_piece_category.png';
+  static const String pokemon = 'assets/icons/categories/pokemon_category.png';
   static const String videoCard = 'assets/icons/categories/video_card.png';
-  static const String gamming = 'assets/icons/categories/gamming.png';
+  static const String books = 'assets/icons/categories/books_category.png';
+  static const String modelKit = 'assets/icons/categories/model_kit_category.png';
+  static const String tcg = 'assets/icons/categories/tcg_category.png';
+  static const String toys = 'assets/icons/categories/toy_category.png';
+  static const String gamming = 'assets/icons/categories/gamming_category.png';
+  static const String pokemonTcg = 'assets/icons/categories/gamming_category.png';
   static const String nullIcon = 'assets/icons/categories/null_icon.png';
 
   
@@ -129,14 +134,20 @@ class Images {
   static const String productImage11c = 'assets/products/product_11c.jpg';
   static const String productImage11d = 'assets/products/product_11d.jpg';
   // 12
-  static const String productImage12 =
-      'assets/products/product 12 bata socks.png';
+  static const String productImage12 ='assets/products/product12.webp';
   // 13
-  static const String productImage13 = 'assets/products/product 13.png';
+  static const String productImage13 = 'assets/products/product13.jpg';
   // 14
-  static const String productImage14 = 'assets/products/product 14.png';
+  static const String productImage14a = 'assets/products/product_14a.png';
+  static const String productImage14b = 'assets/products/product 14b.avif';
+  static const String productImage14c = 'assets/products/product 14c.avif';
   // 15
-  static const String productImage15 = 'assets/products/product 15.png';
+  static const String productImage15a = 'assets/products/product_15a.jpg';
+  static const String productImage15b = 'assets/products/product_15b.jpg';
+  static const String productImage15c = 'assets/products/product_15c.jepg';
+  static const String productImage15d = 'assets/products/product_15d.jpg';
+
+
   // 16
   static const String productImage16a =
       'assets/products/product 16 breakout jacket.png';
@@ -265,8 +276,19 @@ class Images {
 
 
   // Brands [FINAL]
-  static const String warhammerBrandLogo = 'assets/brands/warhammer-logo.png';
-  static const String legoBrandLogo = 'assets/brnads/lego-logo.png';
+  static const String warhammerBrandLogo = 'assets/brands/warhammer-logo-blanco.png';
+  static const String legoBrandLogo = 'assets/brands/lego-color.png';
+  static const String pokemonBrandLogo = 'assets/brands/pokemon-logo.png';
+  static const String onePieceBrandLogo = 'assets/brands/onePiece-logo.png';
+  static const String hotwheelsBrandLogo = 'assets/brands/hotwheels-logo.png';
+  static const String duduBubuBrand = 'assets/brands/duduBubu_brand.jpeg';
+  static const String nvidiaBrandLogo = 'assets/brands/nvidia-logo.jpeg';
+  static const String radeonBrandLogo = 'assets/brands/radeon-logo.jpeg';
+  static const String starWarsBrandLogo = 'assets/brands/starWars-logo.jpeg';
+  static const String dungeonsAndDragonsBrand = 'assets/brands/dungeonsAndDragons_brand.png';
+  static const String onePieceTcgBrand = 'assets/brands/one_piece_tcg_brand.jpeg';
+  static const String pokemonTcgBrand = 'assets/brands/pokemon_tcg_brand.png';
+
 
   // Brands
   static const String adidasLogo = 'assets/brands/adidas.jpg';

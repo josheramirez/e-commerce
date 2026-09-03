@@ -7,6 +7,7 @@ import 'package:e_commerce/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:e_commerce/utils/exceptions/firebase_exceptions.dart';
 import 'package:e_commerce/utils/exceptions/format_exceptions.dart';
 import 'package:e_commerce/utils/exceptions/platform_exceptions.dart';
+import 'package:e_commerce/utils/local_storage/storage_utility.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -28,7 +29,7 @@ class AuthenticationRepository extends GetxController {
 
   // Called from main.dart an app launch
   @override
-  void onReady() {
+  void onReady() async{
     // Remove the native splah screen
     FlutterNativeSplash.remove();
 
@@ -36,6 +37,8 @@ class AuthenticationRepository extends GetxController {
     // screenRedirect();
 
     // delete this for real login
+    // Initialize User Specific Storage
+    await LocalStorage.init('2');
     Get.off(() => NavigationMenu());
   }
 
@@ -44,6 +47,10 @@ class AuthenticationRepository extends GetxController {
   
     if(user != null){
       if(user.emailVerified){
+
+        // Initialize User Specific Storage
+        await LocalStorage.init(user.uid);
+        
         Get.off(() => NavigationMenu());
       }else { 
         Get.off(() => VerifyEmailScreen(email: _auth.currentUser?.email));

@@ -1,7 +1,7 @@
 import 'package:e_commerce/common/images/circular_image.dart';
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_container.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/product_card_vertical.dart';
-import 'package:e_commerce/common/widgets/products/product_cards/product_tiitle_text.dart';
+import 'package:e_commerce/common/widgets/products/product_cards/product_title_text.dart';
 import 'package:e_commerce/features/shop/controllers/product/product_controller.dart';
 import 'package:e_commerce/features/shop/models/product_model.dart';
 import 'package:e_commerce/features/shop/screens/home/home.dart';
@@ -90,13 +90,13 @@ class ProductDetailScreen extends StatelessWidget {
                       SizedBox(height: USizes.spaceBtwItems / 1.5),
 
                       //  Title
-                      ProductTiitleText(title: product.title),
+                      ProductTitleText(title: product.title),
                       SizedBox(height: USizes.spaceBtwItems / 1.5),
 
                       // Stock Status
                       Row(
                         children: [
-                          const ProductTiitleText(title: "Status"),
+                          const ProductTitleText(title: "Status"),
                           const SizedBox(width: USizes.spaceBtwItems),
                           Text(controller.getProductStockStatus(product.stock), style: Theme.of(context).textTheme.titleMedium),
                         ],

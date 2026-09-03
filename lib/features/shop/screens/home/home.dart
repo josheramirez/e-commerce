@@ -77,7 +77,15 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: USizes.spaceBtwSections),
 
                   // Heading
-                  SectionHeading(title: 'Popular Products', onPressed: () => Get.to(() => AllProducts())),
+                  SectionHeading(
+                    title: 'Productos Populares',
+                    onPressed: () => Get.to(() => AllProducts(
+                        title: 'Productos Populares',
+                        // query: FirebaseFirestore.instance.collection('Products').where('isFeatured', isEqualTo: true).limit(6),
+                        futureMethod: controller.fetchAllFeaturedProducts(),
+                      ),
+                    ),
+                  ),
                   SizedBox(height: USizes.spaceBtwItems),
 
                   //Products
@@ -195,10 +203,10 @@ class VerticalImageText extends StatelessWidget {
               ),
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 3.0),
+                  padding: const EdgeInsets.only(bottom: 0.0),
                   child: Image(
                     image: AssetImage(image.isEmpty ? Images.nullIcon : image),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     color: UColors.dark,
                   ),
                 ),

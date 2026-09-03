@@ -15,7 +15,7 @@ class NavigationMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());
-    final _auth = FirebaseAuth.instance;
+    // final _auth = FirebaseAuth.instance;
 
 
     return Scaffold(
@@ -30,10 +30,10 @@ class NavigationMenu extends StatelessWidget {
             controller.selectedIndex.value = index;
           },
           destinations: [
-            NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
-            NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
-            NavigationDestination(icon: Icon(Iconsax.heart), label: 'WishList'),
-            NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
+            const NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
+            const NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
+            const NavigationDestination(icon: Icon(Iconsax.heart), label: 'WishList'),
+            const NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
           ]
         ),
       )

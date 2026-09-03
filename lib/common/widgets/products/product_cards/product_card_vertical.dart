@@ -4,8 +4,9 @@ import 'package:e_commerce/common/style/shadow.dart';
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_container.dart';
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_image.dart';
 import 'package:e_commerce/common/widgets/icons/circular_icons.dart';
+import 'package:e_commerce/common/widgets/products/favorite_icon/favorite_icon.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/brand_title_text.dart';
-import 'package:e_commerce/common/widgets/products/product_cards/product_tiitle_text.dart';
+import 'package:e_commerce/common/widgets/products/product_cards/product_title_text.dart';
 import 'package:e_commerce/features/shop/controllers/product/product_controller.dart';
 import 'package:e_commerce/features/shop/models/product_model.dart';
 import 'package:e_commerce/features/shop/screens/product_details/product_detail.dart';
@@ -24,8 +25,6 @@ class ProductCardVertical extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    print('obejto json:');
-   print(product.toJson());
 
     final controller = ProductController.intance;
     final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
@@ -45,10 +44,8 @@ class ProductCardVertical extends StatelessWidget {
         child: Column(
            mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-
             Container(
-              child: 
-              Column(
+              child: Column(
                 children: [
                   // Image Box
                   URoundedContainer(
@@ -75,13 +72,16 @@ class ProductCardVertical extends StatelessWidget {
                             child: Text('$salePercentage%', style: Theme.of(context).textTheme.labelLarge!.apply(color: UColors.black)),
                           ),
                         ),
+                        
                         // Favorite Icon
-                        Positioned(top: 0, right: 0, child: UCircularIcon(icon: Iconsax.heart, color: Colors.red),
+                        Positioned(top: 0, right: 0, child: FavoriteIcon(productId: product.id),
                         ),
+                        
                       ],
                     ),
                   ),
-                  // SizedBox(height: 2),
+                  //
+                  
                   
                   Padding(
                     padding: const EdgeInsets.only(left: USizes.sm, right: USizes.sm),
@@ -89,7 +89,7 @@ class ProductCardVertical extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // Name
-                        ProductTiitleText(title: product.title, smallSize: false),
+                        ProductTitleText(title: product.title, smallSize: false),
                         // SizedBox(height: USizes.spaceBtwItems / 4),
                         // Brand
                         BrandTitleWithVerifiedIcon(title: product.brand!.name),
