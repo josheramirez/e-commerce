@@ -19,12 +19,14 @@ class ProductsAttributes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(VariationController());
+    final controller = VariationController.instance;
     final dark = HelperFunctions.isDarkMode(context);
-    
-    return Obx(
+
+    return Obx(      
       () => Column(
         children: [
+        
+          // [VARIATION DETAIL] 
           // Selected Attribute Pricing & Description
           // Display variation price and stock when variatiion is selected.
           if(controller.selectedVariation.value.id.isNotEmpty)
@@ -35,7 +37,7 @@ class ProductsAttributes extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    SectionHeading(title: 'Variation', showActionButton: false),
+                    SectionHeading(title: 'Variante', showActionButton: false),
                     SizedBox(width: USizes.spaceBtwItems),
       
                     Flexible(
@@ -46,14 +48,14 @@ class ProductsAttributes extends StatelessWidget {
                           // Price
                           Row(
                             children: [
-                              ProductTitleText(title: 'Price : ', smallSize: true),
+                              ProductTitleText(title: 'Precio : ', smallSize: true),
                               SizedBox(width: USizes.spaceBtwItems /2 ),
                               
                               // Actual Price
                               if(controller.selectedVariation.value.salePrice > 0)
-                              Text('\$${controller.getVariationPrice()}', style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough)),
+                              Text('\$${controller.selectedVariation.value.price}', style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough)),
                               if(controller.selectedVariation.value.salePrice > 0)
-                              SizedBox(width: USizes.spaceBtwItems),
+                              SizedBox(width: USizes.spaceBtwItems /2),
                       
                               // Sale Price
                               ProductPriceText(price: controller.getVariationPrice())
@@ -65,6 +67,7 @@ class ProductsAttributes extends StatelessWidget {
                           Row(
                             children: [
                               const ProductTitleText(title: 'Stock : ', smallSize: true),
+                              SizedBox(width: 12),
                               Text(controller.variationStockStatus.value, style: Theme.of(context).textTheme.titleMedium),
                             ],
                           ),
@@ -86,15 +89,18 @@ class ProductsAttributes extends StatelessWidget {
           ),
           const SizedBox(height: USizes.spaceBtwItems),
       
-          // Attribute 
+          // [VARIATION ATRIBUTES] 
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: product.productAttributes!.map((attribute) => Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
+                // Attribute Name
                 SectionHeading(title: attribute.name ?? '', showActionButton: false),
                 SizedBox(height: USizes.spaceBtwItems/2),
                 
+                // Attribute Values
                 Obx(
                   () => Wrap(
                     direction: Axis.horizontal,

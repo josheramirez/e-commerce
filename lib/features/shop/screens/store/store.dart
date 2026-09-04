@@ -38,7 +38,7 @@ class StoreScreen extends StatelessWidget {
         //  APP BAR
         appBar: UAppBar(
           title: Text('Store', style: Theme.of(context).textTheme.headlineMedium),
-          actions: [CardCounterIcon(onPressed: () {}, iconColor: Colors.black)],
+          actions: [CardCounterIcon( iconColor: Colors.black)],
         ),
 
         // 

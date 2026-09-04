@@ -34,7 +34,7 @@ class ProductDetailScreen extends StatelessWidget {
 
     return Scaffold(
       // backgroundColor: Colors.red ,
-      bottomNavigationBar: BottomAddToCard(),
+      bottomNavigationBar: BottomAddToCard(product: product),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -44,13 +44,10 @@ class ProductDetailScreen extends StatelessWidget {
 
             // Product Details
             Padding(
-              padding: const EdgeInsets.only(
-                right: USizes.defaultSpace,
-                left: USizes.defaultSpace,
-                bottom: USizes.defaultSpace,
-              ),
+              padding: const EdgeInsets.only(right: USizes.defaultSpace,left: USizes.defaultSpace,bottom: USizes.defaultSpace),
               child: Column(
                 children: [
+                  
                   // Ratting and Share Button
                   RatingAndShare(),
                   
@@ -60,6 +57,7 @@ class ProductDetailScreen extends StatelessWidget {
                     children: [
                       Row(
                         children: [
+
                           // Sale Tag
                           if(product.salePrice != 0)
                           URoundedContainer(
@@ -95,13 +93,15 @@ class ProductDetailScreen extends StatelessWidget {
 
                       // Stock Status
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        // mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const ProductTitleText(title: "Status"),
-                          const SizedBox(width: USizes.spaceBtwItems),
-                          Text(controller.getProductStockStatus(product.stock), style: Theme.of(context).textTheme.titleMedium),
+                          const ProductTitleText(title: "Status: "),
+                          const SizedBox(width: 5),
+                          Text(controller.getProductStockStatus(product.stock), style:TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
                         ],
                       ),
-                      const SizedBox(height: USizes.spaceBtwItems / 1.5),
+                      const SizedBox(height: USizes.spaceBtwItems / 2),
 
                       // Brand
                       Row(
@@ -110,9 +110,9 @@ class ProductDetailScreen extends StatelessWidget {
                             // backgroundColor: Colors.red,
                             image: product.brand != null ? product.brand!.image : '',
                             isNetworkImage: true,
-                            padding: 5,
-                            width: 32,
-                            height: 32,
+                            padding: 0,
+                            width: 35,
+                            height: 35,
                             overlayColor: dark ? UColors.white : UColors.black,
                           ),
                           BrandTitleWithVerifiedIcon(title: product.brand != null ? product.brand!.name : '',
@@ -120,14 +120,13 @@ class ProductDetailScreen extends StatelessWidget {
                           ),
                         ],
                       ),
+                      const SizedBox(height: USizes.spaceBtwItems / 2),
                     ],
                   ),
 
-                  // Attributes
+                  // Variation Attributes 
                   if(product.productType == ProductType.variable.toString()) ProductsAttributes(product: product),
                   if(product.productType == ProductType.variable.toString()) SizedBox(height: USizes.spaceBtwSections),
-
-                  
 
                   // Checkout Button
                   SizedBox(

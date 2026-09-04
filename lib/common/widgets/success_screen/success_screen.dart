@@ -7,6 +7,7 @@ import '../../../utils/constants/sizes.dart';
 class SuccessScreen extends StatelessWidget {
   final String image, title, subtitle;
   final VoidCallback onPress;
+  
   const SuccessScreen({
     super.key,
     required this.image,

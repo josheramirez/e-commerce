@@ -31,7 +31,7 @@ class HomeAppbar extends StatelessWidget {
         
         ],
       ),
-      actions: [CardCounterIcon(onPressed: () {}, iconColor: UColors.white)],
+      actions: [CardCounterIcon(iconColor: UColors.white)],
     );
   }
 }

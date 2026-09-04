@@ -17,6 +17,7 @@ class Images {
   // animations
   static const String pencilAnimation = 'assets/animations/pencil_drawing.json';
   static const String cartEmptyAnimation = 'assets/animations/cart_empty.json';
+  static const String orderCompleteAnimation = 'assets/animations/cart_empty.json';
 
   // logos
   static const String facebookIcon = 'assets/logo/facebook-icon.png';

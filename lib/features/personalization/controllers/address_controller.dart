@@ -1,7 +1,11 @@
 import 'package:e_commerce/data/repositories/adress/address_repository.dart';
 import 'package:e_commerce/features/personalization/models/address_model.dart';
+import 'package:e_commerce/features/personalization/screens/address/add_new_address.dart';
+import 'package:e_commerce/features/personalization/screens/address/widgets/single_address.dart';
+import 'package:e_commerce/features/shop/screens/home/home.dart';
 import 'package:e_commerce/utils/constants/images.dart';
 import 'package:e_commerce/utils/constants/loaders.dart';
+import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:e_commerce/utils/helpers/network_manager.dart';
 import 'package:e_commerce/utils/popups/full_screen_loader.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +13,6 @@ import 'package:get/get.dart';
 
 class AddressController extends GetxController {
   static AddressController get instance => Get.find();
-
 
   final name = TextEditingController();
   final phoneNumber = TextEditingController();
@@ -122,7 +125,6 @@ class AddressController extends GetxController {
     }
   }
 
-
   void resetFormFields(){ 
     name.clear();
     phoneNumber.clear(); 
@@ -132,5 +134,51 @@ class AddressController extends GetxController {
     postalCode.clear(); 
     country.clear();
     addressFormKey.currentState?.reset();
+  }
+
+  // Show Addresses ModalBottomSheet at Checkout
+  Future<dynamic> selectNewAddressPopup(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (_) => Container(
+        padding: const EdgeInsets.all(USizes.lg),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SectionHeading(title: 'Seleccionar Direccion'),
+            FutureBuilder(
+              future: getAllUserAddresses(),
+              builder: (_, snapshot){
+
+                if (!snapshot.hasData || snapshot.data == null || snapshot.data!.isEmpty) {
+                  return const Center(child: Text('No Hay Datos'));
+                }
+                if (snapshot.hasError) return const Center(child: Text('Hubo un error.'));
+
+                final addresses = snapshot.data!;
+
+                return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: addresses.length,
+                  itemBuilder: (_, index) => SingleAddress(
+                    address: addresses[index],
+                    onTap: () async {
+                      await selectedAddress(addresses[index]);
+                      Get.back();
+                    }
+                  )
+                );
+              }
+            ),
+            const SizedBox(height: USizes.defaultSpace * 2),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(onPressed: () => Get.to(() => AddNewAddressScreen()), child: const Text('Agregar nueva direccion')),
+            )
+          ],
+        ),
+      )
+    );
+    
   }
 }

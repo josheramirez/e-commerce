@@ -57,6 +57,7 @@ dependencies:
   cached_network_image: ^3.4.1
   file_picker: ^8.1.4
   fanci: ^1.2.1
+  intl: ^0.20.3
 
 # --------PACKAGES END---------# 
 

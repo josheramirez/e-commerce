@@ -1,3 +1,4 @@
+import 'package:e_commerce/features/shop/controllers/cart_controller.dart';
 import 'package:e_commerce/features/shop/controllers/product/images_controller.dart';
 import 'package:e_commerce/features/shop/models/product_model.dart';
 import 'package:e_commerce/features/shop/models/product_variation_model.dart';
@@ -29,11 +30,18 @@ class VariationController extends GetxController {
       ImagesController.instance.selectedProductImage.value = selectedVariation.image;
     }
 
+    // Show selected Variation quantity already in the cart
+    if (selectedVariation.id.isNotEmpty) {
+      final cartController = CartController.instance;
+      cartController.productQuantityInCart.value = cartController.getVariationQuantityInCart(product.id, selectedVariation.id);
+    }
     // Assign Selected Variation
     this.selectedVariation.value = selectedVariation;
 
     // Update selected product variation status
     getProductVariationStockStatus();
+
+    print('this.selectedVariation.value ${this.selectedVariation.toJson()}');
   }
 
   // Check if selected attribute matches any variation attributes

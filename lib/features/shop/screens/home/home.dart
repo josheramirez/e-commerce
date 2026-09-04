@@ -88,7 +88,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: USizes.spaceBtwItems),
 
-                  //Products
+                  // Popular Products
                   Obx((){
                     if (controller.isLoading.value) return VerticalProductShimmer();
                   

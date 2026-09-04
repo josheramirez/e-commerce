@@ -1,5 +1,6 @@
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_image.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/brand_title_with_verifed_icon.dart';
+import 'package:e_commerce/features/shop/models/cart_item_model.dart';
 import 'package:e_commerce/features/shop/screens/product_details/widgets/product_title_text.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/constants/images.dart';
@@ -8,8 +9,10 @@ import 'package:flutter/material.dart';
 
 class CartItem extends StatelessWidget {
   const CartItem({
-    super.key,
+    super.key, required this.cartItem,
   });
+
+  final CartItemModel cartItem;
 
   @override
   Widget build(BuildContext context) {
@@ -17,30 +20,51 @@ class CartItem extends StatelessWidget {
       children: [
         // Image
         RoundedImage(
-          imageUrl: Images.productImage1,
-          width: 60,
-          height: 60,
-          padding: EdgeInsets.all(USizes.sm),
+          imageUrl: cartItem.image ?? '',
+          width: 80,
+          height: 80,
+          padding: EdgeInsets.all(2),
           backgroundColor: UColors.light,
+          isNetworkImage: true,
         ),
         
         // Title,  Price & Size
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            BrandTitleWithVerifedIcon(title: 'Nike'),
-            ProductTitleText(title: 'Black Sports Shoes', maxLines: 1),
-            // Attributes
-            Text.rich(
-              TextSpan(children: [
-                TextSpan(text: 'Color ', style: Theme.of(context).textTheme.bodySmall),
-                TextSpan(text: 'Green ', style: Theme.of(context).textTheme.bodyLarge),
-                TextSpan(text: 'Size ', style: Theme.of(context).textTheme.bodySmall),
-                TextSpan(text: 'Uk 38 ', style: Theme.of(context).textTheme.bodyLarge),
-              ])
-            )
-          ],
+        Flexible(
+          child: Container(
+            color: Colors.transparent,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 5.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+              
+                  // Brand
+                  BrandTitleWithVerifedIcon(title: cartItem.brandName ?? ''),
+              
+                  // Name
+                  Flexible(child: ProductTitleText(title: cartItem.title, maxLines: 1)),
+              
+                  // Attributes
+                  Text.rich(
+                    TextSpan( 
+                      children: (cartItem.selectedVariation ?? {})
+                        .entries
+                        .map((e) => TextSpan(
+                            children: [
+                              TextSpan(text: e.key, style: Theme.of(context).textTheme.bodySmall),
+                              TextSpan(text: ' ${e.value}', style: Theme.of(context).textTheme.bodyLarge),
+                            ],
+                          )
+                        ).toList(),
+                    ),
+                    maxLines: 1, // Set the limit of lines before clipping
+                    overflow: TextOverflow.ellipsis, // Triggers the '...'
+                  )
+                ]
+              ),
+            ),
+          ),
         )
       ],
     );

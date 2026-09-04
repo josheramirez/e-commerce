@@ -1,19 +1,23 @@
+import 'package:e_commerce/features/shop/controllers/cart_controller.dart';
 import 'package:e_commerce/features/shop/screens/cart/cart.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
+import 'package:e_commerce/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class CardCounterIcon extends StatelessWidget {
   const CardCounterIcon({
-    super.key, required this.onPressed, this.iconColor = UColors.light,
+    super.key, this.iconColor, this.counterBgColor, this.counterTextColor,
   });
 
-  final VoidCallback onPressed;
-  final Color iconColor;
+  final Color? iconColor, counterBgColor, counterTextColor;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(CartController());
+    final dark = HelperFunctions.isDarkMode(context);
+
     return Stack(
       children: [
         IconButton(onPressed: () => Get.to(() => CartScreen()), icon: const Icon(Iconsax.shopping_bag_copy), color: iconColor),
@@ -23,11 +27,19 @@ class CardCounterIcon extends StatelessWidget {
             width: 18,
             height: 18,
             decoration: BoxDecoration(
-              color: UColors.black,
+              color: counterBgColor ?? (dark ? Colors.white : Colors.black),
               borderRadius: BorderRadius.circular(100),
             ),
             child: Center(
-              child: Text('2', style: Theme.of(context).textTheme.labelLarge!.apply(color: UColors.white, fontSizeFactor: 0.8))
+              child: Obx(
+                () => Text(
+                  controller.numberOfCartItems.value.toString(),
+                  style: Theme.of(context).textTheme.labelLarge!.apply(
+                    color: counterTextColor ?? (dark ? Colors.black : Colors.white),
+                    fontSizeFactor: 0.8,
+                  ),
+                ),
+              )
             ),
           ),
         )

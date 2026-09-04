@@ -1,3 +1,4 @@
+import 'package:e_commerce/features/personalization/models/address_model.dart';
 import 'package:e_commerce/features/shop/models/banner_model.dart';
 import 'package:e_commerce/features/shop/models/brand_category_model.dart';
 import 'package:e_commerce/features/shop/models/brand_model.dart';
@@ -74,16 +75,12 @@ class DummyData {
 
   /// List of all Banners
   static final List<BannerModel> banners = [
-
     // BannerModel(imageUrl: Images.homeBanner0, targetScreen: Routes.order, active: true),
     BannerModel(imageUrl: Images.homeBanner1, targetScreen: Routes.order, active: true),
     BannerModel(imageUrl: Images.homeBanner2, targetScreen: Routes.cart, active: true),
     BannerModel(imageUrl: Images.homeBanner3, targetScreen: Routes.wishlist, active: true),
     BannerModel(imageUrl: Images.homeBanner4, targetScreen: Routes.wishlist, active: true),
-
-
   ];
-
 
   /// List of all Brands
   static final List<BrandModel> brands = [
@@ -337,6 +334,7 @@ class DummyData {
           ProductVariationModel(
               id: '1',
               stock: 1,
+              salePrice: 10000,
               price: 15000,
               image: Images.productImage11b,
               description: 'El Brutalis Dreadnought es un rompelíneas y un arma de terror: un andador de combate bípedo, armado para el combate cuerpo a cuerpo y pilotado por un héroe caído de su Capítulo. Esta imponente máquina de guerra desata una lluvia de fuego de cobertura mientras avanza hacia las líneas enemigas, pero la mayor amenaza reside en sus enormes brazos. Equipados con puños aplastantes o garras recubiertas de ceramita, estos pueden aplastar a un guerrero acorazado como si fuera fruta podrida o atravesar la pared de un búnker como si fuera pergamino. Este kit de plástico multicomponente permite construir un Brutalis Dreadnought, una imponente máquina de guerra centrada en el combate cuerpo a cuerpo. ',
@@ -448,4 +446,35 @@ class DummyData {
     //     productType: 'ProductType.single'),
   ];
 
+
+  // Address
+  static final List<AddressModel> addresses = [
+    AddressModel(
+      id: '01',
+      name: 'Joshe Casa',
+      phoneNumber: '+569732344432',
+      street: 'Avenida Siempreviva numero 2344',
+      city: 'Santiago',
+      state: 'Santiago',
+      postalCode: '222',
+      country: 'Chile'),
+    AddressModel(
+      id: '02',
+      name: 'Joshe Copiapo',
+      phoneNumber: '+569732344432',
+      street: 'Copayapu 3234',
+      city: 'Copiapo',
+      state: 'Atacama',
+      postalCode: '1221',
+      country: 'Chile'),
+    AddressModel(
+      id: '03',
+      name: 'Vietnam',
+      phoneNumber: '+52912224222',
+      street: 'Da nang 232',
+      city: 'Da Nang',
+      state: 'Deng Tong',
+      postalCode: '2221',
+      country: 'Vietnam'),
+  ];
 }

@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:intl/intl.dart';
 
 class HelperFunctions {
   static Color? getColor(String value) {
@@ -182,4 +186,10 @@ class HelperFunctions {
     }
     return wrappedList;
   }
+
+  static String getFormattedDate(DateTime date, {String format = 'dd MMM yyyy'}) {
+    return DateFormat(format).format(date);
+  }
+
+
 }
