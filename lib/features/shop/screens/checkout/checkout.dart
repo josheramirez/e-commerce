@@ -17,6 +17,7 @@ import 'package:e_commerce/utils/helpers/helper_functions.dart';
 import 'package:e_commerce/utils/helpers/pricing_calculator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({super.key});
@@ -26,9 +27,18 @@ class CheckoutScreen extends StatelessWidget {
 
     final dark = HelperFunctions.isDarkMode(context);
     final cartController = CartController.instance;
-    final orderController = OrderController.instance;
+    final orderController = Get.put(OrderController());
     final subTotal = cartController.totalCartPrice.value;
     final totalAmount = PricingCalculator.calculateTotalPrice(subTotal, 'Cl');
+
+
+    // 2. Create the CLP formatter
+    final clpCurrency = NumberFormat.currency(
+      locale: 'es_CL',
+      symbol: '',
+      decimalDigits: 0, // CLP does not use cents/decimals
+    );
+
 
     return Scaffold(
 
@@ -68,7 +78,7 @@ class CheckoutScreen extends StatelessWidget {
                     Divider(),
                     SizedBox(height: USizes.spaceBtwItems),
 
-                    // PAyment Method
+                    // Addresses
                     BillingAddressSection(),
                     SizedBox(height: USizes.spaceBtwItems),
                   ],
@@ -112,7 +122,8 @@ class CheckoutScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12), // Rounded corners
                 ),
               ),
-              child: Text('Checkout \$$totalAmount'),
+              // child: Text('Checkout \$$totalAmount'),
+              child: Text('Checkout  \$${clpCurrency.format(totalAmount)}'),
             ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce/utils/helpers/formatter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class UserModel{
   // keep final which do not want to update
@@ -58,11 +59,24 @@ class UserModel{
     };
   }
 
+  factory UserModel.fromJson(Map<String, dynamic> document){
+    final data = document;
+    if(data.isEmpty) return UserModel.empty();
+    return UserModel(
+      id: document['id'],
+      firstName: data['firstName'] ?? '',
+      lastName: data['lastName'] ?? '',
+      username: data['username'] ?? '',
+      email: data['email'] ?? '',
+      phoneNumber: data['phoneNumber'] ?? '',
+      profilePicture: data['profilePicture'] ?? '',
+    );
+  }
+
   factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document){
     if(document.data() != null){
       final data = document.data()!;
-      print("UserModel.fromSnapshot");
-      print(data.toString());
+
       return UserModel(
           id: document.id,
           firstName: data['firstName'] ?? '',

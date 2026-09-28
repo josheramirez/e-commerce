@@ -1,4 +1,5 @@
 import 'package:e_commerce/data/repositories/adress/address_repository.dart';
+import 'package:e_commerce/dummy_data.dart';
 import 'package:e_commerce/features/personalization/models/address_model.dart';
 import 'package:e_commerce/features/personalization/screens/address/add_new_address.dart';
 import 'package:e_commerce/features/personalization/screens/address/widgets/single_address.dart';
@@ -27,42 +28,103 @@ class AddressController extends GetxController {
   final addressRepository = Get.put(AddressRepository());
   final Rx<AddressModel> selectedAddress = AddressModel.empty().obs;
 
+  late Future<List<AddressModel>> myFuture;
+
+  final localData = true;
+  final RxList<AddressModel> allAddresses = <AddressModel>[].obs;
+
+  @override
+  void onInit() {
+    myFuture = getAllUserAddresses();
+    super.onInit();
+  }
+
   // Fetch All user Addresses
   Future<List<AddressModel>> getAllUserAddresses() async{
-    try {
-      final addresses = await addressRepository.fetchUserAddress();
-      selectedAddress.value = addresses.firstWhere((address) => address.selectedAddress, orElse: () => AddressModel.empty());
-      return addresses;
-    } catch (e) {
-      Loaders.errorSnackBar(title: 'Direccion no encontrada!', message: e.toString());
-      return [];
+    
+    // Fetch Local data or From Firebase
+    if (localData) {
+        try {
+          final addresses = DummyData.addresses;
+          selectedAddress.value = addresses.firstWhere((address) => address.selectedAddress, orElse: () => AddressModel.empty());
+          // print('selected : ${selectedAddress.toJson()}');
+          allAddresses.assignAll(addresses);
+          return addresses;
+        } catch (e) {
+            return [];
+        }
+    }else{
+      try {
+        final addresses = await addressRepository.fetchUserAddress();
+        selectedAddress.value = addresses.firstWhere((address) => address.selectedAddress, orElse: () => AddressModel.empty());
+        return addresses;
+      } catch (e) {
+        Loaders.errorSnackBar(title: 'Direccion no encontrada!', message: e.toString());
+        return [];
+      }
     }
   }
 
-  Future selectAddress(AddressModel newSelectedAddress) async{
-    try {
+  Future <void> selectAddress(AddressModel newSelectedAddress) async{
+    if (localData) {
 
-      Get.defaultDialog(
-        title: '',
-        onWillPop: () async {return false;},
-        barrierDismissible: false,
-        backgroundColor: Colors.transparent,
-        content: const CircularProgressIndicator()
-      );
+      try {
+        //  Get.defaultDialog(
+        //   title: '',
+        //   onWillPop: () async {return false;},
+        //   barrierDismissible: false,
+        //   backgroundColor: Colors.transparent,
+        //   content: const CircularProgressIndicator()
+        // );
 
-      // Clear the 'selected' field
-      if(selectedAddress.value.id.isNotEmpty){
-        await addressRepository.updateSelectedField(selectedAddress.value.id, false);
+        // Clear the 'selected' field
+        if(selectedAddress.value.id.isNotEmpty){
+          final oldAddress = allAddresses.firstWhere((address) => address.id == selectedAddress.value.id);
+          final newAddress = oldAddress.copyWith(selectedAddress: false);
+          final postIndex = allAddresses.indexWhere((address) => address.id == selectedAddress.value.id);
+          allAddresses[postIndex] = newAddress;   
+        }
+   
+        allAddresses.forEach((address)=> print(address.toJson()));
+
+        // // Assign selected Address
+        newSelectedAddress.selectedAddress = true;
+        selectedAddress.value = newSelectedAddress;
+
+        final postIndexNewAdress= allAddresses.indexWhere((address) => address.id == selectedAddress.value.id);
+        allAddresses[postIndexNewAdress] = newSelectedAddress;
+
+        // // Set the 'selected' field to true for the new selected address
+        // await addressRepository.updateSelectedField(selectedAddress.value.id, true);
+
+      } catch (e) {
+          Loaders.errorSnackBar(title: 'Error en Seleccion', message: e.toString());
       }
-      // Assign selected Address
-      newSelectedAddress.selectedAddress = true;
-      selectedAddress.value = newSelectedAddress;
+    }else{
+      try {
+        Get.defaultDialog(
+          title: '',
+          onWillPop: () async {return false;},
+          barrierDismissible: false,
+          backgroundColor: Colors.transparent,
+          content: const CircularProgressIndicator()
+        );
 
-      // Set the 'selected' field to true for the new selected address
-      await addressRepository.updateSelectedField(selectedAddress.value.id, true);
+        // Clear the 'selected' field
+        if(selectedAddress.value.id.isNotEmpty){
+          await addressRepository.updateSelectedField(selectedAddress.value.id, false);
+        }
 
-    } catch (e) {
-      Loaders.errorSnackBar(title: 'Error en Seleccion', message: e.toString());
+        // Assign selected Address
+        newSelectedAddress.selectedAddress = true;
+        selectedAddress.value = newSelectedAddress;
+
+        // Set the 'selected' field to true for the new selected address
+        await addressRepository.updateSelectedField(selectedAddress.value.id, true);
+
+      } catch (e) {
+        Loaders.errorSnackBar(title: 'Error en Seleccion', message: e.toString());
+      }
     }
   }
 
@@ -125,6 +187,7 @@ class AddressController extends GetxController {
     }
   }
 
+  // Reset all values
   void resetFormFields(){ 
     name.clear();
     phoneNumber.clear(); 

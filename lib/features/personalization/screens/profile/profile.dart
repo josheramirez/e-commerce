@@ -30,7 +30,6 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Obx(() {
-                      print(controller.user.value.toJson());
                       final networkImage = controller.user.value.profilePicture;
                       final image = networkImage.isNotEmpty ? networkImage : Images.user;
                       return controller.imageUploading.value

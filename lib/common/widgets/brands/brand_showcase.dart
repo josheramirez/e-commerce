@@ -18,6 +18,9 @@ class BrandShowcase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    for (var element in images) {
+      print(element);
+    }
     return InkWell(
       onTap: () => Get.to(() => BrandProducts(brand: brand)),
       child: URoundedContainer(

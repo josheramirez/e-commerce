@@ -24,7 +24,7 @@ class AddressModel{
     required this.postalCode,
     required this.country,
     this.dateTime,
-    this.selectedAddress = true,
+    this.selectedAddress = false,
   });
 
   String get formattedPhoneNumber => Formatter.formatPhoneNumber(phoneNumber);
@@ -89,7 +89,23 @@ class AddressModel{
 
   @override
   String toString() {
-    return '$street, $city, $state, $postalCode, $country';
+    return '$street, $city, $state, $postalCode, $country, $selectedAddress';
+  }
+
+
+  AddressModel copyWith({bool? selectedAddress}) {
+    return AddressModel(
+      id: id,
+      name: name,
+      phoneNumber: phoneNumber,
+      street: street,
+      city: city,
+      state: state,
+      postalCode: postalCode,
+      country: country,
+      dateTime: dateTime,
+      selectedAddress: selectedAddress ?? this.selectedAddress
+    );
   }
   
 }

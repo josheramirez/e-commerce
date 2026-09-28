@@ -19,7 +19,9 @@ import 'package:e_commerce/utils/constants/enums.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:e_commerce/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
@@ -30,6 +32,7 @@ class StoreScreen extends StatelessWidget {
     final dark = HelperFunctions.isDarkMode(context);
     final categories = CategoryController.instance.featuredCategories;
     final brandController = Get.put(BrandController());
+
 
     return DefaultTabController(
       length: categories.length,
@@ -60,9 +63,10 @@ class StoreScreen extends StatelessWidget {
                       children: [
                   
                         // Search Bar
-                        SizedBox(height: USizes.spaceBtwItems),
-                        SeachContainer(text: 'Buscar', showBorder: true, showBackground: false, padding: EdgeInsets.zero),
-                        SizedBox(height: USizes.spaceBtwSections),
+                        // SizedBox(height: USizes.spaceBtwItems),
+                        // SeachContainer(text: 'Buscar', showBorder: true, showBackground: false, padding: EdgeInsets.zero),
+                        
+                        // SizedBox(height: USizes.spaceBtwSections),
                   
                         // Featured Brands
                         SectionHeading(title: 'Marcas Destacadas', onPressed: () => Get.to(() => AllBrandsScreen()),
@@ -100,11 +104,11 @@ class StoreScreen extends StatelessWidget {
             ];
           },
 
-          body: Expanded(
-            child: TabBarView(
+          body: 
+            TabBarView(
               children: categories.map((category) => CategoryTab(category: category)).toList(),
             ),
-          ),
+          
         ),
       ),
     );

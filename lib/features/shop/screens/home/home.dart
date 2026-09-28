@@ -5,10 +5,12 @@ import 'package:e_commerce/common/widgets/commmo_shapes/containers/primary_heade
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_image.dart';
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/search_container.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:e_commerce/common/widgets/shimmer/horizontal_product_shimmer.dart';
 import 'package:e_commerce/common/widgets/shimmer/shimmer_effect.dart';
 import 'package:e_commerce/common/widgets/shimmer/vertical_product_shimmer.dart';
 import 'package:e_commerce/features/shop/controllers/banner_controller.dart';
 import 'package:e_commerce/features/shop/controllers/product/product_controller.dart';
+import 'package:e_commerce/features/shop/models/product_model.dart';
 import 'package:e_commerce/features/shop/screens/all_products/all_products.dart';
 import 'package:e_commerce/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:e_commerce/features/shop/screens/home/widgets/home_categories.dart';
@@ -17,6 +19,7 @@ import 'package:e_commerce/utils/constants/images.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,6 +27,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(ProductController());
+    RxString searchText = ''.obs;
+    // RxBool searchResponse = false.obs;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -37,75 +42,173 @@ class HomeScreen extends StatelessWidget {
 
                   // App Bar
                   HomeAppbar(),
-                  SizedBox(height: USizes.spaceBtwSections / 2),
+                  // SizedBox(height: USizes.spaceBtwSections / 2),
 
                   // Search Bar
-                  SeachContainer(text: "Search in Store"),
-                  SizedBox(height: USizes.spaceBtwSections),
-
-                  // Categories
-                  Padding(
-                    padding: const EdgeInsets.only(left: USizes.defaultSpace),
-                    child: Column(
-                      children: [
-                        // Heading
-                        SectionHeading(
-                          title: 'Popular Categories',
-                          showActionButton: false,
-                          textColor: UColors.white,
-                        ),
-                        SizedBox(height: USizes.spaceBtwSections / 2),
-
-                        // Categories
-                        HomeCategories(),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: USizes.spaceBtwSections),
-                ],
-              ),
-            ),
-
-            // Body
-            Padding(
-              padding: const EdgeInsets.all(USizes.defaultSpace),
-              child: Column(
-                children: [
+                  // SeachContainer(text: "Search in Store"),
                   
-                  // Slider
-                  PromoSlider(),
-                  SizedBox(height: USizes.spaceBtwSections),
-
-                  // Heading
-                  SectionHeading(
-                    title: 'Productos Populares',
-                    onPressed: () => Get.to(() => AllProducts(
-                        title: 'Productos Populares',
-                        // query: FirebaseFirestore.instance.collection('Products').where('isFeatured', isEqualTo: true).limit(6),
-                        futureMethod: controller.fetchAllFeaturedProducts(),
+                  // New Search Bar
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: USizes.defaultSpace),
+                    child: Container(
+                      
+                      // color: Colors.white,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(USizes.cardRadiusLg),
+                        border:  null
+                      ),
+                      child: 
+                      TextFormField(
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Iconsax.search_normal_1_copy),
+                          contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal:10), // Adjust height here
+                          border: OutlineInputBorder(),
+                          hintText: 'Buscar',
+                          hintStyle: TextStyle(
+                            color: UColors.darkGrey, // Change this to your preferred color
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                            borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                          ),
+                          // The border color when the field IS focused 🌟
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                            borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                          ),
+                        ),
+                        onChanged: (value) => searchText.value = value,
                       ),
                     ),
                   ),
-                  SizedBox(height: USizes.spaceBtwItems),
-
-                  // Popular Products
-                  Obx((){
-                    if (controller.isLoading.value) return VerticalProductShimmer();
+                  SizedBox(height: 20),
                   
-                    if (controller.featuredProducts.isEmpty) {
-                      return Center(child: Text('No Data Found', style: Theme.of(context).textTheme.bodyMedium));
+
+                  // Categories
+
+                  Obx((){
+                      if (searchText.value.isEmpty || searchText.value.length < 3) {
+                      return
+                        Padding(
+                          padding: const EdgeInsets.only(left: USizes.defaultSpace),
+                          child: Column(
+                            children: [
+                              // Heading
+                              SectionHeading(
+                                title: 'Popular Categories',
+                                showActionButton: false,
+                                textColor: UColors.white,
+                              ),
+                              SizedBox(height: USizes.spaceBtwSections / 2),
+
+                              // Categories
+                              HomeCategories(),
+                            ],
+                          ),
+                        );
                     }
-                    
-                    return  GridLayout(
-                      itemCount: controller.featuredProducts.length, 
-                      itemBuilder: (_, index) => ProductCardVertical(product: controller.featuredProducts[index]),
-                    );
-
-                  })
-
+                    return SizedBox(height: 0);
+                  }),
+                SizedBox(height: USizes.spaceBtwSections),
+                  
                 ],
               ),
             ),
+
+            // [BODY / banner and list of products] 
+            Obx((){
+              if (searchText.value.isEmpty || searchText.value.length < 3){
+                return
+                  Padding(
+                    padding: const EdgeInsets.only(top:USizes.defaultSpace/2, left: USizes.defaultSpace, right: USizes.defaultSpace, bottom: USizes.defaultSpace),
+                    child: Column(
+                      children: [
+                        
+                        // Slider
+                        PromoSlider(),
+                        SizedBox(height: USizes.spaceBtwSections/2),
+
+                        // Heading
+                        SectionHeading(
+                          title: 'Productos Populares',
+                          onPressed: () => Get.to(() => AllProducts(
+                              title: 'Productos Populares',
+                              // query: FirebaseFirestore.instance.collection('Products').where('isFeatured', isEqualTo: true).limit(6),
+                              futureMethod: controller.fetchAllFeaturedProducts(),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: USizes.spaceBtwItems/2),
+
+                        // Popular Products
+                        Obx((){
+                          if (controller.isLoading.value) return VerticalProductShimmer();
+                        
+                          if (controller.featuredProducts.isEmpty) {
+                            return Center(child: Text('No Data Found', style: Theme.of(context).textTheme.bodyMedium));
+                          }
+                          
+                          return  GridLayout(
+                            itemCount: controller.featuredProducts.length, 
+                            itemBuilder: (_, index) => ProductCardVertical(product: controller.featuredProducts[index]),
+                          );
+
+                        })
+
+                      ],
+                    ),
+                  );
+              }
+              return 
+              // SizedBox(height: 0);
+              FutureBuilder(
+                future: ProductController.intance.getAllProducts(), 
+                builder: ((context, snapshot) {
+                  
+                  const loader = HorizontalProductShimmer();
+
+                  if (snapshot.connectionState == ConnectionState.waiting) {return loader;}
+                  if (!snapshot.hasData || snapshot.data == null || snapshot.data!.isEmpty) {
+                    return const Center(child: Text('No Hay Datos'));
+                  }
+                  if (snapshot.hasError) return const Center(child: Text('Hubo un error.'));
+                  
+                  // Records Found !
+                  final products = snapshot.data!;
+
+                  final filteredProducts = products.where((product) => product.title.toLowerCase().contains(searchText.value.toLowerCase())).toList();
+ 
+                  // Create a copy so you don't mess up the original list order
+                  List<ProductModel> randomItems = List.from(products)..shuffle();
+  
+                  // Select the first 3 items from the shuffled list
+                  List<ProductModel> selection = randomItems.take(6).toList();
+                                
+                  return filteredProducts.isNotEmpty
+                  ?
+                  GridLayout(
+                    itemCount: filteredProducts.length, 
+                    itemBuilder: (_, index) => ProductCardVertical(product: filteredProducts[index]),
+                  )
+                  : Column(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text('Sin Resultados...'),
+                          ),
+                          
+                          GridLayout(
+                            itemCount: selection.length, 
+                            itemBuilder: (_, index) => ProductCardVertical(product: selection[index]),
+                          )
+                        ],
+                    );
+                })
+              );
+            })
+            
           ],
         ),
       ),
@@ -236,7 +339,7 @@ class SectionHeading extends StatelessWidget {
     this.textColor,
     this.showActionButton = true,
     required this.title,
-    this.buttonTitle = 'View all',
+    this.buttonTitle = 'Ver todos',
     this.onPressed,
   });
 

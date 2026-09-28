@@ -25,6 +25,41 @@ class ProductController extends GetxController{
 
   final bool localData = true;
 
+  Future<List<ProductModel>> getAllProducts() async{
+
+    // Fetch Local data or From Firebase
+    if (localData) {
+        try {
+          // Show loader while loading categories
+          isLoading.value = true;
+          final products = DummyData.products.toList();
+          // await Future.delayed(const Duration(seconds: 3));
+          isLoading.value = false;
+          // print("products $products");
+          return products;
+        } catch (e) {
+            isLoading.value = false;
+            return [];
+        }
+    }else{
+      try {
+        // Show Loader 
+        isLoading.value = true;
+
+        // Fetch Products
+        final products = await productRepository.getAllProducts();
+        return products;
+        
+      } catch (e) {
+        Loaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+        return [];
+      } finally {
+          isLoading.value = false;
+      }
+    }
+  }
+
+
   void fetchFeaturedProducts() async{
 
     // Fetch Local data or From Firebase
@@ -32,11 +67,11 @@ class ProductController extends GetxController{
         try {
           // Show loader while loading categories
           isLoading.value = true;
-          featuredProducts.assignAll(DummyData.products);
-          await Future.delayed(const Duration(seconds: 3));
+          featuredProducts.assignAll(DummyData.products.take(6).toList());
+          // await Future.delayed(const Duration(seconds: 3));
           isLoading.value = false;
         } catch (e) {
-          print('error de carga : $e');
+
         } finally{
           isLoading.value = false;
         }
@@ -65,7 +100,7 @@ class ProductController extends GetxController{
     if (localData) {
         try {
           final products = DummyData.products;
-          await Future.delayed(const Duration(seconds: 3));
+          // await Future.delayed(const Duration(seconds: 3));
           return products;
         } catch (e) {
           Loaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
@@ -93,7 +128,6 @@ class ProductController extends GetxController{
     String downloadUrl = await ref.getDownloadURL();
     return downloadUrl;
   } catch (e) {
-    print("Error getting URL: $e");
     return '';
   }
 }

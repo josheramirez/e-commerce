@@ -14,7 +14,7 @@ class CheckoutController extends GetxController {
   
   @override
   void onInit() {
-    selectedPaymentMethod.value = PaymentMethodModel(name: 'Paypal', image: Images.paypal);
+    selectedPaymentMethod.value = PaymentMethodModel(name: 'Mercado Pago', image: Images.mercadoPago);
     super.onInit();
   }
 
@@ -31,13 +31,13 @@ class CheckoutController extends GetxController {
               const SizedBox(height: USizes.spaceBtwSections),
               PaymentTitle(paymentMethod: PaymentMethodModel(name: 'Paypal', image: Images.paypal)),
               const SizedBox(height: USizes.spaceBtwItems/2),
-              PaymentTitle(paymentMethod: PaymentMethodModel(name: 'Tarjeta Credito', image: Images.paypal)),
+              PaymentTitle(paymentMethod: PaymentMethodModel(name: 'Tarjeta Credito', image: Images.creditCard)),
               const SizedBox(height: USizes.spaceBtwItems/2),
-              PaymentTitle(paymentMethod: PaymentMethodModel(name: 'Webpay', image: Images.paypal)),
+              PaymentTitle(paymentMethod: PaymentMethodModel(name: 'Webpay', image: Images.webpay)),
               const SizedBox(height: USizes.spaceBtwItems/2),
-              PaymentTitle(paymentMethod: PaymentMethodModel(name: 'Mercado Pago', image: Images.paypal)),
+              PaymentTitle(paymentMethod: PaymentMethodModel(name: 'Mercado Pago', image: Images.mercadoPago)),
               const SizedBox(height: USizes.spaceBtwItems/2),
-              PaymentTitle(paymentMethod: PaymentMethodModel(name: 'BitCoins', image: Images.paypal)),
+              PaymentTitle(paymentMethod: PaymentMethodModel(name: 'BitCoins', image: Images.bitcoin)),
               const SizedBox(height: USizes.spaceBtwItems/2),
               const SizedBox(height: USizes.spaceBtwSections),
             ],

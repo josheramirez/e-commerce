@@ -6,6 +6,7 @@ import 'package:e_commerce/data/repositories/authentication/authentication_repos
 import 'package:e_commerce/features/personalization/controllers/user_controller.dart';
 import 'package:e_commerce/features/personalization/screens/address/address.dart';
 import 'package:e_commerce/features/personalization/screens/profile/profile.dart';
+import 'package:e_commerce/features/shop/screens/cart/cart.dart';
 import 'package:e_commerce/features/shop/screens/home/home.dart';
 import 'package:e_commerce/features/shop/screens/order/order.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
@@ -66,28 +67,39 @@ class SettingsScreen extends StatelessWidget {
                     showActionButton: false,
                   ),
                   SizedBox(height: USizes.spaceBtwItems),
+                  
+                  // [ADDRESS]
                   SettingsMenuTile(
                     icon: Iconsax.safe_home_copy,
                     title: 'My Address',
                     subtitle: 'Set Shopping delivery address',
                     onTap: () => Get.to(() => UserAddressScreen()),
                   ),
+
+                  // [CART]
                   SettingsMenuTile(
                     icon: Iconsax.shopping_cart_copy,
                     title: 'My Cart',
                     subtitle: 'Add, remove products and move to checkout',
+                    onTap: () => Get.to(() => CartScreen()),
                   ),
+
+                  // [ORDERS]
                   SettingsMenuTile(
                     icon: Iconsax.bag_tick_copy,
                     title: 'My Orders',
                     subtitle: 'In progress and Completed Orders',
                     onTap: () => Get.to(() => OrderScreen()),
                   ),
+
+                  // [BANK ACCOUNT]
                   SettingsMenuTile(
                     icon: Iconsax.bank_copy,
                     title: 'Bank Account',
                     subtitle: 'Withdraw balance to registered bank account',
                   ),
+
+                  // [COUPONS]
                   SettingsMenuTile(
                     icon: Iconsax.discount_shape_copy,
                     title: 'My Coupons',

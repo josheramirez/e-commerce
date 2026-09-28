@@ -19,7 +19,7 @@ class _UserAddressScreenState extends State<UserAddressScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final controller = Get.put(AddressController());
+    final controller = AddressController.instance;
 
     return Scaffold(
       
@@ -42,7 +42,7 @@ class _UserAddressScreenState extends State<UserAddressScreen> {
             
               // Use key to trigger refresh
               key: Key(controller.refreshData.value.toString()),
-              future: controller.getAllUserAddresses(),
+              future: controller.myFuture,
               builder: (context, snapshot){
                 
                 // const loader = VerticalProductShimmer();
@@ -60,7 +60,7 @@ class _UserAddressScreenState extends State<UserAddressScreen> {
                     itemCount: addresses.length,
                     itemBuilder: (_, index) => SingleAddress(
                       address: addresses[index],
-                      onTap: () => controller.selectedAddress(addresses[index]),
+                      onTap: () => controller.selectAddress(addresses[index]),
                     )
                 );
             

@@ -11,42 +11,45 @@ class BillingAddressSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(AddressController());
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SectionHeading( title: 'Direcction de Envio',buttonTitle: 'Cambiar',onPressed: () => controller.selectNewAddressPopup(context)),
-        controller.selectedAddress.value.id.isNotEmpty ?
-        Column(
-          children: [
-            // Name
-            Text(controller.selectedAddress.value.name,style: Theme.of(context).textTheme.bodyMedium),
-            SizedBox(height: USizes.spaceBtwItems / 2),
-
-            // Phone
-            Row(
-              children: [
-                Icon(Icons.phone, color: Colors.grey, size: 16),
-                SizedBox(width: USizes.spaceBtwItems),
-                Text(controller.selectedAddress.value.phoneNumber,style: Theme.of(context).textTheme.bodyMedium),
-              ],
-            ),
-            SizedBox(width: USizes.spaceBtwItems),
-
-            // Address
-            Row(
-              children: [
-                Icon(Icons.location_history, color: Colors.grey, size: 16),
-                SizedBox(width: USizes.spaceBtwItems),
-                Expanded(
-                  child: Text( 'Avebida siempreN VIVA',style: Theme.of(context).textTheme.bodyMedium,softWrap: true),
-                ),
-              ],
-            ),
-            SizedBox(width: USizes.spaceBtwItems),
-          ],
-        )
-        : Text('Selecciona Direccion', style: Theme.of(context).textTheme.bodyMedium),
-      ],
+    return Obx(
+      () => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SectionHeading( title: 'Direcction de Envio',buttonTitle: 'Cambiar',onPressed: () => controller.selectNewAddressPopup(context)),
+          controller.selectedAddress.value.id.isNotEmpty ?
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Name
+              Text(controller.selectedAddress.value.name,style: Theme.of(context).textTheme.bodyMedium),
+              SizedBox(height: USizes.spaceBtwItems / 2),
+      
+              // Phone
+              Row(
+                children: [
+                  Icon(Icons.phone, color: Colors.grey, size: 16),
+                  SizedBox(width: USizes.spaceBtwItems),
+                  Text(controller.selectedAddress.value.phoneNumber,style: Theme.of(context).textTheme.bodyMedium),
+                ],
+              ),
+              SizedBox(width: USizes.spaceBtwItems),
+      
+              // Address
+              Row(
+                children: [
+                  Icon(Icons.location_history, color: Colors.grey, size: 16),
+                  SizedBox(width: USizes.spaceBtwItems),
+                  Expanded(
+                    child: Text( 'Avebida siempreN VIVA',style: Theme.of(context).textTheme.bodyMedium,softWrap: true),
+                  ),
+                ],
+              ),
+              SizedBox(width: USizes.spaceBtwItems),
+            ],
+          )
+          : Text('Selecciona Direccion', style: Theme.of(context).textTheme.bodyMedium),
+        ],
+      ),
     );
   }
 }

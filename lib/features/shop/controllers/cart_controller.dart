@@ -79,14 +79,10 @@ class CartController extends GetxController {
   void removeOneFromCart(CartItemModel item) {
     int index = cartItems.indexWhere((cartItem) => cartItem.productId == item.productId && cartItem.variationId == item.variationId);
     
-    print('cartItems[index].quantity : ${cartItems[index].quantity}');
-    print('index : $index');
-
     if(index >= 0){
       if(cartItems[index].quantity > 1){
         cartItems[index].quantity -= 1;
       }else{
-        print('inhere');
         // Show dialog before completely removing
         cartItems[index].quantity == 1 ? removeFromCartDialog(index) : cartItems.removeAt(index);
       }

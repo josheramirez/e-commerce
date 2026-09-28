@@ -15,6 +15,8 @@ class SocialButtons extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+
+        // [GOOGLE]
         Container(
           decoration: BoxDecoration(
             border: Border.all(color: UColors.grey),
@@ -29,23 +31,23 @@ class SocialButtons extends StatelessWidget {
             ),
           ),
         ),
-
         SizedBox(width: USizes.spaceBtwItems),
 
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: UColors.grey),
-            borderRadius: BorderRadius.circular(100),
-          ),
-          child: IconButton(
-            onPressed: () {},
-            icon: Image(
-              image: AssetImage(Images.facebookIcon),
-              height: USizes.iconMd,
-              width: USizes.iconMd,
-            ),
-          ),
-        ),
+        // [FACEBOOK]
+        // Container(
+        //   decoration: BoxDecoration(
+        //     border: Border.all(color: UColors.grey),
+        //     borderRadius: BorderRadius.circular(100),
+        //   ),
+        //   child: IconButton(
+        //     onPressed: () {},
+        //     icon: Image(
+        //       image: AssetImage(Images.facebookIcon),
+        //       height: USizes.iconMd,
+        //       width: USizes.iconMd,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

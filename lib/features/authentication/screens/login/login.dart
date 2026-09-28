@@ -146,7 +146,7 @@ class LoginScreen extends StatelessWidget {
               FormDivider(dividerText: UTexts.orSignInWith.capitalize!),
               SizedBox(height: USizes.spaceBtwSections),
 
-              // Footer
+              // [GOOGLE - FACEBOOK]
               SocialButtons(),
             ],
           ),

@@ -20,6 +20,33 @@ class ProductRepository extends GetxController {
   final _db = FirebaseFirestore.instance;
 
   // Get limited featured products
+  Future<List<ProductModel>> getAllProducts() async {
+    try {
+      final snapshot = await _db.collection('Products').get();
+
+      if (snapshot.docs.isNotEmpty) {
+        List<ProductModel> products = snapshot.docs.map((document) => ProductModel.fromSnapshot(document)).toList();
+        return products;
+      }
+
+      return [];
+      // return snapshot.docs.map((e) => ProductModel.fromSnapshot(e)).toList();
+
+    } on FirebaseException catch (e) {
+      throw UFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw UFormatException();
+    } on PlatformException catch (e) {
+      throw UPlatformException(e.code).message;
+    } catch (e) {
+        
+        throw 'Something went wrong. Please try again';
+    }
+  }
+
+
+
+  // Get limited featured products
   Future<List<ProductModel>> getFeaturedProducts() async {
     try {
       final snapshot = await _db.collection('Products').where('isFeatured', isEqualTo: true).limit(4).get();
@@ -44,7 +71,7 @@ class ProductRepository extends GetxController {
     } on PlatformException catch (e) {
       throw UPlatformException(e.code).message;
     } catch (e) {
-        debugPrint('ERROR in ProductRepository. $e');
+        
         throw 'Something went wrong. Please try again';
     }
   }
@@ -61,7 +88,6 @@ class ProductRepository extends GetxController {
     } on PlatformException catch (e) {
       throw UPlatformException(e.code).message;
     } catch (e) {
-        debugPrint('ERROR in ProductRepository. $e');
         throw 'Something went wrong. Please try again';
     }
   }
@@ -218,7 +244,7 @@ class ProductRepository extends GetxController {
     if (localData) {
       
       final products = DummyData.products.where((product) => productIds.contains(product.id)).toList();
-      await Future.delayed(const Duration(seconds: 2));
+      // await Future.delayed(const Duration(seconds: 2));
       return products;
 
     }else{

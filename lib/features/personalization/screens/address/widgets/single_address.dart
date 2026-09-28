@@ -46,7 +46,7 @@ class SingleAddress extends StatelessWidget {
                   right: 5,
                   top: 0,
                   child: Container(
-                    color:Colors.red,
+                    color:Colors.transparent,
                     child: Icon(
                       selectedAddress ? Iconsax.tick_circle_copy : null,
                       color: selectedAddress

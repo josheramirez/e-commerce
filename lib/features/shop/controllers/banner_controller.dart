@@ -33,7 +33,7 @@ class BannerController extends GetxController {
         // Show loader while loading categories
         isLoading.value = true;
         banners.addAll(DummyData.banners);
-        await Future.delayed(const Duration(seconds: 2));
+        // await Future.delayed(const Duration(seconds: 2));
         isLoading.value = false;
     }else{
       try {

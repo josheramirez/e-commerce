@@ -20,7 +20,7 @@ class CuponCode extends StatelessWidget {
           Flexible(
             child: TextFormField(
               decoration: InputDecoration(
-                hintText: 'Have a promo code? Enter here',
+                hintText: 'Tienes un Cupon?',
                 border: InputBorder.none,
                 focusedBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -33,7 +33,6 @@ class CuponCode extends StatelessWidget {
           // Button
           SizedBox(
             width: 90,
-            
             child: ElevatedButton(
               onPressed: (){}, 
               style: ElevatedButton.styleFrom(
@@ -46,7 +45,7 @@ class CuponCode extends StatelessWidget {
                 ),
                                     
               ),
-              child: Text('Apply')
+              child: Text('Usar')
             )
           )
         ],

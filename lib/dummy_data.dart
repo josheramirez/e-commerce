@@ -1,17 +1,83 @@
+import 'package:e_commerce/features/authentication/models/user_model.dart';
+import 'package:e_commerce/features/personalization/controllers/address_controller.dart';
 import 'package:e_commerce/features/personalization/models/address_model.dart';
+import 'package:e_commerce/features/shop/controllers/cart_controller.dart';
+import 'package:e_commerce/features/shop/controllers/product/checkout_controller.dart';
 import 'package:e_commerce/features/shop/models/banner_model.dart';
 import 'package:e_commerce/features/shop/models/brand_category_model.dart';
 import 'package:e_commerce/features/shop/models/brand_model.dart';
 import 'package:e_commerce/features/shop/models/category_model.dart';
+import 'package:e_commerce/features/shop/models/feedback_model.dart';
+import 'package:e_commerce/features/shop/models/order_model.dart';
+import 'package:e_commerce/features/shop/models/post_model.dart';
 import 'package:e_commerce/features/shop/models/product_attribute_model.dart';
 import 'package:e_commerce/features/shop/models/product_category_model.dart';
+import 'package:e_commerce/features/shop/models/product_market_model.dart';
 import 'package:e_commerce/features/shop/models/product_model.dart';
 import 'package:e_commerce/features/shop/models/product_variation_model.dart';
+import 'package:e_commerce/features/shop/models/store_model.dart';
 import 'package:e_commerce/routes/routes.dart';
+import 'package:e_commerce/utils/constants/enums.dart';
 import 'package:e_commerce/utils/constants/images.dart';
+import 'package:flutter/material.dart';
+import 'package:lorem_ipsum/lorem_ipsum.dart';
 
 class DummyData {
 
+  // User
+  static final UserModel user = 
+    UserModel(
+    id: 'user_0',
+    firstName: 'Jose',
+    lastName: 'Ramirez',
+    username: '1234',
+    email: "joseinformatico2015@gmail.com",
+    phoneNumber: '1234565767',
+    profilePicture:'',
+  );
+
+  static final List<UserModel> users = [
+    UserModel(
+      id: 'users_0',
+      firstName: 'Jose',
+      lastName: 'Ramirez',
+      username: '1234',
+      email: "joseinformatico2015@gmail.com",
+      phoneNumber: '1234565767',
+      profilePicture:'https://firebasestorage.googleapis.com/v0/b/flutter-backend-808a3.firebasestorage.app/o/User%2FImages%2FProfile%2Fstormtropper.png?alt=media&token=bec0fbef-7cc7-4280-af53-08286c6506d1',
+    ),
+    UserModel(
+      id: 'users_1',
+      firstName: 'Kathy',
+      lastName: 'Berrios',
+      username: '1234',
+      email: "gatitaSexy@gmail.com",
+      phoneNumber: '1234565767',
+      profilePicture: '',
+    ),
+    UserModel(
+      id: 'users_2',
+      firstName: 'CopiaRock',
+      lastName: 'Service',
+      username: '1234',
+      email: "muni202234@gmail.com",
+      phoneNumber: '1234565767',
+      profilePicture: '',
+    ),
+  ];
+  
+  // Post
+  static final List<PostModel> posts = [
+    PostModel(id: 'posts_0', user: users[1],productId: '1', price: 2000,store: stores[0], comment: loremIpsum(words: 8), negativeFeedback: 200, positiveFeedback: 123),
+    PostModel(id: 'posts_1', user: users[0],productId: '1', price: 3900, store: stores[0], comment: loremIpsum(words: 8), negativeFeedback: 32, positiveFeedback: 343),
+    PostModel(id: 'posts_2', user: users[2], productId: '1', price: 1000, store: stores[0], comment: loremIpsum(words: 8), negativeFeedback: 12, positiveFeedback: 3),
+    // PostModel(id: '04', userId: '4', price: 200, companyId: '1e', comment: loremIpsum(words: 15)),
+    // PostModel(id: '05', userId: '5', price: 5200, companyId: '1f', comment: loremIpsum(words: 15)),
+  ];
+
+  static final List<FeedbackModel> feedbacks = [
+    FeedbackModel(id: '1', userId: user.id, postId: posts[0].id, productId: products[0].id, feedback: 'positive'),
+  ];
 
   /// List of all Categories
   static final List<CategoryModel> categories = [
@@ -450,31 +516,128 @@ class DummyData {
   // Address
   static final List<AddressModel> addresses = [
     AddressModel(
-      id: '01',
+      id: UniqueKey().toString(), 
+      name: 'joshe china', 
+      phoneNumber: '123123', 
+      street: 'santa barbare', 
+      city: '12312',
+      state: '1231',
+      postalCode: '123123',
+      country: '1231',
+    ),
+    
+    AddressModel(
+      id: UniqueKey().toString(),
       name: 'Joshe Casa',
       phoneNumber: '+569732344432',
       street: 'Avenida Siempreviva numero 2344',
       city: 'Santiago',
       state: 'Santiago',
       postalCode: '222',
-      country: 'Chile'),
-    AddressModel(
-      id: '02',
-      name: 'Joshe Copiapo',
-      phoneNumber: '+569732344432',
-      street: 'Copayapu 3234',
-      city: 'Copiapo',
-      state: 'Atacama',
-      postalCode: '1221',
-      country: 'Chile'),
-    AddressModel(
-      id: '03',
-      name: 'Vietnam',
-      phoneNumber: '+52912224222',
-      street: 'Da nang 232',
-      city: 'Da Nang',
-      state: 'Deng Tong',
-      postalCode: '2221',
-      country: 'Vietnam'),
+      country: 'Chile',
+      selectedAddress: true
+    ),
+  
+    // AddressModel(
+    //   id: '02',
+    //   name: 'Joshe Copiapo',
+    //   phoneNumber: '+569732344432',
+    //   street: 'Copayapu 3234',
+    //   city: 'Copiapo',
+    //   state: 'Atacama',
+    //   postalCode: '1221',
+    //   country: 'Chile',
+    //   selectedAddress: true,
+    // ),
+    // AddressModel(
+    //   id: '03',
+    //   name: 'Vietnam',
+    //   phoneNumber: '+52912224222',
+    //   street: 'Da nang 232',
+    //   city: 'Da Nang',
+    //   state: 'Deng Tong',
+    //   postalCode: '2221',
+    //   country: 'Vietnam'
+    // ),
+  ];
+
+  // ProductMaket
+
+  static final List<ProductMarketModel> productsMarket = [
+    ProductMarketModel(
+      id: '1',
+      image: Images.productMarket1,
+      name: 'arroz grado 2',
+      quantity: '1 Kg',
+      price: 900,
+      store: stores[0],
+      updateDate: DateTime.now(),
+      post: PostModel(
+        id: '01',
+        user: UserModel(
+          id: '222',
+          firstName: 'joshe',
+          lastName: 'ramirez',
+          username: 'el_Pulento',
+          email: 'joselo@gmail.com',
+          phoneNumber: '123123123',
+          profilePicture: '',
+        ),
+        productId: '1',
+        price: 300,
+        store: stores[0],
+        comment: '222',
+        negativeFeedback: 234,
+        positiveFeedback: 1122,
+      )
+    ),
+    // ProductMarketModel(
+    //   id: '2',
+    //   image: Images.productMarket2,
+    //   name: 'spaguetti N5',
+    //   quantity: '1 Kg',
+    //   price: 100,
+    //   store: stores[0],
+    //   updateDate: DateTime.now(),
+    //   // post: posts[0]
+    // ),
+  //   ProductMarketModel(id: '3', image: Images.productMarket3, name: 'arroz grado 2', quantity: '1 Kg', price: 900, post: posts[0]),
+  //   ProductMarketModel(id: '4', image: Images.productMarket4, name: 'arroz grado 2', quantity: '1 Kg', price: 900, post: posts[0]),
+  //   ProductMarketModel(id: '5', image: Images.productMarket5, name: 'arroz grado 2', quantity: '1 Kg', price: 900, post: posts[0]),
+  //   ProductMarketModel(id: '6', image: Images.productMarket6, name: 'arroz grado 2', quantity: '1 Kg', price: 900, post: posts[0]),
+   ];
+
+  //  StoreMarket
+
+  static final List<StoreModel> stores = [
+    StoreModel(id: '1', name: 'El pedregal', address: 'Atacama 123, copiapo'),
+  ];
+
+  static final List<OrderModel> orders = [
+    OrderModel(
+          id: UniqueKey().toString(),
+          userId: user.id,
+          status: OrderStatus.pending, 
+          totalAmount: 15.000, 
+          orderDate: DateTime.now(),
+          paymentMethod: CheckoutController.instance.selectedPaymentMethod.value.name,
+          address: AddressController.instance.selectedAddress.value,
+          // Set Date as needed
+          deliveryDate: DateTime.now(),
+          items: CartController.instance.cartItems.toList(), 
+    ),
+
+    OrderModel(
+          id: UniqueKey().toString(),
+          userId: user.id,
+          status: OrderStatus.pending, 
+          totalAmount: 32.000, 
+          orderDate: DateTime.now(),
+          paymentMethod: CheckoutController.instance.selectedPaymentMethod.value.name,
+          address: AddressController.instance.selectedAddress.value,
+          // Set Date as needed
+          deliveryDate: DateTime.now(),
+          items: CartController.instance.cartItems.toList(), 
+    ),
   ];
 }

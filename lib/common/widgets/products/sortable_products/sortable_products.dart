@@ -18,10 +18,7 @@ class SortableProducts extends StatelessWidget {
   // final 
   @override
   Widget build(BuildContext context) {
-    print('SortableProducts:');
-    for( var product in products){
-      print(product.toJson());
-    }
+
     final controller = Get.put(AllProductsController());
     controller.assignProducts(products);
 

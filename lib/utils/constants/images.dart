@@ -1,8 +1,11 @@
 class Images {
   Images._();
 
-  // logo
+  // products market
+  static const String productMarket1 = 'assets/product_market/arroz_acuenta.jpg';
+  static const String productMarket2 = 'assets/product_market/spaguetti_5_acuenta.jpeg';
 
+  // logo
   static const String logoAppBlack = 'assets/logo/black_app_logo.png';
   static const String logoAppWhite = 'assets/logo/white_app_logo.png';
 
@@ -139,7 +142,7 @@ class Images {
   // 13
   static const String productImage13 = 'assets/products/product13.jpg';
   // 14
-  static const String productImage14a = 'assets/products/product_14a.png';
+  static const String productImage14a = 'assets/products/product_14a.jpg';
   static const String productImage14b = 'assets/products/product 14b.avif';
   static const String productImage14c = 'assets/products/product 14c.avif';
   // 15
@@ -307,13 +310,18 @@ class Images {
   static const String poloLogo = 'assets/brands/polo.png';
 
   // Payment Methods
+  static const String paypal = "assets/icons/payment_methods/paypal.png";
+  static const String creditCard = "assets/icons/payment_methods/credit-card.png";
+  static const String webpay = "assets/icons/payment_methods/webpay.png";
+  static const String mercadoPago = "assets/icons/payment_methods/mercado-pago.png";
+  static const String bitcoin = "assets/icons/payment_methods/bitcoin.webp";
+
   static const String applePay = "assets/icons/payment_methods/apple-pay.png";
   static const String googlePay = "assets/icons/payment_methods/google-pay.png";
-  static const String creditCard =
-      "assets/icons/payment_methods/credit-card.png";
+
   static const String masterCard =
       "assets/icons/payment_methods/master-card.png";
-  static const String paypal = "assets/icons/payment_methods/paypal.png";
+
   static const String visa = "assets/icons/payment_methods/visa.png";
   static const String paystack = "assets/icons/payment_methods/paystack.png";
   static const String paytm = "assets/icons/payment_methods/paytm.png";

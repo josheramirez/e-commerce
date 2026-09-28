@@ -30,7 +30,7 @@ class  CategoryController extends GetxController {
         // Show loader while loading categories
         isLoading.value = true;
         featuredCategories.addAll(DummyData.categories.where((category) => category.isFeatured == true && category.parentId.isEmpty));
-        await Future.delayed(const Duration(seconds: 2));
+        // await Future.delayed(const Duration(seconds: 2));
         isLoading.value = false;
     }else{
       try {
@@ -55,7 +55,6 @@ class  CategoryController extends GetxController {
 
   // Get Category or Sub-Category Products.
   Future<List<ProductModel>> getCategoryProducts({required String categoryId, int limit = 4}) async{
-    print('getCategoryProducts : $categoryId');
     
     // Fetch Local data or From Firebase
     if (localData) {
@@ -70,7 +69,7 @@ class  CategoryController extends GetxController {
       // Create list of Products ids than has categoryId
       final List<String> productIds = productCategoryQuery.map((doc) => doc.productId as String).toList();
 
-       await Future.delayed(const Duration(seconds: 2));
+      //  await Future.delayed(const Duration(seconds: 2));
        
       // Get the products
       final products = DummyData.products.where((product) => productIds.contains(product.id)).toList();

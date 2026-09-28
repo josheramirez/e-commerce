@@ -1,6 +1,7 @@
 import 'package:e_commerce/common/widgets/success_screen/success_screen.dart';
 import 'package:e_commerce/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce/data/repositories/order/order_repository.dart';
+import 'package:e_commerce/dummy_data.dart';
 import 'package:e_commerce/features/personalization/controllers/address_controller.dart';
 import 'package:e_commerce/features/shop/controllers/cart_controller.dart';
 import 'package:e_commerce/features/shop/controllers/product/checkout_controller.dart';
@@ -23,57 +24,109 @@ class OrderController extends GetxController {
   final checkoutController = CheckoutController.instance;
   final orderRepository = Get.put(OrderRepository());
 
+  final localData = true;
+
   // Fetch user's order history
   Future<List<OrderModel>> fetchUserOrders() async {
-    try {
-      final userOrders = await orderRepository.fetchUserOrders();
-      return userOrders;
-    } catch (e) {
-      Loaders.warningSnackBar(title: 'Oh Snap', message: e.toString());
-      return [];
+
+    if (localData) {
+        try {
+          final userOrders = DummyData.orders;
+          return userOrders;
+        } catch (e) {
+            return [];
+        }
+    }else{
+
+      try {
+        final userOrders = await orderRepository.fetchUserOrders();
+        return userOrders;
+      } catch (e) {
+        Loaders.warningSnackBar(title: 'Oh Snap', message: e.toString());
+        return [];
+      }
     }
   }
 
   // Add method for order processing
   void processOrder(double totalAmount) async{
-    try {
-      // Start Loader
-      FullScreenLoader.openLoadingDialog('Processing your order', Images.pencilAnimation);
+    if (localData) {
+      // print('order: ${order.toJson()}');
+      try {
+        final userId = DummyData.user.id;
+        
+        // Add Details
+        final order = OrderModel(
+          id: UniqueKey().toString(),
+          userId: userId,
+          status: OrderStatus.pending, 
+          totalAmount: totalAmount, 
+          orderDate: DateTime.now(),
+          paymentMethod: checkoutController.selectedPaymentMethod.value.name,
+          address: addressController.selectedAddress.value,
+          // Set Date as needed
+          deliveryDate: DateTime.now(),
+          items: cartController.cartItems.toList(), 
+        );
 
-      // Get user authentication id
-      final userId = AuthenticationRepository.instance.currentUser!.uid;
-      if(userId.isEmpty) return;
+        // Save the order to Firestore
+        // await orderRepository.saveOrder(order, userId);
 
-      // Add Details
-      final order = OrderModel(
-        id: UniqueKey().toString(),
-        userId: userId,
-        status: OrderStatus.pending, 
-        totalAmount: totalAmount, 
-        orderDate: DateTime.now(),
-        paymentMethod: checkoutController.selectedPaymentMethod.value.name,
-        address: addressController.selectedAddress.value,
-        // Set Date as needed
-        deliveryDate: DateTime.now(),
-        items: cartController.cartItems.toList(), 
-      );
+        // Update the cart status
+        cartController.clearCart();
 
-      // Save the order to Firestore
-      await orderRepository.saveOrder(order, userId);
+        // Show Success screen
+        Get.off(() => SuccessScreen(
+            image: Images.successfulPaymentIcon,
+            title: 'Pago Exitoso',
+            subtitle: 'Tu Pedido sera enviado pronto.',
+            onPress: () => Get.offAll(() => NavigationMenu()),
+        ));
 
-      // Update the cart status
-      cartController.clearCart();
+      } catch (e) {
+         Loaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
+         print(e.toString());
+      }
+    }else{
+      try {
+        // Start Loader
+        FullScreenLoader.openLoadingDialog('Processing your order', Images.pencilAnimation);
 
-      // Show Success screen
-      Get.off(() => SuccessScreen(
-          image: Images.successfulPaymentIcon,
-          title: 'Pago Exitoso',
-          subtitle: 'Tu Pedido sera enviado pronto.',
-          onPress: () => Get.offAll(() => NavigationMenu()),
-      ));
+        // Get user authentication id
+        final userId = AuthenticationRepository.instance.currentUser!.uid;
+        if(userId.isEmpty) return;
 
-    } catch (e) {
-      Loaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
+        // Add Details
+        final order = OrderModel(
+          id: UniqueKey().toString(),
+          userId: userId,
+          status: OrderStatus.pending, 
+          totalAmount: totalAmount, 
+          orderDate: DateTime.now(),
+          paymentMethod: checkoutController.selectedPaymentMethod.value.name,
+          address: addressController.selectedAddress.value,
+          // Set Date as needed
+          deliveryDate: DateTime.now(),
+          items: cartController.cartItems.toList(), 
+        );
+
+        // Save the order to Firestore
+        await orderRepository.saveOrder(order, userId);
+
+        // Update the cart status
+        cartController.clearCart();
+
+        // Show Success screen
+        Get.off(() => SuccessScreen(
+            image: Images.successfulPaymentIcon,
+            title: 'Pago Exitoso',
+            subtitle: 'Tu Pedido sera enviado pronto.',
+            onPress: () => Get.offAll(() => NavigationMenu()),
+        ));
+
+      } catch (e) {
+        Loaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
+      }
     }
   }
 }

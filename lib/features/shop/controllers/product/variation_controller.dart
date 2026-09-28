@@ -41,7 +41,6 @@ class VariationController extends GetxController {
     // Update selected product variation status
     getProductVariationStockStatus();
 
-    print('this.selectedVariation.value ${this.selectedVariation.toJson()}');
   }
 
   // Check if selected attribute matches any variation attributes

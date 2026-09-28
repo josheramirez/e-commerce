@@ -37,8 +37,10 @@ class AuthenticationRepository extends GetxController {
     // screenRedirect();
 
     // delete this for real login
+
     // Initialize User Specific Storage
     await LocalStorage.init('2');
+
     Get.off(() => NavigationMenu());
   }
 
@@ -166,13 +168,15 @@ class AuthenticationRepository extends GetxController {
   // GoogleAuthentication - GOOGLE
   Future<UserCredential?> signInWithGoogle() async{
     try{
-      print('signInWithGoogle');
+      print('In AUthenticationRepository.signInWithGoogle');
       // Trigger the authentication flow
       final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
 
+      print('pass GoogleSignInAccount? userAccount');
       // Obtain the auth details from the request
       final GoogleSignInAuthentication? googleAuth = await userAccount?.authentication;
       
+      print('GoogleSignInAuthentication? googleAuth');
       // Create new Credential
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth?.accessToken,

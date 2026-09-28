@@ -14,8 +14,6 @@ class CategoryBrands extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('CategoryBrands : ');
-    print(category.toJson());
     final controller = BrandController.instance;
     return FutureBuilder(
       future: controller.getBrandsForCategory(category.id),
@@ -38,7 +36,7 @@ class CategoryBrands extends StatelessWidget {
         
         // Founf brands fot this category
         final brands = snapshot.data!;
-        print('brands length: ${brands.length}');
+        
         // Find 3 images for each brand
         return ListView.builder(
           shrinkWrap: true,

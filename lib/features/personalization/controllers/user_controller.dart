@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:e_commerce/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce/data/repositories/user/user_repository.dart';
+import 'package:e_commerce/dummy_data.dart';
 import 'package:e_commerce/features/authentication/models/user_model.dart';
 import 'package:e_commerce/features/authentication/screens/login/login.dart';
 import 'package:e_commerce/features/personalization/screens/profile/re_authentificate_user_login_form.dart';
@@ -33,6 +34,8 @@ class UserController extends GetxController{
   final verifyPassword = TextEditingController();
   GlobalKey<FormState> reAuthFormKey = GlobalKey<FormState>();
 
+  final localData = true;
+
 
   @override
   void onInit(){
@@ -41,15 +44,24 @@ class UserController extends GetxController{
   }
 
   Future<void> fetchUserRecord() async{
-    try {
-      profileLoading.value = true;
-      final user = await userRepository.fetchUserDetails();
-      this.user(user);
-    
-    } catch (e) {
-      user(UserModel.empty());
-    } finally{
-      profileLoading.value = false;
+    if (localData) {
+      try {
+        final user = DummyData.user;
+        this.user(user);
+      } catch (e) {
+        user(UserModel.empty());
+      }
+    }else{
+      try {
+        profileLoading.value = true;
+        final user = await userRepository.fetchUserDetails();
+        this.user(user);
+      
+      } catch (e) {
+        user(UserModel.empty());
+      } finally{
+        profileLoading.value = false;
+      }
     }
   }
 

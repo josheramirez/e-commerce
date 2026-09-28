@@ -10,7 +10,7 @@ class ImagesController  extends GetxController{
   RxString selectedProductImage = ''.obs;
 
   List<String> getAllProductImages(ProductModel product){
-    print(product.toJson());
+
     // Use Set to add unique images only
     Set<String> images = {};
 

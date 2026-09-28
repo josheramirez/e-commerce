@@ -24,7 +24,7 @@ class UAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: USizes.md,
-        vertical: 20.0,
+        vertical: 10.0,
       ),
       child: AppBar(
         surfaceTintColor: Colors.transparent,

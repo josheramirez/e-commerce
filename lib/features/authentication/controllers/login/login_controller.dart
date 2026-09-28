@@ -73,7 +73,6 @@ class LoginController extends GetxController {
 
   Future<void> googleSignIn() async{
     try {
-      print('googleSignIn()');
       // Start Loading
       FullScreenLoader.openLoadingDialog("Logging you in...", Images.loadingAnimation);
     
@@ -87,7 +86,6 @@ class LoginController extends GetxController {
       // Google Authentication
       final userCredentials = await AuthenticationRepository.instance.signInWithGoogle();
 
-print('userController $userCredentials');
       // Save User Record
       await userController.saveUserRecord(userCredentials);
 
@@ -101,4 +99,16 @@ print('userController $userCredentials');
       Loaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
     }
   }
+
+  Future<UserCredential?> signInWithGoogleWeb() async {
+  // GoogleAuthProvider is highly reliable for web targets
+  GoogleAuthProvider googleProvider = GoogleAuthProvider();
+  
+  try {
+    return await FirebaseAuth.instance.signInWithPopup(googleProvider);
+  } catch (e) {
+    print("Sign-in failed: $e");
+    return null;
+  }
+}
 }

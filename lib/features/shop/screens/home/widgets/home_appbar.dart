@@ -18,7 +18,7 @@ class HomeAppbar extends StatelessWidget {
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Good Morning", style: Theme.of(context).textTheme.labelMedium!.apply(color: UColors.grey)),
+          Text("Hola", style: Theme.of(context).textTheme.labelMedium!.apply(color: UColors.grey)),
           Obx(() {
             if (controller.profileLoading.value) {
               // Display a shimer loader while user profile is being loaded
