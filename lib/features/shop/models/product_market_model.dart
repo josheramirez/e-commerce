@@ -7,7 +7,7 @@ class ProductMarketModel {
   final String image;
   final String name;
   final String quantity;
-  final int price;
+  final int? price;
   final StoreModel? store;
   final DateTime? updateDate;
   final PostModel? post;
@@ -18,7 +18,7 @@ class ProductMarketModel {
     required this.image,
     required this.name,
     required this.quantity,
-    required this.price,
+    this.price,
     this.store,
     this.updateDate,
     this.post, 

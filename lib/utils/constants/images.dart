@@ -2,8 +2,18 @@ class Images {
   Images._();
 
   // products market
+  static const String productMarket0 = 'assets/product_market/arroz_acuenta.jpg';
   static const String productMarket1 = 'assets/product_market/arroz_acuenta.jpg';
-  static const String productMarket2 = 'assets/product_market/spaguetti_5_acuenta.jpeg';
+  static const String productMarket2 = 'assets/product_market/arroz_acuenta.jpg';
+  static const String productMarket3 = 'assets/product_market/arroz_acuenta.jpg';
+  static const String productMarket4 = 'assets/product_market/arroz_acuenta.jpg';
+  static const String productMarket5 = 'assets/product_market/arroz_acuenta.jpg';
+  static const String productMarket6 = 'assets/product_market/arroz_acuenta.jpg';
+  static const String productMarket7 = 'assets/product_market/arroz_acuenta.jpg';
+  static const String productMarket8 = 'assets/product_market/arroz_acuenta.jpg';
+  static const String productMarket9 = 'assets/product_market/arroz_acuenta.jpg';
+
+  // static const String productMarket2 = 'assets/product_market/spaguetti_5_acuenta.jpeg';
 
   // logo
   static const String logoAppBlack = 'assets/logo/black_app_logo.png';

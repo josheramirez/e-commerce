@@ -41,9 +41,9 @@ class DummyData {
       id: 'users_0',
       firstName: 'Jose',
       lastName: 'Ramirez',
-      username: '1234',
+      username: 'ADMIN',
       email: "joseinformatico2015@gmail.com",
-      phoneNumber: '1234565767',
+      phoneNumber: '12345657678',
       profilePicture:'https://firebasestorage.googleapis.com/v0/b/flutter-backend-808a3.firebasestorage.app/o/User%2FImages%2FProfile%2Fstormtropper.png?alt=media&token=bec0fbef-7cc7-4280-af53-08286c6506d1',
     ),
     UserModel(
@@ -64,19 +64,6 @@ class DummyData {
       phoneNumber: '1234565767',
       profilePicture: '',
     ),
-  ];
-  
-  // Post
-  static final List<PostModel> posts = [
-    PostModel(id: 'posts_0', user: users[1],productId: '1', price: 2000,store: stores[0], comment: loremIpsum(words: 8), negativeFeedback: 200, positiveFeedback: 123),
-    PostModel(id: 'posts_1', user: users[0],productId: '1', price: 3900, store: stores[0], comment: loremIpsum(words: 8), negativeFeedback: 32, positiveFeedback: 343),
-    PostModel(id: 'posts_2', user: users[2], productId: '1', price: 1000, store: stores[0], comment: loremIpsum(words: 8), negativeFeedback: 12, positiveFeedback: 3),
-    // PostModel(id: '04', userId: '4', price: 200, companyId: '1e', comment: loremIpsum(words: 15)),
-    // PostModel(id: '05', userId: '5', price: 5200, companyId: '1f', comment: loremIpsum(words: 15)),
-  ];
-
-  static final List<FeedbackModel> feedbacks = [
-    FeedbackModel(id: '1', userId: user.id, postId: posts[0].id, productId: products[0].id, feedback: 'positive'),
   ];
 
   /// List of all Categories
@@ -564,54 +551,126 @@ class DummyData {
   // ProductMaket
 
   static final List<ProductMarketModel> productsMarket = [
+    
+    // [ARROZ]
     ProductMarketModel(
-      id: '1',
+      id: 'productMarket_0',
       image: Images.productMarket1,
       name: 'arroz grado 2',
       quantity: '1 Kg',
       price: 900,
       store: stores[0],
       updateDate: DateTime.now(),
-      post: PostModel(
-        id: '01',
-        user: UserModel(
-          id: '222',
-          firstName: 'joshe',
-          lastName: 'ramirez',
-          username: 'el_Pulento',
-          email: 'joselo@gmail.com',
-          phoneNumber: '123123123',
-          profilePicture: '',
-        ),
-        productId: '1',
-        price: 300,
-        store: stores[0],
-        comment: '222',
-        negativeFeedback: 234,
-        positiveFeedback: 1122,
-      )
+      post: posts[0]
     ),
-    // ProductMarketModel(
-    //   id: '2',
-    //   image: Images.productMarket2,
-    //   name: 'spaguetti N5',
-    //   quantity: '1 Kg',
-    //   price: 100,
-    //   store: stores[0],
-    //   updateDate: DateTime.now(),
-    //   // post: posts[0]
-    // ),
-  //   ProductMarketModel(id: '3', image: Images.productMarket3, name: 'arroz grado 2', quantity: '1 Kg', price: 900, post: posts[0]),
-  //   ProductMarketModel(id: '4', image: Images.productMarket4, name: 'arroz grado 2', quantity: '1 Kg', price: 900, post: posts[0]),
-  //   ProductMarketModel(id: '5', image: Images.productMarket5, name: 'arroz grado 2', quantity: '1 Kg', price: 900, post: posts[0]),
-  //   ProductMarketModel(id: '6', image: Images.productMarket6, name: 'arroz grado 2', quantity: '1 Kg', price: 900, post: posts[0]),
-   ];
+    
+    // [LECHE]
+    ProductMarketModel(
+      id: 'productMarket_1', 
+      image: Images.productMarket1, 
+      name: 'Leche', 
+      quantity: '1 Lt', 
+      price: 1100,
+      store: stores[1],
+      updateDate: DateTime.now(),
+      post: posts[1],
+    ),
+
+    // [CONFORT]
+    ProductMarketModel(
+      id: 'productMarket_2', 
+      image: Images.productMarket2, 
+      name: 'Confort', 
+      quantity: '4x45 mts', 
+      price: 2000,
+      store: stores[2],
+      updateDate: DateTime.now(),
+      post: posts[2],
+    ),
+
+    // [AZUCAR]
+    ProductMarketModel(
+      id: 'productMarket_3', 
+      image: Images.productMarket3, 
+      name: 'Azucar', 
+      quantity: '1 kg', 
+      price: 1000,
+      store: stores[1],
+      updateDate: DateTime.now(),
+      post: posts[3],
+    ),
+
+    // [LAVALOZA]
+    ProductMarketModel(
+      id: 'productMarket_4', 
+      image: Images.productMarket4, 
+      name: 'LAVALOZA', 
+      quantity: '1 Lt', 
+      updateDate: DateTime.now(),
+      post: posts[4],
+    ),
+
+    // [TOMATE]
+    ProductMarketModel(
+      id: 'productMarket_5', 
+      image: Images.productMarket5, 
+      name: 'TOMATE', 
+      quantity: '1 Kg', 
+      updateDate: DateTime.now(),
+      post: posts[5],
+    ),
+
+    // [HUEVOS]
+    ProductMarketModel(
+      id: 'productMarket_6', 
+      image: Images.productMarket6, 
+      name: 'HUEVOS', 
+      quantity: '30 unidades', 
+      updateDate: DateTime.now(),
+      post: posts[6],
+    ),
+
+    // [CHAPSUI]
+    ProductMarketModel(
+      id: 'productMarket_7', 
+      image: Images.productMarket7, 
+      name: 'VERDURAS CONGELADAS / CHAPSUI', 
+      quantity: '450 gr', 
+      updateDate: DateTime.now(),
+      post: posts[7],
+    ),
+
+    // [CARNE MOLIDA]
+    ProductMarketModel(
+      id: 'productMarket_8', 
+      image: Images.productMarket8, 
+      name: 'CARNE MOLIDA', 
+      quantity: '250 gr', 
+      updateDate: DateTime.now(),
+      post: posts[8],
+    ),
+ 
+    // [KETCHUP]
+    ProductMarketModel(
+      id: 'productMarket_9', 
+      image: Images.productMarket9, 
+      name: 'KETCHUP', 
+      quantity: '500 gr', 
+      updateDate: DateTime.now(),
+      post: posts[9],
+    ),
+    ];
 
   //  StoreMarket
 
   static final List<StoreModel> stores = [
-    StoreModel(id: '1', name: 'El pedregal', address: 'Atacama 123, copiapo'),
+    StoreModel(id: 'store_0', name: 'El pedregal', address: 'Bernardo O\'Higgins 459, Copiapó, Atacama'),
+    StoreModel(id: 'store_1', name: 'Unimarc', address: 'Av. Henríquez 523, Copiapó, Atacama'),
+    StoreModel(id: 'store_2', name: 'Lider', address: 'Chacabuco con Copayapu, Copiapó, Atacama'),
+    StoreModel(id: 'store_3', name: 'AGRO', address: 'Avenida Los Loros #1472, Copiapo')
   ];
+
+
 
   static final List<OrderModel> orders = [
     OrderModel(
@@ -640,4 +699,137 @@ class DummyData {
           items: CartController.instance.cartItems.toList(), 
     ),
   ];
+
+// Post
+  static final List<PostModel> posts = [
+    // ARROZ
+    PostModel(
+      id: 'posts_0',
+      user: users[0],
+      productId: 'productMarket_0',
+      price: 900,
+      store: stores[0],
+      comment: loremIpsum(words: 10),
+      negativeFeedback: 32, 
+      positiveFeedback: 343
+    ),
+    // LECHE
+    PostModel(
+      id: 'posts_1',
+      user: users[0],
+      productId: 'productMarket_1',
+      price: 1100,
+      store: stores[1],
+      comment: loremIpsum(words: 10),
+      negativeFeedback: 231, 
+      positiveFeedback: 22
+    ),
+    // CONFORT
+    PostModel(
+      id: 'posts_2',
+      user: users[0],
+      productId: 'productMarket_2',
+      price: 1100,
+      store: stores[2],
+      comment: loremIpsum(words: 10),
+      negativeFeedback: 13, 
+      positiveFeedback: 2
+    ),
+    // AZUCAR
+    PostModel(
+      id: 'posts_3',
+      user: users[0],
+      productId: 'productMarket_3',
+      price: 1000,
+      store: stores[1],
+      comment: loremIpsum(words: 10),
+      negativeFeedback: 231,  
+      positiveFeedback: 22
+    ),
+
+    // LAVALOZA
+    PostModel(
+      id: 'posts_4',
+      user: users[0],
+      productId: 'productMarket_4',
+      price: 1100,
+      store: stores[2],
+      comment: loremIpsum(words: 10),
+      negativeFeedback: 14,  
+      positiveFeedback: 235
+    ),
+
+    // TOMATE
+    PostModel(
+      id: 'posts_5',
+      user: users[0],
+      productId: 'productMarket_5',
+      price: 1000,
+      store: stores[3],
+      comment: loremIpsum(words: 10),
+      negativeFeedback: 2,  
+      positiveFeedback: 220
+    ),
+
+    // HUEVOS
+    PostModel(
+      id: 'posts_6',
+      user: users[0],
+      productId: 'productMarket_6',
+      price: 6000,
+      store: stores[4],
+      comment: loremIpsum(words: 10),
+      negativeFeedback: 0,  
+      positiveFeedback: 22
+    ),
+
+    // CHAPSUI
+    PostModel(
+      id: 'posts_7',
+      user: users[0],
+      productId: 'productMarket_7',
+      price: 1250,
+      store: stores[0],
+      comment: loremIpsum(words: 10),
+      negativeFeedback: 23,  
+      positiveFeedback: 503
+    ),
+
+    // CARNE MOLIDA
+    PostModel(
+      id: 'posts_8',
+      user: users[0],
+      productId: 'productMarket_8',
+      price: 1250,
+      store: stores[0],
+      comment: loremIpsum(words: 10),
+      negativeFeedback: 21,  
+      positiveFeedback: 16
+    ),
+
+    // KETCHUP
+    PostModel(
+      id: 'posts_9',
+      user: users[0],
+      productId: 'productMarket_9',
+      price: 1000,
+      store: stores[2],
+      comment: loremIpsum(words: 10),
+      negativeFeedback: 322,  
+      positiveFeedback: 0
+    ),
+
+
+    PostModel(id: 'posts_1', user: users[1],productId: '1', price: 2000,store: stores[0], comment: loremIpsum(words: 8), negativeFeedback: 200, positiveFeedback: 123),
+    PostModel(id: 'posts_2', user: users[2],productId: '1', price: 3900, store: stores[0], comment: loremIpsum(words: 8), negativeFeedback: 32, positiveFeedback: 343),
+    PostModel(id: 'posts_3', user: users[3], productId: '1', price: 1000, store: stores[0], comment: loremIpsum(words: 8), negativeFeedback: 12, positiveFeedback: 3),
+    // PostModel(id: '04', userId: '4', price: 200, companyId: '1e', comment: loremIpsum(words: 15)),
+    // PostModel(id: '05', userId: '5', price: 5200, companyId: '1f', comment: loremIpsum(words: 15)),
+  ];
+
+  static final List<FeedbackModel> feedbacks = [
+    FeedbackModel(id: '1', userId: user.id, postId: posts[0].id, productId: products[0].id, feedback: 'positive'),
+  ];
+
+
 }
