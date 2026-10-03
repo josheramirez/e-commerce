@@ -3,21 +3,21 @@ class Images {
 
   // products market
   static const String productMarket0 = 'assets/product_market/arroz_acuenta.jpg';
-  static const String productMarket1 = 'assets/product_market/arroz_acuenta.jpg';
-  static const String productMarket2 = 'assets/product_market/arroz_acuenta.jpg';
-  static const String productMarket3 = 'assets/product_market/arroz_acuenta.jpg';
-  static const String productMarket4 = 'assets/product_market/arroz_acuenta.jpg';
-  static const String productMarket5 = 'assets/product_market/arroz_acuenta.jpg';
-  static const String productMarket6 = 'assets/product_market/arroz_acuenta.jpg';
-  static const String productMarket7 = 'assets/product_market/arroz_acuenta.jpg';
-  static const String productMarket8 = 'assets/product_market/arroz_acuenta.jpg';
-  static const String productMarket9 = 'assets/product_market/arroz_acuenta.jpg';
+  static const String productMarket1 = 'assets/product_market/leche.webp';
+  static const String productMarket2 = 'assets/product_market/confort.webp';
+  static const String productMarket3 = 'assets/product_market/azucar.jpeg';
+  static const String productMarket4 = 'assets/product_market/lavaloza.jpeg';
+  static const String productMarket5 = 'assets/product_market/tomate.jpeg';
+  static const String productMarket6 = 'assets/product_market/huevos.jpg';
+  static const String productMarket7 = 'assets/product_market/chapsui.webp';
+  static const String productMarket8 = 'assets/product_market/carne_molida.jpg';
+  static const String productMarket9 = 'assets/product_market/ketchup.jpeg';
 
   // static const String productMarket2 = 'assets/product_market/spaguetti_5_acuenta.jpeg';
 
   // logo
-  static const String logoAppBlack = 'assets/logo/black_app_logo.png';
-  static const String logoAppWhite = 'assets/logo/white_app_logo.png';
+  static const String logoAppBlack = 'assets/logo/copiachina_logo.png';
+  static const String logoAppWhite = 'assets/logo/copiachina_logo.png';
 
   // onboarding animations
   static const String onboardingAnimationGif = 'assets/animations/gif.gif';
@@ -160,28 +160,35 @@ class Images {
   static const String productImage15b = 'assets/products/product_15b.jpg';
   static const String productImage15c = 'assets/products/product_15c.jepg';
   static const String productImage15d = 'assets/products/product_15d.jpg';
-
-
   // 16
-  static const String productImage16a =
-      'assets/products/product 16 breakout jacket.png';
-  static const String productImage16b =
-      'assets/products/product 16 1 breakout jacket.png';
+  static const String productImage16a ='assets/products/a970a.jpg';
+  static const String productImage16b ='assets/products/a970b.jpg';
+  static const String productImage16c ='assets/products/a970c.jpg';
+  static const String productImage16d ='assets/products/a970d.jpg';
+  static const String productImage16e ='assets/products/a970e.jpg';
+  static const String productImage16f ='assets/products/a970f.jpg';  
   // 17
-  static const String productImage17 =
-      'assets/products/product 17 breakout shirt.png';
+  static const String productImage17 ='assets/products/a1328.jpg';
   // 18
-  static const String productImage18 =
-      'assets/products/product 18 breakout wide shirt.png';
+  static const String productImage18a ='assets/products/tech_priest_a.jpg';
+  static const String productImage18b ='assets/products/tech_priest_b.jpg';
+  static const String productImage18c ='assets/products/tech_priest_c.jpg';
   // 19
-  static const String productImage19a = 'assets/products/product 19.png';
-  static const String productImage19b = 'assets/products/product 19 1.png';
+  static const String productImage19a = 'assets/products/belisarius_a.webp';
+  static const String productImage19b = 'assets/products/belisarius_b.jpg';
   // 20
-  static const String productImage20 = 'assets/products/product 20.png';
+  static const String productImage20 = 'assets/products/emperor.jpg';
   // 21
-  static const String productImage21 = 'assets/products/product 21.png';
+  static const String productImage21a = 'assets/products/warlord_a.jpg';
+  static const String productImage21b = 'assets/products/warlord_b.jpg';
+  static const String productImage21c = 'assets/products/warlord_c.jpg';
+  static const String productImage21d = 'assets/products/warlord_d.jpg';
   // 22
-  static const String productImage22 = 'assets/products/product 22.png';
+  static const String productImage22a = 'assets/products/99120110079_NECOverlordWithTanslocationShroud01.jpg';
+  static const String productImage22b = 'assets/products/99120110079_NECOverlordWithTanslocationShroud02.jpg';
+  
+  
+  
   // 23
   static const String productImage23 = 'assets/products/product 23.png';
   // 24

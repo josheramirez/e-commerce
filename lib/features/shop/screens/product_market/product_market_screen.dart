@@ -19,15 +19,16 @@ class ProductMarketScreen extends StatelessWidget {
     final controller = Get.put(ProductMarketController());
     final products = controller.products;
     
+    String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
+
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 231, 210, 210),
       body: SingleChildScrollView(
         child: Container(
-          color: Colors.red,
+          color: Colors.white,
           child: Padding(
-            padding: EdgeInsets.all(0),
-            child:  
-              
+            padding: EdgeInsets.all(5),
+            child:        
 
              Obx(
                ()=> ListView.separated(
@@ -40,106 +41,163 @@ class ProductMarketScreen extends StatelessWidget {
                       return  
                    
                         Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white, // default white
+                              borderRadius: BorderRadius.circular(10), // default 16, which is card radius large
+                              border: Border.all(color: Colors.black) // white color default
+                          ),
                           height: 75,
                           child:
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              
-                              // IMAGE
-                              Container(
-                                color: Colors.red,
-                                child: 
-                                Padding(
-                                  padding: const EdgeInsets.all(0),
-                                  child: SizedBox(
-                                    height: 80, 
-                                    width: 80,
-                                    child: Image(image: AssetImage(product.image) as ImageProvider ,fit: BoxFit.contain),
+                          Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                
+                                // IMAGE
+                                Container(
+                                  // color: Colors.red,
+                                 
+                                  child: 
+                                  Padding(
+                                    padding: const EdgeInsets.all(0),
+                                    child: SizedBox(
+                                      height: 80, 
+                                      // width: 80,
+                                      child: Image(image: AssetImage(product.image) as ImageProvider ,fit: BoxFit.contain),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              
-                              // 
-               
-                              // [NAME - PRICE]
-                              Container(
-                                color: Colors.green,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                  Text(product.name),
-                                  Text(product.quantity),
-                                  Text('\$${product.price.toString()}', style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),),
-               
-                                  ],
-                                ),
-                              ),
-                              // SizedBox(width: 20),
-               
-                              // [STORE]
-                              Container(
-                                color: Colors.blueAccent,
-                                child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Buscalo en:', style: TextStyle(fontSize: 10.0)),
-                                    Text(product.store!.name.toUpperCase(), style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
-                                    Text('Actualizado el: ', style: TextStyle(fontSize: 10.0)),
-                                    Text( DateFormat("EEEE, d MMM", "es").format(DateTime.now())),
-                                  ],
-                                ),
-                              ),
-                              // // SizedBox(width: 20),
-               
-                              // [POST INFO]
-                              Container(
-                                color: Colors.amber,
-                                child: Column(
-                                  // crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    // Feedback
-                                    Row(
-                                      children: [
-                                        Icon(Iconsax.like_1_copy, size: 22),
-                                        SizedBox(width: 5,),
-                                        Text(product.post!.positiveFeedback.toString()),
-                                        SizedBox(width: 15,),
-                                        Icon(Iconsax.dislike_copy, size: 22),
-                                        SizedBox(width: 5,),
-                                        Text(product.post!.negativeFeedback.toString()),
-                                      ],
-                                    ),
-                                    // Comments
-                                    Row(
-                                      children: [
-                                        Text('Comentarios :'),
-                                        Text(product.commentSize.toString()),
-                                      ],
-                                    ),
-               
-                                    SizedBox(
-                                      // width: 100,
-                                      // height: 40,
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          fixedSize: const Size(120, 30), 
-                                          padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0) ,// Size(width, height)
-                                        ),
-                                        onPressed: () => Get.to(() => CommentScreen( product: product))?.then((value) {
-                                          // Call your refresh method or rebuild the UI
-                                          print('come back babt');
-                                          // Or setState(() {}) if using a StatefulWidget
-                                        }),
-                                        child:  Text('Comentar', style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
+                                
+                                // 
+                                           
+                                // [NAME - PRICE]
+                                Container(
+                                  width: 75,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white, // Container background color
+                                    borderRadius: BorderRadius.circular(5),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withValues(alpha: 0.1), // Shadow color
+                                        blurRadius: 3,                              // Softness of the shadow
+                                        spreadRadius: -2,                            // Shrinks shadow to hide top/left bleed
+                                        offset: const Offset(6, 6),                  // Moves shadow 6px right and 6px down
                                       ),
-                                    ),
-               
-                                  ],
+                                    ],
+                                  ),
+                                  // color: Colors.green,
+                                  child: Column(
+                                    
+                                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                    Text(capitalize(product.name.toLowerCase()), style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
+                                    Text(product.quantity, style: TextStyle(fontSize: 12.0)),
+                                    Text('\$${product.post?.price.toString()}', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),),
+                                           
+                                    ],
+                                  ),
                                 ),
-                              )
-                            ],
+                                // SizedBox(width: 20),
+                                           
+                                // [STORE]
+                                Container(
+                                  width: 95,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white, // Container background color
+                                    borderRadius: BorderRadius.circular(5),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withValues(alpha: 0.1), // Shadow color
+                                        blurRadius: 5,                              // Softness of the shadow
+                                        spreadRadius: -2,                            // Shrinks shadow to hide top/left bleed
+                                        offset: const Offset(6, 6),                  // Moves shadow 6px right and 6px down
+                                      ),
+                                    ],
+                                  ),
+                                  // color: Colors.blueAccent,
+                                  child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text('buscalo en:', style: TextStyle(fontSize: 10.0)),
+                                      Text(product.post!.store.name.toUpperCase(), style: TextStyle(fontSize: 13.0, fontWeight: FontWeight.bold)),
+                                      Text('actualizado el: ', style: TextStyle(fontSize: 10.0)),
+                                      Text( DateFormat("EEEE, d MMM", "es").format(DateTime.now()), style: TextStyle(fontSize: 11.0, fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                ),
+                                // // SizedBox(width: 20),
+                                           
+                                // [POST INFO]
+                                Container(
+                                  width: 110,
+                                  // color: Colors.amber,
+                                  child: Column(
+                                    // crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      
+                                      // [FEEDBACK] 
+                                      Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Icon(Iconsax.like_1_copy, size: 22),
+                                          SizedBox(width: 5,),
+                                          Text(product.post!.positiveFeedback.toString()),
+                                          SizedBox(width: 15,),
+                                          Icon(Iconsax.dislike_copy, size: 22),
+                                          SizedBox(width: 5,),
+                                          Text(product.post!.negativeFeedback.toString()),
+                                        ],
+                                      ),
+                            
+                                      // [COMMENTS]
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text('Comentarios :', style: TextStyle(fontSize: 13.0)),
+                                          Text(product.commentSize.toString(), style: TextStyle(fontSize: 13.0)),
+                                        ],
+                                      ),
+                                           
+                                      // [BUTTON]
+                                      SizedBox(
+                                        // width: 100,
+                                        // height: 40,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.indigo,
+                                             shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(6.0),
+                                                side: const BorderSide(
+                                                  color: Colors.blueGrey,
+                                                  width: 1.5,
+                                                ), // Change your radius here
+                                              ),
+                                            // fixedSize: const Size(120, 30), 
+                                            // padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0) ,// Size(width, height)
+                                            minimumSize: const Size(120, 30), 
+    
+                                            // 2. Reduce the padding inside the button
+                                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4), 
+                                            
+                                            // 3. Optional: shrink text to fit the smaller button
+                                            textStyle: const TextStyle(fontSize: 13)
+                                          ),
+                                          onPressed: () => Get.to(() => CommentScreen( product: product))?.then((value) {
+                                            // Call your refresh method or rebuild the UI
+                                            print('come back babt');
+                                            // Or setState(() {}) if using a StatefulWidget
+                                          }),
+                                          child:  Text('Comentar', style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold)),
+                                        ),
+                                      ),
+                                           
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           )
                
                         );

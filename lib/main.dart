@@ -10,6 +10,8 @@ import 'package:intl/date_symbol_data_local.dart';
 
 Future<void> main() async {
 
+  print('in main');
+
   // Inicializa el soporte para formatos locales
   await initializeDateFormatting('es_ES', null);
   

@@ -24,7 +24,7 @@ class NavigationMenu extends StatelessWidget {
     final controller = Get.put(NavigationController());
     // final _auth = FirebaseAuth.instance;
 
-
+print('en NavigationMenu');
     return Scaffold(
       body:  Obx(() => controller.screens[controller.selectedIndex.value]),
       bottomNavigationBar: Obx(

@@ -40,6 +40,8 @@ class App extends StatelessWidget {
     //   home: NavigationMenu()
     // );
 
+    print('en class App');
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,

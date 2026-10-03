@@ -22,7 +22,7 @@ class ProductMarketController extends GetxController {
 
 
   Future <void> getAllMarketProduct() async{
-
+print('getAllMarketProduct');
     List<ProductMarketModel> productsComment = [];
 
     if (localData) {
@@ -30,6 +30,9 @@ class ProductMarketController extends GetxController {
         // products.assignAll(DummyData.productsMarket);
         final allProducts = DummyData.productsMarket;
  
+
+ print(allProducts[0].toJson());
+
         for (var product in allProducts) {
           final allPosts = DummyData.posts.where((post) => post.productId == product.id).toList();
           final newProduct = product.copyWith(commentSize: allPosts.length);

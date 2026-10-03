@@ -27,9 +27,11 @@ class AuthenticationRepository extends GetxController {
 
   User? get currentUser => _auth.currentUser;
 
+
   // Called from main.dart an app launch
   @override
   void onReady() async{
+    print('AuthenticationRepository onReady()');
     // Remove the native splah screen
     FlutterNativeSplash.remove();
 

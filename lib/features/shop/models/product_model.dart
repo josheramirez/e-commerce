@@ -20,9 +20,11 @@ class ProductModel {
   String productType;
   List<ProductAttributeModel>? productAttributes;
   List<ProductVariationModel>? productVariations;
+  String? size;
 
   ProductModel(
-      {required this.id,
+    {
+      required this.id,
       required this.title,
       required this.stock,
       required this.price,
@@ -37,7 +39,9 @@ class ProductModel {
       this.productVariations,
       this.description,
       this.productAttributes,
-      this.categoryId});
+      this.categoryId,
+      this.size
+    });
 
   static ProductModel empty() => ProductModel(id: '', title: '', stock: 0, price: 0, thumbnail: '', productType: '');
 

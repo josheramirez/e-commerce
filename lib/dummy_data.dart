@@ -241,7 +241,7 @@ class DummyData {
             'Teniente Primaris de los Marines Espaciales con escudo de tormenta, una miniatura de edición limitada lanzada como parte de la Serie Conmemorativa de Warhammer de Games Workshop.\nPresentada originalmente durante las celebraciones del Warhammer Day el 30 de octubre de 2021, esta pieza de coleccionista altamente codiciada presenta características de escultura distintivas que la diferencian de los kits multicomponente estándar. ',
         brand: brands[0],
         salePrice: 10000,
-        sku: 'ZC2210',
+        sku: 'ZC-2243',
         categoryId: '1',
         productType: 'ProductType.single'),
 
@@ -471,32 +471,131 @@ class DummyData {
         sku: 'TOOL001',
         productType: 'ProductType.single'),
     
-    // // 013
-    // ProductModel(
-    //     id: '13',
-    //     title: 'Ranger Black/Blue - Adventure Dice',
-    //     brand: brands[7],
-    //     thumbnail: Images.productImage13,
-    //     description:
-    //         "Sigue el rastro de tu presa con este set oficial para Ranger, donde precisión, instinto y dominio de la naturaleza se reflejan en cada tirada. Sus tonos negro y azul acompañan a quienes avanzan con sigilo hacia lo desconocido.\n🎨 Características: Set de 14 dados en tonos negro y azul, diseñado para personajes Ranger de Dungeons & Dragons.\n🧾 Especificaciones: 2 d4, 4 d6, 2 d8, 2 d10, 1 d%, 1 d12 y 2 d20; 14 dados en total.\n💡 Consejo PiedraBruja: Guarda el set en un estuche o bandeja para proteger sus colores y mantenerlo listo para cada aventura.\n🎯 Ideal para: Jugadores de Dungeons & Dragons, personajes Ranger y coleccionistas de accesorios oficiales.",
-    //     price: 10000,
-    //     stock: 1,
-    //     categoryId: '11',
-    //     sku: 'ROL002',
-    //     productType: 'ProductType.single'),
-    // // 013
-    // ProductModel(
-    //     id: '13',
-    //     title: 'Ranger Black/Blue - Adventure Dice',
-    //     brand: brands[7],
-    //     thumbnail: Images.productImage13,
-    //     description:
-    //         "Sigue el rastro de tu presa con este set oficial para Ranger, donde precisión, instinto y dominio de la naturaleza se reflejan en cada tirada. Sus tonos negro y azul acompañan a quienes avanzan con sigilo hacia lo desconocido.\n🎨 Características: Set de 14 dados en tonos negro y azul, diseñado para personajes Ranger de Dungeons & Dragons.\n🧾 Especificaciones: 2 d4, 4 d6, 2 d8, 2 d10, 1 d%, 1 d12 y 2 d20; 14 dados en total.\n💡 Consejo PiedraBruja: Guarda el set en un estuche o bandeja para proteger sus colores y mantenerlo listo para cada aventura.\n🎯 Ideal para: Jugadores de Dungeons & Dragons, personajes Ranger y coleccionistas de accesorios oficiales.",
-    //     price: 10000,
-    //     stock: 1,
-    //     categoryId: '11',
-    //     sku: 'ROL002',
-    //     productType: 'ProductType.single'),
+    // 016
+    ProductModel(
+      id: '16',
+      title: 'CHAOS CORSAIR LORD',
+      brand: brands[0],
+      images: [
+        Images.productImage16a, 
+        Images.productImage16b,
+        Images.productImage16c
+      ],
+      thumbnail: Images.productImage16a,
+      description:
+          "Los Corsarios Rojos son un Capítulo renegado y una partida de guerra de Astartes herejes que comandan una vasta flota pirata, compuesta por mortales y otros Marines Traidores, la cual amenaza el tráfico y los mundos imperiales cercanos a la grieta disforme del Maelström en el Segmentum Ultima; una región conocida por los astrocartógrafos imperiales como la Zona del Maelström.",
+      price: 10000,
+      stock: 1,
+      categoryId: '1',
+      sku: 'A970',
+      productType: 'ProductType.single'),
+
+    // 017
+    ProductModel(
+      id: '17',
+      title: 'Legion Praetor with Power Sword',
+      brand: brands[0],
+      thumbnail: Images.productImage17,
+      description:
+          "Los Pretores son los guerreros y comandantes más poderosos de las Legiones de Marines Espaciales; solo los Primarcas, seres semejantes a dioses, los superan en destreza marcial y capacidad de mando. Entre sus filas se cuentan Maestros de Capítulo y Señores Comandantes, capitanes y khans, Maestros de la Forja y jarls, según dictan las tradiciones de sus respectivas Legiones. Cada uno de ellos es un guerrero y caudillo de vasta experiencia que ha forjado su propia leyenda con sangre y que, al frente de huestes que han conquistado innumerables mundos, porta a la batalla el mejor equipo y armamento conocidos por la humanidad.",
+      price: 10000,
+      stock: 1,
+      categoryId: '1',
+      sku: 'A1328',
+      productType: 'ProductType.single'),
+
+    // 018
+    ProductModel(
+      id: '18',
+      title: 'Tech-Priests Dominus',
+      brand: brands[0],
+      images: [
+        Images.productImage18a, 
+        Images.productImage18b,
+        Images.productImage18c
+      ],
+      thumbnail: Images.productImage18a,
+      description:
+          "Como maestros del Adeptus Mechanicus, los Tech-Priests Dominus poseen un talento prodigioso y una insaciable sed de guerra. Sus mentes se ven inundadas por un flujo constante de información — trayectorias de proyectiles, ángulos óptimos de artillería, capacidad de los paquetes de energía láser — y aprovechan estos datos para sembrar la destrucción entre las filas enemigas con cada orden emitida desde sus cuerpos mejorados cibernéticamente.",
+      price: 10000,
+      stock: 1,
+      categoryId: '1',
+      sku: '99070116005',
+      productType: 'ProductType.single'),
+
+    // 019
+    ProductModel(
+      id: '19',
+      title: 'Belisarius Cawl',
+      brand: brands[0],
+      images: [
+        Images.productImage19a, 
+        Images.productImage19b
+      ],
+      thumbnail: Images.productImage19a,
+      description:
+          "El Archimagos Dominus Belisarius Cawl ya era anciano en los albores del Imperio, hace más de diez mil años. A lo largo de los siglos, este Tecnosacerdote ha servido como Señor de la Fragua, Lexico Arcanus y renombrado Magos Biologis. En el campo de batalla, Cawl es una fuerza formidable: se desplaza sin miedo hasta el fragor del combate, evalúa las amenazas y transmite órdenes minuciosamente planificadas a sus tropas. La mayor parte del fuego enemigo es repelida por su campo de fuerza; sin embargo, incluso cuando partes de su cuerpo mecanizado resultan destrozadas, surgen cables que se agitan frenéticamente para efectuar reparaciones inmediatas o para atacar en enjambre a cualquiera que ose acercarse...",
+      price: 10000,
+      stock: 1,
+      categoryId: '1',
+      sku: '99120116032',
+      productType: 'ProductType.single'),
+
+    // 020
+    ProductModel(
+        id: '20',
+        title: 'Emperor of Mankind',
+        brand: brands[0],
+        thumbnail: Images.productImage20,
+        description:
+            "El Emperador es el gobernante supremo del Imperio de la Humanidad, adorado como el Dios Emperador por el Culto Imperial y como el Omnissiah por el Culto Mechanicus. Este ser inmortal nació en la Prehistoria de Terra, y lanzó las Guerras de Unificación y la Gran Cruzada para restablecer los lazos entre las colonias humanas aisladas por la Era de los Conflictos. Sin embargo, la mitad de los Primarcas que creó se rebelaron contra él bajo el mando de su favorito, el Señor de la Guerra Horus, y aunque la cruenta guerra civil conocida como la Herejía de Horus concluyó con la muerte del Architraidor, el Emperador quedó físicamente destrozado y hubo de permanecer conectado para siempre a los sistemas de soporte vital del Trono Dorado, sin poder comunicarse ni reaccionar como un ser vivo. Desde entonces han pasado diez mil años, pero su dominio sigue aplicándose a lo largo y ancho de la galaxia por sus sucesores, los Altos Señores de Terra. ",
+        price: 10000,
+        stock: 1,
+        categoryId: '1',
+        sku: '',
+        productType: 'ProductType.single',
+        size: "60mm"),
+
+    // 021
+    ProductModel(
+      id: '21',
+      title: 'Warlord Blackskull',
+      brand: brands[0],
+      images: [
+        Images.productImage21a, 
+        Images.productImage21b,
+        Images.productImage21c,
+        Images.productImage21d
+      ],
+      thumbnail: Images.productImage21a,
+      description:
+          "Jefe de Guerra Blackskull, Un Jefe de Guerra es el Orko más grande, más verde y más feroz de una tribu o clan y, como tal, es el comandante supremo de todos los Pielesverdes bajo su mando. Estrategas relativamente astutos (para los estándares de los Orkos) y guerreros sumamente poderosos, estos brutos ascienden en la jerarquía orka ganando batallas y eliminando a cualquier aspirante que ose desafiar la autoridad del futuro Jefe de Guerra.",
+      price: 10000,
+      stock: 1,
+      categoryId: '1',
+      sku: '',
+      productType: 'ProductType.single',
+      size: "120mm"),
+
+    // 022
+    ProductModel(
+      id: '22',
+      title: 'Overlord with Translocation Shroud',
+      brand: brands[0],
+      images: [
+        Images.productImage22a, 
+        Images.productImage22b,
+      ],
+      thumbnail: Images.productImage22a,
+      description:
+          "Los Señores Supremos conducen a las dinastías necronas a la batalla. Sus mentes androides son tremendamente veloces y sus cuerpos poseen una resistencia implacable, pero es quizá su voluntad indomable lo más temible de todo. Equipado con un manto de traslación extraído de las cámaras dinásticas, un Señor Supremo puede desplazarse a través de dimensiones abisales, atravesando defensas rígidas e incluso la carne de los guardianes mortales para alcanzar cualquier presa o botín que desee.",
+      price: 10000,
+      stock: 1,
+      categoryId: '1',
+      sku: '',
+      productType: 'ProductType.single',
+      size: "120mm"),
+
   ];
 
 
@@ -555,13 +654,11 @@ class DummyData {
     // [ARROZ]
     ProductMarketModel(
       id: 'productMarket_0',
-      image: Images.productMarket1,
-      name: 'arroz grado 2',
+      image: Images.productMarket0,
+      name: 'Arroz grd 2',
       quantity: '1 Kg',
-      price: 900,
-      store: stores[0],
       updateDate: DateTime.now(),
-      post: posts[0]
+      post: posts[0],
     ),
     
     // [LECHE]
@@ -634,7 +731,7 @@ class DummyData {
     ProductMarketModel(
       id: 'productMarket_7', 
       image: Images.productMarket7, 
-      name: 'VERDURAS CONGELADAS / CHAPSUI', 
+      name: 'CHAPSUI', 
       quantity: '450 gr', 
       updateDate: DateTime.now(),
       post: posts[7],
@@ -777,7 +874,7 @@ class DummyData {
       user: users[0],
       productId: 'productMarket_6',
       price: 6000,
-      store: stores[4],
+      store: stores[3],
       comment: loremIpsum(words: 10),
       negativeFeedback: 0,  
       positiveFeedback: 22
@@ -820,9 +917,10 @@ class DummyData {
     ),
 
 
-    PostModel(id: 'posts_1', user: users[1],productId: '1', price: 2000,store: stores[0], comment: loremIpsum(words: 8), negativeFeedback: 200, positiveFeedback: 123),
-    PostModel(id: 'posts_2', user: users[2],productId: '1', price: 3900, store: stores[0], comment: loremIpsum(words: 8), negativeFeedback: 32, positiveFeedback: 343),
-    PostModel(id: 'posts_3', user: users[3], productId: '1', price: 1000, store: stores[0], comment: loremIpsum(words: 8), negativeFeedback: 12, positiveFeedback: 3),
+    // PostModel(id: 'posts_1', user: users[1],productId: '1', price: 2000,store: stores[0], comment: loremIpsum(words: 8), negativeFeedback: 200, positiveFeedback: 123),
+    // PostModel(id: 'posts_2', user: users[2],productId: '1', price: 3900, store: stores[0], comment: loremIpsum(words: 8), negativeFeedback: 32, positiveFeedback: 343),
+    // PostModel(id: 'posts_3', user: users[3], productId: '1', price: 1000, store: stores[0], comment: loremIpsum(words: 8), negativeFeedback: 12, positiveFeedback: 3),
+    
     // PostModel(id: '04', userId: '4', price: 200, companyId: '1e', comment: loremIpsum(words: 15)),
     // PostModel(id: '05', userId: '5', price: 5200, companyId: '1f', comment: loremIpsum(words: 15)),
   ];
