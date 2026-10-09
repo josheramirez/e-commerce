@@ -18,10 +18,9 @@ class CategoryTab extends StatelessWidget {
   const CategoryTab({super.key, required this.category});
 
   final CategoryModel category;
-  
+
   @override
   Widget build(BuildContext context) {
-    
     final controller = CategoryController.instance;
 
     return ListView(
@@ -32,52 +31,62 @@ class CategoryTab extends StatelessWidget {
           padding: const EdgeInsets.all(USizes.defaultSpace),
           child: Column(
             children: [
-
-              // Brands
+              // [CARD BRAND PRODUCT]
               CategoryBrands(category: category),
               const SizedBox(height: USizes.spaceBtwItems),
 
-              // Products
+              // [PRODCUTS RECOMMENDATION]
               FutureBuilder(
                 future: controller.getCategoryProducts(categoryId: category.id),
-                builder: (context, snapshot){
-                  
-
+                builder: (context, snapshot) {
                   final loader = const VerticalProductShimmer();
 
-                  if (snapshot.connectionState == ConnectionState.waiting) {return loader;}
-                  if (!snapshot.hasData || snapshot.data == null || snapshot.data!.isEmpty) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return loader;
+                  }
+                  if (!snapshot.hasData ||
+                      snapshot.data == null ||
+                      snapshot.data!.isEmpty) {
                     return const Center(child: Text('No Hay Datos'));
                   }
-                  if (snapshot.hasError) return const Center(child: Text('Hubo un error.'));
+                  if (snapshot.hasError) {
+                    return const Center(child: Text('Hubo un error.'));
+                  }
 
                   // Record Found !
                   final products = snapshot.data!;
 
                   return Column(
-                      children: [
-                        SectionHeading(
-                          title: 'You might like', 
-                          onPressed: () => Get.to(AllProducts(
+                    children: [
+                      SectionHeading(
+                        title: 'Te Podrian Gustar',
+                        onPressed: () => Get.to(
+                          AllProducts(
                             title: category.name,
-                            futureMethod: controller.getCategoryProducts(categoryId: category.id, limit: -1),
-                          ))
+                            futureMethod: controller.getCategoryProducts(
+                              categoryId: category.id,
+                              limit: -1,
+                            ),
+                          ),
                         ),
-                        const SizedBox(height: USizes.spaceBtwItems),
-                        GridLayout(itemCount: products.length, itemBuilder: (_, index) => ProductCardVertical(product: products[index])),
-                      ]
-                    );
-      
-                }
-              )
+                      ),
+                      const SizedBox(height: USizes.spaceBtwItems),
+                      GridLayout(
+                        itemCount: products.length,
+                        itemBuilder: (_, index) =>
+                            ProductCardVertical(product: products[index]),
+                      ),
+                      const SizedBox(height: USizes.spaceBtwItems),
+                    ],
+                  );
+                },
+              ),
 
-             
               // const SizedBox(height: USizes.spaceBtwItems),
-              
             ],
           ),
         ),
-      ]
+      ],
     );
-    }
+  }
 }

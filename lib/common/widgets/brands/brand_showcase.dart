@@ -4,6 +4,7 @@ import 'package:e_commerce/common/widgets/shimmer/shimmer_effect.dart';
 import 'package:e_commerce/features/shop/models/brand_model.dart';
 import 'package:e_commerce/features/shop/screens/brand/brand_products.dart';
 import 'package:e_commerce/features/shop/screens/store/store.dart';
+import 'package:e_commerce/global_config.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:e_commerce/utils/helpers/helper_functions.dart';
@@ -18,9 +19,9 @@ class BrandShowcase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    for (var element in images) {
-      print(element);
-    }
+    // for (var element in images) {
+    //   print(element);
+    // }
     return InkWell(
       onTap: () => Get.to(() => BrandProducts(brand: brand)),
       child: URoundedContainer(
@@ -31,10 +32,9 @@ class BrandShowcase extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: USizes.spaceBtwItems),
         child: Column(
           children: [
-            
             // Brand with Product Count
             BrandCard(showBorder: false, brand: brand),
-      
+
             // Brand Top 3 Product Image
             Row(
               children: images
@@ -48,19 +48,25 @@ class BrandShowcase extends StatelessWidget {
   }
 
   Widget brandTopProductImageWidget(String image, context) {
+    final isLocalImage = GlobalConfig.instance.isNetworkImage;
     return Expanded(
       child: URoundedContainer(
         height: 100,
-        backgroundColor: HelperFunctions.isDarkMode(context) ? UColors.darkGrey : UColors.white,
+        backgroundColor: HelperFunctions.isDarkMode(context)
+            ? UColors.darkGrey
+            : UColors.white,
         margin: const EdgeInsets.only(right: USizes.sm),
         padding: const EdgeInsets.all(5),
         // child: Image(image: AssetImage(image), fit: BoxFit.contain),
-        child: CachedNetworkImage(
-          fit: BoxFit.contain,
-          imageUrl: image,
-          progressIndicatorBuilder:(context, url, progress) => const ShimmerEffect(width: 100, height: 100),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
-        ),
+        child: isLocalImage
+            ? CachedNetworkImage(
+                fit: BoxFit.contain,
+                imageUrl: image,
+                progressIndicatorBuilder: (context, url, progress) =>
+                    const ShimmerEffect(width: 100, height: 100),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              )
+            : Image.asset(image),
       ),
     );
   }

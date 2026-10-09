@@ -13,75 +13,53 @@ class ProductMarketController extends GetxController {
   var isLoading = true.obs;
   RxBool refreshData = true.obs;
 
-
   @override
-  void onInit(){
+  void onInit() {
     getAllMarketProduct();
     super.onInit();
   }
 
-
-  Future <void> getAllMarketProduct() async{
-print('getAllMarketProduct');
+  Future<void> getAllMarketProduct() async {
     List<ProductMarketModel> productsComment = [];
 
     if (localData) {
-        isLoading.value= true;
-        // products.assignAll(DummyData.productsMarket);
-        final allProducts = DummyData.productsMarket;
- 
+      isLoading.value = true;
+      // products.assignAll(DummyData.productsMarket);
+      final allProducts = DummyData.productsMarket;
 
- print(allProducts[0].toJson());
+      for (var product in allProducts) {
+        final allPosts = DummyData.posts
+            .where((post) => post.productId == product.id)
+            .toList();
+        final newProduct = product.copyWith(commentSize: allPosts.length);
+        productsComment.add(newProduct);
+      }
 
-        for (var product in allProducts) {
-          final allPosts = DummyData.posts.where((post) => post.productId == product.id).toList();
-          final newProduct = product.copyWith(commentSize: allPosts.length);
-          print('new product : ${newProduct.toJson()}');
-          productsComment.add(newProduct);
-   
-        }
+      productsComment.map((product) => print(product.toJson()));
+      products.assignAll(productsComment);
 
-        // print('item in allProduct');
-        // allProducts.map((product)=> print(product.toJson()));
+      isLoading.value = false;
+    } else {}
+  }
 
-        print('item in productsComment');
-        productsComment.map((product)=> print(product.toJson()));
+  void updateProductFeedback(PostModel post) {
+    List<ProductMarketModel> productsComment = [];
+    final allProducts = products;
 
-        products.assignAll(productsComment);
-      
-
-        isLoading.value= false;
-    }else{
-      
+    for (var product in allProducts) {
+      final allPosts = DummyData.posts
+          .where((post) => post.productId == product.id)
+          .toList();
+      if (product.id == post.productId) {
+        allPosts.add(post);
+      }
+      final newProduct = product.copyWith(commentSize: allPosts.length);
+      productsComment.add(newProduct);
     }
+    productsComment.map((product) => print(product.toJson()));
+    products.assignAll(productsComment);
   }
 
-  void updateProductFeedback(PostModel post){
-    print('in updateProductFeedback ${post.toJson()}');
-        List<ProductMarketModel> productsComment = [];
-        final allProducts = products;
- 
-        for (var product in allProducts) {
-          final allPosts = DummyData.posts.where((post) => post.productId == product.id).toList();
-          if (product.id == post.productId) {
-            allPosts.add(post);
-          }
-          final newProduct = product.copyWith(commentSize: allPosts.length);
-          print('new product : ${newProduct.toJson()}');
-          productsComment.add(newProduct);
-   
-        }
-
-        // print('item in allProduct');
-        // allProducts.map((product)=> print(product.toJson()));
-
-        print('item in productsComment');
-        productsComment.map((product)=> print(product.toJson()));
-
-
-        products.assignAll(productsComment);
-  }
-  
   // void getStats(){
 
   //       List<Map<String, dynamic>> updatedItems = this.products.map((item) {

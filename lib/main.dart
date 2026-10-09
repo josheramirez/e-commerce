@@ -9,14 +9,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 Future<void> main() async {
-
-  print('in main');
-
   // Inicializa el soporte para formatos locales
   await initializeDateFormatting('es_ES', null);
-  
+
   // Add Widgets Binding
-  final WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  final WidgetsBinding widgetsBinding =
+      WidgetsFlutterBinding.ensureInitialized();
 
   // Init Local Storage
   await GetStorage.init();
@@ -25,9 +23,9 @@ Future<void> main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   // Initialize Firebase
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform).then(
-    (FirebaseApp value) => Get.put(AuthenticationRepository())
-  );
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  ).then((FirebaseApp value) => Get.put(AuthenticationRepository()));
 
   // Initialize Authentication
 

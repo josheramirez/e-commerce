@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/features/shop/models/product_model.dart';
+import 'package:e_commerce/global_config.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,6 +38,7 @@ class ImagesController  extends GetxController{
     Get.to(
       fullscreenDialog: true,
       () => Dialog.fullscreen(
+        backgroundColor: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,7 +46,11 @@ class ImagesController  extends GetxController{
           children: [
             Padding(
               padding: EdgeInsets.symmetric(vertical: USizes.defaultSpace*2, horizontal: USizes.defaultSpace),
-              child: CachedNetworkImage(imageUrl: image)
+              child: 
+              GlobalConfig.instance.isNetworkImage?
+              CachedNetworkImage(imageUrl: image)
+              :
+              Image.asset(image)
             ),
             SizedBox(height: USizes.spaceBtwSections),
             Align(

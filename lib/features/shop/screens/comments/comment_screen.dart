@@ -68,6 +68,15 @@ class CommentScreen extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           //  insetPadding: EdgeInsets.zero, 
+          titlePadding: const EdgeInsets.only(left: 16, bottom: 5, top: 25),
+          // Padding around the entire actions bar at the bottom
+          actionsPadding: const EdgeInsets.only (right: 25, bottom: 10),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 0.0),
+          // Padding around each individual action button
+          //  buttonPadding: const EdgeInsets.symmetric(horizontal: 12.0),
+
+
+          scrollable: true,
           title: const Text('Lo viste mas barato?'),
           content: Form(
             key: formKey,
@@ -298,31 +307,53 @@ class CommentScreen extends StatelessWidget {
               onPressed: () => Navigator.pop(context),
               child: const Text('Cancelar'),
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                // Apply 16 pixels of vertical padding and 32 pixels of horizontal padding
-                padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
+            Container(
+              width: 120,
+              height: 30,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  // Apply 16 pixels of vertical padding and 32 pixels of horizontal padding
+                  // padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
+                  backgroundColor: Colors.indigo,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                      6.0,
+                    ),
+                    side: const BorderSide(
+                      color: Colors.blueGrey,
+                      width: 1.5,
+                    ), // Change your radius here
+                  ),
+                  minimumSize: const Size(120, 30),
+
+                // 2. Reduce the padding inside the button
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 4,
+                ),
+
+                ),
+                onPressed: () {
+                  // 4. Validate the form on submission
+                  if (formKey.currentState!.validate()) {
+                    String price = priceController.text;
+                    String comment = commentController.text;
+                    String storeAddress = addStore.value? storeAddressController.text : '';
+                    String storeName = addStore.value? storeNameController.text : _selectedValue;
+                    
+              // print(price);
+              // print(comment);
+              // print(storeAddress);
+              // print(storeName);
+              
+                    controller.savePost(price, comment, addStore.value, storeName, storeAddress, product.id);
+              
+                    // Close the dialog and optionally pass the data back
+                    Navigator.pop(context, 'data save...');
+                  }
+                },
+                child: const Text('Publicar'),
               ),
-              onPressed: () {
-                // 4. Validate the form on submission
-                if (formKey.currentState!.validate()) {
-                  String price = priceController.text;
-                  String comment = commentController.text;
-                  String storeAddress = addStore.value? storeAddressController.text : '';
-                  String storeName = addStore.value? storeNameController.text : _selectedValue;
-                  
-print(price);
-print(comment);
-print(storeAddress);
-print(storeName);
-
-                  controller.savePost(price, comment, addStore.value, storeName, storeAddress, product.id);
-
-                  // Close the dialog and optionally pass the data back
-                  Navigator.pop(context, 'data save...');
-                }
-              },
-              child: const Text('Publicar'),
             ),
           ],
         );
@@ -544,6 +575,11 @@ print(storeName);
                                                                       crossAxisAlignment: CrossAxisAlignment.center,
                                                                       children: [
                                                                         ElevatedButton(
+                                                                          style: ElevatedButton.styleFrom(
+                                                                            backgroundColor: const Color.fromARGB(255, 14, 110, 189), // Background color
+                                                                            foregroundColor: Colors.white,    // Text and icon color
+                                                                            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                                                                          ),
                                                                           onPressed: () {
                                                                             controller.handleFeedback('positive', controller.allPost[index]);
                                                                             Navigator.pop(context);
@@ -575,7 +611,7 @@ print(storeName);
                                                 backgroundColor: const Color.fromARGB(255, 194, 28, 16),     // Background color
                                                 foregroundColor: Colors.white,    // Text and icon color
                                                 padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-                                             ),
+                                              ),
                                               onPressed: (){
                                                 showModalBottomSheet(
                                                   context: context,
@@ -623,10 +659,16 @@ print(storeName);
                                                                         // crossAxisAlignment: CrossAxisAlignment.center,
                                                                         children: [
                                                                           ElevatedButton(
+                                                                             style: ElevatedButton.styleFrom(
+                                                                              backgroundColor: const Color.fromARGB(255, 194, 28, 16),     // Background color
+                                                                              foregroundColor: Colors.white,    // Text and icon color
+                                                                              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+                                                                            ),
                                                                             onPressed: () { 
                                                                               controller.handleFeedback('negative', controller.allPost[index]);
                                                                               Navigator.pop(context);
                                                                             },
+                                                                            
                                                                             child: Padding(
                                                                               padding: const EdgeInsets.all(10),
                                                                               child: const Text('Desmiento'),

@@ -15,42 +15,51 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
-
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());
-    // final _auth = FirebaseAuth.instance;
 
-print('en NavigationMenu');
     return Scaffold(
-      body:  Obx(() => controller.screens[controller.selectedIndex.value]),
+      body: Obx(() => controller.screens[controller.selectedIndex.value]),
       bottomNavigationBar: Obx(
-       () => NavigationBar(
+        () => NavigationBar(
           elevation: 0,
           backgroundColor: UColors.light,
           indicatorColor: UColors.black.withValues(alpha: 0.1),
           selectedIndex: controller.selectedIndex.value,
-          onDestinationSelected:(index) {
+          onDestinationSelected: (index) {
             controller.selectedIndex.value = index;
           },
           destinations: [
-            const NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
-            const NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
+            const NavigationDestination(
+              icon: Icon(Iconsax.home),
+              label: 'Home',
+            ),
+            const NavigationDestination(
+              icon: Icon(Iconsax.shop),
+              label: 'Store',
+            ),
             // const NavigationDestination(icon: Icon(Iconsax.heart), label: 'WishList'),
-            const NavigationDestination(icon: Icon(Iconsax.user), label: 'Products'),
+            const NavigationDestination(
+              icon: Icon(Iconsax.user),
+              label: 'Products',
+            ),
             // const NavigationDestination(icon: Icon(Iconsax.user), label: 'Comments'),
-            const NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
-          ]
+            const NavigationDestination(
+              icon: Icon(Iconsax.user),
+              label: 'Profile',
+            ),
+          ],
         ),
-      )
+      ),
     );
   }
 }
 
-class NavigationController extends GetxController{
+class NavigationController extends GetxController {
   RxInt selectedIndex = 0.obs;
 
   List<Widget> screens = [
@@ -85,6 +94,6 @@ class NavigationController extends GetxController{
     //     positiveFeedback: 1122
     //   )
     // ),)
-    SettingsScreen()
+    SettingsScreen(),
   ];
 }

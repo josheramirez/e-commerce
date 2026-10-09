@@ -11,6 +11,7 @@ import 'package:e_commerce/features/shop/screens/product_details/widgets/product
 import 'package:e_commerce/features/shop/screens/product_details/widgets/product_price_text.dart';
 import 'package:e_commerce/features/shop/screens/product_details/widgets/rating_and_share.dart';
 import 'package:e_commerce/features/shop/screens/product_reviews/widgets/product_reviews.dart';
+import 'package:e_commerce/global_config.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/constants/enums.dart';
 import 'package:e_commerce/utils/constants/images.dart';
@@ -29,7 +30,10 @@ class ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = ProductController.intance;
-    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
+    final salePercentage = controller.calculateSalePercentage(
+      product.price,
+      product.salePrice,
+    );
     final dark = HelperFunctions.isDarkMode(context);
 
     return Scaffold(
@@ -38,51 +42,68 @@ class ProductDetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-
             // Product Image Slider
             ProductImageSlider(product: product),
 
             // Product Details
             Padding(
-              padding: const EdgeInsets.only(right: USizes.defaultSpace,left: USizes.defaultSpace,bottom: USizes.defaultSpace),
+              padding: const EdgeInsets.only(
+                right: USizes.defaultSpace,
+                left: USizes.defaultSpace,
+                bottom: USizes.defaultSpace,
+              ),
               child: Column(
                 children: [
-                  
                   // Ratting and Share Button
                   RatingAndShare(),
-                  
+
                   // Product Meta Data
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
-
                           // Sale Tag
-                          if(product.salePrice != 0)
-                          URoundedContainer(
-                            radius: USizes.sm,
-                            backgroundColor: UColors.textSecondary.withAlpha(
-                              100,
+                          if (product.salePrice != 0)
+                            URoundedContainer(
+                              radius: USizes.sm,
+                              backgroundColor: UColors.textSecondary.withAlpha(
+                                100,
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                horizontal: USizes.sm,
+                                vertical: USizes.xs,
+                              ),
+                              child: Text(
+                                '$salePercentage%',
+                                style: Theme.of(context).textTheme.labelLarge!
+                                    .apply(color: UColors.black),
+                              ),
                             ),
-                            padding: EdgeInsets.symmetric(
-                              horizontal: USizes.sm,
-                              vertical: USizes.xs,
-                            ),
-                            child: Text('$salePercentage%', style: Theme.of(context).textTheme.labelLarge!.apply(color: UColors.black),
-                            ),
-                          ),
-                          if(product.salePrice != 0)
-                          const SizedBox(width: USizes.spaceBtwItems),
+                          if (product.salePrice != 0)
+                            const SizedBox(width: USizes.spaceBtwItems),
 
                           // Price
-                          if(product.productType == ProductType.single.toString() && product.salePrice > 0)
-                          Text('\$${product.price}', style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough)),
+                          if (product.productType ==
+                                  ProductType.single.toString() &&
+                              product.salePrice > 0)
+                            Text(
+                              '\$${product.price}',
+                              style: Theme.of(context).textTheme.titleSmall!
+                                  .apply(
+                                    decoration: TextDecoration.lineThrough,
+                                  ),
+                            ),
 
-                          if(product.productType == ProductType.single.toString() && product.salePrice > 0)
-                          const SizedBox(width: USizes.spaceBtwItems),
+                          if (product.productType ==
+                                  ProductType.single.toString() &&
+                              product.salePrice > 0)
+                            const SizedBox(width: USizes.spaceBtwItems),
 
-                          ProductPriceText(price: controller.getProductPrice(product), isLarge: true),
+                          ProductPriceText(
+                            price: controller.getProductPrice(product),
+                            isLarge: true,
+                          ),
                         ],
                       ),
                       SizedBox(height: USizes.spaceBtwItems / 1.5),
@@ -98,7 +119,13 @@ class ProductDetailScreen extends StatelessWidget {
                         children: [
                           const ProductTitleText(title: "Status: "),
                           const SizedBox(width: 5),
-                          Text(controller.getProductStockStatus(product.stock), style:TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
+                          Text(
+                            controller.getProductStockStatus(product.stock),
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
                         ],
                       ),
                       const SizedBox(height: USizes.spaceBtwItems / 2),
@@ -108,14 +135,20 @@ class ProductDetailScreen extends StatelessWidget {
                         children: [
                           CircularImage(
                             // backgroundColor: Colors.red,
-                            image: product.brand != null ? product.brand!.image : '',
-                            isNetworkImage: true,
+                            image: product.brand != null
+                                ? product.brand!.image
+                                : '',
+                            isNetworkImage:
+                                GlobalConfig.instance.isNetworkImage,
                             padding: 0,
                             width: 35,
                             height: 35,
                             overlayColor: dark ? UColors.white : UColors.black,
                           ),
-                          BrandTitleWithVerifiedIcon(title: product.brand != null ? product.brand!.name : '',
+                          BrandTitleWithVerifiedIcon(
+                            title: product.brand != null
+                                ? product.brand!.name
+                                : '',
                             brandTextSize: TextSizes.medium,
                           ),
                         ],
@@ -124,9 +157,11 @@ class ProductDetailScreen extends StatelessWidget {
                     ],
                   ),
 
-                  // Variation Attributes 
-                  if(product.productType == ProductType.variable.toString()) ProductsAttributes(product: product),
-                  if(product.productType == ProductType.variable.toString()) SizedBox(height: USizes.spaceBtwSections),
+                  // Variation Attributes
+                  if (product.productType == ProductType.variable.toString())
+                    ProductsAttributes(product: product),
+                  if (product.productType == ProductType.variable.toString())
+                    SizedBox(height: USizes.spaceBtwSections),
 
                   // Checkout Button
                   SizedBox(

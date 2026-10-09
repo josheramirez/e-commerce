@@ -5,6 +5,7 @@ import 'package:e_commerce/common/widgets/icons/circular_icons.dart';
 import 'package:e_commerce/features/shop/controllers/product/images_controller.dart';
 import 'package:e_commerce/features/shop/models/product_model.dart';
 import 'package:e_commerce/features/shop/screens/product_details/widgets/curved_edge_widget.dart';
+import 'package:e_commerce/global_config.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
 import 'package:e_commerce/utils/helpers/helper_functions.dart';
@@ -42,11 +43,15 @@ class ProductImageSlider extends StatelessWidget {
                     final image = controller.selectedProductImage.value;
                     return GestureDetector(
                       onTap: () => controller.showEnlargeInage(image),
-                      child: CachedNetworkImage(
+                      child: 
+                      GlobalConfig.instance.isNetworkImage ?
+                      CachedNetworkImage(
                         imageUrl: image,
                         progressIndicatorBuilder: (_,__,downloadProgress) => 
                           CircularProgressIndicator(value: downloadProgress.progress, color: UColors.primary),  
-                      ),
+                      )
+                      :
+                      Image.asset(image)
                     );
                   })),
                 )
@@ -70,7 +75,7 @@ class ProductImageSlider extends StatelessWidget {
                           final imageSelected = controller.selectedProductImage.value == images[index];
                           return RoundedImage(
                             width: 80,
-                            isNetworkImage: true,
+                            isNetworkImage: GlobalConfig.instance.isNetworkImage,
                             imageUrl: images[index],
                             padding: EdgeInsets.all(USizes.sm),
                             backgroundColor: dark? UColors.dark : UColors.white,

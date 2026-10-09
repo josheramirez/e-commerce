@@ -15,7 +15,6 @@ class SocialButtons extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-
         // [GOOGLE]
         Container(
           decoration: BoxDecoration(

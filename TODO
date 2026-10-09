@@ -3,13 +3,10 @@ MARKET
 -remove from productMarketModel price and store attributes, take that values from post atributte
 
 
-
-
--------------------
-warhammer a-970
-40K ZC-2243	marine holding  shield
-warhammer a-1328
-warhammer tech priest
-warhammer overlord
-40K Emperor of Mankind
-40k orco 120mm
+store
+- in product detail , implement wishlist icon
+- quitar decimales en CardproductVertical
+- add products to dummy list
+- update categories
+- repair account address scroll
+- new banners

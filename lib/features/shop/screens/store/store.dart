@@ -3,7 +3,6 @@ import 'package:e_commerce/common/layout/grid_layout.dart';
 import 'package:e_commerce/common/widgets/appBar/appbar.dart';
 import 'package:e_commerce/common/widgets/appBar/tabbar.dart';
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_container.dart';
-import 'package:e_commerce/common/widgets/commmo_shapes/containers/search_container.dart';
 import 'package:e_commerce/common/widgets/products/cart/cart_counter_icon.dart';
 import 'package:e_commerce/common/widgets/products/product_cards/brand_title_with_verifed_icon.dart';
 import 'package:e_commerce/common/widgets/shimmer/brands_shimmer.dart';
@@ -14,6 +13,7 @@ import 'package:e_commerce/features/shop/screens/brand/all_brands.dart';
 import 'package:e_commerce/features/shop/screens/brand/brand_products.dart';
 import 'package:e_commerce/features/shop/screens/home/home.dart';
 import 'package:e_commerce/features/shop/screens/store/widgets/category_tab.dart';
+import 'package:e_commerce/global_config.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/constants/enums.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
@@ -21,30 +21,29 @@ import 'package:e_commerce/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    
     final dark = HelperFunctions.isDarkMode(context);
     final categories = CategoryController.instance.featuredCategories;
     final brandController = Get.put(BrandController());
 
-
     return DefaultTabController(
       length: categories.length,
       child: Scaffold(
-        
-        //  APP BAR
+        // [APP BAR]
         appBar: UAppBar(
-          title: Text('Store', style: Theme.of(context).textTheme.headlineMedium),
-          actions: [CardCounterIcon( iconColor: Colors.black)],
+          title: Text(
+            'Store',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          actions: [CardCounterIcon(iconColor: Colors.black)],
         ),
 
-        // 
+        // [BODY]
         body: NestedScrollView(
           headerSliverBuilder: (_, innerBoxIsScrolled) {
             return [
@@ -53,62 +52,78 @@ class StoreScreen extends StatelessWidget {
                 pinned: true,
                 floating: true,
                 backgroundColor: UColors.white,
-                expandedHeight: 450,
+                expandedHeight: 300,
 
                 flexibleSpace: Padding(
-                    padding: EdgeInsets.all(USizes.defaultSpace),
-                    child: ListView(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      children: [
-                  
-                        // Search Bar
-                        // SizedBox(height: USizes.spaceBtwItems),
-                        // SeachContainer(text: 'Buscar', showBorder: true, showBackground: false, padding: EdgeInsets.zero),
-                        
-                        // SizedBox(height: USizes.spaceBtwSections),
-                  
-                        // Featured Brands
-                        SectionHeading(title: 'Marcas Destacadas', onPressed: () => Get.to(() => AllBrandsScreen()),
-                        ),
-                        SizedBox(height: USizes.spaceBtwItems / 1.5),
-                  
-                        Obx(
-                          (){ 
-                            if(brandController.isLoading.value) return const BrandShimmer();
-                  
-                            if (brandController.featuredBrands.isEmpty) {
-                              return Center(
-                                child: Text('No Se Encontraron Datos', style: Theme.of(context).textTheme.bodyMedium!.apply(color: Colors.white))
-                              );
-                            }
-                  
-                            return GridLayout(
-                              itemCount: brandController.featuredBrands.length,
-                              mainAxisExtent: 80,
-                              itemBuilder: (_, index) {
-                                final brand = brandController.featuredBrands[index];
-                                return BrandCard(showBorder: true, brand: brand, onTap: () => Get.to(() => BrandProducts(brand: brand)));
-                              },
+                  padding: EdgeInsets.only(
+                    left: USizes.defaultSpace,
+                    right: USizes.defaultSpace,
+                  ),
+
+                  child: ListView(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    children: [
+                      // Search Bar
+                      // SizedBox(height: USizes.spaceBtwItems),
+                      // SeachContainer(text: 'Buscar', showBorder: true, showBackground: false, padding: EdgeInsets.zero),
+
+                      // SizedBox(height: USizes.spaceBtwSections),
+
+                      // Featured Brands
+                      SectionHeading(
+                        title: 'Marcas Destacadas',
+                        onPressed: () => Get.to(() => AllBrandsScreen()),
+                      ),
+                      SizedBox(height: USizes.spaceBtwItems / 1.5),
+
+                      Obx(() {
+                        if (brandController.isLoading.value) {
+                          return const BrandShimmer();
+                        }
+                        if (brandController.featuredBrands.isEmpty) {
+                          return Center(
+                            child: Text(
+                              'No Se Encontraron Datos',
+                              style: Theme.of(context).textTheme.bodyMedium!
+                                  .apply(color: Colors.white),
+                            ),
+                          );
+                        }
+
+                        return GridLayout(
+                          itemCount: brandController.featuredBrands.length,
+                          mainAxisExtent: 80,
+                          itemBuilder: (_, index) {
+                            final brand = brandController.featuredBrands[index];
+                            return BrandCard(
+                              showBorder: true,
+                              brand: brand,
+                              onTap: () =>
+                                  Get.to(() => BrandProducts(brand: brand)),
                             );
-                          }
-                        ),
-                        
-                      ],
-                    ),
-                  
+                          },
+                        );
+                      }),
+                    ],
+                  ),
                 ),
 
-                bottom: UTabBar(tabs: categories.map((category) => Tab(child: Text(category.name))).toList()),
+                bottom: UTabBar(
+                  tabs: categories
+                      .map((category) => Tab(child: Text(category.name)))
+                      .toList(),
+                ),
               ),
             ];
           },
 
-          body: 
-            TabBarView(
-              children: categories.map((category) => CategoryTab(category: category)).toList(),
-            ),
-          
+          // [TAB CATEGORY PRODUCTS SECTION]
+          body: TabBarView(
+            children: categories
+                .map((category) => CategoryTab(category: category))
+                .toList(),
+          ),
         ),
       ),
     );
@@ -116,7 +131,12 @@ class StoreScreen extends StatelessWidget {
 }
 
 class BrandCard extends StatelessWidget {
-  const BrandCard({super.key, required this.showBorder, this.onTap, required this.brand});
+  const BrandCard({
+    super.key,
+    required this.showBorder,
+    this.onTap,
+    required this.brand,
+  });
 
   final bool showBorder;
   final void Function()? onTap;
@@ -133,11 +153,10 @@ class BrandCard extends StatelessWidget {
         child: Row(
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            
             // Icon
             Flexible(
               child: CircularImage(
-                isNetworkImage: true,
+                isNetworkImage: GlobalConfig.instance.isNetworkImage,
                 image: brand.image,
                 backgroundColor: Colors.white,
                 // overlayColor: Colors.transparent,
@@ -151,9 +170,14 @@ class BrandCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BrandTitleWithVerifedIcon(title: brand.name, brandTextSize: TextSizes.large),
+                  BrandTitleWithVerifedIcon(
+                    title: brand.name,
+                    brandTextSize: TextSizes.large,
+                  ),
                   Text(
-                    '${brand.productsCount ?? 0} productos', style: Theme.of(context).textTheme.labelMedium, overflow: TextOverflow.ellipsis,
+                    '${brand.productsCount ?? 0} productos',
+                    style: Theme.of(context).textTheme.labelMedium,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),

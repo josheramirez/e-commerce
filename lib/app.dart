@@ -31,7 +31,6 @@ class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     // return GetMaterialApp(
     //   debugShowCheckedModeBanner: false,
     //   theme: ThemeData(
@@ -39,8 +38,6 @@ class App extends StatelessWidget {
     //   ),
     //   home: NavigationMenu()
     // );
-
-    print('en class App');
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,

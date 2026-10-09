@@ -11,6 +11,7 @@ import 'package:e_commerce/features/shop/controllers/cart_controller.dart';
 import 'package:e_commerce/features/shop/controllers/product/product_controller.dart';
 import 'package:e_commerce/features/shop/models/product_model.dart';
 import 'package:e_commerce/features/shop/screens/product_details/product_detail.dart';
+import 'package:e_commerce/global_config.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:e_commerce/utils/constants/enums.dart';
 import 'package:e_commerce/utils/constants/sizes.dart';
@@ -23,14 +24,16 @@ class ProductCardVertical extends StatelessWidget {
   const ProductCardVertical({super.key, required this.product});
 
   final ProductModel product;
-  
+
   @override
   Widget build(BuildContext context) {
-
     final controller = ProductController.intance;
     final cartController = CartController.instance;
-    
-    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
+
+    final salePercentage = controller.calculateSalePercentage(
+      product.price,
+      product.salePrice,
+    );
     final dark = HelperFunctions.isDarkMode(context);
 
     return GestureDetector(
@@ -45,85 +48,97 @@ class ProductCardVertical extends StatelessWidget {
         ),
 
         child: Column(
-           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-              child: Column(
-                children: [
-                  // Image Box
-                  URoundedContainer(
-                    height: 180,
-                    padding: const EdgeInsets.all(USizes.sm),
-                    backgroundColor: UColors.lightGrey,
-                    child: Stack(
-                      children: [
-                        
-                        // Thumbnail Image
-                        RoundedImage(imageUrl: product.thumbnail, applyImageRadius: true, isNetworkImage: true),
-                        
-                        // Sale Tag
-                        if(salePercentage != '0' && salePercentage != null)
+            Column(
+              children: [
+                URoundedContainer(
+                  height: 180,
+                  padding: const EdgeInsets.all(USizes.sm),
+                  backgroundColor: UColors.lightGrey,
+                  child: Stack(
+                    children: [
+                      // [IMAGE]
+                      RoundedImage(
+                        imageUrl: product.thumbnail,
+                        applyImageRadius: true,
+                        isNetworkImage: GlobalConfig.instance.isNetworkImage,
+                      ),
+
+                      // [SALE TAG]
+                      if (salePercentage != '0' && salePercentage != null)
                         Positioned(
                           top: 12,
                           child: URoundedContainer(
                             radius: USizes.sm,
-                            backgroundColor: UColors.yellow.withValues(alpha: 0.9),
+                            backgroundColor: UColors.yellow.withValues(
+                              alpha: 0.9,
+                            ),
                             padding: const EdgeInsets.symmetric(
                               horizontal: USizes.sm,
                               vertical: USizes.xs,
                             ),
-                            child: Text('$salePercentage%', style: Theme.of(context).textTheme.labelLarge!.apply(color: UColors.black)),
+                            child: Text(
+                              '$salePercentage%',
+                              style: Theme.of(context).textTheme.labelLarge!
+                                  .apply(color: UColors.black),
+                            ),
                           ),
                         ),
-                        
-                        // Favorite Icon
-                        Positioned(top: 0, right: 0, child: FavoriteIcon(productId: product.id),
-                        ),
-                        
-                      ],
-                    ),
+
+                      // [FAVORITE ICON]
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: FavoriteIcon(productId: product.id),
+                      ),
+                    ],
                   ),
-                  //
-                  
-                  
-                  Padding(
-                    padding: const EdgeInsets.only(left: USizes.sm, right: USizes.sm),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Name
-                        ProductTitleText(title: product.title, smallSize: false),
-                        // SizedBox(height: USizes.spaceBtwItems / 4),
-                        // Brand
-                        BrandTitleWithVerifiedIcon(title: product.brand!.name),
-                      ]
-                    )
-                  )
-                ],
-              )
+                ),
+                //
+
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: USizes.sm,
+                    right: USizes.sm,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Name
+                      ProductTitleText(title: product.title, smallSize: false),
+                      // SizedBox(height: USizes.spaceBtwItems / 4),
+                      // Brand
+                      BrandTitleWithVerifiedIcon(title: product.brand!.name),
+                    ],
+                  ),
+                ),
+              ],
             ),
 
-            // Details
+            // [DETAILS]
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 // Discount
-                Container(
-                  child:
-                     Column(
-                      children: [
-                        // Original Price with lineThrough becouse have some sale discount
-                        if(product.productType == ProductType.single.toString() && product.salePrice > 0)
-                          Padding(
-                            padding: const EdgeInsets.only(left: USizes.sm),
-                            child: Text(product.price.toString(), style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough)),
+                Column(
+                  children: [
+                    // Original Price with lineThrough becouse have some sale discount
+                    if (product.productType == ProductType.single.toString() &&
+                        product.salePrice > 0)
+                      Padding(
+                        padding: const EdgeInsets.only(left: USizes.sm),
+                        child: Text(
+                          product.price.toString(),
+                          style: Theme.of(context).textTheme.labelMedium!.apply(
+                            decoration: TextDecoration.lineThrough,
                           ),
-                      ],
-                     )
+                        ),
+                      ),
+                  ],
                 ),
 
-                // Price & Button
+                // [PRICE AND BUTTON]
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -143,42 +158,58 @@ class ProductCardVertical extends StatelessWidget {
                         ],
                       ),
                     ),
-        
+
                     // [LEFT SIDE] ADD BUTTON
                     GestureDetector(
-                      onTap:  (){
-                        if (product.productType == ProductType.single.toString()) {
-                          final cartItem = cartController.convertToCartItem(product, 1);
+                      onTap: () {
+                        if (product.productType ==
+                            ProductType.single.toString()) {
+                          final cartItem = cartController.convertToCartItem(
+                            product,
+                            1,
+                          );
                           cartController.addOneToCart(cartItem);
-                        }else{
+                        } else {
                           Get.to(() => ProductDetailScreen(product: product));
                         }
                       },
                       child: Obx(() {
-                        final productQuantityInCart = cartController.getProductQuantityInCart(product.id);
-                                          
+                        final productQuantityInCart = cartController
+                            .getProductQuantityInCart(product.id);
+
                         return Container(
                           width: USizes.iconLg * 1.1,
                           height: USizes.iconLg * 1.1,
                           decoration: BoxDecoration(
-                            color: productQuantityInCart > 0 ? UColors.primary : UColors.dark,
+                            color: productQuantityInCart > 0
+                                ? UColors.primary
+                                : UColors.dark,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(USizes.cardRadiusMd),
-                              bottomRight: Radius.circular(USizes.productImageRadius,),
+                              bottomRight: Radius.circular(
+                                USizes.productImageRadius,
+                              ),
                             ),
                           ),
                           child: Center(
                             child: productQuantityInCart > 0
-                              ? Text(productQuantityInCart.toString(), style: Theme.of(context).textTheme.bodyLarge!.apply(color: UColors.white))
-                              : const Icon(Iconsax.add_copy, color: UColors.white)),
+                                ? Text(
+                                    productQuantityInCart.toString(),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge!
+                                        .apply(color: UColors.white),
+                                  )
+                                : const Icon(
+                                    Iconsax.add_copy,
+                                    color: UColors.white,
+                                  ),
+                          ),
                         );
-                      }
-                      ),
+                      }),
                     ),
                   ],
                 ),
-            
-        
               ],
             ),
           ],

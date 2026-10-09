@@ -20,9 +20,9 @@ class LoginController extends GetxController {
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   final userController = Get.put(UserController());
-  
+
   @override
-  void onInit(){
+  void onInit() {
     // localStorage.writeIfNull('REMEMBER_ME_EMAIL', "");REMEBER_ME_EMAIL
     // localStorage.writeIfNull('REMEMBER_ME_PASSWORD', "");
     email.text = localStorage.read('REMEMBER_ME_EMAIL') ?? '';
@@ -31,10 +31,13 @@ class LoginController extends GetxController {
   }
 
   // Email and Password SignIn
-  Future<void> emailAndPasswordSignIn() async{
+  Future<void> emailAndPasswordSignIn() async {
     try {
       // Start Loading
-      FullScreenLoader.openLoadingDialog("Logging you in...", Images.loadingAnimation);
+      FullScreenLoader.openLoadingDialog(
+        "Logging you in...",
+        Images.loadingAnimation,
+      );
 
       // Check Internet Connection
       final isConnected = await NetworkManager.instance.isConnected();
@@ -44,9 +47,9 @@ class LoginController extends GetxController {
       }
 
       // Form Validation
-      if(!loginFormKey.currentState!.validate()){
+      if (!loginFormKey.currentState!.validate()) {
         //Remove Loader
-        FullScreenLoader.stopLoading(); 
+        FullScreenLoader.stopLoading();
         return;
       }
 
@@ -55,27 +58,32 @@ class LoginController extends GetxController {
         localStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
         localStorage.write('REMEMBER_ME_PASSWORD', password.text.trim());
       }
-      
+
       // Login user using Email and Password Authentication
-      await AuthenticationRepository.instance.loginWithEmailAndPassword(email.text.trim(), password.text.trim());
+      await AuthenticationRepository.instance.loginWithEmailAndPassword(
+        email.text.trim(),
+        password.text.trim(),
+      );
 
       // Remove Loader
       FullScreenLoader.stopLoading();
 
       // Redirect
       AuthenticationRepository.instance.screenRedirect();
-
     } catch (e) {
       FullScreenLoader.stopLoading();
       Loaders.errorSnackBar(title: "Oh Snap", message: e.toString());
     }
   }
 
-  Future<void> googleSignIn() async{
+  Future<void> googleSignIn() async {
     try {
       // Start Loading
-      FullScreenLoader.openLoadingDialog("Logging you in...", Images.loadingAnimation);
-    
+      FullScreenLoader.openLoadingDialog(
+        "Logging you in...",
+        Images.loadingAnimation,
+      );
+
       // Check Internet Connection
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
@@ -84,7 +92,8 @@ class LoginController extends GetxController {
       }
 
       // Google Authentication
-      final userCredentials = await AuthenticationRepository.instance.signInWithGoogle();
+      final userCredentials = await AuthenticationRepository.instance
+          .signInWithGoogle();
 
       // Save User Record
       await userController.saveUserRecord(userCredentials);
@@ -94,21 +103,21 @@ class LoginController extends GetxController {
 
       // Redirect
       AuthenticationRepository.instance.screenRedirect();
-      
     } catch (e) {
       Loaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
+      FullScreenLoader.stopLoading();
     }
   }
 
   Future<UserCredential?> signInWithGoogleWeb() async {
-  // GoogleAuthProvider is highly reliable for web targets
-  GoogleAuthProvider googleProvider = GoogleAuthProvider();
-  
-  try {
-    return await FirebaseAuth.instance.signInWithPopup(googleProvider);
-  } catch (e) {
-    print("Sign-in failed: $e");
-    return null;
+    // GoogleAuthProvider is highly reliable for web targets
+    GoogleAuthProvider googleProvider = GoogleAuthProvider();
+
+    try {
+      return await FirebaseAuth.instance.signInWithPopup(googleProvider);
+    } catch (e) {
+      print("Sign-in failed: $e");
+      return null;
+    }
   }
-}
 }

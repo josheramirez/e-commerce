@@ -40,34 +40,41 @@ class AddressController extends GetxController {
   }
 
   // Fetch All user Addresses
-  Future<List<AddressModel>> getAllUserAddresses() async{
-    
+  Future<List<AddressModel>> getAllUserAddresses() async {
     // Fetch Local data or From Firebase
     if (localData) {
-        try {
-          final addresses = DummyData.addresses;
-          selectedAddress.value = addresses.firstWhere((address) => address.selectedAddress, orElse: () => AddressModel.empty());
-          // print('selected : ${selectedAddress.toJson()}');
-          allAddresses.assignAll(addresses);
-          return addresses;
-        } catch (e) {
-            return [];
-        }
-    }else{
       try {
-        final addresses = await addressRepository.fetchUserAddress();
-        selectedAddress.value = addresses.firstWhere((address) => address.selectedAddress, orElse: () => AddressModel.empty());
+        final addresses = DummyData.addresses;
+        selectedAddress.value = addresses.firstWhere(
+          (address) => address.selectedAddress,
+          orElse: () => AddressModel.empty(),
+        );
+        // print('selected : ${selectedAddress.toJson()}');
+        allAddresses.assignAll(addresses);
         return addresses;
       } catch (e) {
-        Loaders.errorSnackBar(title: 'Direccion no encontrada!', message: e.toString());
+        return [];
+      }
+    } else {
+      try {
+        final addresses = await addressRepository.fetchUserAddress();
+        selectedAddress.value = addresses.firstWhere(
+          (address) => address.selectedAddress,
+          orElse: () => AddressModel.empty(),
+        );
+        return addresses;
+      } catch (e) {
+        Loaders.errorSnackBar(
+          title: 'Direccion no encontrada!',
+          message: e.toString(),
+        );
         return [];
       }
     }
   }
 
-  Future <void> selectAddress(AddressModel newSelectedAddress) async{
+  Future<void> selectAddress(AddressModel newSelectedAddress) async {
     if (localData) {
-
       try {
         //  Get.defaultDialog(
         //   title: '',
@@ -78,41 +85,54 @@ class AddressController extends GetxController {
         // );
 
         // Clear the 'selected' field
-        if(selectedAddress.value.id.isNotEmpty){
-          final oldAddress = allAddresses.firstWhere((address) => address.id == selectedAddress.value.id);
+        if (selectedAddress.value.id.isNotEmpty) {
+          final oldAddress = allAddresses.firstWhere(
+            (address) => address.id == selectedAddress.value.id,
+          );
           final newAddress = oldAddress.copyWith(selectedAddress: false);
-          final postIndex = allAddresses.indexWhere((address) => address.id == selectedAddress.value.id);
-          allAddresses[postIndex] = newAddress;   
+          final postIndex = allAddresses.indexWhere(
+            (address) => address.id == selectedAddress.value.id,
+          );
+          allAddresses[postIndex] = newAddress;
         }
-   
-        allAddresses.forEach((address)=> print(address.toJson()));
+
+        allAddresses.forEach((address) => print(address.toJson()));
 
         // // Assign selected Address
         newSelectedAddress.selectedAddress = true;
         selectedAddress.value = newSelectedAddress;
 
-        final postIndexNewAdress= allAddresses.indexWhere((address) => address.id == selectedAddress.value.id);
+        final postIndexNewAdress = allAddresses.indexWhere(
+          (address) => address.id == selectedAddress.value.id,
+        );
         allAddresses[postIndexNewAdress] = newSelectedAddress;
 
         // // Set the 'selected' field to true for the new selected address
         // await addressRepository.updateSelectedField(selectedAddress.value.id, true);
-
       } catch (e) {
-          Loaders.errorSnackBar(title: 'Error en Seleccion', message: e.toString());
+        Loaders.errorSnackBar(
+          title: 'Error en Seleccion',
+          message: e.toString(),
+        );
       }
-    }else{
+    } else {
       try {
         Get.defaultDialog(
           title: '',
-          onWillPop: () async {return false;},
+          onWillPop: () async {
+            return false;
+          },
           barrierDismissible: false,
           backgroundColor: Colors.transparent,
-          content: const CircularProgressIndicator()
+          content: const CircularProgressIndicator(),
         );
 
         // Clear the 'selected' field
-        if(selectedAddress.value.id.isNotEmpty){
-          await addressRepository.updateSelectedField(selectedAddress.value.id, false);
+        if (selectedAddress.value.id.isNotEmpty) {
+          await addressRepository.updateSelectedField(
+            selectedAddress.value.id,
+            false,
+          );
         }
 
         // Assign selected Address
@@ -120,20 +140,28 @@ class AddressController extends GetxController {
         selectedAddress.value = newSelectedAddress;
 
         // Set the 'selected' field to true for the new selected address
-        await addressRepository.updateSelectedField(selectedAddress.value.id, true);
-
+        await addressRepository.updateSelectedField(
+          selectedAddress.value.id,
+          true,
+        );
       } catch (e) {
-        Loaders.errorSnackBar(title: 'Error en Seleccion', message: e.toString());
+        Loaders.errorSnackBar(
+          title: 'Error en Seleccion',
+          message: e.toString(),
+        );
       }
     }
   }
 
   // Add new Address
-  Future addNewAddress() async{
+  Future addNewAddress() async {
     try {
-       // Start Loading
-      FullScreenLoader.openLoadingDialog('Guardando Direccion', Images.loadingAnimation);
-      
+      // Start Loading
+      FullScreenLoader.openLoadingDialog(
+        'Guardando Direccion',
+        Images.loadingAnimation,
+      );
+
       // Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
@@ -149,13 +177,13 @@ class AddressController extends GetxController {
 
       // Save Address Data
       final address = AddressModel(
-        id: '', 
-        name: name.text.trim(), 
-        phoneNumber: phoneNumber.text.trim(), 
-        street: street.text.trim(), 
-        city: city.text.trim(), 
-        state: state.text.trim(), 
-        postalCode: postalCode.text.trim(), 
+        id: '',
+        name: name.text.trim(),
+        phoneNumber: phoneNumber.text.trim(),
+        street: street.text.trim(),
+        city: city.text.trim(),
+        state: state.text.trim(),
+        postalCode: postalCode.text.trim(),
         country: country.text.trim(),
         selectedAddress: true,
       );
@@ -170,7 +198,10 @@ class AddressController extends GetxController {
       FullScreenLoader.stopLoading();
 
       // Show Success Message
-      Loaders.successSnackBar(title: "Felicitaciones", message: 'Tu direccion ha sido guardad.');
+      Loaders.successSnackBar(
+        title: "Felicitaciones",
+        message: 'Tu direccion ha sido guardad.',
+      );
 
       // Refresh Addresses Data
       refreshData.toggle();
@@ -180,21 +211,23 @@ class AddressController extends GetxController {
 
       // Redirect
       Navigator.of(Get.context!).pop();
-
     } catch (e) {
       FullScreenLoader.stopLoading();
-      Loaders.errorSnackBar(title: 'Direccion no encontrada', message: e.toString());
+      Loaders.errorSnackBar(
+        title: 'Direccion no encontrada',
+        message: e.toString(),
+      );
     }
   }
 
   // Reset all values
-  void resetFormFields(){ 
+  void resetFormFields() {
     name.clear();
-    phoneNumber.clear(); 
-    street.clear(); 
-    city.clear(); 
+    phoneNumber.clear();
+    street.clear();
+    city.clear();
     state.clear();
-    postalCode.clear(); 
+    postalCode.clear();
     country.clear();
     addressFormKey.currentState?.reset();
   }
@@ -203,45 +236,59 @@ class AddressController extends GetxController {
   Future<dynamic> selectNewAddressPopup(BuildContext context) {
     return showModalBottomSheet(
       context: context,
-      builder: (_) => Container(
-        padding: const EdgeInsets.all(USizes.lg),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SectionHeading(title: 'Seleccionar Direccion'),
-            FutureBuilder(
-              future: getAllUserAddresses(),
-              builder: (_, snapshot){
+      builder: (_) => SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(USizes.lg),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SectionHeading(
+                title: 'Seleccionar Direccion',
+                showActionButton: false,
+              ),
+              SizedBox(height: USizes.spaceBtwItems),
+              FutureBuilder(
+                future: getAllUserAddresses(),
+                builder: (_, snapshot) {
+                  if (!snapshot.hasData ||
+                      snapshot.data == null ||
+                      snapshot.data!.isEmpty) {
+                    return const Center(child: Text('No Hay Datos'));
+                  }
+                  if (snapshot.hasError) {
+                    return const Center(child: Text('Hubo un error.'));
+                  }
 
-                if (!snapshot.hasData || snapshot.data == null || snapshot.data!.isEmpty) {
-                  return const Center(child: Text('No Hay Datos'));
-                }
-                if (snapshot.hasError) return const Center(child: Text('Hubo un error.'));
+                  final addresses = snapshot.data!;
 
-                final addresses = snapshot.data!;
-
-                return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: addresses.length,
-                  itemBuilder: (_, index) => SingleAddress(
-                    address: addresses[index],
-                    onTap: () async {
-                      await selectedAddress(addresses[index]);
-                      Get.back();
-                    }
-                  )
-                );
-              }
-            ),
-            const SizedBox(height: USizes.defaultSpace * 2),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(onPressed: () => Get.to(() => AddNewAddressScreen()), child: const Text('Agregar nueva direccion')),
-            )
-          ],
+                  return ListView.separated(
+                    physics: NeverScrollableScrollPhysics(),
+                    separatorBuilder: (context, index) =>
+                        SizedBox(height: USizes.spaceBtwItems),
+                    shrinkWrap: true,
+                    itemCount: addresses.length,
+                    itemBuilder: (_, index) => SingleAddress(
+                      address: addresses[index],
+                      onTap: () async {
+                        selectedAddress(addresses[index]);
+                        Get.back();
+                      },
+                    ),
+                  );
+                },
+              ),
+              const SizedBox(height: USizes.defaultSpace * 2),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () => Get.to(() => AddNewAddressScreen()),
+                  child: const Text('Agregar nueva direccion'),
+                ),
+              ),
+            ],
+          ),
         ),
-      )
+      ),
     );
-    
   }
 }

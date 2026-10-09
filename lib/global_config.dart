@@ -4,7 +4,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 class GlobalConfig extends GetxController {
   static GlobalConfig get instance => Get.find();
-  
-  final localData = true.obs;
 
+  final localData = true.obs;
+  final isNetworkImage = false;
 }
