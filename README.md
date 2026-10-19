@@ -18,3 +18,6 @@ samples, guidance on mobile development, and a full API reference.
 
 # RUN LOCAL
 flutter run -d edge --web-browser-flag "--disable-web-security"
+
+<!-- run local localhost 500 register in google cloud -->
+flutter run -d web-server --web-hostname localhost --web-port 5000

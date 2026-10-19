@@ -20,6 +20,7 @@ class ProductsAttributes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = VariationController.instance;
+    controller.getAttributesMap(product);
     final dark = HelperFunctions.isDarkMode(context);
 
     return Obx(      
@@ -92,43 +93,101 @@ class ProductsAttributes extends StatelessWidget {
           // [VARIATION ATRIBUTES] 
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: product.productAttributes!.map((attribute) => Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+            children: product.productAttributes!.map((attribute) => 
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
 
-                // Attribute Name
-                SectionHeading(title: attribute.name ?? '', showActionButton: false),
-                SizedBox(height: USizes.spaceBtwItems/2),
-                
-                // Attribute Values
-                Obx(
-                  () => Wrap(
-                    direction: Axis.horizontal,
-                    spacing: 8,
-                    runSpacing: 16.0,
-                    children: attribute.values!.map((attributeValue) {
-                      final isSelected = controller.selectedAttributes[attribute.name] == attributeValue;
-                      final available = controller
-                      .getAttributesAvailabilityInVariation(product.productVariations!, attribute.name!)
-                      .contains(attributeValue);
+                  // Attribute Name
+                  SectionHeading(title: attribute.name ?? '', showActionButton: false),
+                  SizedBox(height: USizes.spaceBtwItems/2),
                   
-                      return UChoiceChip(
-                        text: attributeValue, 
-                        selected: isSelected, 
-                        onSelected: available ? 
-                          (selected){
-                            if(selected && available){
-                              controller.onAttributeSelected(product, attribute.name ?? '', attributeValue);
+                  // Attribute Values
+                  Obx(
+                    () => Wrap(
+                      direction: Axis.horizontal,
+                      spacing: 8,
+                      runSpacing: 16.0,
+                      children: attribute.values!.map((attributeValue) {
+                        final isSelected = controller.selectedAttributes[attribute.name] == attributeValue;
+                        bool available = controller
+                        .getAttributesAvailabilityInVariation(product.productVariations!, attribute.name!)
+                        .contains(attributeValue);
+
+                    // print('isSelected: $isSelected for attribute: ${attribute.name} and value: $attributeValue');
+                    // print('available: $available for attribute: ${attribute.name} and value: $attributeValue');
+                    // print('selectedAttributes: ${controller.selectedAttributes} for attribute: ${attribute.name} and value: $attributeValue');
+
+print('in attribute: ${attribute.name} and value: $attributeValue');
+print('controller.attributesMap.length: ${controller.attributesMap.length} for attribute: ${attribute.name} and value: $attributeValue');
+
+if(controller.attributesMap.length >1){
+  for (var disabledOption in controller.disabledOptions) {
+    // Check if the current attribute and value is in the disabled options
+    if (disabledOption[attribute.name] == attributeValue) {
+        int keyLength = disabledOption.keys.length;
+
+        // position in disabledOption of the current attribute name (Color or Model)
+        int index = disabledOption.keys.toList().indexOf(attribute.name.toString());
+
+        // position in attributeMap of the last key (last selected button) in the disabledOption map
+        // 0 for Color, 1 for Model
+        int indexInMap = controller.attributesMap.indexOf(disabledOption.keys.last);
+
+        final lastKeyDisabledOption = disabledOption.keys.last;
+
+        print('index in MAp is $indexInMap , keyLength: $keyLength');
+        print('disabledOptions: ${controller.disabledOptions}');
+        print('first key ,  ${disabledOption[disabledOption.keys.first]}');
+        print('last key ,  ${disabledOption[disabledOption.keys.last]}');
+        print('selectedAttributes: ${controller.selectedAttributes}');
+
+        // if is the last element in the disabledOption and first element selected are the same then block the other attribute
+        if (index == keyLength - 1 && controller.selectedAttributes[disabledOption.keys.first] == disabledOption[disabledOption.keys.first]) {
+            print('DISABLED OPTION: $disabledOption for attribute: ${attribute.name} and value: $attributeValue');
+            available = false; // Mark as unavailable if it's the last key in the disabled option
+        } 
+
+        // if is the last element in the disabledOption and first element selected are the same then block the other attribute
+        if (index == 0 && controller.selectedAttributes[disabledOption.keys.last] == disabledOption[disabledOption.keys.last]) {
+            print('DISABLED OPTION: $disabledOption for attribute: ${attribute.name} and value: $attributeValue');
+            available = false; // Mark as unavailable if it's the last key in the disabled option
+        } 
+
+        // // if last selected is Model i need to block Color
+        // if (indexInMap == 1 && attributeValue == disabledOption[disabledOption.keys.first]) {
+        //     print('DISABLED OPTION: $disabledOption for attribute: ${attribute.name} and value: $attributeValue');
+        //     available = false; // Mark as unavailable if it's the last key in the disabled option
+        // } 
+
+
+        // // if last selected is Color i need to block Model
+        // if ( indexInMap == 0 && attributeValue == disabledOption[disabledOption.keys.first]) {
+        //     print('DISABLED OPTION: $disabledOption for attribute: ${attribute.name} and value: $attributeValue');
+        //     available = false; // Mark as unavailable if it's the last key in the disabled option
+        // } 
+    }
+  }
+}
+
+                        return UChoiceChip(
+                          text: attributeValue, 
+                          selected: isSelected, 
+                          onSelected: 
+                            available ? 
+                            (selected){
+                              if(selected && available){
+                                controller.onAttributeSelected(product, attribute.name ?? '', attributeValue);
+                              }
                             }
-                          }
-                          :
-                          null
-                      );
-                    }).toList()
-                  ),
-                )
-              ],
-            )
+                            :
+                            null
+                        );
+                      }).toList()
+                    ),
+                  )
+                ],
+              )
             ).toList()
           ),
          

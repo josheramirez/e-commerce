@@ -23,6 +23,7 @@ import 'package:flutter/material.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
 
 class DummyData {
+  
   // User
   static final UserModel user = UserModel(
     id: 'user_0',
@@ -150,6 +151,13 @@ class DummyData {
       image: Images.onePieceTcgBrand,
       parentId: '12',
       isFeatured: false,
+    ),
+
+    CategoryModel(
+      id: '17',
+      name: 'Lego',
+      image: Images.legoBrandLogo,
+      isFeatured: true,
     ),
   ];
 
@@ -308,8 +316,11 @@ class DummyData {
     ),
   ];
 
-  /// List of all products - 10 Products
+  /// List of all products
   static final List<ProductModel> products = [
+    
+    // [WARHAMMER]
+    
     // 001
     ProductModel(
       id: '1',
@@ -432,179 +443,6 @@ class DummyData {
       productType: 'ProductType.single',
     ),
 
-    // 008
-    ProductModel(
-      id: '8',
-      title: 'Kisame',
-      stock: 2,
-      price: 3000,
-      thumbnail: Images.productImage8,
-      description:
-          'En el manga Naruto el personaje Kisame Hoshigaki es un poderoso shinobi renegado de Kirigakure (Aldea Oculta de la Niebla) y miembro de la organización Akatsuki, conocido como el "Monstruo de la Niebla" y el "Bijū sin cola".',
-      salePrice: 2500,
-      brand: brands[1],
-      sku: 'WM2096',
-      categoryId: '4',
-      productType: 'ProductType.single',
-    ),
-
-    // 009
-    ProductModel(
-      id: '9',
-      title: 'Itachi',
-      stock: 1,
-      price: 3000,
-      thumbnail: Images.productImage9,
-      description:
-          "Itachi Uchiha es un shinobi prodigio de Konoha, miembro del Clan Uchiha, y uno de los personajes más complejos de la serie Naruto.",
-      brand: brands[1],
-      sku: 'WM2092',
-      categoryId: '4',
-      productType: 'ProductType.single',
-    ),
-
-    // 010
-    ProductModel(
-      id: '10',
-      title: 'Madara',
-      brand: brands[1],
-      thumbnail: Images.productImage10,
-      description:
-          "Madara Uchiha (うちはマダラ Uchiha Madara?) es un personaje antagónico de la serie de manga Naruto, escrita e ilustrada por Masashi Kishimoto. Antes del comienzo de la historia llegó a convertirse en la figura principal de su clan, y era una reencarnación de Indra Ōtsutsuki, así como uno de los ninjas más poderosos de todos los tiempos. ",
-      price: 3000,
-      stock: 2,
-      categoryId: '4',
-      sku: 'WM2094',
-      productType: 'ProductType.single',
-    ),
-
-    // 011
-    ProductModel(
-      id: '11',
-      title: 'SPACE MARINE DREADNOUGHT',
-      stock: 3,
-      price: 25000,
-      isFeatured: true,
-      thumbnail: Images.productImage11a,
-      description:
-          'Un Dreadnought en Warhammer 40,000 es una imponente y pesada máquina de guerra bípeda pilotada por un Marine Espacial que ha sufrido heridas mortales en combate',
-      brand: brands[0],
-      images: [
-        Images.productImage11b,
-        Images.productImage11c,
-        Images.productImage11d,
-      ],
-      sku: 'WAR02',
-      categoryId: '1',
-      productAttributes: [
-        ProductAttributeModel(
-          name: 'Model',
-          values: [
-            'Brutalis Dreadnought',
-            'Ballistus Dreadnought',
-            'Primaris Redemptor Dreadnought',
-          ],
-        ),
-      ],
-      productVariations: [
-        ProductVariationModel(
-          id: '1',
-          stock: 1,
-          salePrice: 10000,
-          price: 15000,
-          image: Images.productImage11b,
-          description:
-              'El Brutalis Dreadnought es un rompelíneas y un arma de terror: un andador de combate bípedo, armado para el combate cuerpo a cuerpo y pilotado por un héroe caído de su Capítulo. Esta imponente máquina de guerra desata una lluvia de fuego de cobertura mientras avanza hacia las líneas enemigas, pero la mayor amenaza reside en sus enormes brazos. Equipados con puños aplastantes o garras recubiertas de ceramita, estos pueden aplastar a un guerrero acorazado como si fuera fruta podrida o atravesar la pared de un búnker como si fuera pergamino. Este kit de plástico multicomponente permite construir un Brutalis Dreadnought, una imponente máquina de guerra centrada en el combate cuerpo a cuerpo. ',
-          attributeValues: {'Model': 'Brutalis Dreadnought'},
-          sku: 'WAR02a',
-        ),
-
-        ProductVariationModel(
-          id: '2',
-          stock: 1,
-          price: 25000,
-          image: Images.productImage11c,
-          description:
-              'El Dreadnought Ballistus es una torreta andante. En el interior de un sarcófago blindado, en el corazón de este andador de combate, reposan los restos mortales de un héroe caído del Capítulo. Este guerrero eterno pilota su imponente máquina de guerra mediante una red de enlaces neuronales, apuntando a la armadura enemiga o a la infantería de élite con baterías de devastadoras armas pesadas. Este kit de plástico multicomponente permite construir un Dreadnought Ballistus, una aterradora máquina de guerra repleta de armamento de largo alcance. Este poderoso andador de combate cuenta con bólteres de asalto gemelos montados en su parte frontal y está equipado con un conjunto de cañones láser.',
-          attributeValues: {'Model': 'Ballistus Dreadnought'},
-          sku: 'WAR02b',
-        ),
-
-        ProductVariationModel(
-          id: '3',
-          stock: 1,
-          price: 35000,
-          image: Images.productImage11d,
-          description:
-              'Los Dreadnoughts Redemptor son máquinas de guerra gigantescas que trituran huesos y hacen añicos cráneos mientras se abren paso a golpes entre las filas enemigas. Más altos, anchos y de construcción más ingeniosa que los Dreadnoughts de diseño tradicional, estos colosos del combate funcionan gracias a reactores de hiperdensidad y sofisticados haces de fibra. Son capaces de pasar de una pisada pesada y retumbante a una zancada atronadora que hace temblar el suelo, avanzando a toda velocidad entre lluvias de fuego con un desafío glorioso. El diseño de los enlaces neuronales del Redemptor es tan prodigioso que su piloto, a pesar de estar encerrado en el sarcófago situado en el pecho del Dreadnought, puede controlarlo con una destreza y velocidad sorprendentes.\nEste kit de plástico multicomponente contiene las piezas necesarias para montar un Dreadnought Redemptor Primaris.',
-          attributeValues: {'Model': 'Primaris Redemptor Dreadnought'},
-          sku: 'WAR02c',
-        ),
-      ],
-      productType: 'ProductType.variable',
-    ),
-
-    // 012
-    ProductModel(
-      id: '12',
-      title: 'Manual Jugador, Dungeons & Dragons',
-      brand: brands[7],
-      thumbnail: Images.productImage12,
-      description:
-          "Esta versión revisada y ampliada del Player’s Handbook contiene reglas de creación y desarrollo de personajes, exploración, combate, equipo, conjuros y mucho más. Crea héroes de fantasía de D&D a partir de una gran selección de orígenes, clases y subclases para personajes. Explora ruinas antiguas y mazmorras letales, enfréntate a monstruos en tu búsqueda de tesoros legendarios y adquiere experiencia y poder mientras recorres territorios ignotos junto a tus compañeros.",
-      price: 20000,
-      stock: 2,
-      categoryId: '11',
-      sku: 'ROL001',
-      productType: 'ProductType.single',
-    ),
-
-    // 013
-    ProductModel(
-      id: '13',
-      title: 'Ranger Black/Blue - Adventure Dice',
-      brand: brands[7],
-      thumbnail: Images.productImage13,
-      description:
-          "Sigue el rastro de tu presa con este set oficial para Ranger, donde precisión, instinto y dominio de la naturaleza se reflejan en cada tirada. Sus tonos negro y azul acompañan a quienes avanzan con sigilo hacia lo desconocido.\n🎨 Características: Set de 14 dados en tonos negro y azul, diseñado para personajes Ranger de Dungeons & Dragons.\n🧾 Especificaciones: 2 d4, 4 d6, 2 d8, 2 d10, 1 d%, 1 d12 y 2 d20; 14 dados en total.\n💡 Consejo PiedraBruja: Guarda el set en un estuche o bandeja para proteger sus colores y mantenerlo listo para cada aventura.\n🎯 Ideal para: Jugadores de Dungeons & Dragons, personajes Ranger y coleccionistas de accesorios oficiales.",
-      price: 10000,
-      stock: 1,
-      categoryId: '11',
-      sku: 'ROL002',
-      productType: 'ProductType.single',
-    ),
-
-    // 014
-    ProductModel(
-      id: '14',
-      title: 'Shinto Saw Rasp, Esccofina Japonesa',
-      brand: brands[7],
-      images: [Images.productImage14b, Images.productImage14c],
-      thumbnail: Images.productImage14a,
-      description:
-          "Esta escofina para madera de doble cara de Shinto cuenta con dientes gruesos en un lado y dientes finos en el otro, lo que la hace perfecta para dar forma a sus proyectos de carpintería. La herramienta dispone de un mango duradero de elastómero unido a la escofina mediante una estructura cónica, lo que permite sujetarla cómodamente por ambos extremos para lograr una gran precisión y control durante su uso. Los dientes presentan un diseño de patrón de diamante y están unidos mediante remaches, lo que evita que el serrín obstruya la herramienta y facilita su limpieza cuando es necesario.\nEl lado de dientes gruesos permite eliminar grandes cantidades de madera de forma rápida y eficaz —ideal para el desbastado y el modelado—, mientras que el lado de dientes finos se utiliza para refinar y alisar la superficie antes del lijado.",
-      price: 25000,
-      stock: 2,
-      categoryId: '10',
-      sku: 'TOOL002',
-      productType: 'ProductType.single',
-    ),
-
-    // 015
-    ProductModel(
-      id: '15',
-      title: 'Ranger Black/Blue - Adventure Dice',
-      brand: brands[7],
-      thumbnail: Images.productImage15a,
-      description:
-          "Utensilios de cocina Cascanueces, marco de metal resistente, base de madera diseñada y mango resistente, resistente y duradero.\nEl clip mecánico de nogal puede ajustar el tamaño del espacio (diámetro máximo de 4,5 CM), utilizando el principio de palanca, fácil de operar. Después de que se agrieta la piel de la nuez, la nuez puede parecer intacta, evitando desperdicios innecesarios.\nFácil de instalar y ampliamente utilizado: Instalado en una hermosa base de madera, fácil de colocar en el escritorio para garantizar un funcionamiento estable. Ideal para partir nueces duras y blandas como nueces, avellanas, nueces de Brasil, etc.\nAlta calidad La galleta está hecha de metal resistente con una atractiva base de madera y empuñadura, sólida y duradera, que brinda un rendimiento confiable y una larga vida útil.\nBase de madera El montaje en una hermosa base de madera dura es fácil de colocar en el escritorio y garantiza un funcionamiento estable",
-      price: 30000,
-      stock: 2,
-      categoryId: '10',
-      sku: 'TOOL001',
-      productType: 'ProductType.single',
-    ),
-
     // 016
     ProductModel(
       id: '16',
@@ -679,7 +517,7 @@ class DummyData {
     // 020
     ProductModel(
       id: '20',
-      title: 'Emperor of Mankind',
+      title: 'Emperador de la Humanidad',
       brand: brands[0],
       thumbnail: Images.productImage20,
       description:
@@ -729,6 +567,1464 @@ class DummyData {
       sku: '',
       productType: 'ProductType.single',
       size: "120mm",
+    ),
+    
+    // 011
+    ProductModel(
+      id: '11',
+      title: 'SPACE MARINE DREADNOUGHT',
+      stock: 3,
+      price: 25000,
+      isFeatured: true,
+      thumbnail: Images.productImage11a,
+      description:
+          'Un Dreadnought en Warhammer 40,000 es una imponente y pesada máquina de guerra bípeda pilotada por un Marine Espacial que ha sufrido heridas mortales en combate',
+      brand: brands[0],
+      images: [
+        Images.productImage11b,
+        Images.productImage11c,
+        Images.productImage11d,
+      ],
+      sku: 'WAR02',
+      categoryId: '1',
+      productAttributes: [
+        ProductAttributeModel(
+          name: 'Model',
+          values: [
+            'Brutalis Dreadnought',
+            'Ballistus Dreadnought',
+            'Primaris Redemptor Dreadnought',
+          ],
+        ),
+      ],
+      productVariations: [
+        ProductVariationModel(
+          id: '1',
+          stock: 1,
+          salePrice: 10000,
+          price: 15000,
+          image: Images.productImage11b,
+          description:
+              'El Brutalis Dreadnought es un rompelíneas y un arma de terror: un andador de combate bípedo, armado para el combate cuerpo a cuerpo y pilotado por un héroe caído de su Capítulo. Esta imponente máquina de guerra desata una lluvia de fuego de cobertura mientras avanza hacia las líneas enemigas, pero la mayor amenaza reside en sus enormes brazos. Equipados con puños aplastantes o garras recubiertas de ceramita, estos pueden aplastar a un guerrero acorazado como si fuera fruta podrida o atravesar la pared de un búnker como si fuera pergamino. Este kit de plástico multicomponente permite construir un Brutalis Dreadnought, una imponente máquina de guerra centrada en el combate cuerpo a cuerpo. ',
+          attributeValues: {'Model': 'Brutalis Dreadnought'},
+          sku: 'WAR02a',
+        ),
+
+        ProductVariationModel(
+          id: '2',
+          stock: 1,
+          price: 25000,
+          image: Images.productImage11c,
+          description:
+              'El Dreadnought Ballistus es una torreta andante. En el interior de un sarcófago blindado, en el corazón de este andador de combate, reposan los restos mortales de un héroe caído del Capítulo. Este guerrero eterno pilota su imponente máquina de guerra mediante una red de enlaces neuronales, apuntando a la armadura enemiga o a la infantería de élite con baterías de devastadoras armas pesadas. Este kit de plástico multicomponente permite construir un Dreadnought Ballistus, una aterradora máquina de guerra repleta de armamento de largo alcance. Este poderoso andador de combate cuenta con bólteres de asalto gemelos montados en su parte frontal y está equipado con un conjunto de cañones láser.',
+          attributeValues: {'Model': 'Ballistus Dreadnought'},
+          sku: 'WAR02b',
+        ),
+
+        ProductVariationModel(
+          id: '3',
+          stock: 1,
+          price: 35000,
+          image: Images.productImage11d,
+          description:
+              'Los Dreadnoughts Redemptor son máquinas de guerra gigantescas que trituran huesos y hacen añicos cráneos mientras se abren paso a golpes entre las filas enemigas. Más altos, anchos y de construcción más ingeniosa que los Dreadnoughts de diseño tradicional, estos colosos del combate funcionan gracias a reactores de hiperdensidad y sofisticados haces de fibra. Son capaces de pasar de una pisada pesada y retumbante a una zancada atronadora que hace temblar el suelo, avanzando a toda velocidad entre lluvias de fuego con un desafío glorioso. El diseño de los enlaces neuronales del Redemptor es tan prodigioso que su piloto, a pesar de estar encerrado en el sarcófago situado en el pecho del Dreadnought, puede controlarlo con una destreza y velocidad sorprendentes.\nEste kit de plástico multicomponente contiene las piezas necesarias para montar un Dreadnought Redemptor Primaris.',
+          attributeValues: {'Model': 'Primaris Redemptor Dreadnought'},
+          sku: 'WAR02c',
+        ),
+      ],
+      productType: 'ProductType.variable',
+    ),
+
+    // [LEGO]
+    
+    // 008
+    ProductModel(
+      id: '8',
+      title: 'Kisame',
+      stock: 2,
+      price: 3000,
+      thumbnail: Images.productImage8,
+      description:
+          'En el manga Naruto el personaje Kisame Hoshigaki es un poderoso shinobi renegado de Kirigakure (Aldea Oculta de la Niebla) y miembro de la organización Akatsuki, conocido como el "Monstruo de la Niebla" y el "Bijū sin cola".',
+      salePrice: 2500,
+      brand: brands[1],
+      sku: 'WM2096',
+      categoryId: '4',
+      productType: 'ProductType.single',
+    ),
+
+    // 009
+    ProductModel(
+      id: '9',
+      title: 'Itachi',
+      stock: 1,
+      price: 3000,
+      thumbnail: Images.productImage9,
+      description:
+          "Itachi Uchiha es un shinobi prodigio de Konoha, miembro del Clan Uchiha, y uno de los personajes más complejos de la serie Naruto.",
+      brand: brands[1],
+      sku: 'WM2092',
+      categoryId: '4',
+      productType: 'ProductType.single',
+    ),
+
+    // 010
+    ProductModel(
+      id: '10',
+      title: 'Madara',
+      brand: brands[1],
+      thumbnail: Images.productImage10,
+      description:
+          "Madara Uchiha (うちはマダラ Uchiha Madara?) es un personaje antagónico de la serie de manga Naruto, escrita e ilustrada por Masashi Kishimoto. Antes del comienzo de la historia llegó a convertirse en la figura principal de su clan, y era una reencarnación de Indra Ōtsutsuki, así como uno de los ninjas más poderosos de todos los tiempos. ",
+      price: 3000,
+      stock: 2,
+      categoryId: '4',
+      sku: 'WM2094',
+      productType: 'ProductType.single',
+    ),
+
+    // 023
+    ProductModel(
+      id: '23',
+      title: 'Zetsu',
+      brand: brands[1],
+      thumbnail: Images.productImage23,
+      description:
+          "Zetsu (ゼツ Zetsu) es un miembro de Akatsuki y uno de los subordinados más leales de Tobi, pero se conoce muy poco sobre sus habilidades, su origen y sus actuaciones en la organización. Lleva el anillo con el kanji 亥 (Genbu: Tortuga), en el dedo meñique derecho. La mitad negra es conocido como Zetsu Negro (黒ゼツ, Kuro-Zetsu) mientras que la mitad blanca se conoce como Zetsu Blanco (白ゼツ, Shiro-Zetsu). La parte blanca fue creada mediante el uso de las células de Hashirama Senju pero no se sabe de donde proviene la parte negra. ",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: 'WM2093',
+      productType: 'ProductType.single',
+    ),
+
+    // 024
+    ProductModel(
+      id: '24',
+      title: 'Deidara',
+      brand: brands[1],
+      thumbnail: Images.productImage24,
+      description: "Deidara (デイダラ, Deidara) Era un miembro de la Organización Akatsuki. Llevaba el anillo 青龍 (せいりゅう, Seiryuu, Dragón azul/verde, Dios del Este y de la Primavera), en el dedo índice derecho. Su compañero era Tobi, aunque antiguamente fue Sasori.",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: 'WM2095',
+      productType: 'ProductType.single',
+    ),
+
+    // 025
+    ProductModel(
+      id: '25',
+      title: 'Sasori',
+      brand: brands[1],
+      thumbnail: Images.productImage25,
+      description: "Sasori (サソリ), también conocido como Sasori de la Arena Roja (赤 砂 の サソリ, Akasuna no Sasori), era el nieto de Chiyo y miembro de Akatsuki, Tenia como compañero a Deidara y antes a Orochimaru. ",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: 'WM2085',
+      productType: 'ProductType.single',
+    ),
+    
+    // 026
+    ProductModel(
+      id: '26',
+      title: 'Hidan',
+      brand: brands[1],
+      thumbnail: Images.productImage26,
+      description: "Hidan (飛段, Hidan) era un miembro de la Organización Akatsuki. Su compañero era Kakuzu, a pesar de tener aversión mutua el uno al otro. Llevaba el anillo  'Tres' (三, San) en el dedo índice izquierdo. Era el miembro más nuevo de Akatsuki, Kisame se refería peyorativamente a Hidan y Kakuzu como el 'Combo Zombie' (ゾンビコンビ, Zonbi Konbi) debido al hecho de que en cierto sentido, no podían morir. ",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: 'WM2086',
+      productType: 'ProductType.single',
+    ),
+
+    // 027
+    ProductModel(
+      id: '27',
+      title: 'Kakuzu',
+      brand: brands[1],
+      thumbnail: Images.productImage27,
+      description: "Kakuzu (角都, Kakuzu) fue un ninja renegado de Takigakure y miembro de Akatsuki. Su compañero fue Hidan. Llevaba el anillo 'Norte' (北, Hoku) en el dedo medio izquierdo. A pesar de la mutua antipatía entre ambos, su trabajo en equipo fue casi perfecto, porque se complementaban mutuamente. Kisame Hoshigaki se refería peyorativamente a Hidan y Kakuzu como el 'Combo Zombie' (ゾンビコンビ, Zonbi Konbi), ya que prácticamente no podían morir.",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: 'WM2087',
+      productType: 'ProductType.single',
+    ),
+
+    // 028
+    ProductModel(
+      id: '28',
+      title: 'konan',
+      brand: brands[1],
+      thumbnail: Images.productImage28,
+      description: "Konan (小南, Konan) era una kunoichi de Amegakure y único miembro femenino de Akatsuki. Llevaba el anillo 'Blanco' (白, Bya) en el dedo corazón derecho. Después de la muerte de Nagato, ella desertó de la organización y se convirtió en la líder de Amegakure. Poseía un talento natural para el origami. ",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: 'WM2090',
+      productType: 'ProductType.single',
+    ),
+
+    // 029
+    ProductModel(
+      id: '29',
+      title: 'Nagato',
+      brand: brands[1],
+      thumbnail: Images.productImage29,
+      description: "Nagato (長門, Nagato), mejor conocido como Pain (ペイン, Pein), era uno de los más poderosos shinobi, y el líder reconocido de Akatsuki y de Amegakure. Todos los miembros de Akatsuki se referían a él como “Líder”, excepto Konan quien lo llamaba por su nombre, Pain. Llevaba el anillo Cero (零, Rei) en el dedo pulgar derecho. También era usuario del dōjutsu legendario, el Rinnegan, que fue dado por Madara Uchiha antes de su muerte e implantado en Nagato cuando solo era un niño. En su estadía en la organización trabajaba con Konan y recibía órdenes de Obito desde las sombras. ",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: 'WM2091',
+      productType: 'ProductType.single',
+    ),
+
+    // 030
+    ProductModel(
+      id: '30',
+      title: 'Yahiko',
+      brand: brands[1],
+      thumbnail: Images.productImage30,
+      description: "Yahiko (弥彦, Yahiko) fue el fundador de la organización Akatsuki y perteneció a los Huérfanos de la Lluvia, junto a Nagato y Konan, que fueron entrenados por Jiraiya poco después de la Segunda Guerra Mundial Shinobi. Luego de su muerte, Nagato utilizó el cuerpo de Yahiko para que fuera el Camino Deva de los Seis Caminos del Dolor. ",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: 'WM2089',
+      productType: 'ProductType.single',
+    ),
+    
+    // 031
+    ProductModel(
+      id: '31',
+      title: 'Caballeros dorados, Saint Seiya',
+      brand: brands[1],
+      thumbnail: Images.productImage31,
+      description: "Los Gold Saints (黄金聖闘士, Gōrudo Seinto), también llamados Caballeros Dorados o Caballeros de Oro en el doblaje hispanoamericano del anime y en algunas traducciones oficiales del manga de Saint Seiya, son los guerreros de élite del ejército de Athena, que ostentan con orgullo un rango superior al de los Silver y Bronze Saints. ",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+     // 032
+    ProductModel(
+      id: '32',
+      title: 'Aiolia de Leo, Saint Seiya',
+      brand: brands[1],
+      thumbnail: Images.productImage32,
+      description: "Aiolia (アイオリア, Aioria) es el Santo de Oro de Leo del siglo XX en el anime y manga Saint Seeya. Es el Santo de Oro que protege la Casa de Leo.",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 033
+    ProductModel(
+      id: '33',
+      title: 'Aiolos de Sagitario, Saint Seiya',
+      brand: brands[1],
+      thumbnail: Images.productImage33,
+      description: "Aiolos (アイオロス, Aiorosu) fue el Santo de Oro de Sagittarius del siglo XX en el anime y manga Saint Seiya. Es el Santo de Oro que protege la Casa de Sagitario.",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 034
+    ProductModel(
+      id: '34',
+      title: 'Milo de Scorpion, Saint Seiya',
+      brand: brands[1],
+      thumbnail: Images.productImage34,
+      description: "Milo (ミロ, Miro) fue el Santo de Oro de Scorpius del siglo XX en el anime y manga Saint Seiya. Es el Santo de Oro que protege la Casa de Escorpio.",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 035
+    ProductModel(
+      id: '35',
+      title: 'Camus de Acuario, Saint Seiya',
+      brand: brands[1],
+      thumbnail: Images.productImage35,
+      description: "Camus (カムス, Kamusu) fue el Santo de Oro de Acuario del siglo XX en el anime y manga Saint Seiya. Es el Santo de Oro que protege la Casa de Acuario.",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 036  
+    ProductModel(
+      id: '36',
+      title: 'Mascara de Muerte Cancer, Saint Seiya',
+      brand: brands[1],
+      thumbnail: Images.productImage36,
+      description: "Deathmask (デスマスク, Desumasuku), comúnmente llamado Máscara de Muerte, Máscara de la Muerte o Máscara Mortal en los doblajes para países de habla hispana, fue el Saint de Cáncer que protegía el Templo del Gran Cangrejo. ",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 037 
+    ProductModel(
+      id: '37',
+      title: 'Shura de Capricornio, Saint Seiya',
+      brand: brands[1],
+      thumbnail: Images.productImage37,
+      description: "Shura (シュラ, Shura) es el Gold Saint de Capricorn, quien causó las heridas mortales a Aiolos de Sagittarius. Tras su muerte, depositó su alma en Shiryū. En el anime, según el guionista Takao Koyama, él es considerado como el Saint más fiel a la Diosa Atenea, opinión realizada por la disposición que tuvo para matar a Aiolos de Sagittarius. ",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 038
+    ProductModel(
+      id: '38',
+      title: 'Aldebaran de Tauro, Saint Seiya',
+      brand: brands[1],
+      thumbnail: Images.productImage38,
+      description: "Aldebaran (アルデバラン, Arudebaran) fue el Gold Saint de Taurus hasta su muerte a manos de Niobe de Deep. Después fue revivido por el cosmos de Athena, y se sacrificó con los demás Gold Saints en el Muro de los Lamentos.  ",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 039
+    ProductModel(
+      id: '39',
+      title: 'Saga de Gemini, Saint Seiya',
+      brand: brands[1],
+      thumbnail: Images.productImage39,
+      description: "Saga (サガ, Saga) fue el Gold Saint de Géminis y principal antagonista desde la Saga de los Santos Negros hasta la Batalla de los doce templos, justamente por ser el usurpador del Papa del Santuario, con el fin de dominar el mundo y acabar con Saori y sus Santos al manipular al Ejército de Athena. ",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 040
+    ProductModel(
+      id: '40',
+      title: 'Dohko de Libra, Saint Seiya',
+      brand: brands[1],
+      thumbnail: Images.productImage40,
+      description: "Dohko (童虎, Dōko), también conocido como el Viejo Maestro (老師, Rōshi) fue junto a Shion un Bronze Saint [16] de constelación desconocida durante el siglo XVIII que posteriormente seria promovido a Santo de Libra[16",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 041
+    ProductModel(
+      id: '41',
+      title: 'Mū de Aries, Saint Seiya',
+      brand: brands[1],
+      thumbnail: Images.productImage41,
+      description: "Mū (ムウ, Mū) fue el Santo de Aries durante el siglo XX en el manga y anime Saint Seiya. Es el heredero en el arte en la restauración de las Cloths",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 042
+    ProductModel(
+      id: '42',
+      title: 'Shaka de Virgo, Saint Seiya',
+      brand: brands[1],
+      thumbnail: Images.productImage42,
+      description: "Shaka (シャカ, Shaka) es el Santo de Oro de Virgo en la obra Saint Seiya y protege la Casa de la Virgen en el Santuario. Es considerado por sus aliados como la reencarnación de Buda, pero realmente Buda es su mentor. Posee un poder de observación que le permite conocer la verdad escondida entre las apariencias.",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+    
+    // 043
+    ProductModel(
+      id: '43',
+      title: 'Afrodita de Piscis, Saint Seiya',
+      brand: brands[1],
+      thumbnail: Images.productImage43,
+      description: "Aphrodite (アフロディーテ, Afurodīte) fue el Gold Saint de Pisces hasta su muerte a manos de Shun de Andromeda. Posteriormente fue revivido por Ker siendo muerto junto a Deathmask de Cancer a manos de Rhadamanthys. ",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    //044
+    ProductModel(
+      id: '44',
+      title: 'Slam Dunk - Equipo Shohoku',
+      brand: brands[1],
+      thumbnail: Images.productImage44,
+      description: "El Instituto Shohoku es el equipo de baloncesto protagonista del famoso manga y anime Slam Dunk, creado por Takehiko Inoue. Está ubicado ficticiamente en la prefectura de Kanagawa, ",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+   
+    //046
+    ProductModel(
+      id: '46',
+      title: 'Takenori Akagi - Slam Dunk',
+      brand: brands[1],
+      thumbnail: Images.productImage46,
+      description: "Takenori Akagi (赤木 剛憲Akagi Takenori ) es el capitán del equipo y centro del equipo de baloncesto Shohoku . También es el hermano mayor de Haruko Akagi .",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    //047
+    ProductModel(
+      id: '47',
+      title: 'Hanamichi Sakuragi - Slam Dunk',
+      brand: brands[1],
+      thumbnail: Images.productImage47,
+      description: "Hanamichi Sakuragi (桜木 花道Sakuragi Hanamichi ) es el protagonista principal de la serie Slam Dunk . Juega como ala-pívot (y ocasionalmente como centro suplente) para el equipo de baloncesto de Shohoku High School .",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    //048
+    ProductModel(
+      id: '48',
+      title: 'Kaede Rukawa - Slam Dunk',
+      brand: brands[1],
+      thumbnail: Images.productImage48,
+      description: "Kaede Rukawa (流川 楓Rukawa Kaede ) es la delantera y la jugadora estrella del instituto Shohoku .",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    //049
+    ProductModel(
+      id: '49',
+      title: 'Entrenador Anzai  - Slam Dunk',
+      brand: brands[1],
+      thumbnail: Images.productImage49,
+      description: "Mitsuyoshi Anzai (安西 光義) es el entrenador del equipo de baloncesto de la escuela secundaria Shohoku y uno de los mejores entrenadores de Japón.",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    //050
+    ProductModel(
+      id: '50',
+      title: 'Hisashi Mitsui - Slam Dunk',
+      brand: brands[1],
+      thumbnail: Images.productImage50,
+      description: "Hisashi Mitsui (三井 寿Mitsui Hisashi ) es el escolta del equipo de baloncesto de Shohoku . Aunque estuvo de baja por una lesión de rodilla, aún conserva las habilidades necesarias para llevar al equipo a la victoria.",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    //051
+    ProductModel(
+      id: '51',
+      title: 'Ryota Miyagi - Slam Dunk',
+      brand: brands[1],
+      thumbnail: Images.productImage51,
+      description: "Ryota Miyagi (宮城 リョータ Miyagi Ryōta ) es el mejor amigo de Sakuragi en el equipo. Tras un malentendido inicial que provocó un conflicto entre ellos (él estaba peleando con Mitsui cuando Sakuragi y Ayako aparecieron, y él pensó que ella estaba saliendo con él), ambos encontraron camaradería en el hecho de que ambos habían tenido mala suerte en el amor, aunque Miyagi, al haber sido rechazado solo 10 veces, aún no alcanza el récord de Sakuragi, quien fue rechazado 50 veces.",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    //052
+    ProductModel(
+      id: '52',
+      title: 'Mitsui Pandillero - Slam Dunk',
+      brand: brands[1],
+      thumbnail: Images.productImage52,
+      description: "Mitsui Pasa dos años sin jugar, y un día vuelve al gimnasio para pelear con los del equipo de baloncesto para que con esto se suspenda el equipo, de esa manera iba a perjudicar a Ryota Miyagi. (uno de los integrantes del equipo con el cual estaba enemistado) Pelearon y hubo mucha sangre, luego el profesor Anzai entró al gimnasio y Mitsui al reencontrarse con el se ve conmovido y decide regresar al balocesto. ",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    //053
+    ProductModel(
+      id: '53',
+      title: 'Haruko Akagi - Slam Dunk',
+      brand: brands[1],
+      thumbnail: Images.productImage53,
+      description: "Haruko Akagi (晴子・赤木, Haruko Akagi) es uno de los personajes principales de la serie japonesa de manga y anime Slam Dunk. Dulce y con una personalidad arrolladora, ella está siempre por allí para animar a los jugadores, sobre todo a su hermano Takenori, que es muy protector con ella y le enseñó los fundamentos del baloncesto, y Sakuragi a quien considera su mejor amigo. ",
+      price: 3000,
+      stock: 2,
+      categoryId: '17',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    //056
+    ProductModel(
+      id: '56',
+      title: 'Rancor - Star Wars',
+      brand: brands[1],
+      thumbnail: Images.productImage56a,
+      images: [
+        Images.productImage56a,
+        Images.productImage56b,
+      ],
+      description: "El rancor es una criatura reptiliana y carnívora del universo de Star Wars, famosa por su gran tamaño, fuerza descomunal y su aparición en el Episodio VI: El Retorno del Jedi.",
+      price: 7000,
+      stock: 2,
+      categoryId: '17',
+      sku: 'PG-634',
+      productType: 'ProductType.single',
+    ),
+
+    //057
+    ProductModel(
+      id: '57',
+      title: 'Jabba the Hutt - Star Wars',
+      brand: brands[1],
+      thumbnail: Images.productImage57a,
+      images: [
+        Images.productImage57a,
+        Images.productImage57b,
+      ],
+      description: "Jabba el Hutt o Jabba, era un gángster Hutt y un señor del crimen, así como un miembro del Gran Consejo Hutt, que operaba y dirigía un imperio criminal desde su palacio en el mundo del Borde Exterior Tatooine. Jabba era un Hutt, una especie de criatura de gran tamaño y forma de babosa, y era conocido por su naturaleza cruel y despiadada, así como por su amor por la riqueza, el poder y la indulgencia.",
+      price: 7000,
+      stock: 2,
+      categoryId: '17',
+      sku: 'PG-629',
+      productType: 'ProductType.single',
+    ),
+
+    //058
+    ProductModel(
+      id: '58',
+      title: 'Dewback - Star Wars',
+      brand: brands[1],
+      thumbnail: Images.productImage58a,
+      images: [
+        Images.productImage58a,
+        Images.productImage58b,
+      ],
+      description: "El dewback es un reptil de gran tamaño que habita en el planeta Tatooine, en el universo de Star Wars. Es conocido por su resistencia y fuerza, lo que lo convierte en un animal de carga y transporte ideal para los habitantes del desierto. Los soldados de asalto imperiales a menudo montan dewbacks para patrullar las dunas y mantener el orden en la región.",
+      price: 7000,
+      stock: 2,
+      categoryId: '17',
+      sku: 'PG-636',
+      productType: 'ProductType.single',
+    ),
+
+    //059
+    ProductModel(
+      id: '59',
+      title: 'Tauntaun - Star Wars',
+      brand: brands[1],
+      thumbnail: Images.productImage59,
+      description: "El Tauntaun es una criatura nativa del planeta helado Hoth, en el universo de Star Wars. Es un animal de carga y transporte utilizado por los rebeldes para desplazarse por el terreno nevado y hostil del planeta. Los tauntauns son conocidos por su resistencia al frío extremo y su capacidad para moverse ágilmente por la nieve y el hielo.",
+      price: 7000,
+      stock: 2,
+      categoryId: '17',
+      sku: 'PG-670',
+      productType: 'ProductType.single',
+    ),
+
+    // 062
+    ProductModel(
+      id: '62',
+      title: 'Lich King',
+      brand: brands[7],
+      images: [Images.productImage62a, Images.productImage62b],
+      thumbnail: Images.productImage62a,
+      description:
+          "El Rey Exánime (Lich King) es el amo y señor de La Plaga (The Scourge), el ejército de muertos vivientes en el universo de World of Warcraft, ",
+      price: 25000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 063
+    ProductModel(
+      id: '63',
+      title: 'Sasori - Hiruko',
+      brand: brands[7],
+      thumbnail: Images.productImage63,
+      description:
+          "Hiruko (ヒルコ, Hiruko) era una Marioneta Humana hueca utilizada por el miembro de Akatsuki Sasori, el cual, generalmente, vivía dentro de este títere, usándola como una especie de armadura metálica. ",
+      price: 25000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 065
+    ProductModel(
+      id: '65',
+      title: 'Darth Vader',
+      brand: brands[7],
+      thumbnail: Images.productImage65,
+      description:
+          "Anakin Skywalker fue un humano sensible a la Fuerza que sirvió a la República Galáctica como Caballero Jedi y más tarde al Imperio Galáctico como el Lord Sith, Darth Vader. ",
+      price: 25000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 067
+    ProductModel(
+      id: '67',
+      title: 'Dracule Mihawk',
+      brand: brands[7],
+      thumbnail: Images.productImage67,
+      description:
+          "Dracule Mihawk (ジュラキュール・ミホーク Jurakyūru Mihōku), también conocido como Ojos de Halcón (鷹の目 Taka no Me), y en el pasado, como El Cazador de Marines (海兵狩り Kaihei-gari), es un pirata y poseedor actual del título del Espadachín más Fuerte del Mundo (世界最強の剣士 Sekai Saikyō no Kenshi). También fue miembro de los Siete Señores de la Guerra del Mar, siendo el primero en aparecer, hasta que la organización se disolvió. En la actualidad, forma parte de Cross Guild, junto el antiguo Señor de la Guerra del Mar Crocodile y el Emperador del Mar Buggy.",
+      price: 25000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 068
+    ProductModel(
+      id: '68',
+      title: 'Buggy',
+      brand: brands[7],
+      thumbnail: Images.productImage68,
+      description:
+          "Buggy el payaso estrella (千両道化のバギー Senryō Dōke no Bagī) es el capitán de los Piratas de Buggy, inicialmente conocido como Buggy el payaso y uno de los Cuatro Emperadores que rigen los mares del Nuevo Mundo. Es también el colíder de la Alianza de Buggy y Alvida además de un antiguo aprendiz pirata de los Piratas de Roger. Poco después de la Guerra en la Cumbre de Marineford, se convirtió en miembro de los Siete Señores de la Guerra del Mar y en el presidente de la organización de envíos piratas Buggy's Delivery. Más tarde, perdió su título de Señor de la Guerra, cuando el sistema se disolvió, pero luego fue reconocido como uno de los Cuatro Emperadores, tras la caída de Kaidou y Big Mom y se convirtió en miembro fundador de Cross Guild, actuando como su líder. ",
+      price: 25000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 069
+    ProductModel(
+      id: '69',
+      title: 'Crocodile',
+      brand: brands[7],
+      thumbnail: Images.productImage69,
+      description:
+          "Sir Crocodile (サー・クロコダイル Sā Kurokodairu, España: «Sir Crocodile el pirata».), conocido como el Rey del desierto (砂漠の王 Sabaku no Ō) es un afamado pirata que formó parte de los Siete Señores de la Guerra del Mar y el fundador y expresidente, en la sombra, de la organización criminal Baroque Works, donde adoptó el nombre en clave de Mr. 0 (ミスター・ゼロ Misutā Zero?) Después de la absolución de los Siete Señores de la Guerra del Mar, Crocodile se desempeña como co-líder de la organización Cross Guild, junto con Dracule Mihawk, bajo la fachada del liderazgo de Buggy, quien fue nombrado como uno de los Cuatro Emperadores. ",
+      price: 25000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 070
+    ProductModel(
+      id: '70',
+      title: 'Almirantes de la Marina - One Piece',
+      brand: brands[7],
+      images: [
+        Images.productImage70a, 
+      ],
+      thumbnail: Images.productImage70a,
+      description:
+          "Los almirantes de la Marina en One Piece son el segundo rango más alto de la institución (solo por debajo del Almirante de la Flota) y representan el «Mayor Poder Militar» del Gobierno Mundial.",
+      price: 15000,
+      stock: 2,
+      categoryId: '7',
+      sku: '',
+      productType: 'ProductType.variable',
+      productAttributes: [
+        ProductAttributeModel(
+          name: 'Modelo',
+          values: [
+            'Sakazuki',
+            'Borsalino',
+            'Kuzan',
+            'Monkey D. Garp',
+            'Sengoku',
+            'Aramaki',
+            'Issho',
+          ],
+        ),
+      ],
+      productVariations: [
+        ProductVariationModel(
+          id: 'Keycap006',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage70f,
+          description:
+              'Sakazuki (サカズキ Sakazuki), más conocido como Akainu (赤犬 Akainu, lit. «Perro Rojo»), es el almirante de la flota del cuartel general de la Marina.',
+          attributeValues: {'Modelo': 'Sakazuki'},
+          sku: '',
+        ),
+        ProductVariationModel(
+          id: 'Keycap007',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage70e,
+          description:
+              'Borsalino (ボルサリーノ Borusarīno) más conocido como Kizaru (黄猿 Kizaru, lit. «Mono Amarillo») es uno de los tres almirantes del cuartel general de la Marina Después de que Kuzan renunciara a la Marina y Sakazuki fuera ascendido a Almirante de Flota, Kizaru es ahora el único Almirante restante del trío anterior. ',
+          attributeValues: {'Modelo': 'Borsalino'},
+          sku: '',
+        ), ProductVariationModel(
+          id: 'Keycap008',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage70c,
+          description:
+              'Kuzan (クザン Kuzan?) más conocido como Aokiji (青雉 Aokiji, lit. «Faisán azul»), es uno de los diez capitanes titánicos de los Piratas de Barbanegra, ejerciendo como capitán del décimo barco Antes de unirse a la tripulación de Barbanegra, sirvió como Almirante de la Marina, habiendo sido entrenado por Monkey D. Garp. Fue nominado por Sengoku, para el puesto de Almirante de la flota; sin embargo, después de luchar contra Sakazuki por el puesto y perder, renunció a la Marina. ',
+          attributeValues: {'Modelo': 'Kuzan'},
+          sku: '',
+        ),
+        ProductVariationModel(
+          id: 'Keycap004',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage70b,
+          description:
+              'Monkey D. Garp (モンキー・D・ガープ Monki Dī Gāpu), más conocido por sus epítetos Garp el Puño (ゲンコツのガープ Genkotsu no Gāpu) o el Héroe de la Marina (海軍の英雄 Kaigun no Eiyū), es un vicealmirante del cuartel general de la Marina, en calidad de instructor de nuevos reclutas, siendo extremadamente famoso y poderoso. Es el padre de Monkey D. Dragon el abuelo paterno de Monkey D. Luffy y el abuelo adoptivo de Portgas D. Ace. Fue responsable de supervisar el nacimiento de Ace y criar a Luffy, antes de confiarlos a ambos a la Familia Dadan. ',
+          attributeValues: {'Modelo': 'Monkey D. Garp'},
+          sku: '',
+        ),
+         ProductVariationModel(
+          id: 'Keycap004',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage70g,
+          description:
+              'Sengoku el Buda (仏のセンゴク Hotoke no Sengoku) es el inspector general del cuartel general de la Marina y anterior almirante de la flota Sengoku fue una de las figuras principales en la época dorada de Roger junto a personajes tan emblemáticos como Barbablanca, Shiki o su compañero Garp. Se consideraba el padre adoptivo de Donquixote Rosinante.',
+          attributeValues: {'Modelo': 'Sengoku'},
+          sku: '',
+        ),
+        ProductVariationModel(
+          id: 'Keycap004',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage70d,
+          description:
+              'Aramaki (アラマキ Aramaki), más conocido por su nombre clave Ryokugyu (緑牛 Ryokugyū, lit. «Toro verde»), es uno de los tres almirantes del cuartel general de la Marina Anteriormente, ejerció como policía de su tierra natal, el Reino de Taya, pero fue reclutado por la Marina, para ocupar una de las las dos vacantes de almirante causadas por la renuncia de Kuzan y la promoción de Sakazuki.',
+          attributeValues: {'Modelo': 'Aramaki'},
+          sku: '',
+        ),
+        ProductVariationModel(
+          id: 'Keycap004',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage70h,
+          description:
+              'Issho (一生 Isshō?), más conocido como Fujitora (藤虎 Fujitora, lit. «Tigre Wisteria»), es uno de los tres almirantes del cuartel general de la Marina y anterior jefe militar del antiguo Reino de Aoi. Fue reclutado, a través de un proyecto de reclutamiento Mundial, siendo designado para llenar una de las vacantes de almirante causadas por la renuncia de Kuzan y la promoción de Sakazuki, junto con su compañero Ryokugyu. Como un defensor de la "Justicia humana", Fujitora encabezó notablemente una campaña para la abolición del sistema de los "Siete Señores de la Guerra del Mar", que se llevó a cabo, durante la reunión más reciente del Levely.',
+          attributeValues: {'Modelo': 'Issho'},
+          sku: '',
+        ),
+      ]
+    ),
+
+    // 071
+    ProductModel(
+      id: '71',
+      title: 'Eustass Kid ',
+      brand: brands[7],
+      thumbnail: Images.productImage71,
+      description:
+          "Eustass Kid (ユースタス・'キャプテン'キッド Yūsutasu 'Kyaputen' Kiddo) es un reconocido pirata del South Blue que ejerce como capitán de los Piratas de Kid. Al ser uno de los once Supernovas que desembarcaron en Sabaody, hace dos años, forma parte de «la peor generación» de piratas de la historia. Después de derrotar a la Emperatriz Big Mom, junto a Trafalgar D. Water Law, consiguió una recompensa de Belly3.000.000.000. ",
+      price: 25000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 073
+    ProductModel(
+      id: '73',
+      title: 'Shanks',
+      brand: brands[7],
+      thumbnail: Images.productImage73,
+      description:
+          "Shanks el Pelirrojo (赤髪のシャンクス Akagami no Shankusu) o simplemente conocido como el Pelirrojo, es el jefe de los Piratas del Pelirrojo y uno de los Cuatro Emperadores que gobiernan el Nuevo Mundo Fue además, un miembro de la legendaria tripulación de Gol D. Roger, siendo la única banda que logró conquistar, con éxito, todo Grand Line.",
+      price: 25000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 074
+    ProductModel(
+      id: '74',
+      title: 'Edward Newgate',
+      brand: brands[7],
+      thumbnail: Images.productImage74,
+      description:
+          "Edward Newgate (エドワード・二ューゲート Edowādo Nyūgēto), más conocido como Barbablanca (白ひげ Shirohige?), fue el capitán de los Piratas de Barbablanca y el histórico rival de Gol D. Roger. Tras la muerte de éste, fue conocido como el Hombre más cercano al One Piece (ワンピースに最も近い男 Wan Pīsu ni mottomo chikai otoko), además de ser reconocido como El hombre más fuerte del mundo (世界最強の男 Sekai saikyō no otoko). ",
+      price: 25000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 076
+    ProductModel(
+      id: '76',
+      title: 'Boba Fett',
+      brand: brands[7],
+      thumbnail: Images.productImage76,
+      description:
+          "Boba Fett fue un cazarrecompensas humano, y el clon del infame cazarrecompensas Jango Fett. Boba fue creado por los clonadores de Kamino y era físicamente idéntico a los soldados clon creados para el Gran Ejército de la República, aunque Boba fue inalterado y no creció aceleradamente como los demás clones. Criado como el hijo de Jango, Boba aprendió las habilidades de combate necesarias para algún día convertirse en cazarrecompensas por derecho propio.",
+      price: 5000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 077
+    ProductModel(
+      id: '77',
+      title: 'Stormtroopers',
+      brand: brands[7],
+      thumbnail: Images.productImage77,
+      description:
+          "Los Soldados Imperiales, también conocidos como Soldados de Asalto Clon, Tropas de Asalto o Stormtroopers, fueron un grupo de soldados de choque de élite del Imperio Galáctico. Al igual que los Destructores Estelares clase Imperial I y los Cazas TIE, los soldados de asalto servían como recordatorio del poder del Emperador, extensiones de su voluntad, y un método para mantener los cientos de sistemas estelares del Imperio bajo el yugo del miedo. ",
+      price: 5000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // // 012
+    // ProductModel(
+    //   id: '12',
+    //   title: 'Manual Jugador, Dungeons & Dragons',
+    //   brand: brands[7],
+    //   thumbnail: Images.productImage12,
+    //   description:
+    //       "Esta versión revisada y ampliada del Player’s Handbook contiene reglas de creación y desarrollo de personajes, exploración, combate, equipo, conjuros y mucho más. Crea héroes de fantasía de D&D a partir de una gran selección de orígenes, clases y subclases para personajes. Explora ruinas antiguas y mazmorras letales, enfréntate a monstruos en tu búsqueda de tesoros legendarios y adquiere experiencia y poder mientras recorres territorios ignotos junto a tus compañeros.",
+    //   price: 20000,
+    //   stock: 2,
+    //   categoryId: '11',
+    //   sku: 'ROL001',
+    //   productType: 'ProductType.single',
+    // ),
+
+    // // 013
+    // ProductModel(
+    //   id: '13',
+    //   title: 'Ranger Black/Blue - Adventure Dice',
+    //   brand: brands[7],
+    //   thumbnail: Images.productImage13,
+    //   description:
+    //       "Sigue el rastro de tu presa con este set oficial para Ranger, donde precisión, instinto y dominio de la naturaleza se reflejan en cada tirada. Sus tonos negro y azul acompañan a quienes avanzan con sigilo hacia lo desconocido.\n🎨 Características: Set de 14 dados en tonos negro y azul, diseñado para personajes Ranger de Dungeons & Dragons.\n🧾 Especificaciones: 2 d4, 4 d6, 2 d8, 2 d10, 1 d%, 1 d12 y 2 d20; 14 dados en total.\n💡 Consejo PiedraBruja: Guarda el set en un estuche o bandeja para proteger sus colores y mantenerlo listo para cada aventura.\n🎯 Ideal para: Jugadores de Dungeons & Dragons, personajes Ranger y coleccionistas de accesorios oficiales.",
+    //   price: 10000,
+    //   stock: 1,
+    //   categoryId: '11',
+    //   sku: 'ROL002',
+    //   productType: 'ProductType.single',
+    // ),
+
+    // [TOOLS]
+
+    // 014
+    ProductModel(
+      id: '14',
+      title: 'Shinto Escofina Japonesa',
+      brand: brands[7],
+      images: [Images.productImage14b, Images.productImage14c],
+      thumbnail: Images.productImage14a,
+      description:
+          "Esta escofina para madera de doble cara de Shinto cuenta con dientes gruesos en un lado y dientes finos en el otro, lo que la hace perfecta para dar forma a sus proyectos de carpintería. La herramienta dispone de un mango duradero de elastómero unido a la escofina mediante una estructura cónica, lo que permite sujetarla cómodamente por ambos extremos para lograr una gran precisión y control durante su uso. Los dientes presentan un diseño de patrón de diamante y están unidos mediante remaches, lo que evita que el serrín obstruya la herramienta y facilita su limpieza cuando es necesario.\nEl lado de dientes gruesos permite eliminar grandes cantidades de madera de forma rápida y eficaz —ideal para el desbastado y el modelado—, mientras que el lado de dientes finos se utiliza para refinar y alisar la superficie antes del lijado.",
+      price: 25000,
+      stock: 2,
+      categoryId: '10',
+      sku: 'TOOL002',
+      productType: 'ProductType.single',
+    ),
+
+
+    // [TOOLS MODEL]
+
+    // 045
+    ProductModel(
+      id: '45',
+      title: 'Exhibidor Acrílico 32 Figuras Lego',
+      brand: brands[7],
+      images: [Images.productImage45a, Images.productImage45b],
+      thumbnail: Images.productImage45a,
+      description:
+          "Exhibidor Acrílico Transparente de 4 Niveles con Base Negra para 32 Figuras (Apto para Lego), 20x9x10",
+      price: 25000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 072
+    ProductModel(
+      id: '72',
+      title: 'Paleta Húmeda para Pintura Acrílica',
+      brand: brands[7],
+      images: [Images.productImage72a, Images.productImage72b, Images.productImage72c, Images.productImage72d],
+      thumbnail: Images.productImage72a,
+      description:
+          "Paletas Húmedas Portátiles para Pintura Acrílica, Modelismo y Coloración: Bandeja Húmeda para Pintura que Mantiene la Humedad, Ideal para Miniaturas y Herramientas de Modelado./Tamaño (caja): 21*7*2,5 cm (como se muestra en la imagen)/Nota:/1. El color real del artículo puede ser ligeramente diferente al de las imágenes mostradas en el sitio web debido a muchos factores como el brillo del monitor y el brillo de la luz./2. Por favor, permita una ligera desviación en la medición manual de los datos./Accesorios:/1*Bandeja húmeda +1*Esponja+1*Soporte para limpiar pinceles+2*Papel guía de agua+10*Papel absorbente o 10 unidades/bolsa de papel guía de agua o 50 unidades/bolsa de papel absorbente o 50 unidades/bolsa de papel difusor",
+      price: 25000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+    
+    // 075
+    ProductModel(
+      id: '75',
+      title: 'Lupas de aumento 10X',
+      brand: brands[7],
+      images: [Images.productImage75a, Images.productImage75b, Images.productImage75c, Images.productImage75d],
+      thumbnail: Images.productImage75a,
+      description:
+          "Especificaciones:/1.Material de la lente: resina acrílica (procesada mediante un revestimiento rígido a prueba de grietas)/2.Materiales principales: resina ABS, resinas PP./3.Lupa de lente fija: 4X-89 x 29 mm (largo x ancho)/4.Lupa de lente abatible: 4X-89 x 29 mm (largo x ancho)/5.Lupa redonda de un solo ojo: 5X -29 mm (diámetro)/6.Alimentación por: 2 pilas AAA (no incluidas)/7.Color negro/8.Tamaño: 25 x 19,8 x 6,5 cm (largo x ancho x alto)/9.Perímetro ajustable de la diadema: 21,26-27,17 pulgadas/54-69 cm/El paquete incluye:/1 lupa con cabezal de auriculares con lupa iluminada 10X",
+      price: 25000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+    
+    // 078
+    ProductModel(
+      id: '78',
+      title: 'Pincel para detalle',
+      brand: brands[7],
+      images: [Images.productImage78a, Images.productImage78b],
+      thumbnail: Images.productImage78a,
+      description:
+          "Pincel para detalle, paquete de 10 unidades",
+      price: 5000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 079
+    ProductModel(
+      id: '79',
+      title: 'Limpia pincel',
+      brand: brands[7],
+      images: [Images.productImage79a, Images.productImage79b],
+      thumbnail: Images.productImage79a,
+      description:
+          "Limpia pincel de plastico desarmable",
+      price: 10000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 080
+    ProductModel(
+      id: '80',
+      title: 'Pincel Fino de Bambu',
+      brand: brands[7],
+      images: [Images.productImage80a, Images.productImage80b, Images.productImage80c, Images.productImage80d, Images.productImage80e],
+      thumbnail: Images.productImage80a,
+      description:
+          "Pincel Fino de Bambu",
+      price: 5000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 081
+    ProductModel(
+      id: '81',
+      title: 'Sierra de corte Mini',
+      brand: brands[7],
+      images: [Images.productImage81a, Images.productImage81b],
+      thumbnail: Images.productImage81a,
+      description:
+          "Sierra de corte Mini",
+      price: 5000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 082
+    ProductModel(
+      id: '82',
+      title: 'Taladro manual con brocas',
+      brand: brands[7],
+      images: [Images.productImage82a, Images.productImage82b, Images.productImage82c, Images.productImage82d],
+      thumbnail: Images.productImage82a,
+      description:
+          "Taladro manual con brocas 0.8 - 1.0 - 1.5 - 2.0 - 2.5",
+      price: 10000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // [GAMING]
+
+    // 054
+    ProductModel(
+      id: '54',
+      title: 'Rapoo MT760',
+      brand: brands[7],
+      images: [Images.productImage54a, Images.productImage54b,Images.productImage54c,Images.productImage54d,Images.productImage54e],
+      thumbnail: Images.productImage54a,
+      description:
+          "Rapoo MT760 Ratón inalámbrico Bluetooth multimodo recargable ergonómico 4000 DPI compatible con hasta 4 dispositivos",
+      price: 25000,
+      stock: 2,
+      categoryId: '7',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+    
+    // 055
+    ProductModel(
+      id: '55',
+      title: 'Auriculares KZ EDX Pro X',
+      brand: brands[7],
+      images: [Images.productImage55a, Images.productImage55b,Images.productImage55c,Images.productImage55d,Images.productImage55e,Images.productImage55f,Images.productImage55g,Images.productImage55h,Images.productImage55i,Images.productImage55j,Images.productImage55k,Images.productImage55l],
+      thumbnail: Images.productImage55a,
+      description:
+          "Auriculares deportivos KZ EDX Pro X HIFI con cable desmontable de 0.78mm y 2 pines, micrófono con reducción de ruido HD para juegos y viajes.",
+      price: 30000,
+      stock: 2,
+      categoryId: '7',
+      sku: '',
+      productType: 'ProductType.variable',
+      productAttributes: [
+        ProductAttributeModel(
+          name: 'Color',
+          values: [
+            'Negro',
+            'Cyan',
+            'Gris',
+          ],
+        ),
+        ProductAttributeModel(
+          name: 'Model',
+          values: [
+            'Sin Microfono',
+            'Con Microfono',
+          ],
+        )
+      ],
+      productVariations: [
+        ProductVariationModel(
+          id: 'KZ-EDX-Black',
+          stock: 2,
+          salePrice: 10000,
+          price: 15000,
+          image: Images.productImage55a,
+          description:'KZ-EDX-Black',
+          attributeValues: {
+            'Color': 'Negro',
+            'Model': 'Sin Microfono'
+          },
+          sku: 'KZ-EDX-Black',
+        ),
+
+        ProductVariationModel(
+          id: 'KZ-EDX-Black-Mic',
+          stock: 2,
+          salePrice: 10000,
+          price: 15000,
+          image: Images.productImage55k,
+          description:'KZ-EDX-Black-Mic',
+          attributeValues: {
+            'Color': 'Negro',
+            'Model': 'Con Microfono'
+          },
+          sku: 'KZ-EDX-Black-Mic',
+        ),
+
+        ProductVariationModel(
+          id: 'KZ-EDX-Cyan',
+          stock: 2,
+          salePrice: 10000,
+          price: 15000,
+          image: Images.productImage55j,
+          description:'KZ-EDX-Cyan',
+          attributeValues: {
+            'Color': 'Cyan',
+            'Model': 'Sin Microfono'
+          },
+          sku: 'KZ-EDX-Cyan',
+        ),
+        // ProductVariationModel(
+        //   id: 'KZ-EDX-Cyan-Mic',
+        //   stock: 0,
+        //   salePrice: 10000,
+        //   price: 15000,
+        //   image: Images.productImage11b,
+        //   description:'KZ-EDX-Cyan-Mic',
+        //   attributeValues: {
+        //     'Color': 'Cyan',
+        //     'Model': 'Con Microfono'
+        //   },
+        //   sku: 'KZ-EDX-Cyan-Mic',
+        // ),
+
+        ProductVariationModel(
+          id: 'KZ-EDX-GRIS',
+          stock: 2,
+          salePrice: 10000,
+          price: 15000,
+          image: Images.productImage55g,
+          description:'KZ-EDX-GRIS',
+          attributeValues: {
+            'Color': 'Gris',
+            'Model': 'Sin Microfono'
+          },
+          sku: 'KZ-EDX-GRIS',
+        ),
+        ProductVariationModel(
+          id: 'KZ-EDX-GRIS-Mic',
+          stock: 2,
+          salePrice: 10000,
+          price: 15000,
+          image: Images.productImage55l,
+          description:'KZ-EDX-GRIS-Mic',
+          attributeValues: {
+            'Color': 'Gris',
+            'Model': 'Con Microfono'
+          },
+          sku: 'KZ-EDX-GRIS-Mic',
+        ),
+      ]
+    ),
+    
+    // 060
+    ProductModel(
+      id: '60',
+      title: 'Keycap Space Marine Warhammer 40k',
+      brand: brands[7],
+      thumbnail: Images.productImage60,
+      description:
+          "Keycap Space Marine Warhammer 40k Sin pintar",
+      price: 25000,
+      stock: 2,
+      categoryId: '7',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 061
+    ProductModel(
+      id: '61',
+      title: 'Keycap Hunter x Hunter',
+      brand: brands[7],
+      images: [
+        Images.productImage61a, 
+        Images.productImage61b, 
+        Images.productImage61c,
+        Images.productImage61d,
+        Images.productImage61e, 
+        Images.productImage61f,
+        Images.productImage61g
+      ],
+      thumbnail: Images.productImage61a,
+      description:
+          "Keycap Hunter x Hunter Sin pintar Hecho en Resina",
+      price: 15000,
+      stock: 2,
+      categoryId: '7',
+      sku: '',
+      productType: 'ProductType.variable',
+      productAttributes: [
+        ProductAttributeModel(
+          name: 'Modelo',
+          values: [
+            'Gon Freecss',
+            'Killua Zoldyck',
+            'Hisoka Morow',
+            'Pack Gon - Killua -Hisoka'
+          ],
+        ),
+      ],
+      productVariations: [
+        ProductVariationModel(
+          id: 'Keycap001',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage61f,
+          description:
+              'Gon Freecss (ゴン＝フリークス, Gon Furīkusu) es el protagonista principal de la serie de manga y anime Hunter × Hunter. Está en búsqueda de su padre, el famoso cazador Ging Freecss. ',
+          attributeValues: {'Modelo': 'Gon Freecss'},
+          sku: '',
+        ),
+        ProductVariationModel(
+          id: 'Keycap002',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage61g,
+          description:
+              'Killua Zoldyck (キルア・ゾルディック, Kirua Zorudikku) es el coprotagonista y el mejor amigo de Gon Freecss. Es el tercero de los cinco hijos de la familia Zoldyck. ',
+          attributeValues: {'Modelo': 'Killua Zoldyck'},
+          sku: '',
+        ),
+        ProductVariationModel(
+          id: 'Keycap003',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage61e,
+          description:
+              'Hisoka Morow (ヒソカ＝モロウ, Morō Hisoka) es un Cazador y antiguo miembro de la Brigada Fantasma. Él siempre está en busca de oponentes fuertes, y perdonará a los que tienen un gran potencial, como Gon y Killua para que sean lo suficientemente fuertes como para realmente desafiarlo.',
+          attributeValues: {'Modelo': 'Hisoka Morow'},
+          sku: '',
+        ),
+        ProductVariationModel(
+          id: 'Keycap004',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage61a,
+          description:
+              'Pack 3 Keycaps Hunter x Hunter Gon - Killua - Hisoka',
+          attributeValues: {'Modelo': 'Pack Gon - Killua -Hisoka'},
+          sku: '',
+        ),
+      ]
+    ),
+
+    // 064
+    ProductModel(
+      id: '64',
+      title: 'Keycap One Piece - Yonko',
+      brand: brands[7],
+      images: [
+        Images.productImage64a, 
+        Images.productImage64b, 
+        Images.productImage64c,
+        Images.productImage64d,
+        Images.productImage64e, 
+        Images.productImage64f,
+        Images.productImage64g
+      ],
+      thumbnail: Images.productImage64a,
+      description:
+          "Keycap One Piece Yonkos Sin pintar Hecho en Resina",
+      price: 15000,
+      stock: 2,
+      categoryId: '7',
+      sku: '',
+      productType: 'ProductType.variable',
+      productAttributes: [
+        ProductAttributeModel(
+          name: 'Modelo',
+          values: [
+            'Edward Newgate',
+            'Shanks',
+            'Portgas D. Ace',
+            'Trafalgar D. Law',
+            'Pack Edward Newgate - Shanks - Ace - Law'
+          ],
+        ),
+      ],
+      productVariations: [
+        ProductVariationModel(
+          id: 'Keycap006',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage64e,
+          description:
+              'Edward Newgate (エドワード・二ューゲート) más conocido como Shirohige, es un importante personaje de One Piece que lleva largo tiempo al mando de una de las flotas piratas más poderosas y numerosas de los mares, es así como logra ser considerado uno de los cuatro Emperadores y un claro candidato para alcanzar al rey de los piratas. ',
+          attributeValues: {'Modelo': 'Edward Newgate'},
+          sku: '',
+        ),
+        ProductVariationModel(
+          id: 'Keycap007',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage64f,
+          description:
+              'Shanks el Pelirrojo (赤髪のシャンクス Akagami no Shankusu?),o simplemente conocido como el Pelirrojo, es el jefe de los Piratas del Pelirrojo y uno de los Cuatro Emperadores que gobiernan el Nuevo Mundo. Fue, además, un miembro de la legendaria tripulación de Gol D. Roger, siendo la única banda que logró conquistar, con éxito, todo Grand Line.',
+          attributeValues: {'Modelo': 'Shanks'},
+          sku: '',
+        ), ProductVariationModel(
+          id: 'Keycap008',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage64g,
+          description:
+              'Portgas D. Ace (ポートガス・D・エース) conocido usualmente como Ace, es un personaje de One Piece, hermano del personaje principal Monkey D. Luffy. ',
+          attributeValues: {'Modelo': 'Portgas D. Ace'},
+          sku: '',
+        ),
+        ProductVariationModel(
+          id: 'Keycap003',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage64h,
+          description:
+              'Trafalgar D. Law (トラファルガー・D・ロー) es un personaje protagonista de One Piece, es el capitán de los piratas Hearts, subordinado de Donquixote Doflamingo al que está enfrentado; además, es uno de los piratas pertenecientes a la peor generación de supernovas, así como uno de los Shichibukai, más adelante se convierte en el principal aliado de los Mugiwaras. ',
+          attributeValues: {'Modelo': 'Trafalgar D. Law'},
+          sku: '',
+        ),
+        ProductVariationModel(
+          id: 'Keycap004',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage64b,
+          description:
+              'Pack 3 Keycaps One Piece Edward Newgate - Shanks - Ace - Law',
+          attributeValues: {'Modelo': 'Pack Edward Newgate - Shanks - Ace - Law'},
+          sku: '',
+        ),
+      ]
+    ),
+
+    // 066
+    ProductModel(
+      id: '66',
+      title: 'Keycap One Piece - Piratas de Sombrero de Paja',
+      brand: brands[7],
+      images: [
+        Images.productImage66a, 
+        Images.productImage66b, 
+        Images.productImage66c,
+        Images.productImage66d,
+        Images.productImage66e, 
+      ],
+      thumbnail: Images.productImage66a,
+      description:
+          "Keycap One Piece Piratas de Sombrero de Paja Sin pintar Hecho en Resina",
+      price: 15000,
+      stock: 2,
+      categoryId: '7',
+      sku: '',
+      productType: 'ProductType.variable',
+      productAttributes: [
+        ProductAttributeModel(
+          name: 'Modelo',
+          values: [
+            'Monkey D. Luffy',
+            'Roronoa Zoro',
+            'Sanji',
+            'Pack Luffy - Zoro - Sanji'
+          ],
+        ),
+      ],
+      productVariations: [
+        ProductVariationModel(
+          id: 'Keycap006',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage66c,
+          description:
+              'Monkey D. Luffy (モンキー・Ｄ・ルフィ), más conocido como Luffy «Sombrero de Paja» (麦わらのルフィ), es el protagonista principal de la serie de manga y anime One Piece. Es el capitán y fundador de los Piratas de Sombrero de Paja así como un de los Cuatro Emperadores que gobiernan los mares del Nuevo Mundo.',
+          attributeValues: {'Modelo': 'Monkey D. Luffy'},
+          sku: '',
+        ),
+        ProductVariationModel(
+          id: 'Keycap007',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage66d,
+          description:
+              'Roronoa Zoro (ロロノア・ ゾロ Roronoa Zoro?), conocido como El Cazador de Piratas (海賊狩り Kaizoku Gari?), es el primer pirata que se unió a Monkey D. Luffy, y el principal combatiente de los Piratas de Sombrero de Paja, uno de sus dos espadachines y uno de los oficiales principales de la Gran Flota de Sombrero de Paja, así como un antiguo cazarrecompensas.',
+          attributeValues: {'Modelo': 'Roronoa Zoro'},
+          sku: '',
+        ), ProductVariationModel(
+          id: 'Keycap008',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage66e,
+          description:
+              'Sanji (サンジ Sanji?), conocido como Pierna Negra (黒脚 Kuro Ashi?) y nacido como Vinsmoke Sanji (ヴィンスモーク・サンジ Vinsumōku Sanji?), es el cocinero de los Piratas de Sombrero de Paja, así como uno de los oficiales principales de la Gran Flota de Sombrero de Paja. ',
+          attributeValues: {'Modelo': 'Sanji'},
+          sku: '',
+        ),
+        ProductVariationModel(
+          id: 'Keycap004',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage66a,
+          description:
+              'Pack 3 Keycaps One Piece Luffy - Zoro - Sanji',
+          attributeValues: {'Modelo': 'Pack Luffy - Zoro - Sanji'},
+          sku: '',
+        ),
+      ]
     ),
   ];
 

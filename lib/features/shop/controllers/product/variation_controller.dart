@@ -2,6 +2,7 @@ import 'package:e_commerce/features/shop/controllers/cart_controller.dart';
 import 'package:e_commerce/features/shop/controllers/product/images_controller.dart';
 import 'package:e_commerce/features/shop/models/product_model.dart';
 import 'package:e_commerce/features/shop/models/product_variation_model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VariationController extends GetxController {
@@ -11,19 +12,43 @@ class VariationController extends GetxController {
   RxMap selectedAttributes = {}.obs;
   RxString variationStockStatus = ''.obs;
   Rx<ProductVariationModel> selectedVariation = ProductVariationModel.empty().obs;
+  RxList<Map<String, dynamic>> disabledOptions = <Map<String, dynamic>>[].obs;
+
+  RxList<String> attributesMap = <String>[].obs;
+
+
+  void getAttributesMap(ProductModel product){
+    print('GETATTRIBUTEMAP');
+    attributesMap.clear();
+    selectedAttributes.clear();
+    attributesMap.addAll(product.productAttributes!.map((attribute) => attribute.name!));
+  }
 
   // Selected Attribute and Variation
   void onAttributeSelected(ProductModel product, attributeName, attributeValue){
+    print('ONATTRIBUTESELECTED');
+    print('attributeName: $attributeName');
+    print('attributeValue: $attributeValue');
+
+    // if (attributesMap.isEmpty) {
+    //   attributesMap.addAll(product.productAttributes!.map((attribute) => attribute.name!));
+    // }
+
     
     // When attribute is selected we will first add that attribute to the selectedAttributes
     final selectedAttributes = Map<String, dynamic>.from(this.selectedAttributes);
     selectedAttributes[attributeName] = attributeValue;
     this.selectedAttributes[attributeName] = attributeValue;
 
+    print('selectedAttributes: $selectedAttributes');
+
     final selectedVariation = product.productVariations!.firstWhere(
       (variation) => isSameAttributeValues(variation.attributeValues, selectedAttributes),
       orElse: () => ProductVariationModel.empty(),
     );
+
+     print('selectedVariation: ${selectedVariation.toJson()}');
+
 
     // Show the selected Variation image as a Main Image
     if (selectedVariation.image.isNotEmpty) {
@@ -38,6 +63,12 @@ class VariationController extends GetxController {
     // Assign Selected Variation
     this.selectedVariation.value = selectedVariation;
 
+
+    // disable anuavailable button
+    if(attributesMap.length > 1){
+      disableOption(product,attributeName, attributeValue);
+    }
+
     // Update selected product variation status
     getProductVariationStockStatus();
 
@@ -45,6 +76,11 @@ class VariationController extends GetxController {
 
   // Check if selected attribute matches any variation attributes
   bool isSameAttributeValues(Map<String, dynamic> variationAttributes, Map<String, dynamic> selectedAttributes){
+    
+    // print('ISSAMEATTRIBUTEVALUE');
+    // print('variationAttributes: $variationAttributes');
+    // print('selectedAttributes: $selectedAttributes');
+
     // If selectedAttributes contains 3 attributes and current variation contain 2 then return.
     if(variationAttributes.length != selectedAttributes.length) return false;
 
@@ -60,6 +96,7 @@ class VariationController extends GetxController {
 
   // Check Attribute availability / Stock in variation
   Set<String?> getAttributesAvailabilityInVariation(List<ProductVariationModel> variations, String attributeName){
+
     // Pass the variation to check which attributes are available and stock is not 0
     final availableVariationAttributeValues = variations
       .where((variation) =>
@@ -71,6 +108,7 @@ class VariationController extends GetxController {
       .map((variation) => variation.attributeValues[attributeName])
       .toSet();
 
+    print('availableVariationAttributeValues: $availableVariationAttributeValues for attribute: $attributeName');
     return availableVariationAttributeValues;
   }
 
@@ -88,5 +126,77 @@ class VariationController extends GetxController {
     selectedAttributes.clear();
     variationStockStatus.value = '';
     selectedVariation.value = ProductVariationModel.empty();
+  }
+
+  void disableOption(ProductModel product, attributeName, attributeValue){
+    print('DISABLE OPTION');
+    var otherAttributes = product.productAttributes?.where((attribute) => attribute.name != attributeName);
+
+    for (var element in otherAttributes!) {
+      print('ATRIBUTTE ${element.toJson()}');
+    }
+    
+    for (var attribute in otherAttributes!) {
+      final thisAttributeName = attribute.name;
+      final thisAttributeValues = attribute.values;
+
+      print('this attribute value check ${attribute.name}');
+
+      final attributeOptions = product.productVariations?.where(
+        (variation) => variation.attributeValues[attributeName] == attributeValue 
+        // && variation.attributeValues[attribute.name] == thisAttributeValue
+      ).map((variation) => variation.attributeValues[attribute.name]).toSet();
+        
+      print('attributeOptions $attributeOptions');
+
+       final difference =  thisAttributeValues?.toSet().difference(attributeOptions!).toList();
+       print('ATRIBUTTE $attributeName');
+       print('diferences $difference');
+      
+      if(difference != null && difference.isNotEmpty){
+        for (var value in difference) {
+          print('DISABLE OPTION $attributeName: $attributeValue with ${attribute.name}: $value');
+          final disabledOption = '$attributeName:$attributeValue:${attribute.name}:$value';
+
+          bool duplicateValue = false;
+
+          disabledOptions.forEach(( option) {
+            if (option['$attributeName'] == attributeValue && option['${attribute.name}'] == value) {
+              print('DISABLED OPTION ALREADY EXISTS: $disabledOption');
+              duplicateValue = true;
+              return;
+            }
+          });
+
+          if (!duplicateValue) {
+            disabledOptions.add({
+              '$attributeName': attributeValue,
+              '${attribute.name}': value
+            });
+
+            
+
+            // for (var disabledOption in disabledOptions) {
+            //   print(disabledOption.toString() == '{Color: Cyan, Model: Con Microfono}');
+            // }
+          }
+          // disabledOptions.add({
+          //   '$attributeName': attributeValue,
+          //   '${attribute.name}': value
+          // });
+
+          
+          print('DISABLED OPTION: disabledOptions: $disabledOptions');
+
+          // for (var disabledOption in disabledOptions) {
+          //   print(disabledOption.toString() == '{Color: Cyan, Model: Con Microfono}');
+          // }
+        }
+      }else{
+        print('NO DIFFERENCE');
+      }
+
+    }
+
   }
 }
