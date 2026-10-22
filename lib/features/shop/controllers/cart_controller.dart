@@ -62,7 +62,7 @@ class CartController extends GetxController {
     }
   
     updateCart();
-    Loaders.customToast(message: 'Your Product has been added to the Cart.');
+    Loaders.customToast(message: 'Tu Productor ha sido agregado al Carro.');
   }
 
   void addOneToCart(CartItemModel item) {
@@ -97,7 +97,7 @@ class CartController extends GetxController {
       onConfirm: (){
         cartItems.removeAt(index);
         updateCart();
-        Loaders.customToast(message: 'Product removed from the Cart.');
+        Loaders.customToast(message: 'Producto removido del Carro.');
         Get.back();
       },
       onCancel: () => () => Get.back(),

@@ -6,6 +6,8 @@ class CategoryModel {
   String image;
   String parentId;
   bool isFeatured;
+  bool available;
+  String banner;
 
 CategoryModel({
   required this.id,
@@ -13,10 +15,12 @@ CategoryModel({
   required this.image,
   this.isFeatured = false,
   this.parentId = '',
+  this.available = true,
+  this.banner = ''
 });
 
 // Empty Helper Function
-static CategoryModel empty() => CategoryModel(id: '', name: '', image: '', parentId: '', isFeatured: false);
+static CategoryModel empty() => CategoryModel(id: '', name: '', image: '', parentId: '', isFeatured: false, available: false);
 
 // Convert model to Json structure si that you can store data in Firestire
 Map<String, dynamic> toJson() {
@@ -25,6 +29,8 @@ Map<String, dynamic> toJson() {
     'Image': image,
     'ParentId': parentId,
     'IsFeatured': isFeatured,
+    'available': available,
+    'banner': banner
   };
 }
 
@@ -40,6 +46,8 @@ factory CategoryModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> docume
       image: data['Image'] ?? '', 
       parentId: data['ParentId'] ?? '', 
       isFeatured: data['IsFeatured'] ?? false,
+      available: data['available'] ?? true,
+      banner: data['banner'] ?? '',
     );
   }else{
     return CategoryModel.empty();

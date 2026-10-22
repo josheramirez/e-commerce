@@ -36,30 +36,46 @@ class ProductCardVertical extends StatelessWidget {
     );
     final dark = HelperFunctions.isDarkMode(context);
 
+    String toThousandString(String words) => words.replaceAllMapped(
+      RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+      (Match m) => '${m[1]}.',
+    );
+
+
     return GestureDetector(
       onTap: () => Get.to(() => ProductDetailScreen(product: product)),
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(0),
         decoration: BoxDecoration(
-          boxShadow: UShadow.verticalProductShadow,
+          // boxShadow: UShadow.verticalProductShadow,
           borderRadius: BorderRadius.circular(USizes.productImageRadius),
           color: UColors.white,
+          border: Border.all(
+            color: UColors.darkGrey.withValues(alpha: 0.1), // Border color
+            width: 1.0,          // Border width
+          ),
         ),
 
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
+                // [IMAGE]
                 URoundedContainer(
-                  height: 180,
-                  padding: const EdgeInsets.all(USizes.sm),
-                  backgroundColor: UColors.lightGrey,
+                  // height: 180,
+                  padding: const EdgeInsets.all(0),
+                  backgroundColor: UColors.white,
                   child: Stack(
                     children: [
-                      // [IMAGE]
+
+                      // [THUMBNAIL]
                       RoundedImage(
+                        height: 170,
                         imageUrl: product.thumbnail,
                         applyImageRadius: true,
                         isNetworkImage: GlobalConfig.instance.isNetworkImage,
@@ -69,6 +85,7 @@ class ProductCardVertical extends StatelessWidget {
                       if (salePercentage != '0' && salePercentage != null)
                         Positioned(
                           top: 12,
+                          left: 12,
                           child: URoundedContainer(
                             radius: USizes.sm,
                             backgroundColor: UColors.yellow.withValues(
@@ -95,120 +112,139 @@ class ProductCardVertical extends StatelessWidget {
                     ],
                   ),
                 ),
-                //
-
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: USizes.sm,
-                    right: USizes.sm,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Name
-                      ProductTitleText(title: product.title, smallSize: false),
-                      // SizedBox(height: USizes.spaceBtwItems / 4),
-                      // Brand
-                      BrandTitleWithVerifiedIcon(title: product.brand!.name),
-                    ],
-                  ),
-                ),
+                
               ],
             ),
+            SizedBox(height:10),
+            
+            // [TITLE]
+            Container(
+              // color: Colors.amber,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: USizes.sm,
+                  right: USizes.sm,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    // Name
+                    ProductTitleText(title: product.title, smallSize: false,maxLines: 2,),
+                    // SizedBox(height: USizes.spaceBtwItems / 4),
+                    // Brand
+                    BrandTitleWithVerifiedIcon(title: product.brand!.name, brandImage: product.brand!.image),
+                  ],
+                ),
+              ),
+            ),
 
+            Spacer(),
             // [DETAILS]
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Discount
-                Column(
-                  children: [
-                    // Original Price with lineThrough becouse have some sale discount
-                    if (product.productType == ProductType.single.toString() &&
-                        product.salePrice > 0)
-                      Padding(
-                        padding: const EdgeInsets.only(left: USizes.sm),
-                        child: Text(
-                          product.price.toString(),
-                          style: Theme.of(context).textTheme.labelMedium!.apply(
-                            decoration: TextDecoration.lineThrough,
+                Container(
+                  // color: Colors.amber,
+                  child: Column(
+                    children: [
+                      // Original Price with lineThrough becouse have some sale discount
+                      if (product.productType == ProductType.single.toString() &&
+                          product.salePrice > 0)
+                        Padding(
+                          padding: const EdgeInsets.only(left: USizes.sm),
+                          child: Text(
+                            (toThousandString(product.price.toString())),
+                            style: Theme.of(context).textTheme.labelMedium!.apply(
+                              decoration: TextDecoration.lineThrough,
+                            ),
                           ),
                         ),
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
 
                 // [PRICE AND BUTTON]
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // [RIGHT SIDE] PRICE
-                    Flexible(
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: USizes.sm),
-                            child: Text(
-                              controller.getProductPrice(product),
-                              style: Theme.of(context).textTheme.headlineMedium,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    // [LEFT SIDE] ADD BUTTON
-                    GestureDetector(
-                      onTap: () {
-                        if (product.productType ==
-                            ProductType.single.toString()) {
-                          final cartItem = cartController.convertToCartItem(
-                            product,
-                            1,
-                          );
-                          cartController.addOneToCart(cartItem);
-                        } else {
-                          Get.to(() => ProductDetailScreen(product: product));
-                        }
-                      },
-                      child: Obx(() {
-                        final productQuantityInCart = cartController
-                            .getProductQuantityInCart(product.id);
-
-                        return Container(
-                          width: USizes.iconLg * 1.1,
-                          height: USizes.iconLg * 1.1,
-                          decoration: BoxDecoration(
-                            color: productQuantityInCart > 0
-                                ? UColors.primary
-                                : UColors.dark,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(USizes.cardRadiusMd),
-                              bottomRight: Radius.circular(
-                                USizes.productImageRadius,
+                Container(
+                  // color: Colors.red,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // [RIGHT SIDE] PRICE
+                      Flexible(
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: USizes.sm),
+                              child: Text(
+                                '\$ ${(toThousandString(controller.getProductPrice(product)))}',
+                                // controller.getProductPrice(product),
+                                // style: Theme.of(context).textTheme.headlineMedium,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+    height: 1.0, // Force line height to tightly match font size
+    fontSize: 20,
+    fontWeight: FontWeight.bold
+  ),
                               ),
                             ),
-                          ),
-                          child: Center(
-                            child: productQuantityInCart > 0
-                                ? Text(
-                                    productQuantityInCart.toString(),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge!
-                                        .apply(color: UColors.white),
-                                  )
-                                : const Icon(
-                                    Iconsax.add_copy,
-                                    color: UColors.white,
-                                  ),
-                          ),
-                        );
-                      }),
-                    ),
-                  ],
+                          ],
+                        ),
+                      ),
+                  
+                      // [LEFT SIDE] ADD BUTTON
+                      GestureDetector(
+                        onTap: () {
+                          if (product.productType ==
+                              ProductType.single.toString()) {
+                            final cartItem = cartController.convertToCartItem(
+                              product,
+                              1,
+                            );
+                            cartController.addOneToCart(cartItem);
+                          } else {
+                            Get.to(() => ProductDetailScreen(product: product));
+                          }
+                        },
+                        child: Obx(() {
+                          final productQuantityInCart = cartController
+                              .getProductQuantityInCart(product.id);
+                  
+                          return Container(
+                            width: USizes.iconLg * 1.0,
+                            height: USizes.iconLg * 1.0,
+                            decoration: BoxDecoration(
+                              color: productQuantityInCart > 0
+                                  ? UColors.primary
+                                  : UColors.dark,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(USizes.cardRadiusMd),
+                                bottomRight: Radius.circular(
+                                  USizes.productImageRadius,
+                                ),
+                              ),
+                            ),
+                            child: Center(
+                              child: productQuantityInCart > 0
+                                  ? Text(
+                                      productQuantityInCart.toString(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge!
+                                          .apply(color: UColors.white),
+                                    )
+                                  : const Icon(
+                                      Iconsax.add_copy,
+                                      color: UColors.white,
+                                    ),
+                            ),
+                          );
+                        }),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -223,6 +259,7 @@ class BrandTitleWithVerifiedIcon extends StatelessWidget {
   const BrandTitleWithVerifiedIcon({
     super.key,
     required this.title,
+    this.brandImage = '',
     this.maxLines = 1,
     this.textColor,
     this.iconColor = UColors.primary,
@@ -235,12 +272,20 @@ class BrandTitleWithVerifiedIcon extends StatelessWidget {
   final Color? textColor, iconColor;
   final TextAlign? textAlign;
   final TextSizes brandTextSize;
+  final String brandImage;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
+        if(brandImage != '')
+        SizedBox(
+          width: 15,
+          height: 15,
+          child: Image(image: AssetImage(brandImage),),
+        ),
+        SizedBox(width: 5,),
         BrandTitleText(title: title),
         Icon(Iconsax.verify, color: UColors.primary, size: USizes.iconXs),
       ],

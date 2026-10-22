@@ -96,6 +96,7 @@ flutter:
     - assets/banners/
     - assets/products/
     - assets/brands/
+    - assets/categories/
     - assets/images/
     - assets/animations/
     - assets/logo/

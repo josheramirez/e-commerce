@@ -28,7 +28,7 @@ class BrandController extends GetxController{
         isLoading.value = true;
         allBrands.assignAll(DummyData.brands);
         featuredBrands.assignAll(allBrands.where((brand)=> brand.isFeatured ?? false).take(4));
-        // await Future.delayed(const Duration(seconds: 2));
+        await Future.delayed(const Duration(seconds: 2));
         isLoading.value = false;
     }else{
     try {
@@ -52,7 +52,7 @@ class BrandController extends GetxController{
         final brandCategoryQuery = DummyData.brandCategory.where((element) => element.categoryId == categoryId).toList();
         
         // Extract brandId from the documents
-        List<String> brandIds = brandCategoryQuery.map((doc) => doc.brandId as String).toList();
+        List<String> brandIds = brandCategoryQuery.map((doc) => doc.brandId).toList();
 
         // Query to get all the documents where the brandId is in the list of brandIds, FieldPath.documentId to query documents in the collection
         final brands = DummyData.brands.where((brand) => brandIds.contains(brand.id)).take(2).toList();

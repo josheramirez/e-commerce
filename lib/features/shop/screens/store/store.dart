@@ -36,10 +36,7 @@ class StoreScreen extends StatelessWidget {
       child: Scaffold(
         // [APP BAR]
         appBar: UAppBar(
-          title: Text(
-            'Store',
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
+          title: Text('Tienda', style: Theme.of(context).textTheme.headlineMedium),
           actions: [CardCounterIcon(iconColor: Colors.black)],
         ),
 
@@ -72,7 +69,7 @@ class StoreScreen extends StatelessWidget {
 
                       // Featured Brands
                       SectionHeading(
-                        title: 'Marcas Destacadas',
+                        title: 'Marcas',
                         onPressed: () => Get.to(() => AllBrandsScreen()),
                       ),
                       SizedBox(height: USizes.spaceBtwItems / 1.5),
@@ -147,39 +144,47 @@ class BrandCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: URoundedContainer(
-        padding: const EdgeInsets.all(USizes.sm),
+        padding: const EdgeInsets.only(left: 5),
         showBorder: showBorder,
         backgroundColor: Colors.transparent,
         child: Row(
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Icon
+
+            // [IMAGE]
             Flexible(
               child: CircularImage(
+                padding: 5,
+                height: 55,
+                width: 55,
                 isNetworkImage: GlobalConfig.instance.isNetworkImage,
                 image: brand.image,
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.transparent,
                 // overlayColor: Colors.transparent,
               ),
             ),
-            SizedBox(width: USizes.spaceBtwItems / 2),
+            SizedBox(width: 7),
 
             // Text
             Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  BrandTitleWithVerifedIcon(
-                    title: brand.name,
-                    brandTextSize: TextSizes.large,
-                  ),
-                  Text(
-                    '${brand.productsCount ?? 0} productos',
-                    style: Theme.of(context).textTheme.labelMedium,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+              child: Container(
+                // color: Colors.amber,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BrandTitleWithVerifedIcon(
+                      showIcon: false,
+                      title: brand.name,
+                      brandTextSize: TextSizes.large,
+                    ),
+                    Text(
+                      '${brand.productsCount ?? 0} productos',
+                      style: Theme.of(context).textTheme.labelMedium,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

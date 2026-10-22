@@ -20,6 +20,7 @@ class SubCategoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = CategoryController.instance;
     
+    print('category : ${category.toJson()}');
     return Scaffold(
       backgroundColor: Colors.white,
 
@@ -32,7 +33,9 @@ class SubCategoriesScreen extends StatelessWidget {
             children: [
 
               // Banner
-              RoundedImage(width: double.infinity, imageUrl: Images.homeBanner2, applyImageRadius: true),
+              if(category.banner.isNotEmpty)
+              RoundedImage(width: double.infinity, imageUrl: category.banner, applyImageRadius: true),
+              if(category.banner.isNotEmpty)
               SizedBox(height: USizes.spaceBtwSections),
               
               // Sub-Categories

@@ -10,7 +10,7 @@ class RoundedImage extends StatelessWidget {
     required this.imageUrl, 
     this.applyImageRadius = true, 
     this.border, 
-    this.backgroundColor = UColors.light, 
+    this.backgroundColor = UColors.white, 
     this.fit = BoxFit.contain, 
     this.padding, 
     this.onPressed, 

@@ -66,39 +66,57 @@ class DummyData {
     ),
   ];
 
-  /// List of all Categories
+  /// Categories
   static final List<CategoryModel> categories = [
     /// Parent Categories
     CategoryModel(
       id: '1',
-      name: 'Rol Game',
-      image: Images.rolGame,
+      name: 'Warhammer',
+      image: Images.warhammer,
       isFeatured: true,
+      banner: Images.homeBanner1
     ),
     CategoryModel(
       id: '2',
       name: 'Pokemon',
       image: Images.pokemon,
       isFeatured: true,
+      available: false,
+      banner: Images.homeBanner4
     ),
     CategoryModel(
       id: '3',
       name: 'One Piece',
       image: Images.onePiece,
       isFeatured: true,
+      available: false
     ),
-    CategoryModel(id: '4', name: 'Lego', image: Images.lego, isFeatured: true),
+    CategoryModel(
+      id: '4', 
+      name: 'Lego', 
+      image: Images.lego, 
+      isFeatured: true
+    ),
+    CategoryModel(
+      id: '17',
+      name: 'Cute Toy',
+      image: Images.dubuDuduCategory,
+      isFeatured: true,
+      available: true
+    ),
     CategoryModel(
       id: '5',
       name: 'Hotwheels',
       image: Images.hotwheels,
       isFeatured: true,
+      available: false
     ),
     CategoryModel(
       id: '6',
       name: 'Dudu & Bubu',
-      image: Images.dubuBubu,
+      image: Images.duduBubuBrand,
       isFeatured: true,
+      available: false
     ),
     CategoryModel(
       id: '7',
@@ -106,44 +124,57 @@ class DummyData {
       image: Images.gamming,
       isFeatured: true,
     ),
-    CategoryModel(id: '9', name: 'Toys', image: Images.toys, isFeatured: true),
+    CategoryModel(
+      id: '9', 
+      name: 'Toys', 
+      image: Images.toys,
+      isFeatured: true,
+      available: false
+      ),
     CategoryModel(
       id: '10',
-      name: 'Model Tool',
+      name: 'Tools',
       image: Images.modelTools,
       isFeatured: true,
+      available: true
     ),
     CategoryModel(
       id: '11',
-      name: 'Books',
-      image: Images.books,
+      name: 'Electronica',
+      image: Images.gamming,
       isFeatured: true,
+      available: false
     ),
-    CategoryModel(id: '12', name: 'Tcg', image: Images.tcg, isFeatured: true),
+    CategoryModel(
+      id: '12', 
+      name: 'Tcg', 
+      image: Images.tcg, 
+      isFeatured: true,
+      available: false
+    ),
 
-    /// Gamer
     CategoryModel(
       id: '13',
-      name: 'Video Card',
-      image: Images.videoCard,
-      parentId: '7',
-      isFeatured: false,
+      name: 'Keycaps',
+      image: Images.keycapCategory,
+      isFeatured: true,
+      available: true
     ),
     CategoryModel(
       id: '14',
-      name: 'Ram',
-      image: Images.memoryRam,
-      parentId: '7',
-      isFeatured: false,
+      name: 'Bubu & Dudu',
+      image: Images.dubuDuduCategory,
+      isFeatured: true,
+      available: false
     ),
 
     /// Pokemon
     CategoryModel(
       id: '15',
-      name: 'Pokemon TCG',
-      image: Images.pokemonTcgBrand,
-      parentId: '12',
-      isFeatured: false,
+      name: 'Pokemon',
+      image: Images.pokemonCategory,
+      isFeatured: true,
+      available: false
     ),
     CategoryModel(
       id: '16',
@@ -151,56 +182,83 @@ class DummyData {
       image: Images.onePieceTcgBrand,
       parentId: '12',
       isFeatured: false,
+      available: true
     ),
 
-    CategoryModel(
-      id: '17',
-      name: 'Lego',
-      image: Images.legoBrandLogo,
-      isFeatured: true,
-    ),
+
   ];
 
   // BrandCategory
   static final List<BrandCategoryModel> brandCategory = [
-    BrandCategoryModel(categoryId: '1', brandId: '1'), // Rol - Warhammer
-    BrandCategoryModel(categoryId: '1', brandId: '8'), // Rol - D&D
+    BrandCategoryModel(categoryId: '1', brandId: '1'),  // Warhammer - Warhammer
 
-    BrandCategoryModel(categoryId: '2', brandId: '6'), // Pokemon - Pokemon TCG
+    BrandCategoryModel(categoryId: '4', brandId: '5'),  // Lego - one piece 
+    BrandCategoryModel(categoryId: '4', brandId: '7'),  // Lego - star wars
+    BrandCategoryModel(categoryId: '4', brandId: '14'), // Lego - naruto
+    BrandCategoryModel(categoryId: '4', brandId: '20'), // Lego - slam dunk
+    BrandCategoryModel(categoryId: '4', brandId: '15'), // Lego - saint seiya
+    BrandCategoryModel(categoryId: '4', brandId: '16'), // Lego - jujutsu
+    BrandCategoryModel(categoryId: '4', brandId: '17'), // Lego - warcraft
 
-    BrandCategoryModel(
-      categoryId: '3',
-      brandId: '5',
-    ), // One Piece - OnePieceToy
-    BrandCategoryModel(
-      categoryId: '3',
-      brandId: '11',
-    ), // One Piece - OnePieceToy
+    BrandCategoryModel(categoryId: '7', brandId: '19'), // Gamer - Electronica
 
-    BrandCategoryModel(categoryId: '4', brandId: '2'), // Lego - Lego
+    BrandCategoryModel(categoryId: '10', brandId: '13'), // Tools - Model Tool
 
-    BrandCategoryModel(categoryId: '5', brandId: '4'), // Hotwheel - Hotwheel
+    BrandCategoryModel(categoryId: '13', brandId: '21'), // Keycaps - Pokemon
 
-    BrandCategoryModel(categoryId: '12', brandId: '11'), // Tcg - One Piece Tcg
-    BrandCategoryModel(categoryId: '12', brandId: '12'), // Tcg - Pokemon Tcg
+    BrandCategoryModel(categoryId: '17', brandId: '3'), // Cute Toy - Dudu Bubu
+    BrandCategoryModel(categoryId: '17', brandId: '6'), // Cute Toy - Dudu Bubu
+
+ // Pokemon - Pokemon
+
+    // BrandCategoryModel(categoryId: '3', brandId: '5'), // One Piece - OnePieceToy
+
+    // BrandCategoryModel(categoryId: '3', brandId: '11',), // One Piece - OnePieceToy
+
+
+    // BrandCategoryModel(categoryId: '5', brandId: '4'), // Hotwheel - Hotwheel
+
+    // BrandCategoryModel(categoryId: '12', brandId: '11'), // Tcg - One Piece Tcg
+    // BrandCategoryModel(categoryId: '12', brandId: '12'), // Tcg - Pokemon Tcg
   ];
 
   // ProductCategory
   static final List<ProductCategoryModel> productCategory = [
-    // Category 1
+    
+    // Warhammer
     ProductCategoryModel(categoryId: '1', productId: '11'),
     ProductCategoryModel(categoryId: '1', productId: '3'),
     ProductCategoryModel(categoryId: '1', productId: '5'),
     ProductCategoryModel(categoryId: '1', productId: '6'),
 
-    // Category 4
+    // Lego
     ProductCategoryModel(categoryId: '4', productId: '8'),
+    ProductCategoryModel(categoryId: '4', productId: '37'),
     ProductCategoryModel(categoryId: '4', productId: '9'),
+    ProductCategoryModel(categoryId: '4', productId: '62'),
+    ProductCategoryModel(categoryId: '4', productId: '69'),
+    ProductCategoryModel(categoryId: '4', productId: '70'),
     ProductCategoryModel(categoryId: '4', productId: '10'),
 
-    // Category 10
+    // Gamer
+    ProductCategoryModel(categoryId: '7', productId: '54'),
+    ProductCategoryModel(categoryId: '7', productId: '55'),
+
+    // Tool
     ProductCategoryModel(categoryId: '10', productId: '14'),
-    ProductCategoryModel(categoryId: '10', productId: '15'),
+    ProductCategoryModel(categoryId: '10', productId: '72'),
+    ProductCategoryModel(categoryId: '10', productId: '81'),
+    ProductCategoryModel(categoryId: '10', productId: '82'),
+
+    // Keycaps
+    ProductCategoryModel(categoryId: '10', productId: '60'),
+    ProductCategoryModel(categoryId: '10', productId: '64'),
+    ProductCategoryModel(categoryId: '10', productId: '66'),
+    ProductCategoryModel(categoryId: '10', productId: '82'),
+
+    // Cute Toy
+    ProductCategoryModel(categoryId: '7', productId: '83'),
+    ProductCategoryModel(categoryId: '7', productId: '84'),
   ];
 
   /// List of all Banners
@@ -230,6 +288,7 @@ class DummyData {
 
   /// List of all Brands
   static final List<BrandModel> brands = [
+    // 0
     BrandModel(
       id: '1',
       image: Images.warhammerBrandLogo,
@@ -237,27 +296,31 @@ class DummyData {
       productsCount: 20,
       isFeatured: true,
     ),
-    BrandModel(
-      id: '2',
-      image: Images.legoBrandLogo,
-      name: 'Lego',
-      productsCount: 100,
-      isFeatured: true,
-    ),
+    // BrandModel(
+    //   id: '2',
+    //   image: Images.legoBrandLogo,
+    //   name: 'Lego',
+    //   productsCount: 100,
+    //   isFeatured: true,
+    // ),
+    
+    // 1 
     BrandModel(
       id: '3',
       image: Images.duduBubuBrand,
-      name: 'Dudu & Bubu',
+      name: 'Bubu & Dudu',
       productsCount: 2,
       isFeatured: true,
     ),
-    BrandModel(
-      id: '4',
-      image: Images.hotwheelsBrandLogo,
-      name: 'Hotwheels',
-      productsCount: 30,
-      isFeatured: true,
-    ),
+    // 2
+    // BrandModel(
+    //   id: '4',
+    //   image: Images.hotwheelsBrandLogo,
+    //   name: 'Hotwheels',
+    //   productsCount: 30,
+    //   isFeatured: true,
+    // ),
+    // 3
     BrandModel(
       id: '5',
       image: Images.onePieceBrandLogo,
@@ -265,6 +328,7 @@ class DummyData {
       productsCount: 10,
       isFeatured: true,
     ),
+    // 4
     BrandModel(
       id: '6',
       image: Images.pokemonBrandLogo,
@@ -272,6 +336,7 @@ class DummyData {
       productsCount: 30,
       isFeatured: true,
     ),
+    // 5
     BrandModel(
       id: '7',
       image: Images.starWarsBrandLogo,
@@ -279,13 +344,14 @@ class DummyData {
       productsCount: 100,
       isFeatured: true,
     ),
-    BrandModel(
-      id: '8',
-      image: Images.dungeonsAndDragonsBrand,
-      name: 'Dungeons & Dragons',
-      productsCount: 100,
-      isFeatured: true,
-    ),
+    // BrandModel(
+    //   id: '8',
+    //   image: Images.dungeonsAndDragonsBrand,
+    //   name: 'Dungeons & Dragons',
+    //   productsCount: 100,
+    //   isFeatured: true,
+    // ),
+    // 6
     BrandModel(
       id: '9',
       image: Images.nvidiaBrandLogo,
@@ -293,6 +359,7 @@ class DummyData {
       productsCount: 1,
       isFeatured: true,
     ),
+    // 7
     BrandModel(
       id: '10',
       image: Images.radeonBrandLogo,
@@ -300,18 +367,94 @@ class DummyData {
       productsCount: 1,
       isFeatured: true,
     ),
+    // BrandModel(
+    //   id: '11',
+    //   image: Images.onePieceTcgBrand,
+    //   name: 'One Piece TCG',
+    //   productsCount: 10,
+    //   isFeatured: true,
+    // ),
+    // BrandModel(
+    //   id: '12',
+    //   image: Images.pokemonTcgBrand,
+    //   name: 'Pokemon TCG',
+    //   productsCount: 20,
+    //   isFeatured: true,
+    // ),
+
+    // 8
     BrandModel(
-      id: '11',
-      image: Images.onePieceTcgBrand,
-      name: 'One Piece TCG',
+      id: '13',
+      image: Images.modelToolBrand,
+      name: 'Model Tool',
+      productsCount: 5,
+      isFeatured: true,
+    ),
+
+    // 9
+    BrandModel(
+      id: '14',
+      image: Images.narutoBrand,
+      name: 'Naruto',
       productsCount: 10,
       isFeatured: true,
     ),
+    // 10
     BrandModel(
-      id: '12',
-      image: Images.pokemonTcgBrand,
-      name: 'Pokemon TCG',
-      productsCount: 20,
+      id: '20',
+      image: Images.slamDunkBrand,
+      name: 'Slam Dunk',
+      productsCount: 10,
+      isFeatured: true,
+    ),
+    // 11
+    BrandModel(
+      id: '15',
+      image: Images.saintSeiyaBrand,
+      name: 'Saint Seiya',
+      productsCount: 10,
+      isFeatured: true,
+    ),
+    // 12
+     BrandModel(
+      id: '16',
+      image: Images.jujutsuKaisenBrand,
+      name: 'Jujutsu Kaisen',
+      productsCount: 10,
+      isFeatured: true,
+    ),
+    // 13
+     BrandModel(
+      id: '17',
+      image: Images.warcraft,
+      name: 'Warcraft',
+      productsCount: 2,
+      isFeatured: true,
+    ),
+    // 14
+     BrandModel(
+      id: '18',
+      image: Images.hunterxhunter,
+      name: 'Hunter x Hunter',
+      productsCount: 2,
+      isFeatured: true,
+    ),
+
+     // 15
+     BrandModel(
+      id: '19',
+      image: Images.gamming,
+      name: 'Perifericos',
+      productsCount: 2,
+      isFeatured: true,
+    ),
+
+     // 16
+     BrandModel(
+      id: '21',
+      image: Images.keycapCategory,
+      name: 'The Keycap Company',
+      productsCount: 2,
       isFeatured: true,
     ),
   ];
@@ -647,7 +790,7 @@ class DummyData {
       description:
           'En el manga Naruto el personaje Kisame Hoshigaki es un poderoso shinobi renegado de Kirigakure (Aldea Oculta de la Niebla) y miembro de la organización Akatsuki, conocido como el "Monstruo de la Niebla" y el "Bijū sin cola".',
       salePrice: 2500,
-      brand: brands[1],
+      brand: brands[9],
       sku: 'WM2096',
       categoryId: '4',
       productType: 'ProductType.single',
@@ -662,7 +805,7 @@ class DummyData {
       thumbnail: Images.productImage9,
       description:
           "Itachi Uchiha es un shinobi prodigio de Konoha, miembro del Clan Uchiha, y uno de los personajes más complejos de la serie Naruto.",
-      brand: brands[1],
+      brand: brands[9],
       sku: 'WM2092',
       categoryId: '4',
       productType: 'ProductType.single',
@@ -672,7 +815,7 @@ class DummyData {
     ProductModel(
       id: '10',
       title: 'Madara',
-      brand: brands[1],
+      brand: brands[9],
       thumbnail: Images.productImage10,
       description:
           "Madara Uchiha (うちはマダラ Uchiha Madara?) es un personaje antagónico de la serie de manga Naruto, escrita e ilustrada por Masashi Kishimoto. Antes del comienzo de la historia llegó a convertirse en la figura principal de su clan, y era una reencarnación de Indra Ōtsutsuki, así como uno de los ninjas más poderosos de todos los tiempos. ",
@@ -687,13 +830,13 @@ class DummyData {
     ProductModel(
       id: '23',
       title: 'Zetsu',
-      brand: brands[1],
+      brand: brands[9],
       thumbnail: Images.productImage23,
       description:
           "Zetsu (ゼツ Zetsu) es un miembro de Akatsuki y uno de los subordinados más leales de Tobi, pero se conoce muy poco sobre sus habilidades, su origen y sus actuaciones en la organización. Lleva el anillo con el kanji 亥 (Genbu: Tortuga), en el dedo meñique derecho. La mitad negra es conocido como Zetsu Negro (黒ゼツ, Kuro-Zetsu) mientras que la mitad blanca se conoce como Zetsu Blanco (白ゼツ, Shiro-Zetsu). La parte blanca fue creada mediante el uso de las células de Hashirama Senju pero no se sabe de donde proviene la parte negra. ",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: 'WM2093',
       productType: 'ProductType.single',
     ),
@@ -702,12 +845,12 @@ class DummyData {
     ProductModel(
       id: '24',
       title: 'Deidara',
-      brand: brands[1],
+      brand: brands[9],
       thumbnail: Images.productImage24,
       description: "Deidara (デイダラ, Deidara) Era un miembro de la Organización Akatsuki. Llevaba el anillo 青龍 (せいりゅう, Seiryuu, Dragón azul/verde, Dios del Este y de la Primavera), en el dedo índice derecho. Su compañero era Tobi, aunque antiguamente fue Sasori.",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: 'WM2095',
       productType: 'ProductType.single',
     ),
@@ -716,12 +859,12 @@ class DummyData {
     ProductModel(
       id: '25',
       title: 'Sasori',
-      brand: brands[1],
+      brand: brands[9],
       thumbnail: Images.productImage25,
       description: "Sasori (サソリ), también conocido como Sasori de la Arena Roja (赤 砂 の サソリ, Akasuna no Sasori), era el nieto de Chiyo y miembro de Akatsuki, Tenia como compañero a Deidara y antes a Orochimaru. ",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: 'WM2085',
       productType: 'ProductType.single',
     ),
@@ -730,12 +873,12 @@ class DummyData {
     ProductModel(
       id: '26',
       title: 'Hidan',
-      brand: brands[1],
+      brand: brands[9],
       thumbnail: Images.productImage26,
       description: "Hidan (飛段, Hidan) era un miembro de la Organización Akatsuki. Su compañero era Kakuzu, a pesar de tener aversión mutua el uno al otro. Llevaba el anillo  'Tres' (三, San) en el dedo índice izquierdo. Era el miembro más nuevo de Akatsuki, Kisame se refería peyorativamente a Hidan y Kakuzu como el 'Combo Zombie' (ゾンビコンビ, Zonbi Konbi) debido al hecho de que en cierto sentido, no podían morir. ",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: 'WM2086',
       productType: 'ProductType.single',
     ),
@@ -744,12 +887,12 @@ class DummyData {
     ProductModel(
       id: '27',
       title: 'Kakuzu',
-      brand: brands[1],
+      brand: brands[9],
       thumbnail: Images.productImage27,
       description: "Kakuzu (角都, Kakuzu) fue un ninja renegado de Takigakure y miembro de Akatsuki. Su compañero fue Hidan. Llevaba el anillo 'Norte' (北, Hoku) en el dedo medio izquierdo. A pesar de la mutua antipatía entre ambos, su trabajo en equipo fue casi perfecto, porque se complementaban mutuamente. Kisame Hoshigaki se refería peyorativamente a Hidan y Kakuzu como el 'Combo Zombie' (ゾンビコンビ, Zonbi Konbi), ya que prácticamente no podían morir.",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: 'WM2087',
       productType: 'ProductType.single',
     ),
@@ -758,12 +901,12 @@ class DummyData {
     ProductModel(
       id: '28',
       title: 'konan',
-      brand: brands[1],
+      brand: brands[9],
       thumbnail: Images.productImage28,
       description: "Konan (小南, Konan) era una kunoichi de Amegakure y único miembro femenino de Akatsuki. Llevaba el anillo 'Blanco' (白, Bya) en el dedo corazón derecho. Después de la muerte de Nagato, ella desertó de la organización y se convirtió en la líder de Amegakure. Poseía un talento natural para el origami. ",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: 'WM2090',
       productType: 'ProductType.single',
     ),
@@ -772,12 +915,12 @@ class DummyData {
     ProductModel(
       id: '29',
       title: 'Nagato',
-      brand: brands[1],
+      brand: brands[9],
       thumbnail: Images.productImage29,
       description: "Nagato (長門, Nagato), mejor conocido como Pain (ペイン, Pein), era uno de los más poderosos shinobi, y el líder reconocido de Akatsuki y de Amegakure. Todos los miembros de Akatsuki se referían a él como “Líder”, excepto Konan quien lo llamaba por su nombre, Pain. Llevaba el anillo Cero (零, Rei) en el dedo pulgar derecho. También era usuario del dōjutsu legendario, el Rinnegan, que fue dado por Madara Uchiha antes de su muerte e implantado en Nagato cuando solo era un niño. En su estadía en la organización trabajaba con Konan y recibía órdenes de Obito desde las sombras. ",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: 'WM2091',
       productType: 'ProductType.single',
     ),
@@ -786,12 +929,12 @@ class DummyData {
     ProductModel(
       id: '30',
       title: 'Yahiko',
-      brand: brands[1],
+      brand: brands[9],
       thumbnail: Images.productImage30,
       description: "Yahiko (弥彦, Yahiko) fue el fundador de la organización Akatsuki y perteneció a los Huérfanos de la Lluvia, junto a Nagato y Konan, que fueron entrenados por Jiraiya poco después de la Segunda Guerra Mundial Shinobi. Luego de su muerte, Nagato utilizó el cuerpo de Yahiko para que fuera el Camino Deva de los Seis Caminos del Dolor. ",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: 'WM2089',
       productType: 'ProductType.single',
     ),
@@ -800,12 +943,12 @@ class DummyData {
     ProductModel(
       id: '31',
       title: 'Caballeros dorados, Saint Seiya',
-      brand: brands[1],
+      brand: brands[11],
       thumbnail: Images.productImage31,
       description: "Los Gold Saints (黄金聖闘士, Gōrudo Seinto), también llamados Caballeros Dorados o Caballeros de Oro en el doblaje hispanoamericano del anime y en algunas traducciones oficiales del manga de Saint Seiya, son los guerreros de élite del ejército de Athena, que ostentan con orgullo un rango superior al de los Silver y Bronze Saints. ",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -814,12 +957,12 @@ class DummyData {
     ProductModel(
       id: '32',
       title: 'Aiolia de Leo, Saint Seiya',
-      brand: brands[1],
+      brand: brands[11],
       thumbnail: Images.productImage32,
       description: "Aiolia (アイオリア, Aioria) es el Santo de Oro de Leo del siglo XX en el anime y manga Saint Seeya. Es el Santo de Oro que protege la Casa de Leo.",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -828,12 +971,12 @@ class DummyData {
     ProductModel(
       id: '33',
       title: 'Aiolos de Sagitario, Saint Seiya',
-      brand: brands[1],
+      brand: brands[11],
       thumbnail: Images.productImage33,
       description: "Aiolos (アイオロス, Aiorosu) fue el Santo de Oro de Sagittarius del siglo XX en el anime y manga Saint Seiya. Es el Santo de Oro que protege la Casa de Sagitario.",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -842,12 +985,12 @@ class DummyData {
     ProductModel(
       id: '34',
       title: 'Milo de Scorpion, Saint Seiya',
-      brand: brands[1],
+      brand: brands[11],
       thumbnail: Images.productImage34,
       description: "Milo (ミロ, Miro) fue el Santo de Oro de Scorpius del siglo XX en el anime y manga Saint Seiya. Es el Santo de Oro que protege la Casa de Escorpio.",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -856,12 +999,12 @@ class DummyData {
     ProductModel(
       id: '35',
       title: 'Camus de Acuario, Saint Seiya',
-      brand: brands[1],
+      brand: brands[11],
       thumbnail: Images.productImage35,
       description: "Camus (カムス, Kamusu) fue el Santo de Oro de Acuario del siglo XX en el anime y manga Saint Seiya. Es el Santo de Oro que protege la Casa de Acuario.",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -870,12 +1013,12 @@ class DummyData {
     ProductModel(
       id: '36',
       title: 'Mascara de Muerte Cancer, Saint Seiya',
-      brand: brands[1],
+      brand: brands[11],
       thumbnail: Images.productImage36,
       description: "Deathmask (デスマスク, Desumasuku), comúnmente llamado Máscara de Muerte, Máscara de la Muerte o Máscara Mortal en los doblajes para países de habla hispana, fue el Saint de Cáncer que protegía el Templo del Gran Cangrejo. ",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -884,12 +1027,12 @@ class DummyData {
     ProductModel(
       id: '37',
       title: 'Shura de Capricornio, Saint Seiya',
-      brand: brands[1],
+      brand: brands[11],
       thumbnail: Images.productImage37,
       description: "Shura (シュラ, Shura) es el Gold Saint de Capricorn, quien causó las heridas mortales a Aiolos de Sagittarius. Tras su muerte, depositó su alma en Shiryū. En el anime, según el guionista Takao Koyama, él es considerado como el Saint más fiel a la Diosa Atenea, opinión realizada por la disposición que tuvo para matar a Aiolos de Sagittarius. ",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -898,12 +1041,12 @@ class DummyData {
     ProductModel(
       id: '38',
       title: 'Aldebaran de Tauro, Saint Seiya',
-      brand: brands[1],
+      brand: brands[11],
       thumbnail: Images.productImage38,
       description: "Aldebaran (アルデバラン, Arudebaran) fue el Gold Saint de Taurus hasta su muerte a manos de Niobe de Deep. Después fue revivido por el cosmos de Athena, y se sacrificó con los demás Gold Saints en el Muro de los Lamentos.  ",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -912,12 +1055,12 @@ class DummyData {
     ProductModel(
       id: '39',
       title: 'Saga de Gemini, Saint Seiya',
-      brand: brands[1],
+      brand: brands[11],
       thumbnail: Images.productImage39,
       description: "Saga (サガ, Saga) fue el Gold Saint de Géminis y principal antagonista desde la Saga de los Santos Negros hasta la Batalla de los doce templos, justamente por ser el usurpador del Papa del Santuario, con el fin de dominar el mundo y acabar con Saori y sus Santos al manipular al Ejército de Athena. ",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -926,12 +1069,12 @@ class DummyData {
     ProductModel(
       id: '40',
       title: 'Dohko de Libra, Saint Seiya',
-      brand: brands[1],
+      brand: brands[11],
       thumbnail: Images.productImage40,
       description: "Dohko (童虎, Dōko), también conocido como el Viejo Maestro (老師, Rōshi) fue junto a Shion un Bronze Saint [16] de constelación desconocida durante el siglo XVIII que posteriormente seria promovido a Santo de Libra[16",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -940,12 +1083,12 @@ class DummyData {
     ProductModel(
       id: '41',
       title: 'Mū de Aries, Saint Seiya',
-      brand: brands[1],
+      brand: brands[11],
       thumbnail: Images.productImage41,
       description: "Mū (ムウ, Mū) fue el Santo de Aries durante el siglo XX en el manga y anime Saint Seiya. Es el heredero en el arte en la restauración de las Cloths",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -954,12 +1097,12 @@ class DummyData {
     ProductModel(
       id: '42',
       title: 'Shaka de Virgo, Saint Seiya',
-      brand: brands[1],
+      brand: brands[11],
       thumbnail: Images.productImage42,
       description: "Shaka (シャカ, Shaka) es el Santo de Oro de Virgo en la obra Saint Seiya y protege la Casa de la Virgen en el Santuario. Es considerado por sus aliados como la reencarnación de Buda, pero realmente Buda es su mentor. Posee un poder de observación que le permite conocer la verdad escondida entre las apariencias.",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -968,12 +1111,12 @@ class DummyData {
     ProductModel(
       id: '43',
       title: 'Afrodita de Piscis, Saint Seiya',
-      brand: brands[1],
+      brand: brands[11],
       thumbnail: Images.productImage43,
       description: "Aphrodite (アフロディーテ, Afurodīte) fue el Gold Saint de Pisces hasta su muerte a manos de Shun de Andromeda. Posteriormente fue revivido por Ker siendo muerto junto a Deathmask de Cancer a manos de Rhadamanthys. ",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -982,12 +1125,12 @@ class DummyData {
     ProductModel(
       id: '44',
       title: 'Slam Dunk - Equipo Shohoku',
-      brand: brands[1],
+      brand: brands[10],
       thumbnail: Images.productImage44,
       description: "El Instituto Shohoku es el equipo de baloncesto protagonista del famoso manga y anime Slam Dunk, creado por Takehiko Inoue. Está ubicado ficticiamente en la prefectura de Kanagawa, ",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -996,12 +1139,12 @@ class DummyData {
     ProductModel(
       id: '46',
       title: 'Takenori Akagi - Slam Dunk',
-      brand: brands[1],
+      brand: brands[10],
       thumbnail: Images.productImage46,
       description: "Takenori Akagi (赤木 剛憲Akagi Takenori ) es el capitán del equipo y centro del equipo de baloncesto Shohoku . También es el hermano mayor de Haruko Akagi .",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1010,12 +1153,12 @@ class DummyData {
     ProductModel(
       id: '47',
       title: 'Hanamichi Sakuragi - Slam Dunk',
-      brand: brands[1],
+      brand: brands[10],
       thumbnail: Images.productImage47,
       description: "Hanamichi Sakuragi (桜木 花道Sakuragi Hanamichi ) es el protagonista principal de la serie Slam Dunk . Juega como ala-pívot (y ocasionalmente como centro suplente) para el equipo de baloncesto de Shohoku High School .",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1024,12 +1167,12 @@ class DummyData {
     ProductModel(
       id: '48',
       title: 'Kaede Rukawa - Slam Dunk',
-      brand: brands[1],
+      brand: brands[10],
       thumbnail: Images.productImage48,
       description: "Kaede Rukawa (流川 楓Rukawa Kaede ) es la delantera y la jugadora estrella del instituto Shohoku .",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1038,12 +1181,12 @@ class DummyData {
     ProductModel(
       id: '49',
       title: 'Entrenador Anzai  - Slam Dunk',
-      brand: brands[1],
+      brand: brands[10],
       thumbnail: Images.productImage49,
       description: "Mitsuyoshi Anzai (安西 光義) es el entrenador del equipo de baloncesto de la escuela secundaria Shohoku y uno de los mejores entrenadores de Japón.",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1052,12 +1195,12 @@ class DummyData {
     ProductModel(
       id: '50',
       title: 'Hisashi Mitsui - Slam Dunk',
-      brand: brands[1],
+      brand: brands[10],
       thumbnail: Images.productImage50,
       description: "Hisashi Mitsui (三井 寿Mitsui Hisashi ) es el escolta del equipo de baloncesto de Shohoku . Aunque estuvo de baja por una lesión de rodilla, aún conserva las habilidades necesarias para llevar al equipo a la victoria.",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1066,12 +1209,12 @@ class DummyData {
     ProductModel(
       id: '51',
       title: 'Ryota Miyagi - Slam Dunk',
-      brand: brands[1],
+      brand: brands[10],
       thumbnail: Images.productImage51,
       description: "Ryota Miyagi (宮城 リョータ Miyagi Ryōta ) es el mejor amigo de Sakuragi en el equipo. Tras un malentendido inicial que provocó un conflicto entre ellos (él estaba peleando con Mitsui cuando Sakuragi y Ayako aparecieron, y él pensó que ella estaba saliendo con él), ambos encontraron camaradería en el hecho de que ambos habían tenido mala suerte en el amor, aunque Miyagi, al haber sido rechazado solo 10 veces, aún no alcanza el récord de Sakuragi, quien fue rechazado 50 veces.",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1080,12 +1223,12 @@ class DummyData {
     ProductModel(
       id: '52',
       title: 'Mitsui Pandillero - Slam Dunk',
-      brand: brands[1],
+      brand: brands[10],
       thumbnail: Images.productImage52,
       description: "Mitsui Pasa dos años sin jugar, y un día vuelve al gimnasio para pelear con los del equipo de baloncesto para que con esto se suspenda el equipo, de esa manera iba a perjudicar a Ryota Miyagi. (uno de los integrantes del equipo con el cual estaba enemistado) Pelearon y hubo mucha sangre, luego el profesor Anzai entró al gimnasio y Mitsui al reencontrarse con el se ve conmovido y decide regresar al balocesto. ",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1094,12 +1237,12 @@ class DummyData {
     ProductModel(
       id: '53',
       title: 'Haruko Akagi - Slam Dunk',
-      brand: brands[1],
+      brand: brands[10],
       thumbnail: Images.productImage53,
       description: "Haruko Akagi (晴子・赤木, Haruko Akagi) es uno de los personajes principales de la serie japonesa de manga y anime Slam Dunk. Dulce y con una personalidad arrolladora, ella está siempre por allí para animar a los jugadores, sobre todo a su hermano Takenori, que es muy protector con ella y le enseñó los fundamentos del baloncesto, y Sakuragi a quien considera su mejor amigo. ",
       price: 3000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1108,7 +1251,7 @@ class DummyData {
     ProductModel(
       id: '56',
       title: 'Rancor - Star Wars',
-      brand: brands[1],
+      brand: brands[5],
       thumbnail: Images.productImage56a,
       images: [
         Images.productImage56a,
@@ -1117,7 +1260,7 @@ class DummyData {
       description: "El rancor es una criatura reptiliana y carnívora del universo de Star Wars, famosa por su gran tamaño, fuerza descomunal y su aparición en el Episodio VI: El Retorno del Jedi.",
       price: 7000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: 'PG-634',
       productType: 'ProductType.single',
     ),
@@ -1126,7 +1269,7 @@ class DummyData {
     ProductModel(
       id: '57',
       title: 'Jabba the Hutt - Star Wars',
-      brand: brands[1],
+      brand: brands[5],
       thumbnail: Images.productImage57a,
       images: [
         Images.productImage57a,
@@ -1135,7 +1278,7 @@ class DummyData {
       description: "Jabba el Hutt o Jabba, era un gángster Hutt y un señor del crimen, así como un miembro del Gran Consejo Hutt, que operaba y dirigía un imperio criminal desde su palacio en el mundo del Borde Exterior Tatooine. Jabba era un Hutt, una especie de criatura de gran tamaño y forma de babosa, y era conocido por su naturaleza cruel y despiadada, así como por su amor por la riqueza, el poder y la indulgencia.",
       price: 7000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: 'PG-629',
       productType: 'ProductType.single',
     ),
@@ -1144,7 +1287,7 @@ class DummyData {
     ProductModel(
       id: '58',
       title: 'Dewback - Star Wars',
-      brand: brands[1],
+      brand: brands[5],
       thumbnail: Images.productImage58a,
       images: [
         Images.productImage58a,
@@ -1153,7 +1296,7 @@ class DummyData {
       description: "El dewback es un reptil de gran tamaño que habita en el planeta Tatooine, en el universo de Star Wars. Es conocido por su resistencia y fuerza, lo que lo convierte en un animal de carga y transporte ideal para los habitantes del desierto. Los soldados de asalto imperiales a menudo montan dewbacks para patrullar las dunas y mantener el orden en la región.",
       price: 7000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: 'PG-636',
       productType: 'ProductType.single',
     ),
@@ -1162,12 +1305,12 @@ class DummyData {
     ProductModel(
       id: '59',
       title: 'Tauntaun - Star Wars',
-      brand: brands[1],
+      brand: brands[5],
       thumbnail: Images.productImage59,
       description: "El Tauntaun es una criatura nativa del planeta helado Hoth, en el universo de Star Wars. Es un animal de carga y transporte utilizado por los rebeldes para desplazarse por el terreno nevado y hostil del planeta. Los tauntauns son conocidos por su resistencia al frío extremo y su capacidad para moverse ágilmente por la nieve y el hielo.",
       price: 7000,
       stock: 2,
-      categoryId: '17',
+      categoryId: '4',
       sku: 'PG-670',
       productType: 'ProductType.single',
     ),
@@ -1176,14 +1319,14 @@ class DummyData {
     ProductModel(
       id: '62',
       title: 'Lich King',
-      brand: brands[7],
+      brand: brands[13],
       images: [Images.productImage62a, Images.productImage62b],
       thumbnail: Images.productImage62a,
       description:
           "El Rey Exánime (Lich King) es el amo y señor de La Plaga (The Scourge), el ejército de muertos vivientes en el universo de World of Warcraft, ",
       price: 25000,
       stock: 2,
-      categoryId: '10',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1192,13 +1335,13 @@ class DummyData {
     ProductModel(
       id: '63',
       title: 'Sasori - Hiruko',
-      brand: brands[7],
+      brand: brands[9],
       thumbnail: Images.productImage63,
       description:
           "Hiruko (ヒルコ, Hiruko) era una Marioneta Humana hueca utilizada por el miembro de Akatsuki Sasori, el cual, generalmente, vivía dentro de este títere, usándola como una especie de armadura metálica. ",
       price: 25000,
       stock: 2,
-      categoryId: '10',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1207,13 +1350,13 @@ class DummyData {
     ProductModel(
       id: '65',
       title: 'Darth Vader',
-      brand: brands[7],
+      brand: brands[5],
       thumbnail: Images.productImage65,
       description:
           "Anakin Skywalker fue un humano sensible a la Fuerza que sirvió a la República Galáctica como Caballero Jedi y más tarde al Imperio Galáctico como el Lord Sith, Darth Vader. ",
       price: 25000,
       stock: 2,
-      categoryId: '10',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1222,13 +1365,13 @@ class DummyData {
     ProductModel(
       id: '67',
       title: 'Dracule Mihawk',
-      brand: brands[7],
+      brand: brands[3],
       thumbnail: Images.productImage67,
       description:
           "Dracule Mihawk (ジュラキュール・ミホーク Jurakyūru Mihōku), también conocido como Ojos de Halcón (鷹の目 Taka no Me), y en el pasado, como El Cazador de Marines (海兵狩り Kaihei-gari), es un pirata y poseedor actual del título del Espadachín más Fuerte del Mundo (世界最強の剣士 Sekai Saikyō no Kenshi). También fue miembro de los Siete Señores de la Guerra del Mar, siendo el primero en aparecer, hasta que la organización se disolvió. En la actualidad, forma parte de Cross Guild, junto el antiguo Señor de la Guerra del Mar Crocodile y el Emperador del Mar Buggy.",
       price: 25000,
       stock: 2,
-      categoryId: '10',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1237,13 +1380,13 @@ class DummyData {
     ProductModel(
       id: '68',
       title: 'Buggy',
-      brand: brands[7],
+      brand: brands[3],
       thumbnail: Images.productImage68,
       description:
           "Buggy el payaso estrella (千両道化のバギー Senryō Dōke no Bagī) es el capitán de los Piratas de Buggy, inicialmente conocido como Buggy el payaso y uno de los Cuatro Emperadores que rigen los mares del Nuevo Mundo. Es también el colíder de la Alianza de Buggy y Alvida además de un antiguo aprendiz pirata de los Piratas de Roger. Poco después de la Guerra en la Cumbre de Marineford, se convirtió en miembro de los Siete Señores de la Guerra del Mar y en el presidente de la organización de envíos piratas Buggy's Delivery. Más tarde, perdió su título de Señor de la Guerra, cuando el sistema se disolvió, pero luego fue reconocido como uno de los Cuatro Emperadores, tras la caída de Kaidou y Big Mom y se convirtió en miembro fundador de Cross Guild, actuando como su líder. ",
       price: 25000,
       stock: 2,
-      categoryId: '10',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1252,13 +1395,13 @@ class DummyData {
     ProductModel(
       id: '69',
       title: 'Crocodile',
-      brand: brands[7],
+      brand: brands[3],
       thumbnail: Images.productImage69,
       description:
           "Sir Crocodile (サー・クロコダイル Sā Kurokodairu, España: «Sir Crocodile el pirata».), conocido como el Rey del desierto (砂漠の王 Sabaku no Ō) es un afamado pirata que formó parte de los Siete Señores de la Guerra del Mar y el fundador y expresidente, en la sombra, de la organización criminal Baroque Works, donde adoptó el nombre en clave de Mr. 0 (ミスター・ゼロ Misutā Zero?) Después de la absolución de los Siete Señores de la Guerra del Mar, Crocodile se desempeña como co-líder de la organización Cross Guild, junto con Dracule Mihawk, bajo la fachada del liderazgo de Buggy, quien fue nombrado como uno de los Cuatro Emperadores. ",
       price: 25000,
       stock: 2,
-      categoryId: '10',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1267,7 +1410,7 @@ class DummyData {
     ProductModel(
       id: '70',
       title: 'Almirantes de la Marina - One Piece',
-      brand: brands[7],
+      brand: brands[3],
       images: [
         Images.productImage70a, 
       ],
@@ -1276,7 +1419,7 @@ class DummyData {
           "Los almirantes de la Marina en One Piece son el segundo rango más alto de la institución (solo por debajo del Almirante de la Flota) y representan el «Mayor Poder Militar» del Gobierno Mundial.",
       price: 15000,
       stock: 2,
-      categoryId: '7',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.variable',
       productAttributes: [
@@ -1377,13 +1520,13 @@ class DummyData {
     ProductModel(
       id: '71',
       title: 'Eustass Kid ',
-      brand: brands[7],
+      brand: brands[3],
       thumbnail: Images.productImage71,
       description:
           "Eustass Kid (ユースタス・'キャプテン'キッド Yūsutasu 'Kyaputen' Kiddo) es un reconocido pirata del South Blue que ejerce como capitán de los Piratas de Kid. Al ser uno de los once Supernovas que desembarcaron en Sabaody, hace dos años, forma parte de «la peor generación» de piratas de la historia. Después de derrotar a la Emperatriz Big Mom, junto a Trafalgar D. Water Law, consiguió una recompensa de Belly3.000.000.000. ",
       price: 25000,
       stock: 2,
-      categoryId: '10',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1392,13 +1535,13 @@ class DummyData {
     ProductModel(
       id: '73',
       title: 'Shanks',
-      brand: brands[7],
+      brand: brands[3],
       thumbnail: Images.productImage73,
       description:
           "Shanks el Pelirrojo (赤髪のシャンクス Akagami no Shankusu) o simplemente conocido como el Pelirrojo, es el jefe de los Piratas del Pelirrojo y uno de los Cuatro Emperadores que gobiernan el Nuevo Mundo Fue además, un miembro de la legendaria tripulación de Gol D. Roger, siendo la única banda que logró conquistar, con éxito, todo Grand Line.",
       price: 25000,
       stock: 2,
-      categoryId: '10',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1407,13 +1550,13 @@ class DummyData {
     ProductModel(
       id: '74',
       title: 'Edward Newgate',
-      brand: brands[7],
+      brand: brands[3],
       thumbnail: Images.productImage74,
       description:
           "Edward Newgate (エドワード・二ューゲート Edowādo Nyūgēto), más conocido como Barbablanca (白ひげ Shirohige?), fue el capitán de los Piratas de Barbablanca y el histórico rival de Gol D. Roger. Tras la muerte de éste, fue conocido como el Hombre más cercano al One Piece (ワンピースに最も近い男 Wan Pīsu ni mottomo chikai otoko), además de ser reconocido como El hombre más fuerte del mundo (世界最強の男 Sekai saikyō no otoko). ",
       price: 25000,
       stock: 2,
-      categoryId: '10',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1422,13 +1565,13 @@ class DummyData {
     ProductModel(
       id: '76',
       title: 'Boba Fett',
-      brand: brands[7],
+      brand: brands[5],
       thumbnail: Images.productImage76,
       description:
           "Boba Fett fue un cazarrecompensas humano, y el clon del infame cazarrecompensas Jango Fett. Boba fue creado por los clonadores de Kamino y era físicamente idéntico a los soldados clon creados para el Gran Ejército de la República, aunque Boba fue inalterado y no creció aceleradamente como los demás clones. Criado como el hijo de Jango, Boba aprendió las habilidades de combate necesarias para algún día convertirse en cazarrecompensas por derecho propio.",
       price: 5000,
       stock: 2,
-      categoryId: '10',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1437,13 +1580,13 @@ class DummyData {
     ProductModel(
       id: '77',
       title: 'Stormtroopers',
-      brand: brands[7],
+      brand: brands[5],
       thumbnail: Images.productImage77,
       description:
           "Los Soldados Imperiales, también conocidos como Soldados de Asalto Clon, Tropas de Asalto o Stormtroopers, fueron un grupo de soldados de choque de élite del Imperio Galáctico. Al igual que los Destructores Estelares clase Imperial I y los Cazas TIE, los soldados de asalto servían como recordatorio del poder del Emperador, extensiones de su voluntad, y un método para mantener los cientos de sistemas estelares del Imperio bajo el yugo del miedo. ",
       price: 5000,
       stock: 2,
-      categoryId: '10',
+      categoryId: '4',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1484,7 +1627,7 @@ class DummyData {
     ProductModel(
       id: '14',
       title: 'Shinto Escofina Japonesa',
-      brand: brands[7],
+      brand: brands[8],
       images: [Images.productImage14b, Images.productImage14c],
       thumbnail: Images.productImage14a,
       description:
@@ -1503,7 +1646,7 @@ class DummyData {
     ProductModel(
       id: '45',
       title: 'Exhibidor Acrílico 32 Figuras Lego',
-      brand: brands[7],
+      brand: brands[8],
       images: [Images.productImage45a, Images.productImage45b],
       thumbnail: Images.productImage45a,
       description:
@@ -1519,7 +1662,7 @@ class DummyData {
     ProductModel(
       id: '72',
       title: 'Paleta Húmeda para Pintura Acrílica',
-      brand: brands[7],
+      brand: brands[8],
       images: [Images.productImage72a, Images.productImage72b, Images.productImage72c, Images.productImage72d],
       thumbnail: Images.productImage72a,
       description:
@@ -1535,7 +1678,7 @@ class DummyData {
     ProductModel(
       id: '75',
       title: 'Lupas de aumento 10X',
-      brand: brands[7],
+      brand: brands[8],
       images: [Images.productImage75a, Images.productImage75b, Images.productImage75c, Images.productImage75d],
       thumbnail: Images.productImage75a,
       description:
@@ -1551,7 +1694,7 @@ class DummyData {
     ProductModel(
       id: '78',
       title: 'Pincel para detalle',
-      brand: brands[7],
+      brand: brands[8],
       images: [Images.productImage78a, Images.productImage78b],
       thumbnail: Images.productImage78a,
       description:
@@ -1567,7 +1710,7 @@ class DummyData {
     ProductModel(
       id: '79',
       title: 'Limpia pincel',
-      brand: brands[7],
+      brand: brands[8],
       images: [Images.productImage79a, Images.productImage79b],
       thumbnail: Images.productImage79a,
       description:
@@ -1583,7 +1726,7 @@ class DummyData {
     ProductModel(
       id: '80',
       title: 'Pincel Fino de Bambu',
-      brand: brands[7],
+      brand: brands[8],
       images: [Images.productImage80a, Images.productImage80b, Images.productImage80c, Images.productImage80d, Images.productImage80e],
       thumbnail: Images.productImage80a,
       description:
@@ -1599,7 +1742,7 @@ class DummyData {
     ProductModel(
       id: '81',
       title: 'Sierra de corte Mini',
-      brand: brands[7],
+      brand: brands[8],
       images: [Images.productImage81a, Images.productImage81b],
       thumbnail: Images.productImage81a,
       description:
@@ -1615,7 +1758,7 @@ class DummyData {
     ProductModel(
       id: '82',
       title: 'Taladro manual con brocas',
-      brand: brands[7],
+      brand: brands[8],
       images: [Images.productImage82a, Images.productImage82b, Images.productImage82c, Images.productImage82d],
       thumbnail: Images.productImage82a,
       description:
@@ -1633,14 +1776,14 @@ class DummyData {
     ProductModel(
       id: '54',
       title: 'Rapoo MT760',
-      brand: brands[7],
+      brand: brands[15],
       images: [Images.productImage54a, Images.productImage54b,Images.productImage54c,Images.productImage54d,Images.productImage54e],
       thumbnail: Images.productImage54a,
       description:
           "Rapoo MT760 Ratón inalámbrico Bluetooth multimodo recargable ergonómico 4000 DPI compatible con hasta 4 dispositivos",
       price: 25000,
       stock: 2,
-      categoryId: '7',
+      categoryId: '11',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1649,14 +1792,14 @@ class DummyData {
     ProductModel(
       id: '55',
       title: 'Auriculares KZ EDX Pro X',
-      brand: brands[7],
+      brand: brands[15],
       images: [Images.productImage55a, Images.productImage55b,Images.productImage55c,Images.productImage55d,Images.productImage55e,Images.productImage55f,Images.productImage55g,Images.productImage55h,Images.productImage55i,Images.productImage55j,Images.productImage55k,Images.productImage55l],
       thumbnail: Images.productImage55a,
       description:
           "Auriculares deportivos KZ EDX Pro X HIFI con cable desmontable de 0.78mm y 2 pines, micrófono con reducción de ruido HD para juegos y viajes.",
       price: 30000,
       stock: 2,
-      categoryId: '7',
+      categoryId: '11',
       sku: '',
       productType: 'ProductType.variable',
       productAttributes: [
@@ -1765,13 +1908,13 @@ class DummyData {
     ProductModel(
       id: '60',
       title: 'Keycap Space Marine Warhammer 40k',
-      brand: brands[7],
+      brand: brands[16],
       thumbnail: Images.productImage60,
       description:
           "Keycap Space Marine Warhammer 40k Sin pintar",
       price: 25000,
       stock: 2,
-      categoryId: '7',
+      categoryId: '13',
       sku: '',
       productType: 'ProductType.single',
     ),
@@ -1780,7 +1923,7 @@ class DummyData {
     ProductModel(
       id: '61',
       title: 'Keycap Hunter x Hunter',
-      brand: brands[7],
+      brand: brands[16],
       images: [
         Images.productImage61a, 
         Images.productImage61b, 
@@ -1795,7 +1938,7 @@ class DummyData {
           "Keycap Hunter x Hunter Sin pintar Hecho en Resina",
       price: 15000,
       stock: 2,
-      categoryId: '7',
+      categoryId: '13',
       sku: '',
       productType: 'ProductType.variable',
       productAttributes: [
@@ -1861,7 +2004,7 @@ class DummyData {
     ProductModel(
       id: '64',
       title: 'Keycap One Piece - Yonko',
-      brand: brands[7],
+      brand: brands[16],
       images: [
         Images.productImage64a, 
         Images.productImage64b, 
@@ -1876,7 +2019,7 @@ class DummyData {
           "Keycap One Piece Yonkos Sin pintar Hecho en Resina",
       price: 15000,
       stock: 2,
-      categoryId: '7',
+      categoryId: '13',
       sku: '',
       productType: 'ProductType.variable',
       productAttributes: [
@@ -1953,7 +2096,7 @@ class DummyData {
     ProductModel(
       id: '66',
       title: 'Keycap One Piece - Piratas de Sombrero de Paja',
-      brand: brands[7],
+      brand: brands[16],
       images: [
         Images.productImage66a, 
         Images.productImage66b, 
@@ -1966,7 +2109,7 @@ class DummyData {
           "Keycap One Piece Piratas de Sombrero de Paja Sin pintar Hecho en Resina",
       price: 15000,
       stock: 2,
-      categoryId: '7',
+      categoryId: '13',
       sku: '',
       productType: 'ProductType.variable',
       productAttributes: [
@@ -2025,6 +2168,107 @@ class DummyData {
           sku: '',
         ),
       ]
+    ),
+
+     // 083
+    ProductModel(
+      id: '83',
+      title: 'Dudu & Bubu, llaveros',
+      brand: brands[1],
+      images: [
+        Images.productImage83a, 
+        Images.productImage83b, 
+        Images.productImage83c,
+        Images.productImage83d
+      ],
+      thumbnail: Images.productImage83a,
+      description:
+          "Llavero de Dudu & Bubu hecho en plastico resistente",
+      price: 5000,
+      stock: 2,
+      categoryId: '14',
+      sku: '',
+      productType: 'ProductType.variable',
+      productAttributes: [
+        ProductAttributeModel(
+          name: 'Modelo',
+          values: [
+            'Dudu',
+            'Bubu',
+            'Dudu & Bubu'
+          ],
+        ),
+      ],
+      productVariations: [
+        ProductVariationModel(
+          id: 'Keycap010',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage83b,
+          description:'Llavero de Dudu',
+          attributeValues: {'Modelo': 'Dudu'},
+          sku: '',
+        ),
+        ProductVariationModel(
+          id: 'Keycap011',
+          stock: 1,
+          salePrice: 5000,
+          price: 5000,
+          image: Images.productImage83c,
+          description:'Llavero de Bubu',
+          attributeValues: {'Modelo': 'Bubu'},
+          sku: '',
+        ), ProductVariationModel(
+          id: 'Keycap012',
+          stock: 1,
+          salePrice: 10000,
+          price: 5000,
+          image: Images.productImage83c,
+          description:'Pack de llavero Dudu & Bubu',
+          attributeValues: {'Modelo': 'Dudu & Bubu'},
+          sku: '',
+        )
+      ]
+    ),
+
+    // 084
+    ProductModel(
+      id: '84',
+      title: 'Pokemon Set Figuras',
+      brand: brands[4],
+      images: [
+        Images.productImage84a, 
+        Images.productImage84b, 
+        Images.productImage84c,
+        Images.productImage84d,
+        Images.productImage84e,
+        Images.productImage84f,
+        Images.productImage84g
+      ],
+      thumbnail: Images.productImage84a,
+      description:
+          "Set de figuras Pokemon : Pikachu, Bulbasour, Charmander, Eve, Psyduck",
+      price: 5000,
+      stock: 2,
+      categoryId: '15',
+      sku: '',
+      productType: 'ProductType.single',
+    ),
+
+    // 085
+    ProductModel(
+      id: '85',
+      title: 'Posillo Metalico',
+      brand: brands[8],
+      thumbnail: Images.productImage85,
+      description:
+          "Posillo metalico para mesclar pintura",
+      price: 25000,
+      stock: 2,
+      categoryId: '10',
+      sku: '',
+      productType: 'ProductType.single',
     ),
   ];
 

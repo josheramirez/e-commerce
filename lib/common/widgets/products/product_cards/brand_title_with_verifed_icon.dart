@@ -14,6 +14,7 @@ class BrandTitleWithVerifedIcon extends StatelessWidget {
     this.iconColor = UColors.primary,
     this.textAlign = TextAlign.center,
     this.brandTextSize = TextSizes.small,
+    this.showIcon = true
   });
 
   final String title;
@@ -21,6 +22,7 @@ class BrandTitleWithVerifedIcon extends StatelessWidget {
   final Color? textColor, iconColor;
   final TextAlign? textAlign;
   final TextSizes brandTextSize;
+  final bool showIcon;
   
 
   @override
@@ -31,6 +33,7 @@ class BrandTitleWithVerifedIcon extends StatelessWidget {
 
         Flexible(child: BrandTitleText(title: title)),
         // SizedBox(width: 10),
+        if(showIcon)
         Icon(Iconsax.verify, color: UColors.primary, size: USizes.iconXs),
 
       ],

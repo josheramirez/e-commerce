@@ -43,14 +43,18 @@ class Images {
   static const String mailVerifcation = 'assets/animations/success_mail.png';
 
   // categories icons [FINAL]
-  static const String rolGame = 'assets/icons/categories/rol_game_category.png';
-  static const String dubuBubu = 'assets/icons/categories/dubu_bubu_category.png';
+  static const String warhammer = 'assets/icons/categories/warhammer_cat.png';
   static const String modelTools = 'assets/icons/categories/model_tools_category.png';
+  static const String pokemon = 'assets/icons/categories/pika.png';
+  static const String keycapCategory = 'assets/categories/keycap.webp';
+  static const String dubuDuduCategory = 'assets/categories/bubu_dudu.jpeg';
+  static const String pokemonCategory = 'assets/categories/pokemonCategory.png';
+
+  static const String rolGame = 'assets/icons/categories/rol_game_category.png';
   static const String hotwheels = 'assets/icons/categories/hotwheels_category.png';  
   static const String lego = 'assets/icons/categories/lego_category.png';
   static const String memoryRam = 'assets/icons/categories/memory_ram.png';
   static const String onePiece = 'assets/icons/categories/one_piece_category.png';
-  static const String pokemon = 'assets/icons/categories/pokemon_category.png';
   static const String videoCard = 'assets/icons/categories/video_card.png';
   static const String books = 'assets/icons/categories/books_category.png';
   static const String modelKit = 'assets/icons/categories/model_kit_category.png';
@@ -289,8 +293,8 @@ class Images {
   static const String productImage61e = 'assets/products/1790877094616-779634154.jpg';
   static const String productImage61f = 'assets/products/1790877094663--603260320.jpg';
   static const String productImage61g = 'assets/products/1790877094715-632565176.jpg';
-  // 62
-  static const String productImage62a = 'assets/products/1790877115348--104532782.jpg';
+  // 62 
+  static const String productImage62a = 'assets/products/1790877265747--1423447069.jpg';
   static const String productImage62b = 'assets/products/1790877265882--1515200724.jpg';
   // 63
   static const String productImage63 = 'assets/products/1790877286156-1142968772.jpg';
@@ -366,21 +370,44 @@ class Images {
   static const String productImage82b = 'assets/products/1790878546302-1822082169.jpg';   
   static const String productImage82c = 'assets/products/1790878547319--964200908.jpg';   
   static const String productImage82d = 'assets/products/1790878545334-923798356.jpg';
+  // 83
+  static const String productImage83a = 'assets/products/1790879870658-783780361.jpg';
+  static const String productImage83b = 'assets/products/1790879874337-1873501633.jpg';   
+  static const String productImage83c = 'assets/products/1790879873409-355523803.jpg';   
+  static const String productImage83d = 'assets/products/1790879875397-579085076.jpg';
+
+  // 84
+  static const String productImage84a = 'assets/products/1790880035120-959390881.jpg';
+  static const String productImage84b = 'assets/products/1790880035913--537549839.jpg';   
+  static const String productImage84c = 'assets/products/1790880036552-772549189.jpg';   
+  static const String productImage84d = 'assets/products/1790880037486-1731848062.jpg';
+  static const String productImage84e = 'assets/products/1790880038252--1008946924.jpg';
+  static const String productImage84f = 'assets/products/1790880039123-5103057.jpg';
+  static const String productImage84g = 'assets/products/1790880040160--144781636.jpg';
+  // 85
+  static const String productImage85 = 'assets/products/1790877115348--104532782.jpg';   
+ 
 
   // Brands [FINAL]
   static const String warhammerBrandLogo = 'assets/brands/warhammer-logo-blanco.png';
   static const String legoBrandLogo = 'assets/brands/lego-color.png';
   static const String pokemonBrandLogo = 'assets/brands/pokemon-logo.png';
-  static const String onePieceBrandLogo = 'assets/brands/onePiece-logo.png';
-  static const String hotwheelsBrandLogo = 'assets/brands/hotwheels-logo.png';
+  static const String onePieceBrandLogo = 'assets/brands/one_piece.png';
+  static const String hotwheelsBrandLogo = 'assets/brands/hotwheel_brand.png';
   static const String duduBubuBrand = 'assets/brands/duduBubu_brand.jpeg';
   static const String nvidiaBrandLogo = 'assets/brands/nvidia-logo.jpeg';
-  static const String radeonBrandLogo = 'assets/brands/radeon-logo.jpeg';
+  static const String radeonBrandLogo = 'assets/brands/radeon_.png';
   static const String starWarsBrandLogo = 'assets/brands/starWars-logo.jpeg';
   static const String dungeonsAndDragonsBrand = 'assets/brands/dungeonsAndDragons_brand.png';
   static const String onePieceTcgBrand = 'assets/brands/one_piece_tcg_brand.jpeg';
   static const String pokemonTcgBrand = 'assets/brands/pokemon_tcg_brand.png';
-
+  static const String modelToolBrand = 'assets/brands/model_tool_brand.png';
+  static const String narutoBrand = 'assets/brands/naruto.png';
+  static const String slamDunkBrand = 'assets/brands/slam_dunk.png';
+  static const String saintSeiyaBrand = 'assets/brands/saint_seiya.png';
+  static const String jujutsuKaisenBrand = 'assets/brands/jujutsu.png';
+  static const String warcraft = 'assets/brands/warcraft.png';
+  static const String hunterxhunter = 'assets/brands/hunterx.png';
 
   // Brands
   static const String adidasLogo = 'assets/brands/adidas.jpg';

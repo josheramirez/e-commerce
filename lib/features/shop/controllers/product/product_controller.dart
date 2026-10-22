@@ -61,18 +61,20 @@ class ProductController extends GetxController{
 
 
   void fetchFeaturedProducts() async{
-
+print("fetchFeaturedProducts");
     // Fetch Local data or From Firebase
     if (localData) {
         try {
           // Show loader while loading categories
           isLoading.value = true;
+          print(DummyData.products[0].id);
           featuredProducts.assignAll(DummyData.products.take(6).toList());
           // await Future.delayed(const Duration(seconds: 3));
           isLoading.value = false;
         } catch (e) {
 
         } finally{
+          print('featuredProducts ${featuredProducts.length}');
           isLoading.value = false;
         }
     }else{

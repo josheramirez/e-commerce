@@ -4,6 +4,7 @@ import 'package:e_commerce/common/widgets/products/product_cards/product_card_ve
 import 'package:e_commerce/common/widgets/products/product_cards/product_title_text.dart';
 import 'package:e_commerce/features/shop/controllers/product/product_controller.dart';
 import 'package:e_commerce/features/shop/models/product_model.dart';
+import 'package:e_commerce/features/shop/screens/cart/cart.dart';
 import 'package:e_commerce/features/shop/screens/home/home.dart';
 import 'package:e_commerce/features/shop/screens/product_details/widgets/bottom_add_to_card_widget.dart';
 import 'package:e_commerce/features/shop/screens/product_details/widgets/product_attributes.dart';
@@ -26,6 +27,11 @@ class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({super.key, required this.product});
 
   final ProductModel product;
+
+  String toThousandString(String words) => words.replaceAllMapped(
+    RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+    (Match m) => '${m[1]}.',
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -67,9 +73,9 @@ class ProductDetailScreen extends StatelessWidget {
                           if (product.salePrice != 0)
                             URoundedContainer(
                               radius: USizes.sm,
-                              backgroundColor: UColors.textSecondary.withAlpha(
-                                100,
-                              ),
+                              backgroundColor:  UColors.yellow.withValues(
+                              alpha: 0.9,
+                            ),
                               padding: EdgeInsets.symmetric(
                                 horizontal: USizes.sm,
                                 vertical: USizes.xs,
@@ -88,7 +94,8 @@ class ProductDetailScreen extends StatelessWidget {
                                   ProductType.single.toString() &&
                               product.salePrice > 0)
                             Text(
-                              '\$${product.price}',
+                              '\$${(toThousandString(product.price.toString()))}',
+                              // '\$${product.price}',
                               style: Theme.of(context).textTheme.titleSmall!
                                   .apply(
                                     decoration: TextDecoration.lineThrough,
@@ -101,7 +108,8 @@ class ProductDetailScreen extends StatelessWidget {
                             const SizedBox(width: USizes.spaceBtwItems),
 
                           ProductPriceText(
-                            price: controller.getProductPrice(product),
+                            // price: controller.getProductPrice(product),
+                            price: (toThousandString(controller.getProductPrice(product))),
                             isLarge: true,
                           ),
                         ],
@@ -141,15 +149,15 @@ class ProductDetailScreen extends StatelessWidget {
                             isNetworkImage:
                                 GlobalConfig.instance.isNetworkImage,
                             padding: 0,
-                            width: 35,
-                            height: 35,
+                            width: 40,
+                            height: 40,
                             overlayColor: dark ? UColors.white : UColors.black,
                           ),
                           BrandTitleWithVerifiedIcon(
                             title: product.brand != null
                                 ? product.brand!.name
                                 : '',
-                            brandTextSize: TextSizes.medium,
+                            brandTextSize: TextSizes.large,
                           ),
                         ],
                       ),
@@ -157,17 +165,17 @@ class ProductDetailScreen extends StatelessWidget {
                     ],
                   ),
 
-                  // Variation Attributes
+                  // [VARIATION ATTRIBUTES]
                   if (product.productType == ProductType.variable.toString())
                     ProductsAttributes(product: product),
                   if (product.productType == ProductType.variable.toString())
                     SizedBox(height: USizes.spaceBtwSections),
 
-                  // Checkout Button
+                  // [CHECKOUT]
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () => Get.to(() => CartScreen()),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue, // Button background color
                         foregroundColor: Colors.white, // Text and icon color
@@ -184,7 +192,7 @@ class ProductDetailScreen extends StatelessWidget {
                   SizedBox(height: USizes.spaceBtwItems),
 
                   // Description
-                  SectionHeading(title: 'Description'),
+                  SectionHeading(title: 'Description', showActionButton: false),
                   SizedBox(height: USizes.spaceBtwItems),
                   ReadMoreText(
                     product.description ?? '',
@@ -203,24 +211,24 @@ class ProductDetailScreen extends StatelessWidget {
                   ),
                   // SizedBox(height: USizes.spaceBtwSections),
 
-                  // Reviews
-                  Divider(),
-                  SizedBox(height: USizes.spaceBtwItems),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SectionHeading(
-                        title: 'Reviews (199)',
-                        showActionButton: false,
-                      ),
-                      IconButton(
-                        onPressed: () =>
-                            Get.to(() => const ProductReviewsScreen()),
-                        icon: Icon(Iconsax.arrow_right_3_copy, size: 18),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: USizes.spaceBtwItems),
+                  // [REVIEWS]
+                  // Divider(),
+                  // SizedBox(height: USizes.spaceBtwItems),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     SectionHeading(
+                  //       title: 'Reviews (199)',
+                  //       showActionButton: false,
+                  //     ),
+                  //     IconButton(
+                  //       onPressed: () =>
+                  //           Get.to(() => const ProductReviewsScreen()),
+                  //       icon: Icon(Iconsax.arrow_right_3_copy, size: 18),
+                  //     ),
+                  //   ],
+                  // ),
+                  // SizedBox(height: USizes.spaceBtwItems),
                 ],
               ),
             ),

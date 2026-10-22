@@ -33,6 +33,10 @@ class UCircularIcon extends StatelessWidget {
       child: IconButton(
         onPressed: onPressed,
         icon: Icon(icon, color: color, size: size),
+
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        hoverColor: Colors.transparent, 
       ),
     );
   }

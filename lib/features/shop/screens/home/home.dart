@@ -95,31 +95,31 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: 20),
 
                   // [CATEGORIES]
-                  Obx(() {
-                    if (searchText.value.isEmpty ||
-                        searchText.value.length < 3) {
-                      return Padding(
-                        padding: const EdgeInsets.only(
-                          left: USizes.defaultSpace,
-                        ),
-                        child: Column(
-                          children: [
-                            // Heading
-                            SectionHeading(
-                              title: 'Popular Categories',
-                              showActionButton: false,
-                              textColor: UColors.white,
-                            ),
-                            SizedBox(height: USizes.spaceBtwSections / 2),
+                  // Obx(() {
+                  //   if (searchText.value.isEmpty ||
+                  //       searchText.value.length < 3) {
+                  //     return Padding(
+                  //       padding: const EdgeInsets.only(
+                  //         left: USizes.defaultSpace,
+                  //       ),
+                  //       child: Column(
+                  //         children: [
+                  //           // Heading
+                  //           SectionHeading(
+                  //             title: 'Categorias',
+                  //             showActionButton: false,
+                  //             textColor: UColors.white,
+                  //           ),
+                  //           SizedBox(height: USizes.spaceBtwSections / 2),
 
-                            // Categories
-                            HomeCategories(),
-                          ],
-                        ),
-                      );
-                    }
-                    return SizedBox(height: 0);
-                  }),
+                  //           // Categories
+                  //           HomeCategories(),
+                  //         ],
+                  //       ),
+                  //     );
+                  //   }
+                  //   return SizedBox(height: 0);
+                  // }),
                   SizedBox(height: USizes.spaceBtwSections),
                 ],
               ),
@@ -333,7 +333,7 @@ class VerticalImageText extends StatelessWidget {
             Container(
               width: 56,
               height: 56,
-              padding: const EdgeInsets.all(USizes.sm),
+              padding: const EdgeInsets.all(7),
               decoration: BoxDecoration(
                 color: UColors.white,
                 borderRadius: BorderRadius.circular(100),
@@ -391,16 +391,31 @@ class SectionHeading extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+
         Text(
           title,
-          style: Theme.of(
-            context,
-          ).textTheme.titleMedium!.apply(color: textColor),
+          style: Theme.of(context).textTheme.titleMedium!.apply(color: textColor),
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
         if (showActionButton)
-          TextButton(onPressed: onPressed, child: Text(buttonTitle)),
+          Container( 
+            // color:Colors.red, 
+            child:  
+              TextButton(
+                style: TextButton.styleFrom(
+                  overlayColor: Colors.transparent,
+                  padding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
+                ),
+                onPressed: onPressed, 
+                child: 
+                  Column(
+                    children: [
+                      Text(buttonTitle),
+                    ],
+                  )
+            )
+          ),
       ],
     );
   }

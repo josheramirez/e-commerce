@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:e_commerce/common/widgets/appBar/appbar.dart';
 import 'package:e_commerce/common/widgets/commmo_shapes/containers/rounded_image.dart';
 import 'package:e_commerce/common/widgets/icons/circular_icons.dart';
+import 'package:e_commerce/common/widgets/products/favorite_icon/favorite_icon.dart';
 import 'package:e_commerce/features/shop/controllers/product/images_controller.dart';
 import 'package:e_commerce/features/shop/models/product_model.dart';
 import 'package:e_commerce/features/shop/screens/product_details/widgets/curved_edge_widget.dart';
@@ -92,7 +93,11 @@ class ProductImageSlider extends StatelessWidget {
               // App Bar
               UAppBar(
                 showBackArrow: true,
-                actions: [UCircularIcon(icon: Iconsax.heart, color: Colors.red,)],
+                actions: [
+                  // UCircularIcon(icon: Iconsax.heart, color: Colors.red,)
+                  FavoriteIcon(productId: product.id)
+                ],
+                
               )
             ],
           ),

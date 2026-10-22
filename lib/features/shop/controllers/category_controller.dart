@@ -29,7 +29,7 @@ class  CategoryController extends GetxController {
     if (localData) {
         // Show loader while loading categories
         isLoading.value = true;
-        featuredCategories.addAll(DummyData.categories.where((category) => category.isFeatured == true && category.parentId.isEmpty));
+        featuredCategories.addAll(DummyData.categories.where((category) => category.isFeatured == true && category.parentId.isEmpty && category.available));
         // await Future.delayed(const Duration(seconds: 2));
         isLoading.value = false;
     }else{
@@ -91,6 +91,7 @@ class  CategoryController extends GetxController {
     // Fetch Local data or From Firebase
     if (localData) {
         final subCategories = DummyData.categories.where((category) => category.parentId == categoryId).toList();
+        await Future.delayed(const Duration(seconds: 2));
         return subCategories;
     }else{
       try {

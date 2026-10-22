@@ -17,6 +17,10 @@ class ProductsAttributes extends StatelessWidget {
 
   final ProductModel product;
 
+  String toThousandString(String words) => words.replaceAllMapped(
+    RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+    (Match m) => '${m[1]}.',
+  );
   @override
   Widget build(BuildContext context) {
     final controller = VariationController.instance;
@@ -54,12 +58,14 @@ class ProductsAttributes extends StatelessWidget {
                               
                               // Actual Price
                               if(controller.selectedVariation.value.salePrice > 0)
-                              Text('\$${controller.selectedVariation.value.price}', style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough)),
+                              
+                              Text('\$${(toThousandString(controller.selectedVariation.value.price.toString()))}', style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough)),
+                              // Text('\$${controller.selectedVariation.value.price}', style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough)),
                               if(controller.selectedVariation.value.salePrice > 0)
                               SizedBox(width: USizes.spaceBtwItems /2),
                       
                               // Sale Price
-                              ProductPriceText(price: controller.getVariationPrice())
+                              ProductPriceText(price: toThousandString(controller.getVariationPrice()))
                               
                             ],
                           ),
@@ -118,8 +124,8 @@ class ProductsAttributes extends StatelessWidget {
                     // print('available: $available for attribute: ${attribute.name} and value: $attributeValue');
                     // print('selectedAttributes: ${controller.selectedAttributes} for attribute: ${attribute.name} and value: $attributeValue');
 
-print('in attribute: ${attribute.name} and value: $attributeValue');
-print('controller.attributesMap.length: ${controller.attributesMap.length} for attribute: ${attribute.name} and value: $attributeValue');
+// print('in attribute: ${attribute.name} and value: $attributeValue');
+// print('controller.attributesMap.length: ${controller.attributesMap.length} for attribute: ${attribute.name} and value: $attributeValue');
 
 if(controller.attributesMap.length >1){
   for (var disabledOption in controller.disabledOptions) {
@@ -136,21 +142,21 @@ if(controller.attributesMap.length >1){
 
         final lastKeyDisabledOption = disabledOption.keys.last;
 
-        print('index in MAp is $indexInMap , keyLength: $keyLength');
-        print('disabledOptions: ${controller.disabledOptions}');
-        print('first key ,  ${disabledOption[disabledOption.keys.first]}');
-        print('last key ,  ${disabledOption[disabledOption.keys.last]}');
-        print('selectedAttributes: ${controller.selectedAttributes}');
+        // print('index in MAp is $indexInMap , keyLength: $keyLength');
+        // print('disabledOptions: ${controller.disabledOptions}');
+        // print('first key ,  ${disabledOption[disabledOption.keys.first]}');
+        // print('last key ,  ${disabledOption[disabledOption.keys.last]}');
+        // print('selectedAttributes: ${controller.selectedAttributes}');
 
         // if is the last element in the disabledOption and first element selected are the same then block the other attribute
         if (index == keyLength - 1 && controller.selectedAttributes[disabledOption.keys.first] == disabledOption[disabledOption.keys.first]) {
-            print('DISABLED OPTION: $disabledOption for attribute: ${attribute.name} and value: $attributeValue');
+            // print('DISABLED OPTION: $disabledOption for attribute: ${attribute.name} and value: $attributeValue');
             available = false; // Mark as unavailable if it's the last key in the disabled option
         } 
 
         // if is the last element in the disabledOption and first element selected are the same then block the other attribute
         if (index == 0 && controller.selectedAttributes[disabledOption.keys.last] == disabledOption[disabledOption.keys.last]) {
-            print('DISABLED OPTION: $disabledOption for attribute: ${attribute.name} and value: $attributeValue');
+            // print('DISABLED OPTION: $disabledOption for attribute: ${attribute.name} and value: $attributeValue');
             available = false; // Mark as unavailable if it's the last key in the disabled option
         } 
 
