@@ -14,7 +14,7 @@ class CheckoutController extends GetxController {
   
   @override
   void onInit() {
-    selectedPaymentMethod.value = PaymentMethodModel(name: 'Mercado Pago', image: Images.mercadoPago);
+    selectedPaymentMethod.value = PaymentMethodModel(name: 'Transferencia', image: Images.transferencia);
     super.onInit();
   }
 
@@ -39,6 +39,7 @@ class CheckoutController extends GetxController {
               const SizedBox(height: USizes.spaceBtwItems/2),
               PaymentTitle(paymentMethod: PaymentMethodModel(name: 'BitCoins', image: Images.bitcoin)),
               const SizedBox(height: USizes.spaceBtwItems/2),
+              PaymentTitle(paymentMethod: PaymentMethodModel(name: 'Transferencia', image: Images.transferencia)),
               const SizedBox(height: USizes.spaceBtwSections),
             ],
           ),

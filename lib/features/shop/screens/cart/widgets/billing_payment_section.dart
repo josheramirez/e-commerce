@@ -27,9 +27,9 @@ class BillingPaymentSection extends StatelessWidget {
             children: [
               URoundedContainer(
                 width: 60,
-                height: 35,
+                height: 40,
                 backgroundColor: dark ? UColors.light : UColors.white,
-                padding: EdgeInsets.all(USizes.sm),
+                padding: EdgeInsets.all(5),
                 child: Image(image: AssetImage(controller.selectedPaymentMethod.value.image), fit:  BoxFit.contain),
               ),
               SizedBox(width: USizes.spaceBtwItems / 2),

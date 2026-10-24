@@ -388,7 +388,7 @@ class Images {
   static const String productImage85 = 'assets/products/1790877115348--104532782.jpg';   
  
 
-  // Brands [FINAL]
+  // Brands
   static const String warhammerBrandLogo = 'assets/brands/warhammer-logo-blanco.png';
   static const String legoBrandLogo = 'assets/brands/lego-color.png';
   static const String pokemonBrandLogo = 'assets/brands/pokemon-logo.png';
@@ -409,7 +409,7 @@ class Images {
   static const String warcraft = 'assets/brands/warcraft.png';
   static const String hunterxhunter = 'assets/brands/hunterx.png';
 
-  // Brands
+  // Brands - NOT USED
   static const String adidasLogo = 'assets/brands/adidas.jpg';
   static const String appleLogo = 'assets/brands/apple.jpg';
   static const String bataLogo = 'assets/brands/bata.png';
@@ -424,25 +424,26 @@ class Images {
   static const String northStarLogo = 'assets/brands/north_star.jpg';
   static const String poloLogo = 'assets/brands/polo.png';
 
-  // Payment Methods
+  // [PAYMENT METHODS]
   static const String paypal = "assets/icons/payment_methods/paypal.png";
   static const String creditCard = "assets/icons/payment_methods/credit-card.png";
   static const String webpay = "assets/icons/payment_methods/webpay.png";
   static const String mercadoPago = "assets/icons/payment_methods/mercado-pago.png";
   static const String bitcoin = "assets/icons/payment_methods/bitcoin.webp";
+  static const String transferencia = "assets/icons/payment_methods/transferencia.png";
 
+  // not used 
   static const String applePay = "assets/icons/payment_methods/apple-pay.png";
   static const String googlePay = "assets/icons/payment_methods/google-pay.png";
-
-  static const String masterCard =
-      "assets/icons/payment_methods/master-card.png";
-
+  static const String masterCard ="assets/icons/payment_methods/master-card.png";
   static const String visa = "assets/icons/payment_methods/visa.png";
   static const String paystack = "assets/icons/payment_methods/paystack.png";
   static const String paytm = "assets/icons/payment_methods/paytm.png";
-  static const String successfulPaymentIcon =
-      "assets/icons/payment_methods/successful_payment_icon.png";
   static const String codIcon = "assets/icons/payment_methods/cod.png";
+
+  // [ICON FOR MESSAGE PROCESS]
+  static const String successfulPaymentIcon = "assets/icons/payment_methods/successful_payment_icon.png";
+  static const String orderCreatedIcon = "assets/icons/payment_methods/order_created_icon.png";
 
   // Brands
   static const String pokemonIcon = "assets/brands/pokemon_icon.png";

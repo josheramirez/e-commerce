@@ -61,7 +61,6 @@ class ProductController extends GetxController{
 
 
   void fetchFeaturedProducts() async{
-print("fetchFeaturedProducts");
     // Fetch Local data or From Firebase
     if (localData) {
         try {
@@ -74,7 +73,6 @@ print("fetchFeaturedProducts");
         } catch (e) {
 
         } finally{
-          print('featuredProducts ${featuredProducts.length}');
           isLoading.value = false;
         }
     }else{

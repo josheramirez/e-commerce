@@ -11,6 +11,11 @@
 		<!-- 🖼️ Required to pick images from the gallery -->
 		<key>NSPhotoLibraryUsageDescription</key>
 		<string>This app needs access to your photo gallery to let you choose images.</string>
+		<key>LSApplicationQueriesSchemes</key>
+		<array>
+			<string>whatsapp</string>
+			<string>https</string>
+		</array>
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>

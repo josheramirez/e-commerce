@@ -278,6 +278,8 @@ class BrandTitleWithVerifiedIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
+      // crossAxisAlignment: CrossAxisAlignment.start,
+      // mainAxisAlignment: MainAxisAlignment.start,
       children: [
         if(brandImage != '')
         SizedBox(
@@ -285,8 +287,9 @@ class BrandTitleWithVerifiedIcon extends StatelessWidget {
           height: 15,
           child: Image(image: AssetImage(brandImage),),
         ),
+        if(brandImage != '')
         SizedBox(width: 5,),
-        BrandTitleText(title: title),
+        Flexible(child:  BrandTitleText(title: title)),
         Icon(Iconsax.verify, color: UColors.primary, size: USizes.iconXs),
       ],
     );

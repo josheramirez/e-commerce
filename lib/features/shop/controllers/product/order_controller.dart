@@ -76,10 +76,19 @@ class OrderController extends GetxController {
         cartController.clearCart();
 
         // Show Success screen
+        // Get.off(() => SuccessScreen(
+        //     image: Images.successfulPaymentIcon,
+        //     title: 'Pago Exitoso',
+        //     subtitle: 'Tu Pedido sera enviado pronto.',
+        //     onPress: () => Get.offAll(() => NavigationMenu()),
+        // ));
+
+        // [SHOW ORDER WAS PORCESSED AND PAY INFO]
         Get.off(() => SuccessScreen(
-            image: Images.successfulPaymentIcon,
-            title: 'Pago Exitoso',
-            subtitle: 'Tu Pedido sera enviado pronto.',
+            order: order.id,
+            image: Images.orderCreatedIcon,
+            title: 'Orden Realizada',
+            subtitle: 'Envia tu comprobante de Pago por Wassap o Mail, para poder enviar tu Producto',
             onPress: () => Get.offAll(() => NavigationMenu()),
         ));
 
@@ -118,6 +127,7 @@ class OrderController extends GetxController {
 
         // Show Success screen
         Get.off(() => SuccessScreen(
+            order: order.id,
             image: Images.successfulPaymentIcon,
             title: 'Pago Exitoso',
             subtitle: 'Tu Pedido sera enviado pronto.',

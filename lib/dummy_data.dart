@@ -251,14 +251,14 @@ class DummyData {
     ProductCategoryModel(categoryId: '10', productId: '82'),
 
     // Keycaps
-    ProductCategoryModel(categoryId: '10', productId: '60'),
-    ProductCategoryModel(categoryId: '10', productId: '64'),
-    ProductCategoryModel(categoryId: '10', productId: '66'),
-    ProductCategoryModel(categoryId: '10', productId: '82'),
+    ProductCategoryModel(categoryId: '13', productId: '60'),
+    ProductCategoryModel(categoryId: '13', productId: '64'),
+    ProductCategoryModel(categoryId: '13', productId: '66'),
+    ProductCategoryModel(categoryId: '13', productId: '61'),
 
     // Cute Toy
-    ProductCategoryModel(categoryId: '7', productId: '83'),
-    ProductCategoryModel(categoryId: '7', productId: '84'),
+    ProductCategoryModel(categoryId: '17', productId: '83'),
+    ProductCategoryModel(categoryId: '17', productId: '84'),
   ];
 
   /// List of all Banners
@@ -313,13 +313,13 @@ class DummyData {
       isFeatured: true,
     ),
     // 2
-    // BrandModel(
-    //   id: '4',
-    //   image: Images.hotwheelsBrandLogo,
-    //   name: 'Hotwheels',
-    //   productsCount: 30,
-    //   isFeatured: true,
-    // ),
+    BrandModel(
+      id: '4',
+      image: Images.hotwheelsBrandLogo,
+      name: 'Hotwheels',
+      productsCount: 30,
+      isFeatured: true,
+    ),
     // 3
     BrandModel(
       id: '5',
@@ -1438,7 +1438,7 @@ class DummyData {
       ],
       productVariations: [
         ProductVariationModel(
-          id: 'Keycap006',
+          id: 'OnePiece006',
           stock: 1,
           salePrice: 5000,
           price: 5000,
@@ -1449,7 +1449,7 @@ class DummyData {
           sku: '',
         ),
         ProductVariationModel(
-          id: 'Keycap007',
+          id: 'OnePiece007',
           stock: 1,
           salePrice: 5000,
           price: 5000,
@@ -1459,7 +1459,7 @@ class DummyData {
           attributeValues: {'Modelo': 'Borsalino'},
           sku: '',
         ), ProductVariationModel(
-          id: 'Keycap008',
+          id: 'OnePiece008',
           stock: 1,
           salePrice: 5000,
           price: 5000,
@@ -1470,7 +1470,7 @@ class DummyData {
           sku: '',
         ),
         ProductVariationModel(
-          id: 'Keycap004',
+          id: 'OnePiece004',
           stock: 1,
           salePrice: 5000,
           price: 5000,
@@ -1481,7 +1481,7 @@ class DummyData {
           sku: '',
         ),
          ProductVariationModel(
-          id: 'Keycap004',
+          id: 'OnePiece004',
           stock: 1,
           salePrice: 5000,
           price: 5000,
@@ -1492,7 +1492,7 @@ class DummyData {
           sku: '',
         ),
         ProductVariationModel(
-          id: 'Keycap004',
+          id: 'OnePiece004',
           stock: 1,
           salePrice: 5000,
           price: 5000,
@@ -1503,7 +1503,7 @@ class DummyData {
           sku: '',
         ),
         ProductVariationModel(
-          id: 'Keycap004',
+          id: 'OnePiece004',
           stock: 1,
           salePrice: 5000,
           price: 5000,
