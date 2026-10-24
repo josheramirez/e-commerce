@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_dotenv: ^6.0.1
   # Utility
   url_launcher: ^6.1.12
   flutter_native_splash: ^2.4.0
@@ -64,6 +65,7 @@ dependencies:
   
 
   webview_flutter: ^4.4.0 
+  mailer: ^7.2.0
 
 # --------PACKAGES END---------# 
 
@@ -101,6 +103,7 @@ flutter:
     - assets/animations/
     - assets/logo/
     - assets/product_market/
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

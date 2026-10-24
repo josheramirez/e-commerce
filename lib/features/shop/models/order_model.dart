@@ -72,5 +72,4 @@ class OrderModel{
         items: (data['items'] as List<dynamic>).map((itemData) => CartItemModel.fromJson(itemData as Map<String, dynamic>),).toList(),
     );
   }
-
 }

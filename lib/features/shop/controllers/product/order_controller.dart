@@ -16,6 +16,8 @@ import 'package:get/get.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/state_manager.dart';
 
+import '../../models/order_model.dart';
+
 class OrderController extends GetxController {
   static OrderController get instance => Get.find();
 
@@ -85,7 +87,8 @@ class OrderController extends GetxController {
 
         // [SHOW ORDER WAS PORCESSED AND PAY INFO]
         Get.off(() => SuccessScreen(
-            order: order.id,
+
+            order: order,
             image: Images.orderCreatedIcon,
             title: 'Orden Realizada',
             subtitle: 'Envia tu comprobante de Pago por Wassap o Mail, para poder enviar tu Producto',
@@ -127,7 +130,7 @@ class OrderController extends GetxController {
 
         // Show Success screen
         Get.off(() => SuccessScreen(
-            order: order.id,
+            order: order,
             image: Images.successfulPaymentIcon,
             title: 'Pago Exitoso',
             subtitle: 'Tu Pedido sera enviado pronto.',
