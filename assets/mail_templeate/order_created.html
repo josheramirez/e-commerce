@@ -185,6 +185,20 @@
   padding: 20px;
   border-radius: 60px;
 }
+
+@media (max-width: 600px) {
+  .flex-container {
+    flex-direction: column; /* Stack items vertically on phones */
+    gap:inherit;
+    justify-content: space-between;
+  }
+  .success-icon{
+    display:none;
+  }
+  .righ{
+    margin-top: 5px;
+  }
+}
     </style>
 </head>
 <body>
@@ -194,7 +208,7 @@
         <div class="header">
             <div class="flex-container">
                 <div class="left">
-                    <img src="../logo/copiachina_logo.png" alt="Description" loading="lazy" width="180" >
+                    <img src="../logo/copiachina_alternative.svg" alt="Description" loading="lazy" width="200" >
                 </div>
                 <div class="righ">
                     <div class="success-icon">✓</div>
