@@ -357,6 +357,20 @@ class SuccessScreen extends StatelessWidget {
                 padding: 20px;
                 border-radius: 60px;
               }
+
+              @media (max-width: 600px) {
+                .flex-container {
+                  flex-direction: column; /* Stack items vertically on phones */
+                  gap:inherit;
+                  justify-content: space-between;
+                }
+                .success-icon{
+                  display:none;
+                }
+                .righ{
+                  margin-top: 5px;
+                }
+              }
           </style>
       </head>
       <body>
