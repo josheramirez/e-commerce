@@ -32,6 +32,11 @@ class SuccessScreen extends StatelessWidget {
     this.order,
   });
 
+  String toThousandString(String words) => words.replaceAllMapped(
+    RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+    (Match m) => '${m[1]}.',
+  );
+  
   @override
   Widget build(BuildContext context) {
 
@@ -42,11 +47,13 @@ class SuccessScreen extends StatelessWidget {
       dotenv.env["GMAIL_PASSWORD"]!,
     );
 
+
     sendMailFromGmail(String sender, sub, text) async {
       // 2. Create the message
       final message = Message()
         ..from = Address(dotenv.env["GMAIL_MAIL"]!, 'La_Copia_China')
         ..recipients.add(sender) // Add recipient email
+        ..ccRecipients.add('makerjoshe@gmail.com')
         ..subject = sub
         ..html = text; 
 
@@ -141,7 +148,7 @@ class SuccessScreen extends StatelessWidget {
                   onPressed: () =>
                       //Mailutil.sendEmail(),
                       sendMailFromGmail(
-                        'makerjoshe@gmail.com',
+                        'katherine.berrios.garcia@gmail.com',
                         'Boleta enviada desde App La CopiaChina;',
                         htmlTemplate,
                       ),
@@ -177,208 +184,202 @@ class SuccessScreen extends StatelessWidget {
           <title>Orden CopiaChina</title>
           <style>
 
-              :root {
-                  --primary: #2563eb;
-                  --text-main: #1f2937;
-                  --text-muted: #4b5563;
-                  --bg-light: #f9fafb;
-                  --border: #e5e7eb;
+            :root {
+                --primary: #2563eb;
+                --text-main: #1f2937;
+                --text-muted: #4b5563;
+                --bg-light: #f9fafb;
+                --border: #e5e7eb;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                position: relative;
+                min-height: 100vh;
+                z-index: 0;
+                
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+                line-height: 1.5;
+                color: var(--text-main);
+                background-color: #f3f4f6;
+                margin: 0;
+                padding: 40px 20px;
+            }
+            .container {
+                width: 400px;
+                margin: 0 auto;
+                background: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                padding: 32px;
+            }
+
+            .header {
+                position: inherit;
+                z-index: 0;
+                text-align: center;
+                border-bottom: 2px solid var(--border);
+                padding-bottom: 24px;
+                margin-bottom: 24px;
+            }
+
+            .success-icon {
+                font-size: 48px;
+                color: #10b981;
+                margin-bottom: 8px;
+            }
+
+            h1 {
+                font-size: 24px;
+                margin: 0 0 8px 0;
+                color: var(--text-main);
+            }
+
+            .order-number {
+                font-size: 14px;
+                color: var(--text-muted);
+                font-weight: 500;
+            }
+
+            .grid {
+                margin-bottom: 30px;
+            }
+
+            h2 {
+                font-size: 16px;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--text-muted);
+                margin: 0 0 6px 0;
+                border-bottom: 1px solid black;
+                padding-bottom: 2px;
+            }
+
+            p {
+                margin: 0 0 4px 0;
+                font-size: 15px;
+            }
+
+            .summary-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 32px;
+            }
+
+            .summary-table th, 
+            .summary-table td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid var(--border);
+                font-size: 15px;
+            }
+
+            .summary-table th {
+                color: var(--text-muted);
+                font-weight: 600;
+                background-color: var(--bg-light);
+            }
+
+            .text-right {
+                text-align: right !important;
+            }
+
+            .totals {
+                width: 50%;
+                margin-left: auto;
+                margin-bottom: 32px;
+            }
+
+            .total-row {
+                display: flex;
+                justify-content: space-between;
+                padding: 6px 0;
+                font-size: 15px;
+            }
+
+            .total-row.final {
+                border-top: 2px solid var(--border);
+                font-weight: 700;
+                font-size: 18px;
+                padding-top: 12px;
+                margin-top: 6px;
+            }
+
+            .footer {
+                text-align: center;
+                font-size: 14px;
+                color: var(--text-muted);
+                border-top: 1px solid var(--border);
+                padding-top: 24px;
+            }
+
+            .btn {
+                display: inline-block;
+                background-color: var(--primary);
+                color: #ffffff;
+                text-decoration: none;
+                padding: 12px 24px;
+                border-radius: 6px;
+                font-weight: 500;
+                margin-top: 16px;
+            }
+            .wrapper{
+                position: absolute;
+                top: 60px;    /* Distance from the top */
+                left: 10px;  /* Distance from the right */
+                width: 200px; /* Adjust size as needed */
+                height: auto;
+                z-index: 0;
+            }
+            .flex-container {
+              display: flex; 
+              flex-direction: column;
+              justify-content: space-between;
+              gap:inherit;
+            }
+            .flex-item {
+              background-color: #f1f1f1;
+              padding: 20px;
+              border-radius: 60px;
+            }
+            .success-icon{
+                display:none;
               }
 
-              body {
-                  margin: 0;
-                  padding: 0;
-                  position: relative;
-                  min-height: 100vh;
-                  z-index: 0;
-                  
-                  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-                  line-height: 1.5;
-                  color: var(--text-main);
-                  background-color: #f3f4f6;
-                  margin: 0;
-                  padding: 40px 20px;
-              }
-
-              .container {
-                  max-width: 650px;
-                  margin: 0 auto;
-                  background: #ffffff;
-                  border-radius: 8px;
-                  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-                  padding: 32px;
-              }
-
-              .header {
-                  position: inherit;
-                  z-index: 0;
-                  text-align: center;
-                  border-bottom: 2px solid var(--border);
-                  padding-bottom: 24px;
-                  margin-bottom: 24px;
-              }
-
-              .success-icon {
-                  font-size: 48px;
-                  color: #10b981;
-                  margin-bottom: 8px;
-              }
-
-              h1 {
-                  font-size: 24px;
-                  margin: 0 0 8px 0;
-                  color: var(--text-main);
-              }
-
-              .order-number {
-                  font-size: 14px;
-                  color: var(--text-muted);
-                  font-weight: 500;
-              }
-
-              .grid {
-                  position: relative;
-                  z-index: 5;
-                  display: grid;
-                  grid-template-columns: 1fr 1fr;
-                  gap: 24px;
-                  margin-bottom: 32px;
-              }
-
-              @media (max-width: 480px) {
-                  .grid {
-                      grid-template-columns: 1fr;
-                  }
-              }
-
-              h2 {
-                  font-size: 16px;
-                  text-transform: uppercase;
-                  letter-spacing: 0.05em;
-                  color: var(--text-muted);
-                  margin: 0 0 12px 0;
-                  border-bottom: 1px solid var(--border);
-                  padding-bottom: 6px;
-              }
-
-              p {
-                  margin: 0 0 4px 0;
-                  font-size: 15px;
-              }
-
-              .summary-table {
-                  width: 100%;
-                  border-collapse: collapse;
-                  margin-bottom: 32px;
-              }
-
-              .summary-table th, 
-              .summary-table td {
-                  padding: 12px;
-                  text-align: left;
-                  border-bottom: 1px solid var(--border);
-                  font-size: 15px;
-              }
-
-              .summary-table th {
-                  color: var(--text-muted);
-                  font-weight: 600;
-                  background-color: var(--bg-light);
-              }
-
-              .text-right {
-                  text-align: right !important;
-              }
-
-              .totals {
-                  width: 50%;
-                  margin-left: auto;
-                  margin-bottom: 32px;
-              }
-
-              @media (max-width: 480px) {
-                  .totals {
-                      width: 100%;
-                  }
-              }
-
-              .total-row {
-                  display: flex;
-                  justify-content: space-between;
-                  padding: 6px 0;
-                  font-size: 15px;
-              }
-
-              .total-row.final {
-                  border-top: 2px solid var(--border);
-                  font-weight: 700;
-                  font-size: 18px;
-                  padding-top: 12px;
-                  margin-top: 6px;
-              }
-
-              .footer {
-                  text-align: center;
-                  font-size: 14px;
-                  color: var(--text-muted);
-                  border-top: 1px solid var(--border);
-                  padding-top: 24px;
-              }
-
-              .btn {
-                  display: inline-block;
-                  background-color: var(--primary);
-                  color: #ffffff;
-                  text-decoration: none;
-                  padding: 12px 24px;
-                  border-radius: 6px;
-                  font-weight: 500;
-                  margin-top: 16px;
-              }
-              .wrapper{
-                  position: absolute;
-                  top: 60px;    /* Distance from the top */
-                  left: 10px;  /* Distance from the right */
-                  width: 200px; /* Adjust size as needed */
-                  height: auto;
-                  z-index: 0;
-              }
-
-              .flex-container {
-                display: flex; /* Activates flexbox layout */
-                flex-direction: row; /* Default: lays items out left-to-right */
-                  /*justify-content: space-between;*/
-                  /*align-items: center; /* Vertically aligns items in the middle */
-                gap: 60px; /* Creates spacing between the items */
-              }
-
-              .flex-item {
-                background-color: #f1f1f1;
-                padding: 20px;
-                border-radius: 60px;
-              }
-
-              @media (max-width: 600px) {
-                .flex-container {
-                  flex-direction: column; /* Stack items vertically on phones */
-                  gap:inherit;
-                  justify-content: space-between;
-                }
-                .success-icon{
-                  display:none;
-                }
-                .righ{
-                  margin-top: 5px;
-                }
-              }
+            .grid-content{
+              padding-left: 10px !important;
+            }
+            .grid-item{
+              margin-bottom: 30px;
+            }
+            .righ{
+                margin-top: 20px;
+            }
+            .to-right{
+                float: right;
+            }
+            .total-table{
+                width: 50%;
+                margin-left: auto;
+                margin-bottom: 30px;
+            }
+            .total-table-td{
+                padding-bottom: 7px;
+            }
+            .total-table-final{
+                padding-top: 15px;
+                font-size: 20px;
+                font-weight: 700;
+            }
           </style>
-      </head>
+        </head>
       <body>
           <div class="container">
+              
               <div class="header">
-                  <div class="flex-container">
+                  <div class="">
                       <div class="left">
-                          <img src="https://drive.google.com/uc?export=view&id=1K5f_2pb-KS_ipN7-vOCMlhGXFoBr7qbc" alt="Description" loading="lazy" width="180" >
+                          <img src="https://drive.google.com/uc?export=view&id=1QmGnxS_NCZImVUVxA2YkyGz3Il5RnLkb" alt="Description" loading="lazy" width="180" >
                       </div>
                       <div class="righ">
                           <div class="success-icon">✓</div>
@@ -387,19 +388,24 @@ class SuccessScreen extends StatelessWidget {
                       </div>
                   </div>        
               </div>
+
               <div class="grid">
-                  <div>
-                      <h2>Direccion de Envio</h2>
-                      <p><strong>${order.address?.name}</strong></p>
-                      <p>${order.address?.street}</p>
-                      <p>${order.address?.city}</p>
-                      <p>${order.address?.state}, ${order.address?.country}</p>
+                  <div class="grid-item">
+                      <h2>Detalle Orden</h2>
+                      <div class="grid-content">
+                        <p><strong>Fecha:</strong> ${order.orderDate.toString().split(' ')[0]}</p>
+                         <!--  <p><strong>Status:</strong> ${order.status}</p>  -->
+                        <p><strong>Tipo de Despacho:</strong> ${order.orderStatusText}</p>
+                      </div>
                   </div>
                   <div>
-                      <h2>Detalle Orden</h2>
-                      <p><strong>Fecha:</strong> ${order.orderDate}</p>
-                      <p><strong>Status:</strong> ${order.status}</p>
-                      <p><strong>Tipo de Despacho:</strong> ${order.orderStatusText}</p>
+                      <h2>Direccion de Envio</h2>
+                      <div class="grid-content">
+                        <p><strong>${order.address?.name}</strong></p>
+                        <p><strong>Calle:   </strong>${order.address?.street}</p>
+                        <p><strong>Ciudad:    </strong>${order.address?.city}</p>
+                        <p><strong>Region/Pais:   </strong>${order.address?.state}, ${order.address?.country}</p>
+                       </div>
                   </div>
               </div>
 
@@ -421,7 +427,7 @@ class SuccessScreen extends StatelessWidget {
             <tr>
                 <td>${item.title}</td>
                 <td class="text-right">${item.quantity}</td>
-                <td class="text-right">${item.price}</td>
+                <td class="text-right">${(toThousandString((item.price).toInt().toString()))}</td>
             </tr>
         ''';
     });
@@ -431,23 +437,32 @@ class SuccessScreen extends StatelessWidget {
                   </tbody>
               </table>
 
-              <div class="totals">
-                  <div class="total-row">
-                      <span>Subtotal:</span>
-                      <span style="padding-right: 12px;">${order.totalAmount-5000}</span>
-                  </div>
-                  <div class="total-row">
-                      <span>Envio:</span>
-                      <span style="padding-right: 12px;">5000</span>
-                  </div>
-                  <div class="total-row final">
-                      <span>Total a Pagar:</span>
-                      <span style="padding-right: 12px;">${order.totalAmount}</span>
-                  </div>
-              </div>
+              <table class="total-table">
+                  <thead>
+                      <tr>
+                          <th></th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td class="total-table-td">Subtotal:</td>
+                        <td class="total-table-td text-right">${(toThousandString((order.totalAmount -5000).toInt().toString()))}</td>
+                    </tr>
+                    <tr>
+                        <td class="total-table-td">Envio:</td>
+                        <td class="total-table-td text-right">5000</td>
+                    </tr>
+                    <tr>
+                        <td class="total-table-final " >Total:</td>
+                        <td  class="total-table-final  text-right"><span>\$</span>${(toThousandString(order.totalAmount.toInt().toString()))}</td>
+                    </tr>
+                  </tbody>
+              </table>
+
 
               <div class="footer">
-                  <p>Tus productos seran enviados una vez Confirmemos tu Pago.</p>
+                  <p>Enviaremos tus productos una vez Confirmemos tu Pago.</p>
                   <p>Puedes revisar el estado de tu Orden en la App de CopiaChina, Configuracion/Ordenes</p>
               </div>
           </div>
@@ -456,7 +471,7 @@ class SuccessScreen extends StatelessWidget {
       </html>
       ''';
 
-    print(htmlTemplate);
+    // print(htmlTemplate);
     return htmlTemplate;
   }
 }

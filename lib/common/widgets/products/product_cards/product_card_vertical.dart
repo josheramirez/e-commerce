@@ -150,12 +150,11 @@ class ProductCardVertical extends StatelessWidget {
                   child: Column(
                     children: [
                       // Original Price with lineThrough becouse have some sale discount
-                      if (product.productType == ProductType.single.toString() &&
-                          product.salePrice > 0)
+                      if (product.productType == ProductType.single.toString() && product.salePrice > 0)
                         Padding(
                           padding: const EdgeInsets.only(left: USizes.sm),
                           child: Text(
-                            (toThousandString(product.price.toString())),
+                            (toThousandString(product.price.toInt().toString())),
                             style: Theme.of(context).textTheme.labelMedium!.apply(
                               decoration: TextDecoration.lineThrough,
                             ),
@@ -184,10 +183,10 @@ class ProductCardVertical extends StatelessWidget {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-    height: 1.0, // Force line height to tightly match font size
-    fontSize: 20,
-    fontWeight: FontWeight.bold
-  ),
+                                    height: 1.0, // Force line height to tightly match font size
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold
+                                  ),
                               ),
                             ),
                           ],

@@ -18,6 +18,7 @@ class CartItems extends StatelessWidget {
     return Obx(
       () => ListView.separated(
         shrinkWrap: true, // Forces the list to only take up necessary space
+        physics: NeverScrollableScrollPhysics(),
         itemCount: controller.cartItems.length,
         separatorBuilder: (_, __) => const SizedBox(height: USizes.spaceBtwSections),
         itemBuilder: (_, index) => Obx(

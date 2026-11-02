@@ -44,6 +44,7 @@ class CartScreen extends StatelessWidget {
         return controller.cartItems.isEmpty
             ? emptyWidget
             : SingleChildScrollView(
+                // physics: const AlwaysScrollableScrollPhysics(),
                 child: Padding(
                   padding: EdgeInsets.all(USizes.defaultSpace),
                   child: CartItems(),
@@ -78,7 +79,7 @@ class CartScreen extends StatelessWidget {
                 ),
                 child: Obx(
                   () => Text(
-                    'Checkout  \$ ${(toThousandString(controller.totalCartPrice.value.toInt().toString()))}',
+                    'Checkout  \$${(toThousandString(controller.totalCartPrice.value.toInt().toString()))}',
                   ),
                 ),
               ),

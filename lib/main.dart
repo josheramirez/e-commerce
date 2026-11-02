@@ -14,7 +14,7 @@ import 'data/repositories/authentication/authentication_repository.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-  // await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: ".env");
   
   // Inicializa el soporte para formatos locales
   await initializeDateFormatting('es_ES', null);
